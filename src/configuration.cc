@@ -2,10 +2,10 @@
 #include <string>
 #include <vector>
 
-#include "basic_commands.h"
-#include "command_listeners.h"
-#include "move.h"
-#include "prefix_g.h"
+#include "basic_commands.hh"
+#include "command_listeners.hh"
+#include "move.hh"
+#include "prefix_g.hh"
 
 int TAB_SIZE() { return 8; }
 

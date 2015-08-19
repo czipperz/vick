@@ -1,13 +1,13 @@
 #include <ncurses.h>
 #include <string.h>
 
-#include "configuration.h"
-#include "int_to_str.h"
-#include "key_listeners.h"
-#include "move.h"
-#include "show_message.h"
+#include "configuration.hh"
+#include "int_to_str.hh"
+#include "key_listeners.hh"
+#include "move.hh"
+#include "show_message.hh"
 
-#define _DEBUG
+//#define _DEBUG
 
 static int
     y,x,
@@ -24,51 +24,32 @@ static int to_visual(const std::string& cont, int x) {
                                     i <= cont.begin() + x; i++) {
         if(*i == '\t') {
             xx += TAB_SIZE() - 1 - til;
-            x  -= TAB_SIZE() - 1 - til;
             til = 0;
         } else {
             til++;
             til %= TAB_SIZE();
         }
     }
+    //show_message(int_to_str(xx).c_str());
     return xx;
 }
 
-// static int add_tabs(std::vector<std::string>* cont, int y, int xx) {
-//     std::string& str = (*cont)[y];
-//     int x = xx;
-//     int til = 0;
-//     for(std::string::iterator i = str.begin();
-//         i <= str.begin() + x; i++) {
-//         if(*i == '\t') {
-//             xx += TAB_SIZE() - 1 - til;
-//             til = 0;
-//         } else {
-//             til++;
-//             til %= TAB_SIZE();
-//         }
-//     }
-//     return xx;
-// }
-
-// static int remove_tabs(std::vector<std::string>* cont, int y, int xx) {
-//     std::string& str = (*cont)[y];
-//     int x = xx;
-//     int til = 0;
-//     for(std::string::iterator i =  str.begin();
-//                               i <= str.begin() + x; i++) {
-//         if(*i == '\t') {
-//             int it = TAB_SIZE() - 1 - til;
-//             if(xx + it > x) return xx + it;
-//             xx -= it;
-//             til = 0;
-//         } else {
-//             til++;
-//             til %= TAB_SIZE();
-//         }
-//     }
-//     return xx;
-// }
+static int from_visual(const std::string& cont, int x) {
+    int til = 0;
+    int xx = x;
+    for(std::string::const_iterator i =  cont.begin();
+                                    i <= cont.begin() + x; i++) {
+        if(*i == '\t') {
+            xx -= TAB_SIZE() - 1 - til;
+            til = 0;
+        } else {
+            til++;
+            til %= TAB_SIZE();
+        }
+    }
+    show_message(int_to_str(xx).c_str());
+    return xx;
+}
 
 void mv(int _y, int _x) {
     if(_y == y && _x == x) return;
@@ -144,8 +125,7 @@ void mvbw() {
     //move back over (possible) sequence of non delminators
 }
 
-void mvd(int times) { mvrel(times,0);
-    /*
+void mvd(int times) {
     int _y = y + 1,
         _x = x;
     if(_y == y && _x == x) return;
@@ -186,7 +166,6 @@ void mvd(int times) { mvrel(times,0);
                   + int_to_str(y) + ","
                   + int_to_str(x) + ")").c_str());
 #endif
-    */
 }
 void mvu(int times) { mvrel(-times,      0); }
 void mvr(int times) { mvrel(     0,  times); }

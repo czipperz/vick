@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "configuration.h"
-#include "show_message.h"
-#include "parse_init_contents.h"
+#include "configuration.hh"
+#include "show_message.hh"
+#include "parse_init_contents.hh"
 
 static std::map<char,void (*)()> listeners;
 static std::vector<std::string>* contents;

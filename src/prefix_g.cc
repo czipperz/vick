@@ -2,8 +2,8 @@
 #include <ncurses.h>
 #include <string>
 
-#include "move.h"
-#include "show_message.h"
+#include "move.hh"
+#include "show_message.hh"
 
 static std::map<char,void (*)()> listeners;
 

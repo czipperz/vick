@@ -1,8 +1,8 @@
 #include <ncurses.h>
 #include <string>
 #include <vector>
-#include "move.h"
-#include "configuration.h"
+#include "move.hh"
+#include "configuration.hh"
 
 void print_init_contents(std::vector<std::string>* contents) {
     int b_y,b_x,

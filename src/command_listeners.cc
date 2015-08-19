@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "configuration.h"
-#include "int_to_str.h"
-#include "key_aliases.h"
-#include "show_message.h"
+#include "configuration.hh"
+#include "int_to_str.hh"
+#include "key_aliases.hh"
+#include "show_message.hh"
 
 static std::map<std::string,
                 void (*)(const std::vector<std::string>&)>
