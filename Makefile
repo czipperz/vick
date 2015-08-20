@@ -1,11 +1,12 @@
 CFLAGS=-lncurses -Wall
 O=out
 S=src
-T=tests
+T=test
+TO=testout
 CC=g++
 
-all: $O/newmove.o \
-     $O/main.o \
+files = $O/newmove.o \
+     $O/move.o \
      $O/key_listeners.o \
      $O/command_listeners.o \
      $O/show_message.o \
@@ -14,6 +15,14 @@ all: $O/newmove.o \
      $O/parse_init_contents.o \
      $O/configuration.o \
      $O/basic_commands.o
+
+testfiles = ${TO}/int_to_str_tests.o \
+     ${TO}/main.o \
+     ${TO}/newmove_tests.o
+
+all: testVI
+
+testVI: ${files} $O/main.o
 	${CC} -o testVI $^ $(CFLAGS)
 
 #	aser2	4sk	6eskl	8
@@ -31,15 +40,62 @@ $O/%.o: $S/%.cc
 	@mkdir -p $O
 	${CC} -o $@ -c $< $(CFLAGS)
 
-clean:
-	rm -R out
-	rm `find -name '*~'`
+${TO}/%.o: $T/%.cc
+	@mkdir -p ${TO}
+	${CC} -o $@ -c $< $(CFLAGS)
 
-test:
+$T/UnitTest++/Posix/%.o: $T/UnitTest++/Posix/%.cpp
+	${CC} -o $@ -c $<
+
+$T/UnitTest++/%.o: $T/UnitTest++/%.cpp
+	${CC} -o $@ -c $<
+
+clean:
+	[ ! -d out ] || rm -R out
+	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
+	[ -z "`find -name '*.o'`" ] || rm `find -name '*.o'`
+
+test: testVI $T/UnitTest++/AssertException.o \
+             $T/UnitTest++/CurrentTest.o \
+             $T/UnitTest++/MemoryOutStream.o \
+             $T/UnitTest++/TestDetails.o \
+             $T/UnitTest++/TestReporterStdout.o \
+             $T/UnitTest++/TimeConstraint.o \
+             $T/UnitTest++/Checks.o \
+             $T/UnitTest++/DeferredTestReporter.o \
+             $T/UnitTest++/ReportAssert.o \
+             $T/UnitTest++/TestList.o \
+             $T/UnitTest++/TestResults.o \
+             $T/UnitTest++/XmlTestReporter.o \
+             $T/UnitTest++/CompositeTestReporter.o \
+             $T/UnitTest++/DeferredTestResult.o \
+             $T/UnitTest++/Test.o \
+             $T/UnitTest++/TestReporter.o \
+             $T/UnitTest++/TestRunner.o \
+             $T/UnitTest++/Posix/SignalTranslator.o \
+             $T/UnitTest++/Posix/TimeHelpers.o \
+             ${testfiles}
 	${CC} -o $T/out \
-     $T/*.cc \
-     $T/UnitTest++/*.cpp \
-     $T/UnitTest++/Posix/*.cpp \
-     $S/int_to_str.cc \
-     ${CFLAGS}
+             ${testfiles} \
+             $T/UnitTest++/AssertException.o \
+             $T/UnitTest++/CurrentTest.o \
+             $T/UnitTest++/MemoryOutStream.o \
+             $T/UnitTest++/TestDetails.o \
+             $T/UnitTest++/TestReporterStdout.o \
+             $T/UnitTest++/TimeConstraint.o \
+             $T/UnitTest++/Checks.o \
+             $T/UnitTest++/DeferredTestReporter.o \
+             $T/UnitTest++/ReportAssert.o \
+             $T/UnitTest++/TestList.o \
+             $T/UnitTest++/TestResults.o \
+             $T/UnitTest++/XmlTestReporter.o \
+             $T/UnitTest++/CompositeTestReporter.o \
+             $T/UnitTest++/DeferredTestResult.o \
+             $T/UnitTest++/Test.o \
+             $T/UnitTest++/TestReporter.o \
+             $T/UnitTest++/TestRunner.o \
+             $T/UnitTest++/Posix/SignalTranslator.o \
+             $T/UnitTest++/Posix/TimeHelpers.o \
+             ${files} \
+             ${CFLAGS}
 	./$T/out
