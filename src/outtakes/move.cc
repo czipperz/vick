@@ -19,15 +19,17 @@ static bool waiting_for_desired;
 
 static int to_visual(const std::string& cont, int x) {
     int til = 0;
-    int xx = x;
+    int xx = 0;
     for(std::string::const_iterator i =  cont.begin();
                                     i <= cont.begin() + x; i++) {
         if(*i == '\t') {
             xx += TAB_SIZE() - 1 - til;
+            if(xx > x) return xx;
             til = 0;
         } else {
             til++;
             til %= TAB_SIZE();
+            xx++;
         }
     }
     //show_message(int_to_str(xx).c_str());
@@ -157,6 +159,7 @@ void mvd(int times) {
     }
     //int tabed = remove_tabs(cont,y);
     //if(tabed < 0) tabed = 0;
+    show_message((int_to_str(y) + "," + int_to_str(x)).c_str());
     move(y,x);
 
 #ifdef _DEBUG
