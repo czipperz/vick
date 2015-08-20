@@ -7,7 +7,8 @@ static char int_to_char(int num) {
 }
 
 std::string int_to_str(int num) {
-    if(num < 0) { return std::string("-") + int_to_str(-num); }
+    if(num == 0) return "0";
+    if(num < 0) return std::string("-") + int_to_str(-num);
     int digits = 0, process = num, single;
     std::string numString;
     //count number of digits
