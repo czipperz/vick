@@ -36,7 +36,10 @@ std::string bool_to_str(bool b) {
 
 std::string inter_space(const std::vector<std::string>* vec) {
     std::string result;
-    for(int i = 0; i < vec->size(); i++)
+    for(int i = 0; i < vec->size() - 1; i++) {
         result += (*vec)[i];
+        result += " ";
+    }
+    result += (*vec)[vec->size() - 1];
     return result;
 }
