@@ -1,35 +1,33 @@
 #ifndef HEADER_GUARD_NEW_MOVE_H
 #define HEADER_GUARD_NEW_MOVE_H
 
-void mvrel(unsigned long y,unsigned long x);
+#include <string>
+#include <vector>
 
-void mvcol(unsigned long col);
+typedef std::vector<std::string>* contents;
 
-void mvsot();
+void mvline (contents, unsigned long);
+void mv     (contents, unsigned long y, unsigned long x);
 
-void mveol();
-void mvsol();
+void mvrel  (contents, long y,          long x);
 
-void mvsop();
-void mveop();
+void mvcol  (contents, unsigned long col);
 
-void mvd(long times = 1);
-void mvu(long times = 1);
+void mvsot  (contents);
 
-void mvfw(unsigned long words = 1);
-void mvbw(unsigned long words = 1);
+void mveol  (contents);
+void mvsol  (contents);
 
-void mvf(unsigned long times = 1);
-void mvb(unsigned long times = 1);
+void mvsop  (contents);
+void mveop  (contents);
 
+void mvd    (contents, long times = 1);
+void mvu    (contents, long times = 1);
 
+void mvfw   (contents, unsigned long words = 1);
+void mvbw   (contents, unsigned long words = 1);
 
-// the following are used for function pointers.
-void mvd1();
-void mvu1();
-void mvf1w();
-void mvb1w();
-void mvf1();
-void mvb1();
+void mvf    (contents, unsigned long times = 1);
+void mvb    (contents, unsigned long times = 1);
 
 #endif
