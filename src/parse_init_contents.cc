@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include <string>
 #include <vector>
-#include "move.hh"
+#include "newmove.hh"
 #include "configuration.hh"
 
 void print_init_contents(std::vector<std::string>* contents) {

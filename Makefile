@@ -3,7 +3,7 @@ O=out
 S=src
 CC=g++
 
-all: $O/move.o \
+all: $O/newmove.o \
      $O/main.o \
      $O/key_listeners.o \
      $O/command_listeners.o \
