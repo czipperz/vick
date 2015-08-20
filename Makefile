@@ -1,6 +1,7 @@
 CFLAGS=-lncurses -Wall
 O=out
 S=src
+T=tests
 CC=g++
 
 all: $O/newmove.o \
@@ -33,3 +34,12 @@ $O/%.o: $S/%.cc
 clean:
 	rm -R out
 	rm `find -name '*~'`
+
+test:
+	${CC} -o $T/out \
+     $T/*.cc \
+     $T/UnitTest++/*.cpp \
+     $T/UnitTest++/Posix/*.cpp \
+     $S/int_to_str.cc \
+     ${CFLAGS}
+	./$T/out
