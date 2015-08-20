@@ -2,3 +2,4 @@
 testVI
 out
 tests/out
+*.o
