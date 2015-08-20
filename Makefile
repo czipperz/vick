@@ -24,11 +24,11 @@ all: $O/newmove.o \
 
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
-	@mkdir -p out/listeners
+	@mkdir -p $O
 	${CC} -o $@ -c $< $(CFLAGS)
 
 $O/%.o: $S/%.cc
-	@mkdir -p out/listeners
+	@mkdir -p $O
 	${CC} -o $@ -c $< $(CFLAGS)
 
 clean:
