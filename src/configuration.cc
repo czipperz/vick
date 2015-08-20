@@ -35,3 +35,7 @@ void add_commands(std::map<std::string,
     commandMap["q"]     = quit_command;
     commandMap["quit"]  = quit_command;
 }
+
+static const std::string deliminators = "!@#$%^&*()-_=+[]{};:<>,.'\"/?`~| ";
+
+const std::string& DELIMINATORS() { return deliminators; }
