@@ -13,7 +13,8 @@ files = $O/newmove.o \
      $O/int_to_str.o \
      $O/parse_init_contents.o \
      $O/configuration.o \
-     $O/basic_commands.o
+     $O/basic_commands.o \
+     $O/file_contents.o
 
 testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \

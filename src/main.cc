@@ -5,6 +5,7 @@
 #include <iterator>
 #include <algorithm>
 #include "key_listeners.hh"
+#include "file_contents.hh"
 
 int main(int argc, char**argv) {
     argc--;argv++;
@@ -19,7 +20,8 @@ int main(int argc, char**argv) {
     noecho();
     raw();
 
-    loop(lines);
+    init(lines);
+    loop();
 
     endwin();
     return 0;
