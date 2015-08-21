@@ -3,31 +3,34 @@
 
 #include <string>
 #include <vector>
+#include "file_contents.hh"
 
-typedef std::vector<std::string>* contents;
+int to_visual(const std::string& cont, int x);
 
-void mvline (contents, unsigned long);
-void mv     (contents, unsigned long y, unsigned long x);
+void redrawyx(contents&);
 
-void mvrel  (contents, long y,          long x);
+void mvline (contents&, unsigned long);
+void mv     (contents&, unsigned long y, unsigned long x);
 
-void mvcol  (contents, unsigned long col);
+void mvrel  (contents&, long y,          long x);
 
-void mvsot  (contents);
+void mvcol  (contents&, unsigned long col);
 
-void mveol  (contents);
-void mvsol  (contents);
+void mvsot  (contents&);
 
-void mvsop  (contents);
-void mveop  (contents);
+void mveol  (contents&);
+void mvsol  (contents&);
 
-void mvd    (contents, long times = 1);
-void mvu    (contents, long times = 1);
+void mvsop  (contents&);
+void mveop  (contents&);
 
-void mvfw   (contents, unsigned long words = 1);
-void mvbw   (contents, unsigned long words = 1);
+void mvd    (contents&, long times = 1);
+void mvu    (contents&, long times = 1);
 
-void mvf    (contents, unsigned long times = 1);
-void mvb    (contents, unsigned long times = 1);
+void mvfw   (contents&, unsigned long words = 1);
+void mvbw   (contents&, unsigned long words = 1);
+
+void mvf    (contents&, unsigned long times = 1);
+void mvb    (contents&, unsigned long times = 1);
 
 #endif
