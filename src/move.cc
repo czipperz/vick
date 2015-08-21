@@ -1,27 +1,79 @@
+#include <ncurses.h>
 #include "newmove.hh"
-#include "key_listeners.hh"
 #include "move.hh"
+#include "file_contents.hh"
+#include "show_message.hh"
+#include "int_to_str.hh"
 
-void mvrel(long y, long x) { mvrel(get_contents(),y,x); }
+static void show() {
+    int vy,vx;
+    getyx(stdscr,vy,vx);
+    show_message((std::string("x,y,vx,vy: ")
+                  + int_to_str(get_contents().get_x()) + ","
+                  + int_to_str(get_contents().get_y()) + ","
+                  + int_to_str(vx) + ","
+                  + int_to_str(vy)).c_str());
+}
 
-void mvcol(long col) { mvcol(get_contents(),col); }
+void mvrel(long y, long x) {
+    mvrel(get_contents(),y,x);
+    show();
+}
 
-void mvsot() { mvsot(get_contents()); }
+void mvcol(long col) {
+    mvcol(get_contents(),col);
+    show();
+}
 
-void mveol() { mveol(get_contents()); }
-void mvsol() { mvsol(get_contents()); }
+void mvsot() {
+    mvsot(get_contents());
+    show();
+}
 
-void mvsop() { mvsop(get_contents()); }
-void mveop() { mveop(get_contents()); }
+void mveol() {
+    mveol(get_contents());
+    show();
+}
+void mvsol() {
+    mvsol(get_contents());
+    show();
+}
 
-void mvd(long times) { mvd(get_contents(),times); }
-void mvu(long times) { mvu(get_contents(),times); }
+void mvsop() {
+    mvsop(get_contents());
+    show();
+}
+void mveop() {
+    mveop(get_contents());
+    show();
+}
 
-void mvfw(unsigned long words) { mvfw(get_contents(),words); }
-void mvbw(unsigned long words) { mvbw(get_contents(),words); }
+void mvd(long times) {
+    mvd(get_contents(),times);
+    show();
+}
+void mvu(long times) {
+    mvu(get_contents(),times);
+    show();
+}
 
-void mvf(unsigned long times) { mvf(get_contents(),times); }
-void mvb(unsigned long times) { mvb(get_contents(),times); }
+void mvfw(unsigned long words) {
+    mvfw(get_contents(),words);
+    show();
+}
+void mvbw(unsigned long words) {
+    mvbw(get_contents(),words);
+    show();
+}
+
+void mvf(unsigned long times) {
+    mvf(get_contents(),times);
+    show();
+}
+void mvb(unsigned long times) {
+    mvb(get_contents(),times);
+    show();
+}
 
 
 
