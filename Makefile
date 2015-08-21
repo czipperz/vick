@@ -2,7 +2,6 @@ CFLAGS=-lncurses -Wall
 O=out
 S=src
 T=test
-TO=testout
 CC=g++
 
 files = $O/newmove.o \
