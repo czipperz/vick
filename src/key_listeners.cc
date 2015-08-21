@@ -5,14 +5,10 @@
 
 #include "configuration.hh"
 #include "show_message.hh"
-#include "parse_init_contents.hh"
 
 static std::map<char,void (*)()> listeners;
-static std::vector<std::string>* contents;
 
-void loop(std::vector<std::string>* arg) {
-    contents = arg;
-    print_init_contents(contents);
+void loop() {
     add_listeners(listeners);
 
     while(true) {
@@ -28,5 +24,3 @@ void loop(std::vector<std::string>* arg) {
         }
     }
 }
-
-std::vector<std::string>* get_contents() { return contents; }

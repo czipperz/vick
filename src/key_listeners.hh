@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 
-void loop(std::vector<std::string>*);
-std::vector<std::string>* get_contents();
+void loop();
 
 #endif
