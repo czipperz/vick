@@ -5,7 +5,10 @@
 #include "show_message.hh"
 #include "int_to_str.hh"
 
+#define _DEBUG
+
 static void show() {
+#ifdef _DEBUG
     int vy,vx;
     getyx(stdscr,vy,vx);
     show_message((std::string("x,y,vx,vy: ")
@@ -13,6 +16,7 @@ static void show() {
                   + int_to_str(get_contents().get_y()) + ","
                   + int_to_str(vx) + ","
                   + int_to_str(vy)).c_str());
+#endif
 }
 
 void mvrel(long y, long x) {
