@@ -2,7 +2,9 @@ CFLAGS=-lncurses -Wall
 O=out
 S=src
 T=test
+TO=testout
 CC=g++
+B=vick
 
 files = $O/newmove.o \
      $O/move.o \
@@ -11,7 +13,6 @@ files = $O/newmove.o \
      $O/show_message.o \
      $O/prefix_g.o \
      $O/int_to_str.o \
-     $O/parse_init_contents.o \
      $O/configuration.o \
      $O/basic_commands.o \
      $O/file_contents.o
@@ -20,10 +21,10 @@ testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \
      ${TO}/newmove_tests.o
 
-all: testVI
+all: $B
 
-testVI: ${files} $O/main.o
-	${CC} -o testVI $^ $(CFLAGS)
+$B: ${files} $O/main.o
+	${CC} -o $@ $^ $(CFLAGS)
 
 #	aser2	4sk	6eskl	8
 #	2be	4	6
@@ -55,7 +56,7 @@ clean:
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
 	[ -z "`find -name '*.o'`" ] || rm `find -name '*.o'`
 
-test: testVI $T/UnitTest++/AssertException.o \
+test: $B     $T/UnitTest++/AssertException.o \
              $T/UnitTest++/CurrentTest.o \
              $T/UnitTest++/MemoryOutStream.o \
              $T/UnitTest++/TestDetails.o \
