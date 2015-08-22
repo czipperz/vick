@@ -121,7 +121,7 @@ void mvd(contents& contents, long times) {
             // x  len  desired
             contents.x = len - 1;
         }
-    } else if(len <= contents.x) {
+    } else if(len <= contents.x && len > 0) {
         contents.waiting_for_desired = true;
         contents.desired_x = contents.x;
         contents.x = len - 1;
