@@ -13,8 +13,8 @@ TEST(mvsot) {
     mvsot(contents);
     endwin();
 
-    CHECK_EQUAL(0,contents.get_y());
-    CHECK_EQUAL(4,contents.get_x());
+    CHECK_EQUAL(0,contents.y);
+    CHECK_EQUAL(4,contents.x);
 }
 
 TEST(mvcol) {
@@ -23,16 +23,16 @@ TEST(mvcol) {
 
     initscr();
     mvcol(contents,3);
-    int y1 = contents.get_y(),
-        x1 = contents.get_x();
+    int y1 = contents.y,
+        x1 = contents.x;
 
     mvcol(contents,10); //doesn't do anything
-    int y2 = contents.get_y(),
-        x2 = contents.get_x();
+    int y2 = contents.y,
+        x2 = contents.x;
 
     mvcol(contents,0);
-    int y3 = contents.get_y(),
-        x3 = contents.get_x();
+    int y3 = contents.y,
+        x3 = contents.x;
     endwin();
 
     CHECK_EQUAL(0,y1);
@@ -49,8 +49,8 @@ TEST(mvsol) {
 
     initscr();
     mvsol(contents);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     endwin();
 
     CHECK_EQUAL(0,y);
@@ -65,11 +65,11 @@ TEST(mvd) {
 
     initscr();
     mvd(contents,2);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     mvd(contents);
-    int y1 = contents.get_y(),
-        x1 = contents.get_x();
+    int y1 = contents.y,
+        x1 = contents.x;
     endwin();
 
     CHECK_EQUAL(0,x);
@@ -85,11 +85,11 @@ TEST(mvf) {
 
     initscr();
     mvf(contents,3);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     mvf(contents,4);
-    int y1 = contents.get_y(),
-        x1 = contents.get_x();
+    int y1 = contents.y,
+        x1 = contents.x;
     endwin();
 
     CHECK_EQUAL(0,y);
@@ -105,8 +105,8 @@ TEST(mvb) {
 
     initscr();
     mvb(contents,2);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     endwin();
 
     CHECK_EQUAL(0,y);
@@ -124,11 +124,11 @@ TEST(mvf_2) {
 
     initscr();
     mveol(contents);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     mvf(contents,2);
-    int y1 = contents.get_y(),
-        x1 = contents.get_x();
+    int y1 = contents.y,
+        x1 = contents.x;
     endwin();
 
     CHECK_EQUAL(0,y);
@@ -143,8 +143,8 @@ TEST(mveol) {
 
     initscr();
     mveol(contents);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     endwin();
 
     CHECK_EQUAL(4,x);
@@ -158,14 +158,14 @@ TEST(mvu) {
 
     initscr();
     mvu(contents);
-    int y1 = contents.get_y(),
-        x1 = contents.get_x();
+    int y1 = contents.y,
+        x1 = contents.x;
     endwin();
 
     CHECK_EQUAL(0,y1);
     CHECK_EQUAL(1,x1);
-    CHECK_EQUAL(true,contents.get_waiting_for_desired());
-    CHECK_EQUAL(6,contents.get_desired_x());
+    CHECK_EQUAL(true,contents.waiting_for_desired);
+    CHECK_EQUAL(6,contents.desired_x);
 }
 
 TEST(mvd_2) {
@@ -177,18 +177,18 @@ TEST(mvd_2) {
 
     initscr();
     mveol(contents);
-    int y = contents.get_y(),
-        x = contents.get_x();
+    int y = contents.y,
+        x = contents.x;
     mvd(contents);
-    int y1 = contents.get_y(),
-        x1 = contents.get_x();
-    int d1 = contents.get_desired_x();
-    bool w1 = contents.get_waiting_for_desired();
+    int y1 = contents.y,
+        x1 = contents.x;
+    int d1 = contents.desired_x;
+    bool w1 = contents.waiting_for_desired;
     mvd(contents);
-    int y2 = contents.get_y(),
-        x2 = contents.get_x();
-    int d2 = contents.get_desired_x();
-    bool w2 = contents.get_waiting_for_desired();
+    int y2 = contents.y,
+        x2 = contents.x;
+    int d2 = contents.desired_x;
+    bool w2 = contents.waiting_for_desired;
     endwin();
 
     CHECK_EQUAL(0,y);
@@ -215,8 +215,8 @@ TEST(mvf_over_empty_lines) {
     mvf(contents);
     endwin();
 
-    CHECK_EQUAL(0,contents.get_x());
-    CHECK_EQUAL(1,contents.get_y());
+    CHECK_EQUAL(0,contents.x);
+    CHECK_EQUAL(1,contents.y);
 }
 
 TEST(mvf_over_tabs) {
@@ -228,13 +228,13 @@ TEST(mvf_over_tabs) {
     mvf(contents);
     int vis_y,vis_x,y,x;
     getyx(stdscr,vis_y,vis_x);
-    y = contents.get_y();
-    x = contents.get_x();
+    y = contents.y;
+    x = contents.x;
     mvf(contents);
     int vis_y1,vis_x1,y1,x1;
     getyx(stdscr,vis_y1,vis_x1);
-    y1= contents.get_y();
-    x1= contents.get_x();
+    y1= contents.y;
+    x1= contents.x;
     endwin();
 
     CHECK_EQUAL(1,y);

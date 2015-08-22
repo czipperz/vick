@@ -11,13 +11,14 @@ static void show() {
 #ifdef _DEBUG
     int vy,vx;
     getyx(stdscr,vy,vx);
+    const contents& contents = get_contents();
     show_message((std::string("x,y,vx,vy,desired_x,waiting?: ")
-                  + int_to_str(get_contents().get_x()) + ","
-                  + int_to_str(get_contents().get_y()) + ","
+                  + int_to_str(contents.x) + ","
+                  + int_to_str(contents.y) + ","
                   + int_to_str(vx) + ","
                   + int_to_str(vy) + ","
-                  + int_to_str(get_contents().get_desired_x()) + ","
-                  + bool_to_str(get_contents().get_waiting_for_desired())).c_str());
+                  + int_to_str(contents.desired_x) + ","
+                  + bool_to_str(contents.waiting_for_desired)).c_str());
 #endif
 }
 
