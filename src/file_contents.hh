@@ -48,11 +48,11 @@ class contents {
     friend void mvf    (contents&, unsigned long);
     friend void mvb    (contents&, unsigned long);
 
-    friend void print_init_contents(contents*);
+    friend void print_contents(contents*,int);
 };
 
 void init(std::vector<std::string>*);
 contents& get_contents();
-void print_init_contents(contents* contents);
+void print_contents(contents*,int y_offset);
 
 #endif

@@ -35,19 +35,19 @@ static contents* cont;
 
 void init(std::vector<std::string>* vec) {
     cont = new contents(vec);
-    print_init_contents(cont);
+    print_contents(cont,0);
 }
 
 contents& get_contents() { return *cont; }
 
-void print_init_contents(contents* contents) {
+void print_contents(contents* contents, int y_offset) {
     int b_y,b_x,
         rows,cols,
         y = 0;
     getyx(stdscr,b_y,b_x);
     getmaxyx(stdscr,rows,cols);
 
-    for(unsigned int i = 0; i < contents->cont->size(); i++) {
+    for(unsigned int i = y_offset; i < contents->cont->size(); i++) {
         int x = 0;
         std::string line = (*contents->cont)[i];
         int til = 0;
