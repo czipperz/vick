@@ -7,14 +7,33 @@
 #include "newmove.hh"
 #include "show_message.hh"
 
+int from_visual(const std::string& cont, int x) {
+    int count = 0,
+        til = 0;
+    for(int i = 0; i < cont.length(); i++) {
+        int len;
+        if(cont[i] == '\t') {
+            len = TAB_SIZE() - 1 - til;
+            til = 0;
+        } else {
+            len = 1;
+            til++;
+            til %= TAB_SIZE();
+        }
+        count += len;
+        if(count >= x) {
+            return i;
+        }
+    }
+}
+
 int to_visual(const std::string& cont, int x) {
     int til = 0,
         xx = -1;
     for(std::string::const_iterator i = cont.begin();
-                                    i <= cont.begin() + x; i++) {
+                i <= cont.begin() + x; i++) {
         if(*i == '\t') {
-            xx += TAB_SIZE() - 1 - til;
-            if(xx > x) return xx;
+            xx += TAB_SIZE() - til;
             til = 0;
         } else {
             til++;
@@ -86,6 +105,7 @@ void mvd(contents& contents, long times) {
         show_message("Can't move to that location (start/end of buffer)");
         return;
     }
+    int vis = to_visual((*contents.cont)[contents.y],contents.x);
     contents.y += times;
     unsigned int len = (*contents.cont)[contents.y].length();
     if(contents.waiting_for_desired) {
@@ -104,7 +124,11 @@ void mvd(contents& contents, long times) {
         contents.waiting_for_desired = true;
         contents.desired_x = contents.x;
         contents.x = len - 1;
-    } //x doesn't need to adjusted otherwise
+    } else {
+        //visually adjust x
+        //int vis = to_visual((*contents.cont)[contents.y],contents.x);
+        contents.x = from_visual((*contents.cont)[contents.y],vis);
+    }
     contents.x = contents.x >= 0 ? contents.x : 0;
     redrawyx(contents);
 }
