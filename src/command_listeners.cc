@@ -34,14 +34,15 @@ static std::vector<std::string>* getArgs() {
     getyx(stdscr,b_y,b_x);
     getmaxyx(stdscr,m_y,m_x);
     std::vector<std::string>* args = new std::vector<std::string>();
-    std::string str;
     char c;
     move(m_y - 1,0);
     addch(':');
     while(true) {
+        std::string str;
         while(true) {
             c = getch();
             if(c == ERR) {
+                std::cout << "ERROR character: " << ERR;
                 endwin();
                 exit(2);
             } if(c == '\n') {
@@ -65,6 +66,5 @@ static std::vector<std::string>* getArgs() {
             addch(c);
             str += c;
         }
-        str = std::string();
     }
 }
