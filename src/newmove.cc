@@ -8,6 +8,7 @@
 #include "show_message.hh"
 
 int from_visual(const std::string& cont, int x) {
+    if(cont.size() == 0) return 0;
     int count = 0,
         til = 0;
     for(int i = 0; i < cont.length(); i++) {
