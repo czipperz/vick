@@ -263,5 +263,5 @@ TEST(from_visual) {
     }
     CHECK_EQUAL(1, from_visual(first,TAB_SIZE()));
     CHECK_EQUAL(3, from_visual(first,to_visual(second,3)));
-    CHECK_EQUAL(3, to_visual(first,from_visual(second,3)));
+    CHECK_EQUAL(8, to_visual(first,from_visual(second,8)));
 }
