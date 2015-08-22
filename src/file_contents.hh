@@ -7,7 +7,9 @@
 class contents {
     public:
     std::vector<std::string>* cont;
-    long y,x,desired_x;
+    unsigned long
+        y,x,desired_x,
+        y_offset;
     bool waiting_for_desired;
 
     contents(std::vector<std::string>* cont
