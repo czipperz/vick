@@ -11,8 +11,8 @@ int from_visual(const std::string& cont, int x) {
     if(cont.size() == 0) return 0;
     int count = 0,
         til = 0;
-    for(int i = 0; i < cont.length(); i++) {
-        int len;
+    for(unsigned int i = 0; i < cont.length(); i++) {
+        unsigned int len;
         if(cont[i] == '\t') {
             len = TAB_SIZE() - 1 - til;
             til = 0;
@@ -22,10 +22,9 @@ int from_visual(const std::string& cont, int x) {
             til %= TAB_SIZE();
         }
         count += len;
-        if(count >= x) {
-            return i;
-        }
+        if(count > x) return i;
     }
+    return -1;
 }
 
 int to_visual(const std::string& cont, int x) {
@@ -112,8 +111,9 @@ void mvd(contents& contents, long times) {
     if(contents.waiting_for_desired) {
         if(contents.x >= len) {
             contents.x = len - 1;
-        } else if(contents.desired_x > contents.x
-                  && contents.desired_x < len) {
+        } else if((contents.desired_x > contents.x
+                   && contents.desired_x < len)
+                  || contents.desired_x == 0) {
             // x  desired  len
             contents.x = contents.desired_x;
             contents.waiting_for_desired = false;
@@ -128,7 +128,12 @@ void mvd(contents& contents, long times) {
     } else {
         //visually adjust x
         //int vis = to_visual((*contents.cont)[contents.y],contents.x);
+        int des = contents.x;
         contents.x = from_visual((*contents.cont)[contents.y],vis);
+        if(len == 0) {
+            contents.waiting_for_desired = true;
+            contents.desired_x = des;
+        }
     }
     contents.x = contents.x >= 0 ? contents.x : 0;
     redrawyx(contents);
