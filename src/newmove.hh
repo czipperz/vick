@@ -6,6 +6,7 @@
 #include "file_contents.hh"
 
 int to_visual(const std::string& cont, int x);
+int from_visual(const std::string& cont, int x);
 
 void redrawyx(contents&);
 
