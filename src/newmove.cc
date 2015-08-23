@@ -11,18 +11,20 @@ int from_visual(const std::string& cont, int x) {
     if(cont.size() == 0) return 0;
     int count = 0,
         til = 0;
+    int numTab = 0;
     for(unsigned int i = 0; i < cont.length(); i++) {
         unsigned int len;
         if(cont[i] == '\t') {
             len = TAB_SIZE() - 1 - til;
             til = 0;
+            numTab++;
         } else {
             len = 1;
             til++;
             til %= TAB_SIZE();
         }
         count += len;
-        if(count > x) return i;
+        if(count > x - numTab) return i;
     }
     return -1;
 }
@@ -126,8 +128,6 @@ void mvd(contents& contents, long times) {
         contents.desired_x = contents.x;
         contents.x = len - 1;
     } else {
-        //visually adjust x
-        //int vis = to_visual((*contents.cont)[contents.y],contents.x);
         int des = contents.x;
         contents.x = from_visual((*contents.cont)[contents.y],vis);
         if(len == 0) {
