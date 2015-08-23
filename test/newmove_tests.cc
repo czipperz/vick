@@ -248,20 +248,25 @@ TEST(mvf_over_tabs) {
 }
 
 TEST(to_visual) {
-    std::string first("\thi");
-    CHECK_EQUAL(TAB_SIZE() - 1, to_visual(first,0));
+    std::string
+        first("assert"),
+        second("\tblah");
+    for(int i = 0; i < first.size(); i++)
+        CHECK_EQUAL(i, to_visual(first,i));
+    for(int i = 0; i < second.size(); i++)
+        CHECK_EQUAL(TAB_SIZE() - 1 + i, to_visual(second,i));
 }
 
 TEST(from_visual) {
     std::string
         first("\thi"),
         second("\t\thi");
-    for(int i = 0; i < TAB_SIZE() - 1; i++) {
+    for(int i = 1; i < TAB_SIZE() - 1; i++) {
         if(0 != from_visual(first,TAB_SIZE() - i))
             std::cout << i << std::endl;
         CHECK_EQUAL(0, from_visual(first, TAB_SIZE() - i));
     }
+    CHECK_EQUAL(0, from_visual(first,TAB_SIZE() - 1));
     CHECK_EQUAL(1, from_visual(first,TAB_SIZE()));
-    CHECK_EQUAL(3, from_visual(first,to_visual(second,3)));
-    CHECK_EQUAL(8, to_visual(first,from_visual(second,8)));
+    CHECK_EQUAL(2, from_visual(first,TAB_SIZE() + 1));
 }
