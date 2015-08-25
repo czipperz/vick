@@ -50,5 +50,5 @@ void print_contents(const contents& contents) {
         }
         move(++y,0);
     }
-    move(contents.y,contents.x);
+    move(contents.y,to_visual((*contents.cont)[contents.y],contents.x));
 }
