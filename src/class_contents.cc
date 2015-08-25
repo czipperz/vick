@@ -27,7 +27,7 @@ contents::contents(contents&& other)
       x(other.x),
       desired_x(other.desired_x),
       waiting_for_desired(other.waiting_for_desired) {
-    delete other.cont;
+    other.cont = nullptr;
 }
 
 contents& contents::operator=(const contents& other) {
