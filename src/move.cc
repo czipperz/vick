@@ -1,9 +1,11 @@
 #include <ncurses.h>
-#include "newmove.hh"
-#include "move.hh"
+
 #include "file_contents.hh"
-#include "show_message.hh"
+#include "hooks.hh"
 #include "int_to_str.hh"
+#include "move.hh"
+#include "newmove.hh"
+#include "show_message.hh"
 
 #define _DEBUG
 
@@ -20,6 +22,8 @@ static void show() {
                   + int_to_str(contents.desired_x) + ","
                   + bool_to_str(contents.waiting_for_desired)).c_str());
 #endif
+    print_contents(contents);
+    proc_hook(Hook::MOVE);
 }
 
 void mvrel(long y, long x) {
