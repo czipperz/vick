@@ -14,8 +14,9 @@ static void tryinit() {
 
 void proc_hook(Hook::Hook hook) {
     tryinit();
-    auto x = hooks[hook];
-    for(auto y : x) y();
+    std::vector<void (*)()> x = hooks[hook];
+    for(int i = 0; i < x.size(); i++)
+        x[i]();
 }
 
 void add_hook(Hook::Hook hook, void (*val)()) {
