@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include "class_contents.hh"
 
 contents::contents(std::vector<std::string>* cont)
@@ -5,13 +6,17 @@ contents::contents(std::vector<std::string>* cont)
       y(0),
       x(0),
       desired_x(0),
-      waiting_for_desired(false) { }
+      waiting_for_desired(false) {
+    getmaxyx(stdscr,max_y,max_x);
+}
 contents::contents(long y, long x)
     : cont(new std::vector<std::string>()),
       y(y),
       x(x),
       desired_x(0),
-      waiting_for_desired(false) { }
+      waiting_for_desired(false) {
+    getmaxyx(stdscr,max_y,max_x);
+}
 contents::~contents() {
     if(this->cont) delete this->cont;
 }
@@ -22,6 +27,8 @@ contents::contents(const contents& other)
       y(other.y),
       x(other.x),
       desired_x(other.desired_x),
+      max_y(other.max_y),
+      max_x(other.max_x),
       waiting_for_desired(other.waiting_for_desired) { }
 contents& contents::operator=(const contents& other) {
     if(this != &other) {
@@ -30,9 +37,10 @@ contents& contents::operator=(const contents& other) {
         this->y                   = other.y;
         this->x                   = other.x;
         this->desired_x           = other.desired_x;
+        this->max_y               = other.max_y;
+        this->max_x               = other.max_x;
         this->y_offset            = other.y_offset;
-        this->waiting_for_desired =
-            other.waiting_for_desired;
+        this->waiting_for_desired = other.waiting_for_desired;
     }
     return *this;
 }
@@ -44,6 +52,8 @@ contents::contents(contents&& other)
       y(other.y),
       x(other.x),
       desired_x(other.desired_x),
+      max_y(other.y),
+      max_x(other.x),
       waiting_for_desired(other.waiting_for_desired) {
     other.cont = nullptr;
 }
@@ -55,6 +65,8 @@ contents& contents::operator=(contents&& other) {
         this->y                   = other.y;
         this->x                   = other.x;
         this->desired_x           = other.desired_x;
+        this->max_y               = other.max_y;
+        this->max_x               = other.max_x;
         this->y_offset            = other.y_offset;
         this->waiting_for_desired = other.waiting_for_desired;
     }

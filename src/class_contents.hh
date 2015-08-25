@@ -9,7 +9,8 @@ class contents {
     std::vector<std::string>* cont;
     unsigned long
         y,x,desired_x,
-        y_offset;
+        y_offset,
+        max_y,max_x;
     bool waiting_for_desired;
 
     contents(std::vector<std::string>* cont
