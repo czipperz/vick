@@ -1,4 +1,4 @@
-CFLAGS=-lncurses -Wall -std=c++11
+CFLAGS=-Wall -std=c++11
 O=out
 S=src
 T=test
@@ -14,7 +14,6 @@ files=$O/basic_commands.o	\
       $O/hooks.o		\
       $O/int_to_str.o		\
       $O/key_listeners.o	\
-      $O/main.o			\
       $O/move.o			\
       $O/newmove.o		\
       $O/prefix_g.o		\
@@ -28,7 +27,7 @@ testfiles = ${TO}/int_to_str_tests.o \
 all: $B
 
 $B: ${files} $O/main.o
-	${CC} -o $@ $^ $(CFLAGS)
+	${CC} -o $@ $^ $(CFLAGS) -lncurses
 
 #	aser2	4sk	6eskl	8
 #	2be	4	6
@@ -102,5 +101,5 @@ test: $B     $T/UnitTest++/AssertException.o \
              $T/UnitTest++/Posix/SignalTranslator.o \
              $T/UnitTest++/Posix/TimeHelpers.o \
              ${files} \
-             ${CFLAGS}
+             ${CFLAGS} -lncurses
 	./$T/out
