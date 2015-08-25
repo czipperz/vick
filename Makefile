@@ -47,7 +47,7 @@ $O/%.o: $S/%.cc
 
 ${TO}/%.o: $T/%.cc
 	@mkdir -p ${TO}
-	${CC} -o $@ -c $< $(CFLAGS)
+	${CC} -o $@ -c $< -std=c++11 -Wall
 
 $T/UnitTest++/Posix/%.o: $T/UnitTest++/Posix/%.cpp
 	${CC} -o $@ -c $<
@@ -60,47 +60,9 @@ clean:
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
 	[ -z "`find -name '*.o'`" ] || rm `find -name '*.o'`
 
-test: $B     $T/UnitTest++/AssertException.o \
-             $T/UnitTest++/CurrentTest.o \
-             $T/UnitTest++/MemoryOutStream.o \
-             $T/UnitTest++/TestDetails.o \
-             $T/UnitTest++/TestReporterStdout.o \
-             $T/UnitTest++/TimeConstraint.o \
-             $T/UnitTest++/Checks.o \
-             $T/UnitTest++/DeferredTestReporter.o \
-             $T/UnitTest++/ReportAssert.o \
-             $T/UnitTest++/TestList.o \
-             $T/UnitTest++/TestResults.o \
-             $T/UnitTest++/XmlTestReporter.o \
-             $T/UnitTest++/CompositeTestReporter.o \
-             $T/UnitTest++/DeferredTestResult.o \
-             $T/UnitTest++/Test.o \
-             $T/UnitTest++/TestReporter.o \
-             $T/UnitTest++/TestRunner.o \
-             $T/UnitTest++/Posix/SignalTranslator.o \
-             $T/UnitTest++/Posix/TimeHelpers.o \
-             ${testfiles}
+test: $B ${testfiles}
 	${CC} -o $T/out \
              ${testfiles} \
-             $T/UnitTest++/AssertException.o \
-             $T/UnitTest++/CurrentTest.o \
-             $T/UnitTest++/MemoryOutStream.o \
-             $T/UnitTest++/TestDetails.o \
-             $T/UnitTest++/TestReporterStdout.o \
-             $T/UnitTest++/TimeConstraint.o \
-             $T/UnitTest++/Checks.o \
-             $T/UnitTest++/DeferredTestReporter.o \
-             $T/UnitTest++/ReportAssert.o \
-             $T/UnitTest++/TestList.o \
-             $T/UnitTest++/TestResults.o \
-             $T/UnitTest++/XmlTestReporter.o \
-             $T/UnitTest++/CompositeTestReporter.o \
-             $T/UnitTest++/DeferredTestResult.o \
-             $T/UnitTest++/Test.o \
-             $T/UnitTest++/TestReporter.o \
-             $T/UnitTest++/TestRunner.o \
-             $T/UnitTest++/Posix/SignalTranslator.o \
-             $T/UnitTest++/Posix/TimeHelpers.o \
              ${files} \
-             ${CFLAGS} -lncurses
+             -lncurses -std=c++11
 	./$T/out

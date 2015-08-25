@@ -2,10 +2,10 @@
 #include <ncurses.h>
 
 #include "../src/newmove.hh"
-#include "UnitTest++/UnitTest++.h"
 #include "../src/configuration.hh"
+#include "catch.hpp"
 
-TEST(mvsot) {
+TEST_CASE("mvsot") {
     contents contents;
     contents.push_back("    hello");
 
@@ -13,11 +13,11 @@ TEST(mvsot) {
     mvsot(contents);
     endwin();
 
-    CHECK_EQUAL(0,contents.y);
-    CHECK_EQUAL(4,contents.x);
+    REQUIRE(0 ==contents.y);
+    REQUIRE(4 ==contents.x);
 }
 
-TEST(mvcol) {
+TEST_CASE("mvcol") {
     contents contents;
     contents.push_back("asert");
 
@@ -35,15 +35,15 @@ TEST(mvcol) {
         x3 = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,y1);
-    CHECK_EQUAL(0,y2);
-    CHECK_EQUAL(0,y3);
-    CHECK_EQUAL(3,x1);
-    CHECK_EQUAL(3,x2);
-    CHECK_EQUAL(0,x3);
+    REQUIRE(0 ==y1);
+    REQUIRE(0 ==y2);
+    REQUIRE(0 ==y3);
+    REQUIRE(3 ==x1);
+    REQUIRE(3 ==x2);
+    REQUIRE(0 ==x3);
 }
 
-TEST(mvsol) {
+TEST_CASE("mvsol") {
     contents contents (0,5);
     contents.push_back("    assert");
 
@@ -53,11 +53,11 @@ TEST(mvsol) {
         x = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,y);
-    CHECK_EQUAL(0,x);
+    REQUIRE(0 ==y);
+    REQUIRE(0 ==x);
 }
 
-TEST(mvd) {
+TEST_CASE("mvd") {
     contents contents;
     contents.push_back("assert");
     contents.push_back("hello");
@@ -72,13 +72,13 @@ TEST(mvd) {
         x1 = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,x);
-    CHECK_EQUAL(0,x1);
-    CHECK_EQUAL(2,y);
-    CHECK_EQUAL(2,y1);
+    REQUIRE(0 ==x);
+    REQUIRE(0 ==x1);
+    REQUIRE(2 ==y);
+    REQUIRE(2 ==y1);
 }
 
-TEST(mvf) {
+TEST_CASE("mvf") {
     contents contents;
     contents.push_back("assert");
     contents.push_back("hello");
@@ -92,13 +92,13 @@ TEST(mvf) {
         x1 = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,y);
-    CHECK_EQUAL(3,x);
-    CHECK_EQUAL(1,y1);
-    CHECK_EQUAL(1,x1);
+    REQUIRE(0 ==y);
+    REQUIRE(3 ==x);
+    REQUIRE(1 ==y1);
+    REQUIRE(1 ==x1);
 }
 
-TEST(mvb) {
+TEST_CASE("mvb") {
     contents contents (1,0);
     contents.push_back("assert");
     contents.push_back("back");
@@ -109,11 +109,11 @@ TEST(mvb) {
         x = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,y);
-    CHECK_EQUAL(4,x);
+    REQUIRE(0 ==y);
+    REQUIRE(4 ==x);
 }
 
-TEST(mvf_2) {
+TEST_CASE("mvf_2") {
     contents contents;
     contents.push_back("CFLAGS=-lncurses -Wall");
     contents.push_back("O=out");
@@ -131,13 +131,13 @@ TEST(mvf_2) {
         x1 = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,y);
-    CHECK_EQUAL(21,x);
-    CHECK_EQUAL(1,y1);
-    CHECK_EQUAL(1,x1);
+    REQUIRE(0 ==y);
+    REQUIRE(21 ==x);
+    REQUIRE(1 ==y1);
+    REQUIRE(1 ==x1);
 }
 
-TEST(mveol) {
+TEST_CASE("mveol") {
     contents contents;
     contents.push_back("Aesop");
 
@@ -147,11 +147,11 @@ TEST(mveol) {
         x = contents.x;
     endwin();
 
-    CHECK_EQUAL(4,x);
-    CHECK_EQUAL(0,y);
+    REQUIRE(4 ==x);
+    REQUIRE(0 ==y);
 }
 
-TEST(mvu) {
+TEST_CASE("mvu") {
     contents contents (1,6);
     contents.push_back("hi");
     contents.push_back("Alabama");
@@ -162,13 +162,13 @@ TEST(mvu) {
         x1 = contents.x;
     endwin();
 
-    CHECK_EQUAL(0,y1);
-    CHECK_EQUAL(1,x1);
-    CHECK_EQUAL(true,contents.waiting_for_desired);
-    CHECK_EQUAL(6,contents.desired_x);
+    REQUIRE(0 ==y1);
+    REQUIRE(1 ==x1);
+    REQUIRE(true ==contents.waiting_for_desired);
+    REQUIRE(6 ==contents.desired_x);
 }
 
-TEST(mvd_2) {
+TEST_CASE("mvd_2") {
     contents contents;
     contents.push_back("CFLAGS=-lncurses -Wall");
     contents.push_back("O=out");
@@ -191,21 +191,21 @@ TEST(mvd_2) {
     bool w2 = contents.waiting_for_desired;
     endwin();
 
-    CHECK_EQUAL(0,y);
-    CHECK_EQUAL(21,x);
+    REQUIRE(0 ==y);
+    REQUIRE(21 ==x);
 
-    CHECK_EQUAL(1,y1);
-    CHECK_EQUAL(4,x1);
-    CHECK_EQUAL(21,d1);
-    CHECK_EQUAL(true,w1);
+    REQUIRE(1 ==y1);
+    REQUIRE(4 ==x1);
+    REQUIRE(21 ==d1);
+    REQUIRE(true ==w1);
 
-    CHECK_EQUAL(2,y2);
-    CHECK_EQUAL(4,x2);
-    CHECK_EQUAL(21,d2);
-    CHECK_EQUAL(true,w2);
+    REQUIRE(2 ==y2);
+    REQUIRE(4 ==x2);
+    REQUIRE(21 ==d2);
+    REQUIRE(true ==w2);
 }
 
-TEST(mvf_over_empty_lines) {
+TEST_CASE("mvf_over_empty_lines") {
     contents contents (0,1);
     contents.push_back("hi");
     contents.push_back("");
@@ -215,11 +215,11 @@ TEST(mvf_over_empty_lines) {
     mvf(contents);
     endwin();
 
-    CHECK_EQUAL(0,contents.x);
-    CHECK_EQUAL(1,contents.y);
+    REQUIRE(0 ==contents.x);
+    REQUIRE(1 ==contents.y);
 }
 
-TEST(mvf_over_tabs) {
+TEST_CASE("mvf_over_tabs") {
     contents contents (0,25);
     contents.push_back("testVI: ${files} $O/main.o");
     contents.push_back("\t${CC} -o testVI $^ $(CFLAGS)");
@@ -237,36 +237,36 @@ TEST(mvf_over_tabs) {
     x1= contents.x;
     endwin();
 
-    CHECK_EQUAL(1,y);
-    CHECK_EQUAL(0,x);
-    CHECK_EQUAL(1,vis_y);
-    CHECK_EQUAL(7,vis_x);
-    CHECK_EQUAL(1,y1);
-    CHECK_EQUAL(1,x1);
-    CHECK_EQUAL(1,vis_y1);
-    CHECK_EQUAL(8,vis_x1);
+    REQUIRE(1 ==y);
+    REQUIRE(0 ==x);
+    REQUIRE(1 ==vis_y);
+    REQUIRE(7 ==vis_x);
+    REQUIRE(1 ==y1);
+    REQUIRE(1 ==x1);
+    REQUIRE(1 ==vis_y1);
+    REQUIRE(8 ==vis_x1);
 }
 
-TEST(to_visual) {
+TEST_CASE("to_visual") {
     std::string
         first("assert"),
         second("\tblah");
     for(int i = 0; i < first.size(); i++)
-        CHECK_EQUAL(i, to_visual(first,i));
+        REQUIRE(i == to_visual(first,i));
     for(int i = 0; i < second.size(); i++)
-        CHECK_EQUAL(TAB_SIZE() - 1 + i, to_visual(second,i));
+        REQUIRE(TAB_SIZE() - 1 + i == to_visual(second,i));
 }
 
-TEST(from_visual) {
+TEST_CASE("from_visual") {
     std::string
         first("\thi"),
         second("\t\thi");
     for(int i = 1; i < TAB_SIZE() - 1; i++) {
         if(0 != from_visual(first,TAB_SIZE() - i))
             std::cout << i << std::endl;
-        CHECK_EQUAL(0, from_visual(first, TAB_SIZE() - i));
+        REQUIRE(0 == from_visual(first, TAB_SIZE() - i));
     }
-    CHECK_EQUAL(0, from_visual(first,TAB_SIZE() - 1));
-    CHECK_EQUAL(1, from_visual(first,TAB_SIZE()));
-    CHECK_EQUAL(2, from_visual(first,TAB_SIZE() + 1));
+    REQUIRE(0 == from_visual(first,TAB_SIZE() - 1));
+    REQUIRE(1 == from_visual(first,TAB_SIZE()));
+    REQUIRE(2 == from_visual(first,TAB_SIZE() + 1));
 }
