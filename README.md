@@ -8,14 +8,7 @@ here's how to compile it from source:
 
     git clone https://github.com/czipperz/vick vick
     cd vick
-    make test     # will make and do tests
+    make VER=c++11   # leave out the version if you don't have c++11 support (modern computers do)
+    make test        # testing requires c++11 (gcc >= 4.8)
 
-Vick will have a (minor) speed improvement if you compile it with
-C++11 enabled.  This is because of the `move` constructor that deals
-with resources better.  It will still work in both versions but large
-files will work better in the C++11 version.  Just run make as the
-following:
-
-    make VER=c++11 test
-
-The default is `c++98`.
+The default `VER` is `c++98`.
