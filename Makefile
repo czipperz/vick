@@ -1,4 +1,4 @@
-CFLAGS=-lncurses -Wall
+CFLAGS=-lncurses -Wall -std=c++11
 O=out
 S=src
 T=test
