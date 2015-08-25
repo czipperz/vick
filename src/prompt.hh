@@ -3,8 +3,8 @@
 
 #include <string>
 
-std::string prompt_for_test(std::string message, unsigned int y);
-
-std::string prompt_for_test(std::string message);
+// if aborted (escape) then will return ""
+std::string prompt(const std::string& message, unsigned int y);
+std::string prompt(const std::string& message);
 
 #endif

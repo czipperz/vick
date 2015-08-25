@@ -4,7 +4,7 @@
 #include <iostream>
 #include "key_aliases.hh"
 
-std::string prompt_for_test(std::string message, unsigned int y) {
+std::string prompt_for_test(const std::string& message, unsigned int y) {
     std::string text;
     int b_y,b_x,
         x = 0,
@@ -31,7 +31,7 @@ std::string prompt_for_test(std::string message, unsigned int y) {
                 // char ch = getch();
                 // if(ch == -1) {
                 move(b_y,b_x);
-                return NULL;
+                return "";
                 // }
                 // timeout(-1);
                 break;
@@ -47,7 +47,7 @@ std::string prompt_for_test(std::string message, unsigned int y) {
     return text;
 }
 
-std::string prompt_for_test(std::string message) {
+std::string prompt_for_test(const std::string& message) {
     int y,x;
     getmaxyx(stdscr,y,x);
     return prompt_for_test(message,y-1);
