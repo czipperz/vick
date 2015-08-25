@@ -5,8 +5,8 @@
 #include <string>
 #include "class_contents.hh"
 
-void init(std::vector<std::string>*);
+void      init(std::vector<std::string>*);
 contents& get_contents();
-void print_contents(const contents*);
+void      print_contents(const contents&);
 
 #endif

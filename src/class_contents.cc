@@ -48,7 +48,7 @@ contents& contents::operator=(const contents& other) {
 
 #if __cplusplus >= 201103L
 contents::contents(contents&& other)
-    : cont(other.cont),
+    : cont(std::move(other.cont)),
       y(other.y),
       x(other.x),
       desired_x(other.desired_x),

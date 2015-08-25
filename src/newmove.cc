@@ -96,8 +96,9 @@ void mvsop(contents& contents) {
     redrawyx(contents);
 }
 void mveop(contents& contents) {
-    contents.y = contents.cont->size();
+    contents.y = contents.cont->size() - 1;
     contents.x = 0;
+    contents.y_offset = contents.y - contents.max_y;
     contents.waiting_for_desired = false;
     redrawyx(contents);
 }

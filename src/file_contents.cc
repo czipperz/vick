@@ -9,26 +9,31 @@ static contents* cont;
 
 void init(std::vector<std::string>* vec) {
     cont = new contents(vec);
-    print_contents(cont);
+    print_contents(*cont);
 }
 
 contents& get_contents() { return *cont; }
 
-void print_contents(const contents* contents) {
+void print_contents(const contents& contents) {
+    clear();
     int b_y,b_x,
         y = 0;
     getyx(stdscr,b_y,b_x);
 
-    for(unsigned int i = contents->y_offset; i < contents->cont->size(); i++) {
-        int x = 0;
-        std::string line = (*contents->cont)[i];
+    for(unsigned int i = contents.y_offset;
+        i < contents.cont->size()
+            && i < contents.max_y - 1 + contents.y_offset; i++) {
+        unsigned int x = 0;
+        std::string line = (*contents.cont)[i];
         int til = 0;
         for(unsigned int i = 0; i < line.length(); i++) {
             if(line[i] == '\t') {
-                for(int j = 1; j < TAB_SIZE() - til; j++) {
-                    addch(' ');
-                    move(y,++x);
+                x += TAB_SIZE() - til - 1;
+                if(x >= contents.max_x) {
+                    x = 0;
+                    y++;
                 }
+                move(y,x);
                 til = 0;
             } else {
                 addch(line[i]);
@@ -45,5 +50,5 @@ void print_contents(const contents* contents) {
         }
         move(++y,0);
     }
-    move(0,0);
+    move(contents.y,contents.x);
 }
