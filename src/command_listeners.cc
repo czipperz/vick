@@ -21,7 +21,10 @@ static std::vector<std::string>* spaciate(const std::string&);
 void command_executor() {
     if(!fin) { add_commands(commandMap); fin = true; }
     std::string pr = prompt(":");
-    if(pr == "") return;
+    if(pr == "") {
+        clear_message();
+        return;
+    }
     std::vector<std::string>* args = spaciate(pr);
     std::string name = (*args)[0];
     args->erase(args->begin());
