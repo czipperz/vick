@@ -13,76 +13,76 @@ static void show() {
 #ifdef _DEBUG
     int vy,vx;
     getyx(stdscr,vy,vx);
-    const contents& contents = get_contents();
+    const contents* contents = get_contents();
     show_message((std::string("x,y,vx,vy,desired_x,waiting?: ")
-                  + int_to_str(contents.x) + ","
-                  + int_to_str(contents.y) + ","
-                  + int_to_str(vx) + ","
-                  + int_to_str(vy) + ","
-                  + int_to_str(contents.desired_x) + ","
-                  + bool_to_str(contents.waiting_for_desired)).c_str());
+                  + int_to_str (contents->x) + ","
+                  + int_to_str (contents->y) + ","
+                  + int_to_str (vx) + ","
+                  + int_to_str (vy) + ","
+                  + int_to_str (contents->desired_x) + ","
+                  + bool_to_str(contents->waiting_for_desired)).c_str());
 #endif
     print_contents(contents);
     proc_hook(Hook::MOVE);
 }
 
 void mvrel(long y, long x) {
-    mvrel(get_contents(),y,x);
+    mvrel(*get_contents(),y,x);
     show();
 }
 
 void mvcol(long col) {
-    mvcol(get_contents(),col);
+    mvcol(*get_contents(),col);
     show();
 }
 
 void mvsot() {
-    mvsot(get_contents());
+    mvsot(*get_contents());
     show();
 }
 
 void mveol() {
-    mveol(get_contents());
+    mveol(*get_contents());
     show();
 }
 void mvsol() {
-    mvsol(get_contents());
+    mvsol(*get_contents());
     show();
 }
 
 void mvsop() {
-    mvsop(get_contents());
+    mvsop(*get_contents());
     show();
 }
 void mveop() {
-    mveop(get_contents());
+    mveop(*get_contents());
     show();
 }
 
 void mvd(long times) {
-    mvd(get_contents(),times);
+    mvd(*get_contents(),times);
     show();
 }
 void mvu(long times) {
-    mvu(get_contents(),times);
+    mvu(*get_contents(),times);
     show();
 }
 
 void mvfw(unsigned long words) {
-    mvfw(get_contents(),words);
+    mvfw(*get_contents(),words);
     show();
 }
 void mvbw(unsigned long words) {
-    mvbw(get_contents(),words);
+    mvbw(*get_contents(),words);
     show();
 }
 
 void mvf(unsigned long times) {
-    mvf(get_contents(),times);
+    mvf(*get_contents(),times);
     show();
 }
 void mvb(unsigned long times) {
-    mvb(get_contents(),times);
+    mvb(*get_contents(),times);
     show();
 }
 
