@@ -13,8 +13,8 @@ TEST_CASE("mvsot") {
     mvsot(contents);
     endwin();
 
-    REQUIRE(0 ==contents.y);
-    REQUIRE(4 ==contents.x);
+    REQUIRE(0 == contents.y);
+    REQUIRE(4 == contents.x);
 }
 
 TEST_CASE("mvcol") {
@@ -35,12 +35,12 @@ TEST_CASE("mvcol") {
         x3 = contents.x;
     endwin();
 
-    REQUIRE(0 ==y1);
-    REQUIRE(0 ==y2);
-    REQUIRE(0 ==y3);
-    REQUIRE(3 ==x1);
-    REQUIRE(3 ==x2);
-    REQUIRE(0 ==x3);
+    REQUIRE(0 == y1);
+    REQUIRE(0 == y2);
+    REQUIRE(0 == y3);
+    REQUIRE(3 == x1);
+    REQUIRE(3 == x2);
+    REQUIRE(0 == x3);
 }
 
 TEST_CASE("mvsol") {
@@ -53,8 +53,8 @@ TEST_CASE("mvsol") {
         x = contents.x;
     endwin();
 
-    REQUIRE(0 ==y);
-    REQUIRE(0 ==x);
+    REQUIRE(0 == y);
+    REQUIRE(0 == x);
 }
 
 TEST_CASE("mvd") {
@@ -72,10 +72,10 @@ TEST_CASE("mvd") {
         x1 = contents.x;
     endwin();
 
-    REQUIRE(0 ==x);
-    REQUIRE(0 ==x1);
-    REQUIRE(2 ==y);
-    REQUIRE(2 ==y1);
+    REQUIRE(0 == x);
+    REQUIRE(0 == x1);
+    REQUIRE(2 == y);
+    REQUIRE(2 == y1);
 }
 
 TEST_CASE("mvf") {
@@ -92,10 +92,10 @@ TEST_CASE("mvf") {
         x1 = contents.x;
     endwin();
 
-    REQUIRE(0 ==y);
-    REQUIRE(3 ==x);
-    REQUIRE(1 ==y1);
-    REQUIRE(1 ==x1);
+    REQUIRE(0 == y);
+    REQUIRE(3 == x);
+    REQUIRE(1 == y1);
+    REQUIRE(1 == x1);
 }
 
 TEST_CASE("mvb") {
@@ -109,8 +109,8 @@ TEST_CASE("mvb") {
         x = contents.x;
     endwin();
 
-    REQUIRE(0 ==y);
-    REQUIRE(4 ==x);
+    REQUIRE(0 == y);
+    REQUIRE(4 == x);
 }
 
 TEST_CASE("mvf_2") {
@@ -131,10 +131,10 @@ TEST_CASE("mvf_2") {
         x1 = contents.x;
     endwin();
 
-    REQUIRE(0 ==y);
-    REQUIRE(21 ==x);
-    REQUIRE(1 ==y1);
-    REQUIRE(1 ==x1);
+    REQUIRE(0 == y);
+    REQUIRE(21 == x);
+    REQUIRE(1 == y1);
+    REQUIRE(1 == x1);
 }
 
 TEST_CASE("mveol") {
@@ -147,8 +147,8 @@ TEST_CASE("mveol") {
         x = contents.x;
     endwin();
 
-    REQUIRE(4 ==x);
-    REQUIRE(0 ==y);
+    REQUIRE(4 == x);
+    REQUIRE(0 == y);
 }
 
 TEST_CASE("mvu") {
@@ -162,10 +162,10 @@ TEST_CASE("mvu") {
         x1 = contents.x;
     endwin();
 
-    REQUIRE(0 ==y1);
-    REQUIRE(1 ==x1);
-    REQUIRE(true ==contents.waiting_for_desired);
-    REQUIRE(6 ==contents.desired_x);
+    REQUIRE(0 == y1);
+    REQUIRE(1 == x1);
+    REQUIRE(true == contents.waiting_for_desired);
+    REQUIRE(6 == contents.desired_x);
 }
 
 TEST_CASE("mvd_2") {
@@ -191,18 +191,18 @@ TEST_CASE("mvd_2") {
     bool w2 = contents.waiting_for_desired;
     endwin();
 
-    REQUIRE(0 ==y);
-    REQUIRE(21 ==x);
+    REQUIRE(0 == y);
+    REQUIRE(21 == x);
 
-    REQUIRE(1 ==y1);
-    REQUIRE(4 ==x1);
-    REQUIRE(21 ==d1);
-    REQUIRE(true ==w1);
+    REQUIRE(1 == y1);
+    REQUIRE(4 == x1);
+    REQUIRE(21 == d1);
+    REQUIRE(true == w1);
 
-    REQUIRE(2 ==y2);
-    REQUIRE(4 ==x2);
-    REQUIRE(21 ==d2);
-    REQUIRE(true ==w2);
+    REQUIRE(2 == y2);
+    REQUIRE(4 == x2);
+    REQUIRE(21 == d2);
+    REQUIRE(true == w2);
 }
 
 TEST_CASE("mvf_over_empty_lines") {
@@ -215,8 +215,8 @@ TEST_CASE("mvf_over_empty_lines") {
     mvf(contents);
     endwin();
 
-    REQUIRE(0 ==contents.x);
-    REQUIRE(1 ==contents.y);
+    REQUIRE(0 == contents.x);
+    REQUIRE(1 == contents.y);
 }
 
 TEST_CASE("mvf_over_tabs") {
@@ -226,25 +226,19 @@ TEST_CASE("mvf_over_tabs") {
 
     initscr();
     mvf(contents);
-    int vis_y,vis_x,y,x;
-    getyx(stdscr,vis_y,vis_x);
+    int y,x;
     y = contents.y;
     x = contents.x;
     mvf(contents);
-    int vis_y1,vis_x1,y1,x1;
-    getyx(stdscr,vis_y1,vis_x1);
+    int y1,x1;
     y1= contents.y;
     x1= contents.x;
     endwin();
 
-    REQUIRE(1 ==y);
-    REQUIRE(0 ==x);
-    REQUIRE(1 ==vis_y);
-    REQUIRE(7 ==vis_x);
-    REQUIRE(1 ==y1);
-    REQUIRE(1 ==x1);
-    REQUIRE(1 ==vis_y1);
-    REQUIRE(8 ==vis_x1);
+    REQUIRE(1 == y);
+    REQUIRE(0 == x);
+    REQUIRE(1 == y1);
+    REQUIRE(1 == x1);
 }
 
 TEST_CASE("to_visual") {
