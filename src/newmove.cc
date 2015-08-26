@@ -15,13 +15,13 @@ int from_visual(const std::string& cont, int x) {
     for(unsigned int i = 0; i < cont.length(); i++) {
         unsigned int len;
         if(cont[i] == '\t') {
-            len = TAB_SIZE() - 1 - til;
+            len = TAB_SIZE - 1 - til;
             til = 0;
             numTab++;
         } else {
             len = 1;
             til++;
-            til %= TAB_SIZE();
+            til %= TAB_SIZE;
         }
         count += len;
         if(count > x - numTab) return i;
@@ -35,11 +35,11 @@ int to_visual(const std::string& cont, int x) {
     for(std::string::const_iterator i = cont.begin();
                 i <= cont.begin() + x; i++) {
         if(*i == '\t') {
-            xx += TAB_SIZE() - til;
+            xx += TAB_SIZE - til;
             til = 0;
         } else {
             til++;
-            til %= TAB_SIZE();
+            til %= TAB_SIZE;
             xx++;
         }
     }
@@ -143,8 +143,8 @@ void mvu(contents& contents, long times) { mvd(contents,-times); }
 
 
 static bool isDeliminator(char ch) {
-    for(unsigned int i = 0; i < DELIMINATORS().length(); i++)
-        if(DELIMINATORS()[i] == ch) return true;
+    for(unsigned int i = 0; i < DELIMINATORS.length(); i++)
+        if(DELIMINATORS[i] == ch) return true;
     return false;
 }
 void mvfw(contents& contents,unsigned long words) {

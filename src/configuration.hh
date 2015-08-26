@@ -4,11 +4,11 @@
 #include <map>
 #include <vector>
 #include <string>
-int TAB_SIZE();
+extern const int TAB_SIZE;
 void add_listeners(std::map<char,void (*)()>&);
 void add_commands (std::map<std::string,
                             void (*)(const std::vector<std::string>&)>&);
 
-const std::string& DELIMINATORS();
+extern const std::string DELIMINATORS;
 
 #endif

@@ -28,7 +28,7 @@ void print_contents(const contents& contents) {
         int til = 0;
         for(unsigned int i = 0; i < line.length(); i++) {
             if(line[i] == '\t') {
-                x += TAB_SIZE() - til - 1;
+                x += TAB_SIZE - til - 1;
                 if(x >= contents.max_x) {
                     x = 0;
                     y++;
@@ -38,7 +38,7 @@ void print_contents(const contents& contents) {
             } else {
                 addch(line[i]);
                 til++;
-                til %= TAB_SIZE();
+                til %= TAB_SIZE;
             }
             x++;
             if(x-1 == contents.max_x) {

@@ -6,15 +6,15 @@
 #include "command_listeners.hh"
 #include "move.hh"
 #include "prefix_g.hh"
+#include "configuration.hh"
 
-int TAB_SIZE() { return 8; }
+const int TAB_SIZE = 8;
 
-void mvDD() { mvrel(1,0); }
+const std::string DELIMINATORS = "!@#$%^&*()-_=+[]{};:<>,.'\"/?`~| \t";
 
 void add_listeners(std::map<char,void (*)()>& listeners) {
     listeners['j'] = mvb1;
     listeners['k'] = mvd1;
-    listeners['d'] = mvDD;
     listeners['l'] = mvu1;
     listeners[';'] = mvf1;
 
@@ -35,7 +35,3 @@ void add_commands(std::map<std::string,
     commandMap["q"]     = quit_command;
     commandMap["quit"]  = quit_command;
 }
-
-static const std::string deliminators = "!@#$%^&*()-_=+[]{};:<>,.'\"/?`~| ";
-
-const std::string& DELIMINATORS() { return deliminators; }
