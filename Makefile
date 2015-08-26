@@ -67,3 +67,6 @@ test: $B ${testfiles}
              ${files} \
              -lncurses -std=c++11
 	./$T/out
+
+tags:
+	etags `find src -maxdepth 1 \( -name '*.cc' -o -name '*.hh' \)`
