@@ -1,5 +1,5 @@
 VER=c++98
-CFLAGS=-Wall -std=${VER}
+CFLAGS=-std=${VER}
 O=out
 S=src
 T=test
@@ -47,7 +47,7 @@ $O/%.o: $S/%.cc
 
 ${TO}/%.o: $T/%.cc
 	@mkdir -p ${TO}
-	${CC} -o $@ -c $< -std=c++11 -Wall
+	${CC} -o $@ -c $< -std=c++11
 
 $T/UnitTest++/Posix/%.o: $T/UnitTest++/Posix/%.cpp
 	${CC} -o $@ -c $<
