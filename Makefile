@@ -57,6 +57,8 @@ $T/UnitTest++/%.o: $T/UnitTest++/%.cpp
 clean:
 	[ ! -d out ] || rm -R out
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
+
+cleantest:
 	[ -z "`find -name '*.o'`" ] || rm `find -name '*.o'`
 
 test: $B ${testfiles}
