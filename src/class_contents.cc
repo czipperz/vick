@@ -6,6 +6,7 @@ contents::contents(std::vector<std::string>* cont)
       y(0),
       x(0),
       desired_x(0),
+      y_offset(0),
       waiting_for_desired(false) {
     getmaxyx(stdscr,max_y,max_x);
 }
@@ -14,6 +15,7 @@ contents::contents(long y, long x)
       y(y),
       x(x),
       desired_x(0),
+      y_offset(0),
       waiting_for_desired(false) {
     getmaxyx(stdscr,max_y,max_x);
 }
