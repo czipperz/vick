@@ -21,10 +21,8 @@ class contents {
     contents(const contents&);
     contents& operator=(const contents&);
 
-#if __cplusplus >= 201103L
     contents(contents&&);
     contents& operator=(contents&&);
-#endif
 
     void push_back(const std::string& str);
 };

@@ -48,7 +48,6 @@ contents& contents::operator=(const contents& other) {
 }
 
 
-#if __cplusplus >= 201103L
 contents::contents(contents&& other)
     : cont(std::move(other.cont)),
       y(other.y),
@@ -74,7 +73,6 @@ contents& contents::operator=(contents&& other) {
     }
     return *this;
 }
-#endif
 
 
 void contents::push_back(const std::string& str) {

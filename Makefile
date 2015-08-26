@@ -1,5 +1,4 @@
-VER=c++98
-CFLAGS=-std=${VER}
+CFLAGS=-std=c++11
 O=out
 S=src
 T=test
