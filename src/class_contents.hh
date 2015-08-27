@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "mode.hh"
 
 class contents {
     public:
@@ -12,10 +13,14 @@ class contents {
         y_offset,
         max_y,max_x;
     bool waiting_for_desired;
+    mode& m;
 
     contents(std::vector<std::string>* cont
-             = new std::vector<std::string>());
-    contents(long y, long x);
+             = new std::vector<std::string>(),
+             mode& m = mode::fundamental);
+    contents(mode& m);
+    contents(long y, long x,
+             mode& m = mode::fundamental);
     ~contents();
 
     contents(const contents&);

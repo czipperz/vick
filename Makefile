@@ -18,7 +18,8 @@ files=$O/basic_commands.o     \
       $O/newmove.o            \
       $O/prefix_g.o           \
       $O/prompt.o             \
-      $O/show_message.o
+      $O/show_message.o       \
+      $O/mode.o
 
 testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \

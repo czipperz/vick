@@ -1,22 +1,34 @@
 #include <ncurses.h>
 #include "class_contents.hh"
 
-contents::contents(std::vector<std::string>* cont)
-    : cont(cont),
-      y(0),
-      x(0),
-      desired_x(0),
-      y_offset(0),
-      waiting_for_desired(false) {
+contents::contents(std::vector<std::string>* cont, mode& m)
+    : cont(cont)
+    , y(0)
+    , x(0)
+    , desired_x(0)
+    , y_offset(0)
+    , waiting_for_desired(false)
+    , m(m) {
     getmaxyx(stdscr,max_y,max_x);
 }
-contents::contents(long y, long x)
-    : cont(new std::vector<std::string>()),
-      y(y),
-      x(x),
-      desired_x(0),
-      y_offset(0),
-      waiting_for_desired(false) {
+contents::contents(mode& m)
+    : cont(new std::vector<std::string>())
+    , y(0)
+    , x(0)
+    , desired_x(0)
+    , y_offset(0)
+    , waiting_for_desired(false)
+    , m(m) {
+    getmaxyx(stdscr,max_y,max_x);
+}
+contents::contents(long y, long x, mode& m)
+    : cont(new std::vector<std::string>())
+    , y(y)
+    , x(x)
+    , desired_x(0)
+    , y_offset(0)
+    , waiting_for_desired(false)
+    , m(m) {
     getmaxyx(stdscr,max_y,max_x);
 }
 contents::~contents() {
@@ -25,13 +37,14 @@ contents::~contents() {
 
 
 contents::contents(const contents& other)
-    : cont(other.cont),
-      y(other.y),
-      x(other.x),
-      desired_x(other.desired_x),
-      max_y(other.max_y),
-      max_x(other.max_x),
-      waiting_for_desired(other.waiting_for_desired) { }
+    : cont(other.cont)
+    , y(other.y)
+    , x(other.x)
+    , desired_x(other.desired_x)
+    , max_y(other.max_y)
+    , max_x(other.max_x)
+    , waiting_for_desired(other.waiting_for_desired)
+    , m(other.m) { }
 contents& contents::operator=(const contents& other) {
     if(this != &other) {
         delete this->cont;
@@ -43,19 +56,21 @@ contents& contents::operator=(const contents& other) {
         this->max_x               = other.max_x;
         this->y_offset            = other.y_offset;
         this->waiting_for_desired = other.waiting_for_desired;
+        this->m                   = other.m;
     }
     return *this;
 }
 
 
 contents::contents(contents&& other)
-    : cont(std::move(other.cont)),
-      y(other.y),
-      x(other.x),
-      desired_x(other.desired_x),
-      max_y(other.y),
-      max_x(other.x),
-      waiting_for_desired(other.waiting_for_desired) {
+    : cont(std::move(other.cont))
+    , y(other.y)
+    , x(other.x)
+    , desired_x(other.desired_x)
+    , max_y(other.y)
+    , max_x(other.x)
+    , waiting_for_desired(other.waiting_for_desired)
+    , m(other.m) {
     other.cont = nullptr;
 }
 contents& contents::operator=(contents&& other) {
@@ -70,6 +85,7 @@ contents& contents::operator=(contents&& other) {
         this->max_x               = other.max_x;
         this->y_offset            = other.y_offset;
         this->waiting_for_desired = other.waiting_for_desired;
+        this->m                   = other.m;
     }
     return *this;
 }
