@@ -10,11 +10,15 @@
 int main(int argc, char**argv) {
     argc--;argv++;
 
-    std::string line;
     std::vector<std::string>* lines = new std::vector<std::string>;
-    std::ifstream myfile(argv[0]);
-    while(std::getline(myfile,line))
-        lines->push_back(line);
+    if(argc) {
+        std::string line;
+        std::ifstream myfile(argv[0]);
+        while(std::getline(myfile,line))
+            lines->push_back(line);
+    } else {
+        lines->push_back("");
+    }
 
     initscr();
     noecho();

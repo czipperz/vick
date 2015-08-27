@@ -112,7 +112,13 @@ void mvd(contents& contents, long times) {
     contents.y += times;
     unsigned int len = (*contents.cont)[contents.y].length();
     if(contents.waiting_for_desired) {
-        if(contents.x >= len) {
+        if((int)contents.x < 0) {
+            contents.x = len - 1;
+            if(contents.desired_x < to_visual((*contents.cont)[contents.y],contents.x)) {
+                contents.x = from_visual((*contents.cont)[contents.y],contents.desired_x);
+                contents.waiting_for_desired = false;
+            }
+        } else if(contents.x >= len) {
             contents.x = len - 1;
         } else if((contents.desired_x > contents.x
                    && contents.desired_x < len)
@@ -171,18 +177,16 @@ void mvf(contents& contents, unsigned long times) {
     redrawyx(contents);
 }
 void mvb(contents& contents, unsigned long times) {
+    if(contents.y == 0 && contents.x == 0) return;
     long newx = contents.x - times;
-    while(newx < 0) {
-        try {
+    try {
+        while(newx < 0) {
             contents.y--;
             newx += fixLen(contents.cont->at(contents.y).length());
-        } catch(...) {
-            break;
         }
-    }
-    if(contents.y < 0) contents.y = 0;
-    if(contents.x < 0) contents.x = 0;
-    else      contents.x = newx;
+    } catch(...) { }
+    if(newx < 0) contents.x = 0;
+    else         contents.x = newx;
     contents.waiting_for_desired = false;
     redrawyx(contents);
 }

@@ -17,7 +17,6 @@ contents* get_contents() { return cont; }
 
 void print_contents(const contents* contents) {
     clear();
-    if(contents->cont->size() == 0) return;
     int b_y,b_x,
         y = 0;
     getyx(stdscr,b_y,b_x);
