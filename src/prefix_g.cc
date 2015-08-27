@@ -2,22 +2,24 @@
 #include <ncurses.h>
 #include <string>
 
+#include "mode.hh"
 #include "move.hh"
+#include "prefix_g.hh"
 #include "show_message.hh"
 
-static std::map<char,void (*)()> listeners;
+static std::map<char,void (*)()> prefix_g_map;
 
-inline static void initializeListeners() {
-    listeners['g'] = mvsop;
+void setup_prefix_g() {
+    global_normal_map['g'] = prefix_g;
+    prefix_g_map['g'] = mvsop;
 }
 
 void prefix_g() {
-    initializeListeners();
-
     char ch = getch();
-    std::map<char,void (*)()>::iterator it = listeners.find(ch);
-    if(it == listeners.end()) {
-        show_message((std::string("Didn't recognize key press inside `g': ") + ch).c_str());
+    auto it = prefix_g_map.find(ch);
+    if(it == prefix_g_map.end()) {
+        show_message((std::string("Didn't recognize key press inside `g': ")
+                      + ch).c_str());
     } else {
         it->second();
     }

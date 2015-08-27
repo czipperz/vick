@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 extern const int TAB_SIZE;
-void add_listeners(std::map<char,void (*)()>&);
+void add_listeners();
 void add_commands (std::map<std::string,
                             void (*)(const std::vector<std::string>&)>&);
 

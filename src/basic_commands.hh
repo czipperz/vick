@@ -4,5 +4,6 @@
 #include <vector>
 #include <string>
 void quit_command(const std::vector<std::string>&);
+void key_test_command(const std::vector<std::string>&);
 
 #endif
