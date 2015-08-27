@@ -114,8 +114,10 @@ void mvd(contents& contents, long times) {
     if(contents.waiting_for_desired) {
         if((int)contents.x < 0) {
             contents.x = len - 1;
-            if(contents.desired_x < to_visual(contents.cont[contents.y],contents.x)) {
-                contents.x = from_visual(contents.cont[contents.y],contents.desired_x);
+            unsigned int vis = from_visual(contents.cont[contents.y],
+                                           contents.desired_x);
+            if(vis < contents.x) {
+                contents.x = vis;
                 contents.waiting_for_desired = false;
             }
         } else if(contents.x >= len) {
