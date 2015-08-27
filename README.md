@@ -7,8 +7,8 @@
 Vick is a `VI` based editor that focuses on configuration.  To be able
 to configure Vick you must be able to compile from source Vick.
 
-Vick requires `c++11`, which probably won't be a problem if you don't
-know what it means.
+Vick requires a compiler that supports `c++11`.  Most modern compilers
+do.  For `gcc` that means version 4.8.
 
 So here's how to compile it from source:
 
