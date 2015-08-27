@@ -167,8 +167,6 @@ void mvf(contents& contents, unsigned long times) {
     if(contents.y >= contents.cont->size()) contents.y = contents.cont->size()-1;
     if(contents.x < 0) contents.x = 0;
     else      contents.x = newx;
-    show_message((std::string("for (x,y): (") + int_to_str(contents.x)
-                  + "," + int_to_str(contents.y) + ")").c_str());
     contents.waiting_for_desired = false;
     redrawyx(contents);
 }
@@ -185,8 +183,6 @@ void mvb(contents& contents, unsigned long times) {
     if(contents.y < 0) contents.y = 0;
     if(contents.x < 0) contents.x = 0;
     else      contents.x = newx;
-    show_message((std::string("back (x,y): (") + int_to_str(contents.x)
-                  + "," + int_to_str(contents.y) + ")").c_str());
     contents.waiting_for_desired = false;
     redrawyx(contents);
 }
