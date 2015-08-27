@@ -3,7 +3,7 @@ O=out
 S=src
 T=test
 TO=testout
-CC=g++
+CXX=g++
 B=vick
 
 files=$O/basic_commands.o     \
@@ -27,7 +27,7 @@ testfiles = ${TO}/int_to_str_tests.o \
 all: $B
 
 $B: ${files} $O/main.o
-	${CC} -o $@ $^ $(CFLAGS) -lncurses
+	${CXX} -o $@ $^ $(CFLAGS) -lncurses
 
 #	aser2	4sk	6eskl	8
 #	2be	4	6
@@ -38,21 +38,21 @@ $B: ${files} $O/main.o
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
 	@mkdir -p $O
-	${CC} -o $@ -c $< $(CFLAGS)
+	${CXX} -o $@ -c $< $(CFLAGS)
 
 $O/%.o: $S/%.cc
 	@mkdir -p $O
-	${CC} -o $@ -c $< $(CFLAGS)
+	${CXX} -o $@ -c $< $(CFLAGS)
 
 ${TO}/%.o: $T/%.cc
 	@mkdir -p ${TO}
-	${CC} -o $@ -c $< -std=c++11
+	${CXX} -o $@ -c $< -std=c++11
 
 $T/UnitTest++/Posix/%.o: $T/UnitTest++/Posix/%.cpp
-	${CC} -o $@ -c $<
+	${CXX} -o $@ -c $<
 
 $T/UnitTest++/%.o: $T/UnitTest++/%.cpp
-	${CC} -o $@ -c $<
+	${CXX} -o $@ -c $<
 
 clean:
 	[ ! -d out ] || rm -R out
@@ -62,7 +62,7 @@ cleantest:
 	[ -z "`find -name '*.o'`" ] || rm `find -name '*.o'`
 
 test: $B ${testfiles}
-	${CC} -o $T/out \
+	${CXX} -o $T/out \
              ${testfiles} \
              ${files} \
              -lncurses -std=c++11
