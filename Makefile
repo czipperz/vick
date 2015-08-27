@@ -59,7 +59,7 @@ clean:
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
 
 cleantest:
-	[ -z "`find -name '*.o'`" ] || rm `find -name '*.o'`
+	rm `find ${TO} -type f -not -name 'main.o'`
 
 test: $B ${testfiles}
 	${CXX} -o $T/out \
