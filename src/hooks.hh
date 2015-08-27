@@ -6,6 +6,8 @@ namespace Hook {
         MOVE,
         SAVE,
         EDIT,
+        REFRESH,
+        MODE_ENTER,
     };
 }
 

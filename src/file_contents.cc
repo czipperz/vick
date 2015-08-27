@@ -4,6 +4,7 @@
 
 #include "configuration.hh"
 #include "newmove.hh"
+#include "hooks.hh"
 
 static contents* cont;
 
@@ -52,4 +53,5 @@ void print_contents(const contents* contents) {
         move(++y,0);
     }
     move(contents->y,to_visual((*contents->cont)[contents->y],contents->x));
+    proc_hook(Hook::REFRESH);
 }

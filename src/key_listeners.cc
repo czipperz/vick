@@ -5,11 +5,13 @@
 
 #include "configuration.hh"
 #include "show_message.hh"
+#include "hooks.hh"
 
 static std::map<char,void (*)()> listeners;
 
 void loop() {
     add_listeners(listeners);
+    add_hook(Hook::REFRESH,hook_show_message);
 
     while(true) {
         char ch = getch();
