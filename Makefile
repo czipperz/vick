@@ -8,6 +8,7 @@ B=vick
 
 files=                        \
       $O/basic_commands.o     \
+      $O/change.o             \
       $O/class_contents.o     \
       $O/command_listeners.o  \
       $O/configuration.o      \
@@ -21,7 +22,6 @@ files=                        \
       $O/prefix_g.o           \
       $O/prompt.o             \
       $O/show_message.o       \
-      $O/change.o             \
 
 testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \
