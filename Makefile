@@ -21,6 +21,7 @@ files=                        \
       $O/prefix_g.o           \
       $O/prompt.o             \
       $O/show_message.o       \
+      $O/change.o             \
 
 testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \
