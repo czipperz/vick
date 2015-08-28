@@ -6,7 +6,8 @@ TO=testout
 CXX=g++
 B=vick
 
-files=$O/basic_commands.o     \
+files=                        \
+      $O/basic_commands.o     \
       $O/class_contents.o     \
       $O/command_listeners.o  \
       $O/configuration.o      \
@@ -14,12 +15,12 @@ files=$O/basic_commands.o     \
       $O/hooks.o              \
       $O/int_to_str.o         \
       $O/key_listeners.o      \
+      $O/mode.o               \
       $O/move.o               \
       $O/newmove.o            \
       $O/prefix_g.o           \
       $O/prompt.o             \
       $O/show_message.o       \
-      $O/mode.o
 
 testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \
