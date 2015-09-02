@@ -2,7 +2,8 @@ plugins_o  = `find plugins -mindepth 1 -type f -name '*.o'`
 plugins_cc = `find plugins -mindepth 1 -type f -name '*.cc'`
 plugins_hh = `find plugins -mindepth 1 -type d -name 'src' | xargs -n 1 \
               printf '-I%s\n'` -Isrc
-CFLAGS=-std=c++11 
+CFLAGS=-std=c++11
+LDFLAGS=-lboost_regex -lncurses
 O=out
 S=src
 T=test
@@ -35,7 +36,7 @@ $B: ${files} $O/main.o
              cd $$dir; \
              make; cd ../..; \
         done
-	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} -lncurses
+	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
