@@ -29,6 +29,10 @@ testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \
      ${TO}/newmove_tests.o
 
+begin:
+	mkdir -p plugins && cd plugins
+	[ -d vick-move ] || git clone 'https://github.com/czipperz/vick-move'
+
 all: $B
 
 $B: ${files} $O/main.o
