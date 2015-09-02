@@ -20,7 +20,7 @@ files=$O/basic_commands.o     \
       $O/int_to_str.o         \
       $O/key_listeners.o      \
       $O/mode.o               \
-      $O/prefix_g.o           \
+      $O/prefix.o             \
       $O/prompt.o             \
       $O/show_message.o       \
 
