@@ -64,6 +64,7 @@ clean:
              cd $$dir; \
              make clean; cd ../..; \
         done
+	[ ! -e $B ] || rm $B
 
 cleantest:
 	rm `find ${TO} -type f -not -name 'main.o'`
