@@ -40,7 +40,7 @@ begin:
 $B: ${files} $O/main.o
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make; cd ../..; \
+             make CXX=${CXX}; cd ../..; \
         done
 	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
@@ -68,7 +68,7 @@ clean:
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make clean; cd ../..; \
+             make CXX=${CXX} clean; cd ../..; \
         done
 	[ ! -e $B ] || rm $B
 

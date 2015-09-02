@@ -8,7 +8,9 @@ be used to download default behavior because of this.  To be able to
 configure Vick you must be able to compile from source Vick.
 
 Vick requires a compiler that supports `c++11`.  Most modern compilers
-do.  For `gcc` that means version 4.8.
+do.  For `gcc` that means version 4.8.  Vick uses `clang` by default,
+which requires version 3.4.  To use `gcc`, just pass `CXX=g++` to all
+the make commands.
 
 So here's how to compile it from source:
 
