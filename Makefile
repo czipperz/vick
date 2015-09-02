@@ -79,7 +79,9 @@ test: $B ${testfiles}
 	${CXX} -o $T/out \
              ${testfiles} \
              ${files} \
-             -lncurses -std=c++11
+             -lncurses -std=c++11 \
+             ${plugins_o} \
+             ${LDFLAGS}
 	./$T/out
 
 tags:
