@@ -1,13 +1,14 @@
 #include <map>
 #include <ncurses.h>
 #include <string>
+#include <functional>
 
 #include "mode.hh"
 #include "move.hh"
 #include "prefix_g.hh"
 #include "show_message.hh"
 
-static std::map<char,void (*)()> prefix_g_map;
+static std::map < char, std::function<void ()> > prefix_g_map;
 
 void setup_prefix_g() {
     global_normal_map['g'] = prefix_g;

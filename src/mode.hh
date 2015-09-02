@@ -1,11 +1,12 @@
 #ifndef HEADER_GUARD_MODE_H
 #define HEADER_GUARD_MODE_H
 
+#include <functional>
 #include <map>
 #include <string>
 
-extern std::map<char,void (*)()> global_normal_map;
-extern std::map<char,void (*)()> global_insert_map;
+extern std::map < char, std::function<void ()> > global_normal_map;
+extern std::map < char, std::function<void ()> > global_insert_map;
 
 struct mode {
     public:

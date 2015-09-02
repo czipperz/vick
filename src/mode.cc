@@ -1,8 +1,10 @@
+#include <functional>
+
 #include "mode.hh"
 #include "show_message.hh"
 
-std::map<char,void (*)()> global_normal_map;
-std::map<char,void (*)()> global_insert_map;
+std::map < char, std::function<void ()> > global_normal_map;
+std::map < char, std::function<void ()> > global_insert_map;
 
 static bool fundamental_handle(char);
 static bool programming_handle(char);
