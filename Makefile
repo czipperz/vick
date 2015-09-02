@@ -32,8 +32,10 @@ testfiles = ${TO}/int_to_str_tests.o \
 all: $B
 
 begin:
-	mkdir -p plugins && cd plugins
-	[ -d vick-move ] || git clone 'https://github.com/czipperz/vick-move'
+	mkdir -p plugins
+	[ -d plugins/vick-move ] || git clone \
+                                        'https://github.com/czipperz/vick-move' \
+                                        plugins/vick-move
 
 $B: ${files} $O/main.o
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
