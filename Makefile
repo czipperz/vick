@@ -8,7 +8,7 @@ O=out
 S=src
 T=test
 TO=testout
-CXX=g++
+CXX=clang++
 B=vick
 
 files=$O/basic_commands.o     \
