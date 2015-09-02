@@ -1,6 +1,4 @@
-# Vick
-
-[![Build Status](https://travis-ci.org/czipperz/vick.svg)](https://travis-ci.org/czipperz/vick)
+# Vick [![Build Status](https://travis-ci.org/czipperz/vick.svg)](https://travis-ci.org/czipperz/vick)
 
 #### VICK IS NOWHERE NEAR READY FOR USAGE.  AS OF NOW IT DOESN'T EVEN EDIT TEXT!!
 
