@@ -36,7 +36,7 @@ begin:
                                         'https://github.com/czipperz/vick-move' \
                                         plugins/vick-move
 
-$B: ${files} $O/main.o
+$B: ${files} $O/main.o $O/configuration.o
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX}; cd ../..; \
@@ -51,6 +51,9 @@ $O/%.o: $S/%.cc $S/%.hh
 $O/%.o: $S/%.cc
 	@mkdir -p $O
 	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
+
+.temp_configuration.o: $S/configuration.cc $S/configuration.hh
+	${CXX} -o .temp_configuration.o -c $< -Dtesting ${CFLAGS}
 
 ${TO}/%.o: $T/%.cc
 	@mkdir -p ${TO}
@@ -74,14 +77,17 @@ clean:
 cleantest:
 	rm `find ${TO} -type f -not -name 'main.o'`
 
-test: ${files} ${testfiles}
+test: ${files} ${testfiles} .temp_configuration.o
+	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
+             cd $$dir; \
+             make CXX=${CXX}; cd ../..; \
+        done
 	${CXX} -o $T/out \
-             ${testfiles} \
-             ${files} \
-             -lncurses -std=c++11 \
+             $^ \
              ${plugins_o} \
-             ${LDFLAGS}
+             ${LDFLAGS} ${CFLAGS}
 	./$T/out
+	rm .temp_configuration.o
 
 tags:
 	etags `find src -maxdepth 1 \( -name '*.cc' -o -name '*.hh' \)`

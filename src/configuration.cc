@@ -1,20 +1,22 @@
-#include <map>
-#include <string>
-#include <vector>
-#include <functional>
-
-#include "basic_commands.hh"
-#include "command_listeners.hh"
+// ensure that configuration variables are exported properly
 #include "configuration.hh"
-#include "mode.hh"
-#include "move.hh"
-#include "prefix.hh"
+
+#ifndef testing
+#  include <functional>
+#  include "basic_commands.hh"
+#  include "command_listeners.hh"
+#  include "mode.hh"
+#  include "move.hh"
+#  include "prefix.hh"
+#endif
 
 const int TAB_SIZE = 8;
 
 const std::string DELIMINATORS = "!@#$%^&*()-_=+[]{};:<>,.'\"/?`~| \t";
 
 void add_listeners() {
+// ensure that the plugins are properly installed, which doesn't happen in testing
+#ifndef testing
     /* global_normal_map binds */ {
         global_normal_map['j'] = mvb1;
         global_normal_map['k'] = mvd1;
@@ -40,12 +42,16 @@ void add_listeners() {
         // put this last as it copies by value
         global_normal_map['g'] = prefix_g;
     }
+#endif
 }
 
 void add_commands(std::map<std::string,
                            void (*)(const std::vector<std::string>&)>&
                   commandMap) {
+// ensure that the plugins are properly installed, which doesn't happen in testing
+#ifndef testing
     commandMap["q"]             = quit_command;
     commandMap["quit"]          = quit_command;
     commandMap["keytest"]       = key_test_command;
+#endif
 }
