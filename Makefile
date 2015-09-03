@@ -88,4 +88,4 @@ test: ${files} ${testfiles} $O/.test_configuration.o
 	./$T/out
 
 tags:
-	etags `find src -name '*.cc'`
+	etags `find src -name '*.cc' -o -name '*.hh'`
