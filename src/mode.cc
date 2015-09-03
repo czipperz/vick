@@ -1,10 +1,15 @@
 #include <functional>
+#include <boost/optional.hpp>
 
+#include "file_contents.hh"
+#include "contents.hh"
 #include "mode.hh"
 #include "show_message.hh"
 
-std::map < char, std::function<void ()> > global_normal_map;
-std::map < char, std::function<void ()> > global_insert_map;
+typedef std::function<void (contents&, boost::optional<int>)> fun;
+
+std::map < char, fun > global_normal_map;
+std::map < char, fun > global_insert_map;
 
 mode::mode(const std::string& name, bool (*const handle)(char))
     : name(name)
@@ -25,12 +30,12 @@ mode& mode::operator=(const mode& other) {
 }
 
 static bool fundamental_handle(char ch) {
-    std::map < char, std::function<void ()> > :: iterator
+    std::map < char, fun > :: iterator
         it = global_normal_map.find(ch);
     if(it == global_normal_map.end()) return false;
 
     clear_message();
-    it->second();
+    it->second(*get_contents(),boost::none);
     return true;
 }
 

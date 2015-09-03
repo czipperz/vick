@@ -4,11 +4,14 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <boost/optional.hpp>
 
-extern std::map < char, std::function<void ()> > global_normal_map;
-extern std::map < char, std::function<void ()> > global_insert_map;
+class contents;
 
-struct mode {
+extern std::map < char, std::function<void (contents&, boost::optional<int>)> > global_normal_map;
+extern std::map < char, std::function<void (contents&, boost::optional<int>)> > global_insert_map;
+
+class mode {
     private:
     std::string name;
     // true = has binding
