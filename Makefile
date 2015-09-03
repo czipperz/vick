@@ -1,5 +1,5 @@
-plugins_o  = `find plugins -name out -type d | xargs -n 1 \
-              printf "find %s -type f\n" | bash`
+plugins_o  = `[ $(ls plugins) ] && find plugins -name out -type d \
+              | xargs -n 1 printf "find %s -type f\n" | bash`
 plugins_hh = `find plugins -name src -type d | xargs -n 1 \
               printf "-I%s\n"` -Isrc
 CFLAGS=-std=c++11
@@ -31,12 +31,13 @@ testfiles = ${TO}/int_to_str_tests.o    \
 all: $B
 
 begin:
-	mkdir -p plugins
+	@mkdir -p plugins
 	[ -d plugins/vick-move ] || git clone \
                                         'https://github.com/czipperz/vick-move' \
                                         plugins/vick-move
 
 $B: ${files} $O/main.o $O/configuration.o
+	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX}; cd ../..; \
@@ -45,15 +46,15 @@ $B: ${files} $O/main.o $O/configuration.o
 
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
-	@mkdir -p $O
+	@mkdir -p $O plugins
 	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
 
 $O/%.o: $S/%.cc
-	@mkdir -p $O
+	@mkdir -p $O plugins
 	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
 
 $O/.test_configuration.o: $S/configuration.cc
-	mkdir -p $O
+	@mkdir -p $O
 	${CXX} -o $@ -c $< ${CFLAGS} -Dtesting
 
 ${TO}/%.o: $T/%.cc
@@ -61,15 +62,17 @@ ${TO}/%.o: $T/%.cc
 	${CXX} -o $@ -c $< ${CFLAGS}
 
 clean:
-	[ ! -d out ] || rm -R out
-	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
+	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} clean; cd ../..; \
         done
+	[ ! -d out ] || rm -R out
+	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
 	[ ! -e $B ] || rm $B
 
 cleantest:
+	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} cleantest; cd ../..; \
@@ -77,6 +80,7 @@ cleantest:
 	rm `find ${TO} -type f -not -name 'main.o'`
 
 test: ${files} ${testfiles} $O/.test_configuration.o
+	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} test; cd ../..; \
