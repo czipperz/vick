@@ -15,7 +15,6 @@ files=$O/basic_commands.o     \
       $O/change.o             \
       $O/class_contents.o     \
       $O/command_listeners.o  \
-      $O/configuration.o      \
       $O/file_contents.o      \
       $O/hooks.o              \
       $O/int_to_str.o         \
@@ -42,7 +41,7 @@ $B: ${files} $O/main.o
              cd $$dir; \
              make CXX=${CXX}; cd ../..; \
         done
-	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
+	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS} $O/configuration.o
 
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
@@ -75,7 +74,7 @@ clean:
 cleantest:
 	rm `find ${TO} -type f -not -name 'main.o'`
 
-test: $B ${testfiles}
+test: ${files} ${testfiles}
 	${CXX} -o $T/out \
              ${testfiles} \
              ${files} \
