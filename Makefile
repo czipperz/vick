@@ -39,7 +39,7 @@ $B: ${files} $O/main.o $O/configuration.o
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX}; cd ../..; \
+             make CXX=${CXX} || exit $$!; cd ../..; \
         done
 	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
@@ -64,7 +64,7 @@ clean:
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX} clean; cd ../..; \
+             make CXX=${CXX} clean || exit $$!; cd ../..; \
         done
 	[ ! -d out ] || rm -R out
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
@@ -74,7 +74,7 @@ cleantest:
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX} cleantest; cd ../..; \
+             make CXX=${CXX} cleantest || exit $$!; cd ../..; \
         done
 	rm `find ${TO} -type f -not -name 'main.o'`
 
@@ -82,7 +82,7 @@ test: ${files} ${testfiles} $O/.test_configuration.o
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX} test; cd ../..; \
+             make CXX=${CXX} test || exit $$!; cd ../..; \
         done
 	${CXX} -o $T/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS}
 	./$T/out
