@@ -27,7 +27,6 @@ files=$O/basic_commands.o     \
 
 testfiles = ${TO}/int_to_str_tests.o    \
             ${TO}/main.o                \
-            ${TO}/newmove_tests.o
 
 all: $B
 
