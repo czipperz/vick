@@ -9,6 +9,12 @@ extern std::map < char, std::function<void ()> > global_normal_map;
 extern std::map < char, std::function<void ()> > global_insert_map;
 
 struct mode {
+    private:
+    std::string name;
+    // true = has binding
+    bool (*handle)(char);
+
+
     public:
     mode(const std::string&, bool (*const handle)(char));
 
@@ -20,11 +26,5 @@ struct mode {
     std::string get_name();
 
     static mode fundamental; // use global maps only
-
-
-    private:
-    std::string name;
-    // true = has binding
-    bool (*handle)(char);
 };
 #endif
