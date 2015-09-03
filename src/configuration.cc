@@ -1,6 +1,7 @@
 // ensure that configuration variables are exported properly
 #include "configuration.hh"
 
+// ensure that the plugins are properly installed, which doesn't happen in testing
 #ifndef testing
 #  include <functional>
 #  include "basic_commands.hh"
