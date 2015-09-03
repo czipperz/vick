@@ -1,5 +1,5 @@
 #include <ncurses.h>
-#include "class_contents.hh"
+#include "contents.hh"
 
 contents::contents(std::vector<std::string> cont, mode& m)
     : cont(cont)

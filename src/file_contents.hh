@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "class_contents.hh"
+#include "contents.hh"
 
 void      init(std::vector<std::string>);
 contents* get_contents();

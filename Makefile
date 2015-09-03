@@ -12,7 +12,7 @@ B=vick
 
 files=$O/basic_commands.o     \
       $O/change.o             \
-      $O/class_contents.o     \
+      $O/contents.o           \
       $O/command_listeners.o  \
       $O/file_contents.o      \
       $O/hooks.o              \

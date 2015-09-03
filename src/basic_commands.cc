@@ -2,7 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <ncurses.h>
-#include "class_contents.hh"
+#include "contents.hh"
 
 void quit_command(const std::vector<std::string>&) {
     endwin();
