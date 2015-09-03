@@ -23,6 +23,7 @@ files=$O/basic_commands.o     \
       $O/prefix.o             \
       $O/prompt.o             \
       $O/show_message.o       \
+      $O/visual.o             \
 
 testfiles = ${TO}/int_to_str_tests.o \
      ${TO}/main.o \

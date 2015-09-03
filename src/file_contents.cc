@@ -3,8 +3,10 @@
 #include <vector>
 
 #include "configuration.hh"
-#include "newmove.hh"
+#include "class_contents.hh"
 #include "hooks.hh"
+#include "file_contents.hh"
+#include "visual.hh"
 
 static contents* cont;
 
