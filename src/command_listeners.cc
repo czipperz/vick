@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "configuration.hh"
-#include "int_to_str.hh"
+#include "to_str.hh"
 #include "key_aliases.hh"
 #include "prompt.hh"
 #include "show_message.hh"

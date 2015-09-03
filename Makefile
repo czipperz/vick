@@ -1,7 +1,6 @@
 plugins_o  = `[ $$(ls plugins) ] && find plugins -name out -type d \
               | xargs -n 1 printf "find %s -type f\n" | bash`
-plugins_hh = `find plugins -name src -type d | xargs -n 1 \
-              printf "-I%s\n"` -Isrc
+plugins_hh = `find plugins -name src -type d | xargs -n 1 printf "-I%s\n"` -Isrc
 CFLAGS=-std=c++11
 LDFLAGS=-lboost_regex -lncurses
 O=out
@@ -17,7 +16,7 @@ files=$O/basic_commands.o     \
       $O/command_listeners.o  \
       $O/file_contents.o      \
       $O/hooks.o              \
-      $O/int_to_str.o         \
+      $O/to_str.o             \
       $O/key_listeners.o      \
       $O/mode.o               \
       $O/prefix.o             \
@@ -25,7 +24,7 @@ files=$O/basic_commands.o     \
       $O/show_message.o       \
       $O/visual.o             \
 
-testfiles = ${TO}/int_to_str_tests.o    \
+testfiles = ${TO}/to_str_tests.o        \
             ${TO}/main.o                \
 
 all: $B
@@ -59,7 +58,7 @@ $O/.test_configuration.o: $S/configuration.cc
 
 ${TO}/%.o: $T/%.cc
 	@mkdir -p ${TO}
-	${CXX} -o $@ -c $< ${CFLAGS}
+	${CXX} -o $@ -c $< ${CFLAGS} -Isrc
 
 clean:
 	@mkdir -p plugins

@@ -1,4 +1,4 @@
-#include "../src/int_to_str.hh"
+#include "to_str.hh"
 #include "catch.hpp"
 
 TEST_CASE("Test some int_to_str cases","[int_to_str]") {
