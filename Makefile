@@ -1,7 +1,7 @@
-plugins_o  = `find plugins -mindepth 1 -type f -name '*.o'`
-plugins_cc = `find plugins -mindepth 1 -type f -name '*.cc'`
-plugins_hh = `find plugins -mindepth 1 -type d -name 'src' | xargs -n 1 \
-              printf '-I%s\n'` -Isrc
+plugins_o  = `find plugins -name out -type d | xargs -n 1 \
+              printf "find %s -type f\n" | bash`
+plugins_hh = `find plugins -name src -type d | xargs -n 1 \
+              printf "-I%s\n"` -Isrc
 CFLAGS=-std=c++11
 LDFLAGS=-lboost_regex -lncurses
 O=out
@@ -25,9 +25,9 @@ files=$O/basic_commands.o     \
       $O/show_message.o       \
       $O/visual.o             \
 
-testfiles = ${TO}/int_to_str_tests.o \
-     ${TO}/main.o \
-     ${TO}/newmove_tests.o
+testfiles = ${TO}/int_to_str_tests.o    \
+            ${TO}/main.o                \
+            ${TO}/newmove_tests.o
 
 all: $B
 
@@ -42,7 +42,7 @@ $B: ${files} $O/main.o $O/configuration.o
              cd $$dir; \
              make CXX=${CXX}; cd ../..; \
         done
-	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS} $O/configuration.o
+	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
@@ -54,17 +54,11 @@ $O/%.o: $S/%.cc
 	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
 
 .temp_configuration.o: $S/configuration.cc $S/configuration.hh
-	${CXX} -o .temp_configuration.o -c $< -Dtesting ${CFLAGS}
+	${CXX} -o $@ -c $< ${CFLAGS} -Dtesting
 
 ${TO}/%.o: $T/%.cc
 	@mkdir -p ${TO}
-	${CXX} -o $@ -c $< -std=c++11 ${plugins_hh}
-
-$T/UnitTest++/Posix/%.o: $T/UnitTest++/Posix/%.cpp
-	${CXX} -o $@ -c $<
-
-$T/UnitTest++/%.o: $T/UnitTest++/%.cpp
-	${CXX} -o $@ -c $<
+	${CXX} -o $@ -c $< ${CFLAGS}
 
 clean:
 	[ ! -d out ] || rm -R out
@@ -83,12 +77,9 @@ test: ${files} ${testfiles} .temp_configuration.o
              cd $$dir; \
              make CXX=${CXX}; cd ../..; \
         done
-	${CXX} -o $T/out \
-             $^ \
-             ${plugins_o} \
-             ${LDFLAGS} ${CFLAGS}
+	${CXX} -o $T/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS}
 	./$T/out
 	rm .temp_configuration.o
 
 tags:
-	etags `find src -maxdepth 1 \( -name '*.cc' -o -name '*.hh' \)`
+	etags `find src -name '*.cc'`
