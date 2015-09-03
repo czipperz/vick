@@ -52,7 +52,8 @@ $O/%.o: $S/%.cc
 	@mkdir -p $O
 	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
 
-.temp_configuration.o: $S/configuration.cc $S/configuration.hh
+$O/.test_configuration.o: $S/configuration.cc
+	mkdir -p $O
 	${CXX} -o $@ -c $< ${CFLAGS} -Dtesting
 
 ${TO}/%.o: $T/%.cc
@@ -69,16 +70,19 @@ clean:
 	[ ! -e $B ] || rm $B
 
 cleantest:
-	rm `find ${TO} -type f -not -name 'main.o'`
-
-test: ${files} ${testfiles} .temp_configuration.o
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX}; cd ../..; \
+             make CXX=${CXX} cleantest; cd ../..; \
+        done
+	rm `find ${TO} -type f -not -name 'main.o'`
+
+test: ${files} ${testfiles} $O/.test_configuration.o
+	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
+             cd $$dir; \
+             make CXX=${CXX} test; cd ../..; \
         done
 	${CXX} -o $T/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS}
 	./$T/out
-	rm .temp_configuration.o
 
 tags:
 	etags `find src -name '*.cc'`
