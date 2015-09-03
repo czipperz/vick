@@ -19,13 +19,7 @@ struct mode {
 
     std::string get_name();
 
-    static mode fundamental;
-    static mode text;        // extends fundamental
-    static mode programming; // extends programming
-
-    struct listeners {
-        static std::map<char,void (*)()> fundamental;
-    };
+    static mode fundamental; // use global maps only
 
 
     private:
