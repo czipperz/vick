@@ -1,4 +1,4 @@
-plugins_o  = `[ $(ls plugins) ] && find plugins -name out -type d \
+plugins_o  = `[ $$(ls plugins) ] && find plugins -name out -type d \
               | xargs -n 1 printf "find %s -type f\n" | bash`
 plugins_hh = `find plugins -name src -type d | xargs -n 1 \
               printf "-I%s\n"` -Isrc
