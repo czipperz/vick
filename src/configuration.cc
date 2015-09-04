@@ -7,7 +7,7 @@
 #  include "basic_commands.hh"
 #  include "command_listeners.hh"
 #  include "mode.hh"
-#  include "move.hh"
+#  include "newmove.hh"
 #  include "prefix.hh"
 #endif
 
@@ -19,10 +19,10 @@ void add_listeners() {
 // ensure that the plugins are properly installed, which doesn't happen in testing
 #ifndef testing
     /* global_normal_map binds */ {
-        global_normal_map['j'] = mvb1;
-        global_normal_map['k'] = mvd1;
-        global_normal_map['l'] = mvu1;
-        global_normal_map[';'] = mvf1;
+        global_normal_map['j'] = mvb;
+        global_normal_map['k'] = mvd;
+        global_normal_map['l'] = mvu;
+        global_normal_map[';'] = mvf;
 
         global_normal_map['^'] = mvsol;
         global_normal_map['0'] = mvsot;
@@ -30,8 +30,8 @@ void add_listeners() {
         global_normal_map[':'] = command_executor;
 
         global_normal_map['G'] = mveop;
-        global_normal_map['w'] = mvf1w;
-        global_normal_map['b'] = mvb1w;
+        global_normal_map['w'] = mvfw;
+        global_normal_map['b'] = mvbw;
     }
 
     /* Example config for prefix key */ {
