@@ -47,7 +47,7 @@ void add_listeners() {
 }
 
 void add_commands(std::map<std::string,
-                           void (*)(const std::vector<std::string>&)>&
+                           std::function<void(contents&, boost::optional<int>)> >&
                   commandMap) {
 // ensure that the plugins are properly installed, which doesn't happen in testing
 #ifndef testing

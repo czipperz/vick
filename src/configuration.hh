@@ -4,12 +4,17 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <functional>
+
+#include "contents.hh"
+
 extern const int TAB_SIZE;
 
 void add_listeners();
 
-void add_commands (std::map<std::string,
-                            void (*)(const std::vector<std::string>&)>&);
+void add_commands(std::map<std::string,
+                           std::function<void(contents&,
+                                              boost::optional<int>)> >&);
 
 extern const std::string DELIMINATORS;
 

@@ -3,7 +3,11 @@
 
 #include <vector>
 #include <string>
-void quit_command(const std::vector<std::string>&);
-void key_test_command(const std::vector<std::string>&);
+#include <boost/optional.hpp>
+
+#include "contents.hh"
+
+void quit_command(contents&, boost::optional<int>);
+void key_test_command(contents&, boost::optional<int>);
 
 #endif

@@ -4,21 +4,24 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <functional>
+#include <boost/optional.hpp>
 
 #include "configuration.hh"
 #include "to_str.hh"
 #include "key_aliases.hh"
 #include "prompt.hh"
 #include "show_message.hh"
+#include "contents.hh"
 
 static std::map<std::string,
-                void (*)(const std::vector<std::string>&)>
+                std::function<void(contents&, boost::optional<int>)> >
     commandMap;
 static bool fin = false;
 
 static std::vector<std::string>* spaciate(const std::string&);
 
-void command_executor() {
+void command_executor(contents& cont, boost::optional<int> times) {
     if(!fin) { add_commands(commandMap); fin = true; }
     std::string pr = prompt(":");
     if(pr == "") {
@@ -29,7 +32,7 @@ void command_executor() {
     std::string name = (*args)[0];
     args->erase(args->begin());
     if(commandMap.count(name)) {
-        commandMap[name](*args);
+        commandMap[name](cont,times);
     } else if(args->size() != 0) {
         show_message((std::string("Unrecognized command: ") + name +
                       " with args: " + inter_space(args)).c_str());
