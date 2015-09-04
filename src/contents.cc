@@ -9,7 +9,7 @@ contents::contents(std::vector<std::string> cont, mode& m)
     , y_offset(0)
     , waiting_for_desired(false)
     , m(m) {
-    getmaxyx(stdscr,max_y,max_x);
+    refreshmaxyx();
 }
 contents::contents(mode& m)
     : cont(std::vector<std::string>())
@@ -19,7 +19,7 @@ contents::contents(mode& m)
     , y_offset(0)
     , waiting_for_desired(false)
     , m(m) {
-    getmaxyx(stdscr,max_y,max_x);
+    refreshmaxyx();
 }
 contents::contents(long y, long x, mode& m)
     : cont(std::vector<std::string>())
@@ -29,9 +29,12 @@ contents::contents(long y, long x, mode& m)
     , y_offset(0)
     , waiting_for_desired(false)
     , m(m) {
-    getmaxyx(stdscr,max_y,max_x);
+    refreshmaxyx();
 }
 
+void contents::refreshmaxyx() {
+    getmaxyx(stdscr,max_y,max_x);
+}
 
 void contents::push_back(const std::string& str) {
     this->cont.push_back(str);

@@ -25,6 +25,8 @@ class contents {
     contents(long y, long x,
              mode& m = mode::fundamental);
 
+    void refreshmaxyx();
+
     void push_back(const std::string& str);
 };
 
