@@ -1,5 +1,5 @@
 # binaries
 vick
 out
-tests/out
+testout
 *.o
