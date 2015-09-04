@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include <string>
 
+#include "file_contents.hh"
 #include "mode.hh"
 #include "show_message.hh"
 #include "prefix.hh"
@@ -26,4 +27,14 @@ void prefix::operator()(contents& cont, boost::optional<int> op) {
     } else {
         it->second(cont, op);
     }
+}
+
+prefix::operator std::function < void ( contents&,
+                                        boost::optional<int> ) > () {
+    return std::function < void ( contents&,
+                                  boost::optional<int> ) >
+        ([&,this] (contents& cont, boost::optional<int> op)
+         {
+             (*this)(cont,op);
+         });
 }

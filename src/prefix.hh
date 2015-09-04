@@ -21,6 +21,8 @@ class prefix {
     void push_back(char, void (*) ( contents&,
                                     boost::optional<int> ) );
     void operator() ( contents& cont, boost::optional<int> );
+    operator std::function < void ( contents&,
+                                    boost::optional<int> ) > ();
 };
 
 #endif
