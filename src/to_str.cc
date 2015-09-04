@@ -34,13 +34,13 @@ std::string bool_to_str(bool b) {
     return "false";
 }
 
-std::string inter_space(const std::vector<std::string>* vec) {
-    if(vec->size() == 0) return "";
+std::string inter_space(const std::vector<std::string>& vec) {
+    if(vec.size() == 0) return "";
     std::string result;
-    for(int i = 0; i < vec->size() - 1; i++) {
-        result += (*vec)[i];
+    for(int i = 0; i < vec.size() - 1; i++) {
+        result += vec[i];
         result += " ";
     }
-    result += (*vec)[vec->size() - 1];
+    result += vec[vec.size() - 1];
     return result;
 }

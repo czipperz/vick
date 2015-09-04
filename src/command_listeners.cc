@@ -23,6 +23,7 @@ static std::vector<std::string> spaciate(const std::string&);
 
 void command_executor(contents& cont, boost::optional<int> times) {
     if(!fin) { add_commands(commandMap); fin = true; }
+
     std::string pr = prompt(":");
     if(pr == "") {
         clear_message();
