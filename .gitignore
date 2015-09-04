@@ -3,3 +3,6 @@ vick
 out
 testout
 *.o
+
+# ignore plugins
+plugins
