@@ -4,20 +4,23 @@
 #include <map>
 #include <functional>
 
+#include "contents.hh"
+
 class prefix {
     private:
     // use this for documentation
     char prech;
 
-    std::map < char, std::function<void ()> > map;
+    std::map < char, std::function < void ( contents&,
+                                            boost::optional<int> ) > > map;
 
     public:
     prefix(char);
-    void push_back(char, std::function<void ()>);
-    void push_back(char, void (*)());
-    void operator()();
+    void push_back(char, std::function < void ( contents&,
+                                                boost::optional<int> ) > );
+    void push_back(char, void (*) ( contents&,
+                                    boost::optional<int> ) );
+    void operator() ( contents& cont, boost::optional<int> );
 };
-void setup_prefix_g();
-void prefix_g();
 
 #endif
