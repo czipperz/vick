@@ -18,7 +18,7 @@ TEST_CASE("Test that inter_space works","[inter_space]") {
     vec.push_back("first");
     vec.push_back("second");
     vec.push_back("third");
-    REQUIRE("first second third" == inter_space(&vec));
+    REQUIRE("first second third" == inter_space(vec));
     std::vector<std::string> empty;
-    REQUIRE("" == inter_space(&empty));
+    REQUIRE("" == inter_space(empty));
 }
