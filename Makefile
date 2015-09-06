@@ -26,6 +26,7 @@ files=$O/basic_commands.o     \
 
 testfiles = ${TO}/to_str_tests.o        \
             ${TO}/main.o                \
+            ${TO}/visual_tests.o        \
 
 all: $B
 
