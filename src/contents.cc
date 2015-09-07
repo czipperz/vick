@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include "contents.hh"
 
-contents::contents(std::vector<std::string> cont, mode& m)
+contents::contents(std::vector<std::string> cont, mode* m)
     : cont(cont)
     , y(0)
     , x(0)
@@ -11,7 +11,7 @@ contents::contents(std::vector<std::string> cont, mode& m)
     , m(m) {
     refreshmaxyx();
 }
-contents::contents(mode& m)
+contents::contents(mode* m)
     : cont(std::vector<std::string>())
     , y(0)
     , x(0)
@@ -21,7 +21,7 @@ contents::contents(mode& m)
     , m(m) {
     refreshmaxyx();
 }
-contents::contents(long y, long x, mode& m)
+contents::contents(long y, long x, mode* m)
     : cont(std::vector<std::string>())
     , y(y)
     , x(x)

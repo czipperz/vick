@@ -18,12 +18,12 @@ class contents {
     mode& m;
     std::vector<change> changes;
 
-    contents(std::vector<std::string> cont
-             = std::vector<std::string>(),
-             mode& m = mode::fundamental);
-    contents(mode& m);
+    contents(std::vector<std::string> cont =
+             std::vector<std::string>(),
+             mode* m = &mode::fundamental);
+    contents(mode* m);
     contents(long y, long x,
-             mode& m = mode::fundamental);
+             mode* m = &mode::fundamental);
 
     void refreshmaxyx();
 
