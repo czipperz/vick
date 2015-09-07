@@ -8,51 +8,65 @@
 #include "file_contents.hh"
 #include "visual.hh"
 
-static contents* cont;
+static contents cont;
 
 void init(std::vector<std::string> vec) {
-    cont = new contents(vec);
+    cont = contents(vec);
     print_contents(cont);
 }
 
-contents* get_contents() { return cont; }
+contents& get_contents() { return cont; }
 
-void print_contents(const contents* contents) {
+void print_contents(const contents& contents) {
     clear();
-    int b_y,b_x,
-        y = 0;
-    getyx(stdscr,b_y,b_x);
+    int y = 0;
 
-    for(unsigned int i = contents->y_offset;
-        i < contents->cont.size()
-            && i < contents->max_y - 1 + contents->y_offset; i++) {
+    int fin_y,fin_x; // if none set then random!
+
+    for(unsigned int i = contents.y_offset;
+        i < contents.cont.size()
+            && i < contents.max_y - 1 + contents.y_offset; i++) {
+
         unsigned int x = 0;
-        std::string line = contents->cont[i];
+        const std::string& line = contents.cont[i];
         int til = 0;
-        for(unsigned int i = 0; i < line.length(); i++) {
-            if(line[i] == '\t') {
-                x += TAB_SIZE - til - 1;
-                if(x >= contents->max_x) {
-                    x = 0;
-                    y++;
+
+        if(line.begin() == line.end()) {
+            if(contents.y == i && contents.x == 0) {
+                fin_y = y;
+                fin_x = x;
+            }
+        } else {
+            for(std::string::const_iterator it = line.begin(); it < line.end(); it++) {
+                if(*it == '\t') {
+                    x += TAB_SIZE - til - 1;
+                    if(x >= contents.max_x) {
+                        x = -1;
+                        y++;
+                    }
+                    move(y,x);
+                    til = 0;
+                } else {
+                    addch(*it);
+                    til++;
+                    til %= TAB_SIZE;
                 }
+                if(x == contents.max_x) {
+                    til = 0;
+                    move(++y, x = 0);
+                    addch(*it);
+                }
+                if(contents.y == i && contents.x == it - line.begin()) {
+                    fin_y = y;
+                    fin_x = x;
+                }
+                x++;
                 move(y,x);
-                til = 0;
-            } else {
-                addch(line[i]);
-                til++;
-                til %= TAB_SIZE;
             }
-            x++;
-            if(x-1 == contents->max_x) {
-                addch('\\');
-                x = 0;
-                ++y;
-            }
-            move(y,x);
         }
         move(++y,0);
     }
-    move(contents->y,to_visual(contents->cont[contents->y],contents->x));
+    //contents.y, to_visual(contents.cont[contents.y],contents.x)
+    move(fin_y,fin_x);
     proc_hook(Hook::REFRESH);
 }
