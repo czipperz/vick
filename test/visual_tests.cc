@@ -18,8 +18,6 @@ TEST_CASE("from_visual") {
         first("\thi"),
         second("\t\thi");
     for(int i = 1; i < TAB_SIZE - 1; i++) {
-        if(0 != from_visual(first,TAB_SIZE - i))
-            std::cout << i << std::endl;
         REQUIRE(0 == from_visual(first, TAB_SIZE - i));
     }
     REQUIRE(0 == from_visual(first,TAB_SIZE - 1));
