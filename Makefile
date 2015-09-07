@@ -1,5 +1,11 @@
-plugins_o  = `[ $$(ls plugins) ] && find plugins -name out -type d \
-              | xargs -n 1 printf "find %s -type f\n" | bash`
+plugins_o  = `[ $$(ls plugins) ] && \
+              if [ $$(find plugins -name out -type d) ]; then \
+                 find plugins -name out -type d \
+                   | xargs -n 1 printf "find %s -type f\n" \
+                   | bash; \
+              else \
+                 echo; \
+              fi`
 plugins_hh = `find plugins -name src -type d | xargs -n 1 printf "-I%s\n"` -Isrc
 CFLAGS=-std=c++11
 LDFLAGS=-lboost_regex -lncurses
