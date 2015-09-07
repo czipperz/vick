@@ -6,7 +6,7 @@
 #include "contents.hh"
 
 void      init(std::vector<std::string>);
-contents* get_contents();
-void      print_contents(const contents*);
+contents& get_contents();
+void      print_contents(const contents&);
 
 #endif

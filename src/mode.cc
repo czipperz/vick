@@ -15,18 +15,12 @@ mode::mode(const std::string& name, bool (*const handle)(char))
     : name(name)
     , handle(handle) { }
 
-bool mode::operator()(char ch) {
+bool mode::operator()(char ch) const {
     return handle(ch);
 }
 
-mode::mode(const mode& other)
-    : name(other.name)
-    , handle(other.handle) { }
-
-mode& mode::operator=(const mode& other) {
-    this->name = other.name;
-    this->handle = other.handle;
-    return *this;
+const std::string& mode::get_name() const {
+    return this->name;
 }
 
 static bool fundamental_handle(char ch) {
@@ -35,7 +29,7 @@ static bool fundamental_handle(char ch) {
     if(it == global_normal_map.end()) return false;
 
     clear_message();
-    it->second(*get_contents(),boost::none);
+    it->second(get_contents(),boost::none);
     return true;
 }
 

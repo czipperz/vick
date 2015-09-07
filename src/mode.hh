@@ -21,12 +21,9 @@ class mode {
     public:
     mode(const std::string&, bool (*const handle)(char));
 
-    bool operator()(char);
+    bool operator()(char) const;
 
-    mode(const mode&);
-    mode& operator=(const mode&);
-
-    std::string get_name();
+    const std::string& get_name() const;
 
     static mode fundamental; // use global maps only
 };

@@ -17,16 +17,20 @@ void loop() {
 
     while(true) {
         char ch = getch();
-        clear_message();
-        if(!get_contents()->m(ch)) {
+        bool b = !get_contents()(ch);
+        get_contents().refreshmaxyx();
+        print_contents(get_contents());
+        if(b) {
             show_message((std::string("Didn't recognize key press: ")
                           + ch).c_str());
         } else {
-            show_message((std::string("x,y: (")
-                          + int_to_str(get_contents()->x) + ','
-                          + int_to_str(get_contents()->y) + ')').c_str());
+            int vis_y,vis_x;
+            getyx(stdscr,vis_y,vis_x);
+            show_message((std::string("y,x,vis_y,vis_x: (")
+                          + int_to_str(get_contents().y) + ','
+                          + int_to_str(get_contents().x) + ','
+                          + int_to_str(vis_y) + ','
+                          + int_to_str(vis_x) + ')').c_str());
         }
-        get_contents()->refreshmaxyx();
-        print_contents(get_contents());
     }
 }

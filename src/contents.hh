@@ -8,6 +8,9 @@
 #include "mode.hh"
 
 class contents {
+    private:
+    const mode* m; // not deleted in destructor
+
     public:
     std::vector<std::string> cont;
     unsigned long
@@ -15,7 +18,6 @@ class contents {
         y_offset,
         max_y,max_x;
     bool waiting_for_desired;
-    mode& m;
     std::vector<change> changes;
 
     contents(std::vector<std::string> cont =
@@ -24,6 +26,8 @@ class contents {
     contents(mode* m);
     contents(long y, long x,
              mode* m = &mode::fundamental);
+
+    bool operator()(char) const;
 
     void refreshmaxyx();
 

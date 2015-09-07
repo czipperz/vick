@@ -32,6 +32,10 @@ contents::contents(long y, long x, mode* m)
     refreshmaxyx();
 }
 
+bool contents::operator()(char ch) const {
+    return (*this->m)(ch);
+}
+
 void contents::refreshmaxyx() {
     getmaxyx(stdscr,max_y,max_x);
 }
