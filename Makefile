@@ -1,5 +1,5 @@
-plugins_o  = `[ $$(ls plugins) ] && \
-              if [ $$(find plugins -name out -type d) ]; then \
+plugins_o  = `[ "$$(ls plugins)" ] && \
+              if [ "$$(find plugins -name out -type d)" ]; then \
                  find plugins -name out -type d \
                    | xargs -n 1 printf "find %s -type f\n" \
                    | bash; \
