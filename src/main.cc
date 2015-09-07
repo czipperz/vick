@@ -14,8 +14,10 @@ int main(int argc, char**argv) {
     if(argc) {
         std::string line;
         std::ifstream myfile(argv[0]);
-        while(std::getline(myfile,line))
-            lines.push_back(line);
+        if(!myfile.good())
+            lines.push_back("[Invalid file]");
+        else while(std::getline(myfile,line))
+                 lines.push_back(line);
     } else {
         lines.push_back("");
     }
