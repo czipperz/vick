@@ -2,33 +2,20 @@
 #include "contents.hh"
 
 contents::contents(std::vector<std::string> cont, mode* m)
-    : cont(cont)
-    , y(0)
-    , x(0)
-    , desired_x(0)
-    , y_offset(0)
-    , waiting_for_desired(false)
-    , m(m) {
+    : m(m)
+    , cont(cont) {
     refreshmaxyx();
 }
 contents::contents(mode* m)
-    : cont(std::vector<std::string>())
-    , y(0)
-    , x(0)
-    , desired_x(0)
-    , y_offset(0)
-    , waiting_for_desired(false)
-    , m(m) {
+    : m(m)
+    , cont(std::vector<std::string>()) {
     refreshmaxyx();
 }
 contents::contents(long y, long x, mode* m)
-    : cont(std::vector<std::string>())
+    : m(m)
+    , cont(std::vector<std::string>())
     , y(y)
-    , x(x)
-    , desired_x(0)
-    , y_offset(0)
-    , waiting_for_desired(false)
-    , m(m) {
+    , x(x) {
     refreshmaxyx();
 }
 

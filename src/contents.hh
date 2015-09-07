@@ -14,10 +14,10 @@ class contents {
     public:
     std::vector<std::string> cont;
     unsigned long
-        y,x,desired_x,
-        y_offset,
+        y = 0, x = 0, desired_x = 0,
+        y_offset = 0,
         max_y,max_x;
-    bool waiting_for_desired;
+    bool waiting_for_desired = false;
     std::vector<change> changes;
 
     contents(std::vector<std::string> cont =
