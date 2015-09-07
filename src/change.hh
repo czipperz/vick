@@ -7,7 +7,7 @@
 
 class change {
     private:
-    const std::function<void(std::vector<std::string>&)> handle;
+    std::function<void(std::vector<std::string>&)> handle;
 
     public:
     change(void (*)(std::vector<std::string>&));
