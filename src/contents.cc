@@ -23,6 +23,74 @@ bool contents::operator()(char ch) const {
     return (*this->m)(ch);
 }
 
+contents::~contents() { if(delete_mode) delete m; }
+contents::contents(const contents& other) {
+    if(this == &other) return;
+    if(delete_mode && m) delete m;
+    m                   = new mode(*other.m);
+    cont                = other.cont;
+    y                   = other.y;
+    x                   = other.x;
+    desired_x           = other.desired_x;
+    y_offset            = other.y_offset;
+    max_y               = other.max_y;
+    max_x               = other.max_x;
+    waiting_for_desired = other.waiting_for_desired;
+    refresh             = other.refresh;
+    delete_mode         = other.delete_mode;
+    changes             = other.changes;
+}
+contents::contents(contents&& other) {
+    if(this == &other) return;
+    if(delete_mode && m) delete m;
+    m                   = other.m;
+    cont                = other.cont;
+    y                   = other.y;
+    x                   = other.x;
+    desired_x           = other.desired_x;
+    y_offset            = other.y_offset;
+    max_y               = other.max_y;
+    max_x               = other.max_x;
+    waiting_for_desired = other.waiting_for_desired;
+    refresh             = other.refresh;
+    delete_mode         = other.delete_mode;
+    changes             = other.changes;
+}
+contents& contents::operator=(const contents& other) {
+    if(this == &other) return *this;
+    if(delete_mode && m) delete m;
+    m                   = new mode(*other.m);
+    cont                = other.cont;
+    y                   = other.y;
+    x                   = other.x;
+    desired_x           = other.desired_x;
+    y_offset            = other.y_offset;
+    max_y               = other.max_y;
+    max_x               = other.max_x;
+    waiting_for_desired = other.waiting_for_desired;
+    refresh             = other.refresh;
+    delete_mode         = other.delete_mode;
+    changes             = other.changes;
+    return *this;
+}
+contents& contents::operator=(contents&& other) {
+    if(this == &other) return *this;
+    if(delete_mode && m) delete m;
+    m                   = other.m;
+    cont                = other.cont;
+    y                   = other.y;
+    x                   = other.x;
+    desired_x           = other.desired_x;
+    y_offset            = other.y_offset;
+    max_y               = other.max_y;
+    max_x               = other.max_x;
+    waiting_for_desired = other.waiting_for_desired;
+    refresh             = other.refresh;
+    delete_mode         = other.delete_mode;
+    changes             = other.changes;
+    return *this;
+}
+
 void contents::refreshmaxyx() {
     getmaxyx(stdscr,max_y,max_x);
 }

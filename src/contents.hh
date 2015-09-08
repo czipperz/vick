@@ -31,6 +31,12 @@ class contents {
 
     bool operator()(char) const;
 
+    ~contents();
+    contents(const contents&);
+    contents(contents&&);
+    contents& operator=(const contents&);
+    contents& operator=(contents&&);
+
     void refreshmaxyx();
 
     void push_back(const std::string& str);
