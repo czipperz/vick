@@ -1,6 +1,7 @@
 #include <functional>
 #include <boost/optional.hpp>
 
+#include "key_aliases.hh"
 #include "file_contents.hh"
 #include "contents.hh"
 #include "mode.hh"
@@ -25,6 +26,7 @@ const std::string& mode::get_name() const {
 }
 
 static bool fundamental_handle(char ch) {
+    if(ch == _resize) return true;
     std::map < char, fun > :: iterator
         it = global_normal_map.find(ch);
     if(it == global_normal_map.end()) return false;

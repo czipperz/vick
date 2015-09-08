@@ -4,6 +4,7 @@
 #include <ncurses.h>
 #include <iostream>
 
+#include "key_aliases.hh"
 #include "command_listeners.hh"
 #include "contents.hh"
 #include "file_contents.hh"
@@ -20,7 +21,7 @@ static contents key_test(new mode("Key Test", key_test_handle));
 
 static bool key_test_handle(char other) {
     move(key_test.y, key_test.x);
-
+    if(other == _resize) return true;
     if(other == ':') {
         clear_message();
         command_executor(key_test, boost::none);
