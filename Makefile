@@ -34,21 +34,19 @@ testfiles = ${TO}/to_str_tests.o        \
             ${TO}/main.o                \
             ${TO}/visual_tests.o        \
 
-all: $B
+all: ${files} $O/main.o $O/configuration.o
+	@mkdir -p plugins
+	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
+             cd $$dir; \
+             make CXX=${CXX} || exit $$!; cd ../..; \
+        done
+	${CXX} -o $B ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
 begin:
 	@mkdir -p plugins
 	[ -d plugins/vick-move ] || git clone \
                                         'https://github.com/czipperz/vick-move' \
                                         plugins/vick-move
-
-$B: ${files} $O/main.o $O/configuration.o
-	@mkdir -p plugins
-	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
-             cd $$dir; \
-             make CXX=${CXX} || exit $$!; cd ../..; \
-        done
-	${CXX} -o $@ ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
 # If header found then force recompilation when updated
 $O/%.o: $S/%.cc $S/%.hh
