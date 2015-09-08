@@ -19,7 +19,7 @@ void loop() {
         char ch = getch();
         bool b = !get_contents()(ch);
         get_contents().refreshmaxyx();
-        print_contents(get_contents());
+        if(get_contents().refresh) print_contents(get_contents());
         if(b) {
             show_message((std::string("Didn't recognize key press: ")
                           + ch).c_str());
