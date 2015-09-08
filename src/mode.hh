@@ -8,8 +8,9 @@
 
 class contents;
 
-extern std::map < char, std::function<void (contents&, boost::optional<int>)> > global_normal_map;
-extern std::map < char, std::function<void (contents&, boost::optional<int>)> > global_insert_map;
+extern std::map < char, std::function < void (contents&, boost::optional<int>) > >
+    global_normal_map,
+    global_insert_map;
 
 class mode {
     private:

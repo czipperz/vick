@@ -6,10 +6,11 @@
 #include "mode.hh"
 #include "show_message.hh"
 
-typedef std::function<void (contents&, boost::optional<int>)> fun;
+typedef std::function < void (contents&, boost::optional<int>) > fun;
 
-std::map < char, fun > global_normal_map;
-std::map < char, fun > global_insert_map;
+std::map < char, fun >
+    global_normal_map,
+    global_insert_map;
 
 mode::mode(const std::string& name, bool (*const handle)(char))
     : name(name)
