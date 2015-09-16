@@ -81,7 +81,7 @@ cleantest:
              cd $$dir; \
              make CXX=${CXX} cleantest || exit $$!; cd ../..; \
         done
-	rm `find ${TO} -type f -not -name 'main.o'`
+	[ -z "`find ${TO} -type f -not -name 'main.o'`" ] || rm `find ${TO} -type f -not -name 'main.o'`
 
 test: ${files} ${testfiles} $O/.test_configuration.o
 	@mkdir -p plugins
