@@ -7,7 +7,7 @@
 #  include "basic_commands.hh"
 #  include "command_listeners.hh"
 #  include "mode.hh"
-#  include "newmove.hh"
+#  include "move.hh"
 #  include "prefix.hh"
 #endif
 
