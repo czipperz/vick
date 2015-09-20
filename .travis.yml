@@ -10,4 +10,6 @@ addons:
       - g++-4.8
       - libboost-all-dev
 
-script: make CXX=g++-4.8 test -j 10
+script:
+  - make regen
+  - make CXX=g++-4.8 test -j 10

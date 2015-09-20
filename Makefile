@@ -42,28 +42,15 @@ all: ${files} $O/main.o $O/configuration.o
         done
 	${CXX} -o $B ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
-begin:
+begin: regen
 	@mkdir -p plugins
 	[ -d plugins/vick-move ] || git clone \
                                         'https://github.com/czipperz/vick-move' \
                                         plugins/vick-move
 
-# If header found then force recompilation when updated
-$O/%.o: $S/%.cc $S/%.hh
-	@mkdir -p $O plugins
-	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
-
-$O/%.o: $S/%.cc
-	@mkdir -p $O plugins
-	${CXX} -o $@ -c $< ${CFLAGS} ${plugins_hh}
-
 $O/.test_configuration.o: $S/configuration.cc
 	@mkdir -p $O
 	${CXX} -o $@ -c $< ${CFLAGS} -Dtesting
-
-${TO}/%.o: $T/%.cc
-	@mkdir -p ${TO}
-	${CXX} -o $@ -c $< ${CFLAGS} -Isrc
 
 clean:
 	@mkdir -p plugins
@@ -94,3 +81,20 @@ test: ${files} ${testfiles} $O/.test_configuration.o
 
 tags:
 	etags `find $S -name '*.cc' -o -name '*.hh'`
+
+regen:
+	grep -in '######################################################################' Makefile \
+             | tail -n 1 \
+             | perl -pe 's/(\d+):.*/$$1/' \
+             | xargs printf 'head -n%s Makefile\n' \
+             | bash \
+             | cat > newMakefile
+	for file in $$(find $S -name '*.cc' -not -name 'configuration.cc'); do \
+             cpp -MM $$file -Isrc | perl -pe 's|^([^ ].*)|out/$$1|' >> newMakefile; \
+             echo '	@mkdir -p $$O plugins' >> newMakefile; \
+             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
+        done
+	mv newMakefile Makefile
+
+######################################################################
+# Everything (including this) will be deleted by ``make regen``
