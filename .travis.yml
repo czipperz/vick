@@ -2,6 +2,20 @@ language: cpp
 
 sudo: false
 
+env:
+  global:
+    - secure: "sadghQjXHVIVgp6Boler7wmIlRpZGg4gl4ui8ORztiRdV5mAD2ZQTvOxn0ewjUvP0DvAHpL6cVhZOjA9G43LPjoOWds163ius0jYlLZbzTR0RbymJst7r83dQYdBtjRHrOX2WdMoEQgeJS2VA8uXm4ImQp1j/x1KOoct6mRmDsJ8S7IOSmjjYYAld/gxX0JmV05nCiWBROuLQqMLvNCDWVmEbhURnxCy4AwkchHR6aU2WiZeL/symI4CIwjH/zd5m2EQoQhIN/7EFNbdN0xhpXvLyWEFcomr7amJmqV6IFo3ZAhBKU6XxVeyV8jeWWdSVCjRzsmOaHb6H0n/WLHegDRxqckrO24LYDB0v1gruHP0wJ2vr6ZOTZ+YHpxNaL62uRw0lfB1buPB5BCpuG7Crd/QyNK1Gb8VTW3v4FPZe+N2mDCKcTa0kKcMBzTOMSIWHIOq69OzfC79NL1aZXscY6b/Zy2pzk78Vw7XIarSQtW+x5KwKXrAbSnEJJGbXnWKiwCPFyGrcKw0js64fnXUcnVCPsS2x5xNexC9rwzK9G/dpmqRGvS7++PLtU3Mdz1MCYDFRySKa1Z7j6Inx7c2738fmHCsKgrC+GreYMD2/bODpvu87QC6zC0+5DOsuNlfP45jCRHH0mzS8PEiOhh+8WuV06da2VN4NfArCSiemNc="
+
+addons:
+  coverity_scan:
+    project:
+      name: "czipperz/vick"
+      description: "Build submitted via Travis CI"
+    notification_email: czipperz@gmail.com
+    build_command_prepend: "make regen"
+    build_command: "make CXX=g++-4.8 -j 10"
+    branch_pattern: coverity_scan
+
 addons:
   apt:
     sources:
