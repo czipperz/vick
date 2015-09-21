@@ -12,7 +12,7 @@ LDFLAGS=-lboost_regex -lncurses
 O=out
 S=src
 T=test
-TO=testout
+TO=out
 CXX=clang++
 B=vick
 
@@ -31,7 +31,6 @@ files=$O/basic_commands.o     \
       $O/visual.o             \
 
 testfiles = ${TO}/to_str_tests.o        \
-            ${TO}/main.o                \
             ${TO}/visual_tests.o        \
 
 all: ${files} $O/main.o $O/configuration.o
