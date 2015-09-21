@@ -48,10 +48,6 @@ begin: regen
                                         'https://github.com/czipperz/vick-move' \
                                         plugins/vick-move
 
-$O/.test_configuration.o: $S/configuration.cc
-	@mkdir -p $O
-	${CXX} -o $@ -c $< ${CFLAGS} -Dtesting
-
 clean:
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
@@ -68,29 +64,31 @@ cleantest:
              cd $$dir; \
              make CXX=${CXX} cleantest || exit $$!; cd ../..; \
         done
-	[ -z "`find ${TO} -type f -not -name 'main.o'`" ] || rm `find ${TO} -type f -not -name 'main.o'`
+	for file in ${testfiles}; do \
+             rm $$file; \
+        done
 
-test: ${files} ${testfiles} $O/.test_configuration.o
+test: ${files} ${testfiles} $O/test_main.o
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} test || exit $$!; cd ../..; \
         done
-	${CXX} -o $T/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS}
+	${CXX} -o $T/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
 	./$T/out
 
 tags:
 	etags `find $S -name '*.cc' -o -name '*.hh'`
 
 regen:
-	grep -in '######################################################################' Makefile \
+	grep -n '######################################################################' Makefile \
              | tail -n 1 \
              | perl -pe 's/(\d+):.*/$$1/' \
              | xargs printf 'head -n%s Makefile\n' \
              | bash \
              | cat > newMakefile
-	for file in $$(find $S -name '*.cc' -not -name 'configuration.cc'); do \
-             cpp -MM $$file -Isrc | perl -pe 's|^([^ ].*)|out/$$1|' >> newMakefile; \
+	for file in $$(find $S $T -name '*.cc'); do \
+             cpp -MM $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
         done
