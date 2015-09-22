@@ -80,6 +80,7 @@ tags:
 	etags `find $S -name '*.cc' -o -name '*.hh'`
 
 regen:
+	@mkdir -p plugins
 	grep -n '######################################################################' Makefile \
              | tail -n 1 \
              | perl -pe 's/(\d+):.*/$$1/' \
