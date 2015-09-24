@@ -6,7 +6,7 @@ plugins_o  = `[ "$$(ls plugins)" ] && \
               else \
                  echo; \
               fi`
-plugins_hh = `find plugins -name src -type d | xargs -n 1 printf "-I%s\n"` -Isrc
+plugins_hh = `[ "$$(ls plugins)" ] && find plugins -name src -type d | xargs -n 1 printf "-I%s\n"` -Isrc
 CFLAGS=-std=c++11
 LDFLAGS=-lboost_regex -lncurses
 O=out
@@ -88,9 +88,9 @@ regen:
              | bash \
              | cat > newMakefile
 	for file in $$(find $S $T -name '*.cc'); do \
-             cpp -MM $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
+             cpp -MM $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
-             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
+             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
         done
 	mv newMakefile Makefile
 
