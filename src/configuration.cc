@@ -13,7 +13,7 @@
 
 const int TAB_SIZE = 8;
 
-const std::string DELIMINATORS = "!@#$%^&*()-_=+[]{};:<>,.'\"/?`~| \t";
+const std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
 
 void add_listeners() {
 // ensure that the plugins are properly installed, which doesn't happen in testing
