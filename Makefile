@@ -67,14 +67,19 @@ cleantest:
              rm $$file; \
         done
 
-test: ${files} ${testfiles} $O/test_main.o
+$T/blank:
+	touch $T/blank
+
+test: ${files} ${testfiles} $O/test_main.o $T/blank
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} test || exit $$!; cd ../..; \
         done
-	${CXX} -o $T/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
+	${CXX} -o $T/out ${files} ${testfiles} $O/test_main.o \
+               ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
 	./$T/out
+	rm $T/blank
 
 tags:
 	etags `find $S -name '*.cc' -o -name '*.hh'`
