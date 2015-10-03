@@ -24,13 +24,15 @@ void loop() {
             show_message((std::string("Didn't recognize key press: ")
                           + ch).c_str());
         } else {
-            int vis_y,vis_x;
-            getyx(stdscr,vis_y,vis_x);
-            show_message((std::string("y,x,vis_y,vis_x: (")
-                          + int_to_str(get_contents().y) + ','
-                          + int_to_str(get_contents().x) + ','
-                          + int_to_str(vis_y) + ','
-                          + int_to_str(vis_x) + ')').c_str());
+            if(!is_showing_message()) {
+                int vis_y,vis_x;
+                getyx(stdscr,vis_y,vis_x);
+                show_message((std::string("y,x,vis_y,vis_x: (")
+                            + std::to_string(get_contents().y) + ','
+                            + std::to_string(get_contents().x) + ','
+                            + std::to_string(vis_y) + ','
+                            + std::to_string(vis_x) + ')').c_str());
+            }
         }
     }
 }
