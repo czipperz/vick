@@ -82,7 +82,13 @@ test: ${files} ${testfiles} $O/test_main.o $T/blank
 	rm $T/blank
 
 tags:
-	etags `find $S -name '*.cc' -o -name '*.hh'`
+	@mkdir -p plugins
+	etags `find $S -name '*.cc' -o -name '*.hh'` \
+              `[ "$$(ls plugins)" ] && \
+               [ "$$(find plugins -name src -type d)" ] && \
+                  find plugins -name src -type d \
+                    | xargs -n 1 printf "find %s -type f\n" \
+                    | bash;`
 
 regen:
 	@mkdir -p plugins
