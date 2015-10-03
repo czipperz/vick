@@ -9,6 +9,7 @@
 #  include "mode.hh"
 #  include "move.hh"
 #  include "prefix.hh"
+#  include "prefix_key.hh"
 #endif
 
 const int TAB_SIZE = 8;
@@ -23,6 +24,16 @@ void add_listeners() {
         global_normal_map['k'] = mvd;
         global_normal_map['l'] = mvu;
         global_normal_map[';'] = mvf;
+
+        global_normal_map['1'] = prefix_key_1;
+        global_normal_map['2'] = prefix_key_2;
+        global_normal_map['3'] = prefix_key_3;
+        global_normal_map['4'] = prefix_key_4;
+        global_normal_map['5'] = prefix_key_5;
+        global_normal_map['6'] = prefix_key_6;
+        global_normal_map['7'] = prefix_key_7;
+        global_normal_map['8'] = prefix_key_8;
+        global_normal_map['9'] = prefix_key_9;
 
         global_normal_map['^'] = mvsol;
         global_normal_map['0'] = mvsot;

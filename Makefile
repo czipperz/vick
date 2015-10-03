@@ -26,6 +26,7 @@ files=$O/basic_commands.o     \
       $O/key_listeners.o      \
       $O/mode.o               \
       $O/prefix.o             \
+      $O/prefix_key.o         \
       $O/prompt.o             \
       $O/show_message.o       \
       $O/visual.o             \
