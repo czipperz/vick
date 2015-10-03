@@ -7,7 +7,7 @@
 #  include "basic_commands.hh"
 #  include "command_listeners.hh"
 #  include "mode.hh"
-#  include "move.hh"
+#  include "../plugins/vick-move/src/move.hh"
 #  include "prefix.hh"
 #  include "prefix_key.hh"
 #endif
