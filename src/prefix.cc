@@ -13,9 +13,6 @@ prefix::prefix(char ch)
 void prefix::push_back(char ch, std::function<void(contents&, boost::optional<int>)> fun) {
     this->map[ch] = fun;
 }
-void prefix::push_back(char ch, void (*fun)(contents&, boost::optional<int>)) {
-    this->map[ch] = std::function<void(contents&, boost::optional<int>)>(fun);
-}
 
 void prefix::operator()(contents& cont, boost::optional<int> op) {
     char ch = getch();

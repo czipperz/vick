@@ -18,8 +18,6 @@ class prefix {
     prefix(char);
     void push_back(char, std::function < void ( contents&,
                                                 boost::optional<int> ) > );
-    void push_back(char, void (*) ( contents&,
-                                    boost::optional<int> ) );
     void operator() ( contents& cont, boost::optional<int> );
     operator std::function < void ( contents&,
                                     boost::optional<int> ) > ();
