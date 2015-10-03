@@ -31,6 +31,7 @@ void add_listeners() {
 
         global_normal_map['G'] = mveop;
         global_normal_map['w'] = mvfw;
+        global_normal_map['e'] = mvfeow;
         global_normal_map['b'] = mvbw;
     }
 
