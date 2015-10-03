@@ -7,9 +7,7 @@
 #include "mode.hh"
 #include "show_message.hh"
 
-typedef std::function < void (contents&, boost::optional<int>) > fun;
-
-std::map < char, fun >
+std::map < char, std::function < void (contents&, boost::optional<int>) > >
     global_normal_map,
     global_insert_map;
 
