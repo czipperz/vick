@@ -1,8 +1,10 @@
 #include <cstdarg>
 #include <ncurses.h>
 
-static const char* mes("");
-static bool show(false);
+static const char* mes;
+static bool show = false;
+
+bool is_showing_message() { return show; }
 
 static void showmes() {
     int y,x,rows,_;

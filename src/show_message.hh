@@ -4,5 +4,6 @@
 void hook_show_message();
 void show_message(const char* message);
 void clear_message();
+bool is_showing_message();
 
 #endif
