@@ -72,6 +72,7 @@ $T/blank:
 	touch $T/blank
 
 test: ${files} ${testfiles} $O/test_main.o $T/blank
+	rm $T/blank
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
@@ -80,7 +81,6 @@ test: ${files} ${testfiles} $O/test_main.o $T/blank
 	${CXX} -o $T/out ${files} ${testfiles} $O/test_main.o \
                ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
 	./$T/out
-	rm $T/blank
 
 tags:
 	@mkdir -p plugins
