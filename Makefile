@@ -12,7 +12,7 @@ LDFLAGS=-lboost_regex -lncurses
 O=out
 S=src
 T=test
-TO=out
+TO=testout
 CXX=clang++
 B=vick
 
@@ -54,33 +54,24 @@ clean:
              cd $$dir; \
              make CXX=${CXX} clean || exit $$!; cd ../..; \
         done
-	[ ! -d out ] || rm -R out
+	[ ! -d $O ] || rm -R $O
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
 	[ ! -e $B ] || rm $B
-
-cleantest:
-	@mkdir -p plugins
-	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
-             cd $$dir; \
-             make CXX=${CXX} cleantest || exit $$!; cd ../..; \
-        done
-	for file in ${testfiles}; do \
-             rm $$file; \
-        done
+	[ ! -d ${TO} ] || rm -R ${TO}
 
 $T/blank:
 	touch $T/blank
 
-test: ${files} ${testfiles} $O/test_main.o $T/blank
+test: ${files} ${testfiles} ${TO}/test_main.o $T/blank
 	rm $T/blank
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} test || exit $$!; cd ../..; \
         done
-	${CXX} -o $T/out ${files} ${testfiles} $O/test_main.o \
+	${CXX} -o ${TO}/out ${files} ${testfiles} ${TO}/test_main.o \
                ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
-	./$T/out
+	./${TO}/out
 
 tags:
 	@mkdir -p plugins
@@ -99,9 +90,14 @@ regen:
              | xargs printf 'head -n%s Makefile\n' \
              | bash \
              | cat > newMakefile
-	for file in $$(find $S $T -name '*.cc'); do \
+	for file in $$(find $S -name '*.cc'); do \
              cpp -MM $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
+             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
+        done
+	for file in $$(find $T -name '*.cc'); do \
+             cpp -MM $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$${TO}/$$1|' >> newMakefile; \
+             echo '	@mkdir -p $${TO} plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
         done
 	mv newMakefile Makefile
