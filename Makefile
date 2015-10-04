@@ -60,10 +60,10 @@ clean:
 	[ ! -d ${TO} ] || rm -R ${TO}
 
 $T/blank:
-	touch $T/blank
+	@touch $T/blank
 
 test: ${files} ${testfiles} ${TO}/test_main.o $T/blank
-	rm $T/blank
+	@rm $T/blank
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
