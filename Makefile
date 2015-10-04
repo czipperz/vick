@@ -37,8 +37,8 @@ testfiles = ${TO}/to_str_tests.o        \
 all: ${files} $O/main.o $O/configuration.o
 	@mkdir -p plugins
 	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
-             cd $$dir; \
-             make CXX=${CXX} || exit $$!; cd ../..; \
+             cd $$dir;                                                \
+             make CXX=${CXX} || exit $$!; cd ../..;                   \
         done
 	${CXX} -o $B ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
