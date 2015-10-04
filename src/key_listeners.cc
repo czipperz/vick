@@ -19,7 +19,9 @@ void loop() {
         char ch = getch();
         bool b = !get_contents()(ch);
         get_contents().refreshmaxyx();
-        if(get_contents().refresh) print_contents(get_contents());
+        if(get_contents().refresh) {
+            print_contents(get_contents());
+        }
         if(b) {
             show_message((std::string("Didn't recognize key press: ")
                           + ch).c_str());
@@ -27,11 +29,12 @@ void loop() {
             if(!is_showing_message()) {
                 int vis_y,vis_x;
                 getyx(stdscr,vis_y,vis_x);
-                show_message((std::string("y,x,vis_y,vis_x: (")
-                            + std::to_string(get_contents().y) + ','
-                            + std::to_string(get_contents().x) + ','
-                            + std::to_string(vis_y) + ','
-                            + std::to_string(vis_x) + ')').c_str());
+                show_message((   "y:" + std::to_string(get_contents().y) + ','
+                              + " x:" + std::to_string(get_contents().x) + ','
+                              + " vis_y:" + std::to_string(vis_y) + ','
+                              + " vis_x:" + std::to_string(vis_x) + ','
+                              + " y_offset:" + std::to_string(get_contents().y_offset)
+                             ).c_str());
             }
         }
     }

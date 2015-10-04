@@ -7,6 +7,6 @@
 
 void      init(std::vector<std::string>);
 contents& get_contents();
-void      print_contents(const contents&);
+void      print_contents(contents&);
 
 #endif

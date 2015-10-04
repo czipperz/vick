@@ -7,6 +7,7 @@
 #include "hooks.hh"
 #include "file_contents.hh"
 #include "visual.hh"
+#include "show_message.hh"
 
 static contents cont;
 
@@ -17,7 +18,16 @@ void init(std::vector<std::string> vec) {
 
 contents& get_contents() { return cont; }
 
-void print_contents(const contents& contents) {
+void print_contents(contents& contents) {
+    if(contents.y - contents.y_offset >= contents.max_y - 1) {
+        contents.y_offset = contents.y - contents.y_offset + 1;
+        show_message("hi");
+    }
+    if(contents.y < contents.y_offset) {
+        contents.y_offset = contents.y;
+        show_message("bye");
+    }
+
     clear();
     int y = 0;
 
