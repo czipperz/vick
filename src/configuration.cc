@@ -42,8 +42,11 @@ void add_listeners() {
 
         global_normal_map['G'] = mveop;
         global_normal_map['w'] = mvfw;
+        global_normal_map['W'] = mvfww;
         global_normal_map['e'] = mvfeow;
+        global_normal_map['E'] = mvfeoww;
         global_normal_map['b'] = mvbw;
+        global_normal_map['B'] = mvbww;
     }
 
     /* Example config for prefix key */ {
