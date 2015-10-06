@@ -22,7 +22,7 @@ files=$O/basic_commands.o     \
       $O/command_listeners.o  \
       $O/file_contents.o      \
       $O/hooks.o              \
-      $O/to_str.o             \
+      $O/inter_space.o        \
       $O/key_listeners.o      \
       $O/mode.o               \
       $O/prefix.o             \
@@ -31,7 +31,7 @@ files=$O/basic_commands.o     \
       $O/show_message.o       \
       $O/visual.o             \
 
-testfiles = ${TO}/to_str_tests.o        \
+testfiles = ${TO}/inter_space_tests.o        \
             ${TO}/visual_tests.o        \
 
 all: ${files} $O/main.o $O/configuration.o

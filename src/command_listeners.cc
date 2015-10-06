@@ -8,11 +8,11 @@
 #include <boost/optional.hpp>
 
 #include "configuration.hh"
-#include "to_str.hh"
 #include "key_aliases.hh"
 #include "prompt.hh"
 #include "show_message.hh"
 #include "contents.hh"
+#include "inter_space.hh"
 
 static std::map<std::string,
                 std::function<void(contents&, boost::optional<int>)> >
