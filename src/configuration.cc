@@ -8,6 +8,7 @@
 #  include "command_listeners.hh"
 #  include "mode.hh"
 #  include "../plugins/vick-move/src/move.hh"
+#  include "../plugins/vick-insert-mode/src/insert_mode.hh"
 #  include "prefix.hh"
 #  include "prefix_key.hh"
 #endif
@@ -47,6 +48,9 @@ void add_listeners() {
         global_normal_map['E'] = mvfeoww;
         global_normal_map['b'] = mvbw;
         global_normal_map['B'] = mvbww;
+
+        global_normal_map['i'] = enter_insert_mode;
+        global_normal_map['R'] = enter_replace_mode;
     }
 
     /* Example config for prefix key */ {
