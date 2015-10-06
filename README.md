@@ -1,6 +1,6 @@
 # Vick [![Build Status](https://travis-ci.org/czipperz/vick.svg)](https://travis-ci.org/czipperz/vick)
 
-#### VICK IS NOWHERE NEAR READY FOR USAGE.  AS OF NOW IT DOESN'T EVEN EDIT TEXT!!
+#### VICK IS NOWHERE NEAR READY FOR USAGE.
 
 Vick is a `VI` based editor that focuses on configuration.  It
 intentionally comes with no behavior by default!  A make command will
