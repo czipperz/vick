@@ -49,3 +49,9 @@ void key_test_command(contents& cont, boost::optional<int>) {
     printw("[Key test: type anything]");
     cont = key_test;
 }
+
+void replace_character(contents& contents, boost::optional<int>) {
+    char ch = getch();
+    if(ch != _escape)
+        contents.cont[contents.y][contents.x] = ch;
+}

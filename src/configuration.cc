@@ -49,6 +49,8 @@ void add_listeners() {
         global_normal_map['b'] = mvbw;
         global_normal_map['B'] = mvbww;
 
+        global_normal_map['r'] = replace_character;
+
         global_normal_map['i'] = enter_insert_mode;
         global_normal_map['R'] = enter_replace_mode;
     }
