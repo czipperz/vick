@@ -26,5 +26,5 @@ addons:
 
 script:
   - make regen Dtesting=-Dtesting
-  - make CXX=g++-4.8 test -j 10
   - make CXX=g++-4.8      -j 10
+  - make CXX=g++-4.8 test -j 10
