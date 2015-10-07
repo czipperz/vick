@@ -47,7 +47,7 @@ void print_contents(contents& contents) {
                 fin_x = x;
             }
         } else {
-            for(std::string::const_iterator it = line.begin(); it < line.end(); it++) {
+            for(auto it = line.begin(); it < line.end(); it++) {
                 if(*it == '\t') {
                     x += TAB_SIZE - til - 1;
                     if(x >= contents.max_x) {
