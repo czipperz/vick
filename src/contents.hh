@@ -19,7 +19,8 @@ class contents {
         max_y,max_x;
     bool waiting_for_desired = false,
          refresh = true,
-         delete_mode = false;
+         delete_mode = false,
+         is_inserting = false;
     std::vector<change> changes;
 
     contents(std::vector<std::string> cont =

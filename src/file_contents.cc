@@ -73,6 +73,10 @@ void print_contents(contents& contents) {
                 x++;
                 move(y,x);
             }
+            if(contents.y == i && contents.x >= line.size()) {
+                fin_y = y;
+                fin_x = x + (contents.is_inserting ? 0 : -1);
+            }
         }
         move(++y,0);
     }
