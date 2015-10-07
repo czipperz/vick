@@ -13,6 +13,7 @@ class contents {
 
     public:
     std::vector<std::string> cont;
+    std::vector<change> changes;
     unsigned long
         y = 0, x = 0, desired_x = 0,
         y_offset = 0,
@@ -21,7 +22,6 @@ class contents {
          refresh = true,
          delete_mode = false,
          is_inserting = false;
-    std::vector<change> changes;
 
     contents(std::vector<std::string> cont =
              std::vector<std::string>(),
