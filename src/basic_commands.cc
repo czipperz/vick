@@ -41,6 +41,7 @@ static bool key_test_handle(char other) {
 }
 
 void key_test_command(contents& cont, boost::optional<int>) {
+    key_test.delete_mode = true;
     key_test.refresh = false;
     key_test.y = 1;
     key_test.x = 1;
