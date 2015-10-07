@@ -9,7 +9,7 @@
 
 class contents {
     private:
-    const mode* m; // not deleted in destructor
+    const mode* m;
 
     public:
     std::vector<std::string> cont;
