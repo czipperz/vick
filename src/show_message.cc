@@ -12,7 +12,7 @@ static void showmes() {
     move(rows-1,0);
 
     clrtoeol();
-    printw(mes);
+    printw("%s",mes);
 
     move(y,x);
 }
