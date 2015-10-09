@@ -35,7 +35,7 @@ void print_contents(contents& contents) {
 
     for(unsigned int i = contents.y_offset;
         i < contents.cont.size()
-            && i < contents.max_y - 1 + contents.y_offset; i++) {
+            && i < contents.max_y - 2 + contents.y_offset; i++) {
 
         unsigned int x = 0;
         const std::string& line = contents.cont[i];
