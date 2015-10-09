@@ -1,10 +1,9 @@
 #include <cstdarg>
 #include <ncurses.h>
 
-static const char* mes;
-static bool show = false;
-
-bool is_showing_message() { return show; }
+static const char* mes = NULL;
+extern bool showing_message;
+bool showing_message = false;
 
 static void showmes() {
     int y,x,rows,_;
@@ -19,14 +18,14 @@ static void showmes() {
 }
 
 void hook_show_message() {
-    if(show) {
+    if(showing_message) {
         showmes();
-        show = false;
+        showing_message = false;
     }
 }
 
 void show_message(const char* message) {
-    show = true;
+    showing_message = true;
     mes = message;
     showmes();
 }
