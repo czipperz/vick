@@ -19,3 +19,4 @@ So here's how to compile it from source:
     ./configure  # setup Makefile and download basic plugins
     make         # compile `vick` and all plugins installed and make an executable
     make test    # run test suite
+    make doc     # generate documentation - requires ``doxygen`` and ``graphviz``
