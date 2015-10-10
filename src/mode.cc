@@ -22,7 +22,7 @@ bool mode::operator()(char ch) const {
 }
 
 const std::string& mode::get_name() const {
-    return this->name;
+    return name;
 }
 
 bool mode::operator==(const mode& other) const {
