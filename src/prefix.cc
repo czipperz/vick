@@ -31,7 +31,7 @@ prefix::operator std::function < void ( contents&,
                                         boost::optional<int> ) > () {
     return std::function < void ( contents&,
                                   boost::optional<int> ) >
-        ([&,this] (contents& cont, boost::optional<int> op)
+        ([this] (contents& cont, boost::optional<int> op)
          {
              (*this)(cont,op);
          });
