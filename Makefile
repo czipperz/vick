@@ -45,7 +45,7 @@ all: ${files} $O/main.o $O/configuration.o
 begin: regen
 	@mkdir -p plugins
 	[ -d plugins/vick-move ] || git clone 'https://github.com/czipperz/vick-move' plugins/vick-move
-	[ -d plugins/vick-insert-mode ] || git clone 'https://github.com/czipperz/vick-insert-mode' plugins/vick-move
+	[ -d plugins/vick-insert-mode ] || git clone 'https://github.com/czipperz/vick-insert-mode' plugins/vick-insert-mode
 
 clean:
 	@mkdir -p plugins
