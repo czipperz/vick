@@ -1,17 +1,17 @@
 #ifndef HEADER_GUARD_HOOKS_H
 #define HEADER_GUARD_HOOKS_H
 
-namespace Hook {
-    enum Hook {
-        MOVE,
-        SAVE,
-        EDIT,
-        REFRESH,
-        MODE_ENTER,
-    };
-}
 
-void proc_hook(Hook::Hook);
-void add_hook (Hook::Hook, void (*)());
+using hook = unsigned int;
+
+extern hook hook_move;
+extern hook hook_save;
+extern hook hook_edit;
+extern hook hook_refresh;
+extern hook hook_mode_enter;
+
+hook gen_hook();
+void proc_hook(hook);
+void add_hook (hook, void (*)());
 
 #endif
