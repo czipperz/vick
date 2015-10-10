@@ -1,7 +1,8 @@
 #include <cstdarg>
 #include <ncurses.h>
+#include <string>
 
-static const char* mes = NULL;
+static std::string mes;
 extern bool showing_message;
 bool showing_message = false;
 
@@ -12,7 +13,7 @@ static void showmes() {
     move(rows-1,0);
 
     clrtoeol();
-    printw("%s",mes);
+    printw("%s", mes.c_str());
 
     move(y,x);
 }
@@ -24,7 +25,7 @@ void hook_show_message() {
     }
 }
 
-void show_message(const char* message) {
+void show_message(std::string message) {
     showing_message = true;
     mes = message;
     showmes();

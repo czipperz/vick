@@ -25,18 +25,18 @@ void loop() {
             else hook_show_message();
         }
         if(!b) {
-            show_message((std::string("Didn't recognize key press: '")
-                          + ch + '\'').c_str());
+            show_message(std::string("Didn't recognize key press: '")
+                          + ch + '\'');
             showing_message = false;
         } else if(show) {
             int vis_y,vis_x;
             getyx(stdscr,vis_y,vis_x);
-            show_message((   "y:" + std::to_string(get_contents().y) + ','
-                          + " x:" + std::to_string(get_contents().x) + ','
-                          + " vis_y:" + std::to_string(vis_y) + ','
-                          + " vis_x:" + std::to_string(vis_x) + ','
-                          + " y_offset:" + std::to_string(get_contents().y_offset)
-                         ).c_str());
+            show_message(  "y:" + std::to_string(get_contents().y) + ','
+                         + " x:" + std::to_string(get_contents().x) + ','
+                         + " vis_y:" + std::to_string(vis_y) + ','
+                         + " vis_x:" + std::to_string(vis_x) + ','
+                         + " y_offset:" + std::to_string(get_contents().y_offset)
+                         );
             showing_message = false;
         }
     }

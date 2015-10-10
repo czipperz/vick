@@ -16,7 +16,7 @@ static void handle(contents& contents, boost::optional<int> op, int n) {
     orig *= 10;
     const auto& x = global_normal_map.find(c);
     if(x == global_normal_map.end()) {
-        show_message((std::string("Unbound key: ") + std::to_string(c)).c_str());
+        show_message(std::string("Unbound key: ") + std::to_string(c));
         return;
     }
     x->second(contents, orig + n);

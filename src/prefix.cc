@@ -15,13 +15,12 @@ void prefix::push_back(char ch, std::function<void(contents&, boost::optional<in
 }
 
 void prefix::operator()(contents& cont, boost::optional<int> op) {
-    show_message((std::string(1,prech) + "-").c_str());
+    show_message(message + "-");
     char ch = getch();
     auto it = map.find(ch);
     if(it == map.end()) {
-        show_message((std::string("Didn't recognize key sequence: '")
-                      + prech + '-' + ch + '\'')
-                     .c_str());
+        show_message(std::string("Didn't recognize key sequence: '")
+                     + message + '-' + ch + '\'');
     } else {
         it->second(cont, op);
     }

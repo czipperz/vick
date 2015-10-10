@@ -35,11 +35,11 @@ void command_executor(contents& cont, boost::optional<int> times) {
     if(commandMap.count(name)) {
         commandMap[name](cont,times);
     } else if(args.size() != 0) {
-        show_message((std::string("Unrecognized command: ") + name +
-                      " with args: " + inter_space(args)).c_str());
+        show_message(std::string("Unrecognized command: ") + name +
+                     " with args: " + inter_space(args));
     } else {
-        show_message((std::string("Unrecognized command: ") + name +
-                      " with null args.").c_str());
+        show_message(std::string("Unrecognized command: ") + name +
+                     " with null args.");
     }
 }
 
