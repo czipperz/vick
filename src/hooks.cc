@@ -2,9 +2,9 @@
 #include <vector>
 #include "hooks.hh"
 
-hook hook_move = gen_hook();
 hook hook_save = gen_hook();
-hook hook_edit = gen_hook();
+hook hook_enter_insert_mode = gen_hook();
+hook hook_exit_insert_mode = gen_hook();
 hook hook_refresh = gen_hook();
 hook hook_mode_enter = gen_hook();
 

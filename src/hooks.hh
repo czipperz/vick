@@ -16,9 +16,9 @@
  */
 using hook = unsigned int;
 
-extern hook hook_move;
 extern hook hook_save;
-extern hook hook_edit;
+extern hook hook_enter_insert_mode;
+extern hook hook_exit_insert_mode;
 extern hook hook_refresh;
 extern hook hook_mode_enter;
 
