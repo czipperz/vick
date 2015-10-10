@@ -27,7 +27,7 @@ class contents {
              std::vector<std::string>(),
              mode* m = &mode::fundamental);
     contents(mode* m);
-    contents(long y, long x,
+    contents(unsigned long y, unsigned long x,
              mode* m = &mode::fundamental);
 
     bool operator()(char) const;
