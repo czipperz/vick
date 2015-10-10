@@ -6,3 +6,6 @@ testout
 
 # ignore plugins
 plugins
+
+# documentation
+doc

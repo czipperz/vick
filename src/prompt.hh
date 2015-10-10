@@ -3,8 +3,12 @@
 
 #include <string>
 
-// if aborted (escape) then will return ""
-std::string prompt(const std::string& message, unsigned int y);
+/*!
+ * \brief Prompts the user for a message on the bottom of the screen.
+ *
+ * This method does not modify the buffer in any way.  It will start
+ * to use \c show_message and \c print_contents shortly.
+ */
 std::string prompt(const std::string& message);
 
 #endif

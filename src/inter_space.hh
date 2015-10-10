@@ -3,6 +3,16 @@
 
 #include <string>
 #include <vector>
+
+/*!
+ * \file inter_space.hh
+ * \brief Defines the inter_space() function.
+ */
+
+/*!
+ * \brief Concatenates a list by inserting a space between each
+ * element.
+ */
 std::string inter_space(const std::vector<std::string>& vec);
 
 #endif

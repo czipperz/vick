@@ -5,21 +5,52 @@
 #include <functional>
 #include <boost/optional.hpp>
 
+/*!
+ * \file prefix.hh
+ *
+ * \brief Defines the prefix class, the standard way to make a prefix key.
+ */
 
 class contents;
 
+/*!
+ * \class prefix prefix.hh "../../../src/prefix.hh"
+ * \brief The standard way to make a prefix key.
+ *
+ * A prefix key is one that presents a multitude of different options
+ */
 class prefix {
     private:
-    // use this for documentation
-    std::string message;
     std::map < char, std::function < void ( contents&, boost::optional<int> ) > > map;
+    /*! Used exclusively for function lookup failures (unbound keys) */
+    std::string message;
 
     public:
+    /*!
+     * \param message The message to display when a lookup failure
+     * occures.  This will happen when the key they typed was unbound.
+     * Message will be displayed with a dash appended.
+     */
     prefix(std::string message);
 
+    /*!
+     * \brief Associates a character with the function.
+     */
     void push_back(char, std::function < void
                                   ( contents&, boost::optional<int> ) > );
+    /*!
+     * \brief Prompts for a character while displaying the message given in
+     * the constructor, then calls the function associated with that
+     * character.
+     *
+     * To associate a character with a function, use push_back().
+     */
     void operator ()              ( contents&, boost::optional<int> );
+    /*!
+     * \brief Converts this object to a std::function.
+     *
+     * operator()() will be called when operator()() is used on the created std::function object.
+     */
     operator std::function < void ( contents&, boost::optional<int> ) > ();
 };
 

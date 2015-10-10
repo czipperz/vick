@@ -7,39 +7,130 @@
 #include "change.hh"
 #include "mode.hh"
 
+/*!
+ * \file contents.hh
+ *
+ * \brief Defines the class contents, which contains all the
+ * information about the buffer.
+ */
+
+/*!
+ * \class contents contents.hh "../../../src/contents.hh"
+ *
+ * \brief Defines all the information about the buffer.
+ */
 class contents {
     private:
     const mode* m;
 
     public:
+    /*!
+     * \brief The literal contents of the buffer
+     */
     std::vector<std::string> cont;
+    /*!
+     * \brief The linear list of changes to the buffer
+     */
     std::vector<change> changes;
     unsigned long
-        y = 0, x = 0, desired_x = 0,
-        y_offset = 0,
-        max_y,max_x;
-    bool waiting_for_desired = false,
-         refresh = true,
-         delete_mode = false,
-         is_inserting = false;
+        y = 0 /*!< \brief The y (vertical) position in the buffer. */,
+        x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
+        desired_x = 0 /*!< \brief This will be set to the x value we
+                       * want when you move to a different line but
+                       * the line you move to is too short
+                       *
+                       * \see waiting_for_desired */,
+        y_offset = 0 /*!< \brief The number of lines that are not
+                      * displayed (off the top) */,
+        max_y /*!< \brief The vertical height the buffer has been allocated */,
+        max_x /*!< \brief The horizontal width the buffer has been allocated */;
+    bool waiting_for_desired = false /*!< \brief Controls if the x
+                                      * value will try to adjust to
+                                      * desired_x
+                                      *
+                                      * \see desired_x */,
+         refresh = true /*!< \brief Controls if the screen should
+                         * refresh everytime something happens */,
+         delete_mode = false /*!< \brief Controls if the private mode
+                              * pointer variable will be deleted in the
+                              * destructor */,
+         is_inserting = false /*!< \brief Will be true if the user is
+                               * currently inserting text into the
+                               * buffer.  This will cause the
+                               * print_contents method to not have
+                               * undefined behavior if x is too
+                               * large. */;
 
+    /*!
+     * Construcs a contents object
+     */
     contents(std::vector<std::string> cont =
              std::vector<std::string>(),
              mode* m = &mode::fundamental);
+    /*!
+     * Constructs a contents object
+     */
     contents(mode* m);
+    /*!
+     * Constructs a contents object
+     */
     contents(unsigned long y, unsigned long x,
              mode* m = &mode::fundamental);
 
+    /*!
+     * \brief Calls operator() on the private mode pointer member.
+     *
+     * \see mode
+     */
     bool operator()(char) const;
 
+    /*!
+     * \brief If delete_mode is true, then it will delete the private
+     * mode pointer member.
+     *
+     * \see delete_mode
+     */
     ~contents();
+    /*!
+     * \brief Constructs this contents object as a copy of the other
+     * contents object.
+     *
+     * This forces the private mode member to make a deep copy.
+     */
     contents(const contents&);
+    /*!
+     * \brief Constructs this contents object as a copy of the other
+     * contents object.
+     */
     contents(contents&&);
+    /*!
+     * \brief Constructs this contents object as a copy of the other
+     * contents object.
+     *
+     * This forces the private mode member to make a deep copy.
+     */
     contents& operator=(const contents&);
+    /*!
+     * \brief Constructs this contents object as a copy of the other
+     * contents object.
+     */
     contents& operator=(contents&&);
 
+    /*!
+     * \brief Updates the values of ``max_y`` and ``max_x``
+     *
+     * \see max_y
+     * \see max_x
+     */
     void refreshmaxyx();
 
+    /*!
+     * \brief Calls ``cont.push_back(str)``
+     *
+     * \see cont
+     *
+     * \param str The string to be put at the end of the vector of strings, cont
+     */
     void push_back(const std::string& str);
 };
 

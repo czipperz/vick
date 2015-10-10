@@ -58,6 +58,15 @@ clean:
 	[ ! -e $B ] || rm $B
 	[ ! -d ${TO} ] || rm -R ${TO}
 
+doc: $T/blank
+	@rm $T/blank
+	(cat Doxyfile && echo INPUT = src $$([ "$$(ls plugins)" ] && \
+                                             [ "$$(find plugins -name out -type d)" ] && \
+                                             find plugins -name src -type d)) \
+            | cat > Doxyfile.$$ && \
+        doxygen Doxyfile.$$ ; \
+        rm Doxyfile.$$
+
 $T/blank:
 	@touch $T/blank
 
