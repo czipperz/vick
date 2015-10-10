@@ -11,11 +11,11 @@ class contents;
 class prefix {
     private:
     // use this for documentation
-    char prech;
+    std::string message;
     std::map < char, std::function < void ( contents&, boost::optional<int> ) > > map;
 
     public:
-    prefix(char);
+    prefix(std::string message);
 
     void push_back(char, std::function < void
                                   ( contents&, boost::optional<int> ) > );

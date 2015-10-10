@@ -57,7 +57,7 @@ void add_listeners() {
     }
 
     /* Example config for prefix key */ {
-        prefix prefix_g('g');
+        prefix prefix_g("g");
 
         // binds inside g (``gg``)
         prefix_g.push_back('g',mvsop);

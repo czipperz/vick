@@ -7,8 +7,8 @@
 #include "show_message.hh"
 #include "prefix.hh"
 
-prefix::prefix(char ch)
-    : prech(ch) { }
+prefix::prefix(std::string message)
+    : message(message) { }
 
 void prefix::push_back(char ch, std::function<void(contents&, boost::optional<int>)> fun) {
     this->map[ch] = fun;
