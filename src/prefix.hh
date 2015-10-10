@@ -3,8 +3,10 @@
 
 #include <map>
 #include <functional>
+#include <boost/optional.hpp>
 
-#include "contents.hh"
+
+class contents;
 
 class prefix {
     private:

@@ -1,11 +1,6 @@
 #ifndef HEADER_GUARD_Configuration_H
 #define HEADER_GUARD_Configuration_H
 
-#include <map>
-#include <vector>
-#include <string>
-#include <functional>
-
 #include "contents.hh"
 
 extern const int TAB_SIZE;
