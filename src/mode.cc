@@ -3,7 +3,6 @@
 
 #include "key_aliases.hh"
 #include "file_contents.hh"
-#include "contents.hh"
 #include "mode.hh"
 #include "show_message.hh"
 

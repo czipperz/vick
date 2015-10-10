@@ -6,7 +6,6 @@
 
 #include "key_aliases.hh"
 #include "command_listeners.hh"
-#include "contents.hh"
 #include "file_contents.hh"
 #include "show_message.hh"
 
