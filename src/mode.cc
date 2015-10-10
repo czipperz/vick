@@ -10,7 +10,7 @@ std::map < char, std::function < void (contents&, boost::optional<int>) > >
     global_normal_map,
     global_insert_map;
 
-mode::mode(const std::string& name, bool (*const handle)(char))
+mode::mode(const std::string& name, bool (*handle)(char))
     : name(name)
     , handle(handle) { }
 
