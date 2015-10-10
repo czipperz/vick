@@ -1,20 +1,28 @@
 #include "change.hh"
 
-change::change(void (*handle)(std::vector<std::string>&))
-    : handle(std::function
-               <void(std::vector<std::string>&)>
-                 (handle)) { }
-
-change::change(std::function<void(std::vector<std::string>&)> handle)
-    : handle(handle) { }
+change::change(std::function<void(contents&)> redo,
+               std::function<void(contents&)> undo)
+    : _redo(redo)
+    , _undo(undo) { }
 
 change change::operator>>(const change& other) const {
-    std::function < void(std::vector <std::string>&) > func(
-        [&,other,this] (std::vector<std::string>& contents)
-        { other(contents);   (*this)(contents); });
-    return change(func);
+    std::function<void(contents&)> redo(
+        [&, other, this](contents& contents) {
+            other.redo(contents);
+            this->redo(contents);
+        });
+    std::function<void(contents&)> undo(
+        [&, other, this](contents& contents) {
+            other.undo(contents);
+            this->undo(contents);
+        });
+    return change(redo, undo);
 }
 
-void change::operator()(std::vector<std::string>& contents) const {
-    handle(contents);
+void change::redo(contents& contents) const {
+    _redo(contents);
+}
+
+void change::undo(contents& contents) const {
+    _undo(contents);
 }
