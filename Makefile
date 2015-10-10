@@ -112,4 +112,4 @@ regen:
 	mv newMakefile Makefile
 
 ######################################################################
-# Everything (including this) will be deleted by ``make regen``
+# Everything past and including this will be deleted by ``make regen``
