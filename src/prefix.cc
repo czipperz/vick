@@ -23,6 +23,7 @@ void prefix::operator()(contents& cont, boost::optional<int> op) {
                      + message + '-' + ch + '\'');
     } else {
         it->second(cont, op);
+        showing_message = false;
     }
 }
 

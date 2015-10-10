@@ -32,6 +32,7 @@ void show_message(std::string message) {
 }
 
 void clear_message() {
+    showing_message = false;
     mes = "";
     showmes();
 }
