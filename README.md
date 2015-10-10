@@ -16,6 +16,6 @@ So here's how to compile it from source:
 
     git clone https://github.com/czipperz/vick vick
     cd vick
-    make begin   # download basic plugins
+    ./configure  # setup Makefile and download basic plugins
     make         # compile `vick` and all plugins installed and make an executable
     make test    # run test suite
