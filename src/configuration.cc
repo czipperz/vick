@@ -35,6 +35,7 @@ void add_listeners() {
         global_normal_map['7'] = prefix_key_7;
         global_normal_map['8'] = prefix_key_8;
         global_normal_map['9'] = prefix_key_9;
+        prefix_key_times_ten = '0';
 
         global_normal_map['^'] = mvsol;
         global_normal_map['0'] = mvsot;

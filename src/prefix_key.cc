@@ -3,12 +3,14 @@
 #include "show_message.hh"
 #include "prefix_key.hh"
 
+char prefix_key_times_ten = '0';
+
 static void handle(contents& contents, boost::optional<int> op, int n) {
     int orig = op ? op.get() : 0;
     char c = getch();
-    if(c == '0' && orig != 0) {
+    if(c == prefix_key_times_ten && orig != 0) {
         c = getch();
-        while(c == '0') {
+        while(c == prefix_key_times_ten) {
             orig *= 10;
             c = getch();
         }
