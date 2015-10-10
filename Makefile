@@ -68,6 +68,7 @@ doc: $T/blank
         rm Doxyfile.$$
 
 $T/blank:
+	@mkdir -p $T
 	@touch $T/blank
 
 test: ${files} ${testfiles} ${TO}/test_main.o $T/blank
