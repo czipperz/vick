@@ -5,12 +5,11 @@
 
 #include "key_aliases.hh"
 
-std::string prompt(const std::string& message, unsigned int y) {
+std::string prompt(const std::string& message) {
     std::string text;
-    int b_y,b_x,
-        x = 0,
-        xtrack = 0;
+    int b_y, b_x, x, y, xtrack = 0;
     getyx(stdscr,b_y,b_x);
+    getmaxyx(stdscr,y,x); x = 0; y--;
 
     move(y,x);
     printw("%s",message.c_str());
@@ -40,10 +39,4 @@ std::string prompt(const std::string& message, unsigned int y) {
     }
 
     return text;
-}
-
-std::string prompt(const std::string& message) {
-    int y,x;
-    getmaxyx(stdscr,y,x);
-    return prompt(message,y-1);
 }
