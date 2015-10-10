@@ -12,7 +12,10 @@ std::map < char, std::function < void (contents&, boost::optional<int>) > >
 
 mode::mode(const std::string& name, bool (*handle)(char))
     : name(name)
-    , handle(handle) { }
+    , handle(handle) {
+    static int uid = 0;
+    unique_id = uid++;
+}
 
 bool mode::operator()(char ch) const {
     return handle(ch);
@@ -20,6 +23,13 @@ bool mode::operator()(char ch) const {
 
 const std::string& mode::get_name() const {
     return this->name;
+}
+
+bool mode::operator==(const mode& other) const {
+    return unique_id == other.unique_id;
+}
+bool mode::operator!=(const mode& other) const {
+    return unique_id != other.unique_id;
 }
 
 static bool fundamental_handle(char ch) {

@@ -39,6 +39,7 @@ class mode {
     std::string name;
     // true = has binding
     bool (*handle)(char);
+    int unique_id;
 
 
     public:
