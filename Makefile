@@ -46,6 +46,7 @@ begin:
 	@mkdir -p plugins
 	[ -d plugins/vick-move ] || git clone 'https://github.com/czipperz/vick-move' plugins/vick-move
 	[ -d plugins/vick-insert-mode ] || git clone 'https://github.com/czipperz/vick-insert-mode' plugins/vick-insert-mode
+	[ -d plugins/vick-find ] || git clone 'https://github.com/czipperz/vick-find' plugins/vick-find
 
 clean:
 	@mkdir -p plugins

@@ -9,6 +9,7 @@
 #  include "mode.hh"
 #  include "../plugins/vick-move/src/move.hh"
 #  include "../plugins/vick-insert-mode/src/insert_mode.hh"
+#  include "../plugins/vick-find/src/find.hh"
 #  include "prefix.hh"
 #  include "prefix_key.hh"
 #endif
@@ -49,6 +50,11 @@ void add_listeners() {
         global_normal_map['E'] = mvfeoww;
         global_normal_map['b'] = mvbw;
         global_normal_map['B'] = mvbww;
+
+        global_normal_map['f'] = move_forward_find;
+        global_normal_map['F'] = move_backward_find;
+        global_normal_map['t'] = move_forward_until_match;
+        global_normal_map['T'] = move_backward_until_match;
 
         global_normal_map['r'] = replace_character;
 
