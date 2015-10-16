@@ -20,10 +20,10 @@
  * \brief Defines all the information about the buffer.
  */
 class contents {
-    private:
+  private:
     const mode* m;
 
-    public:
+  public:
     /*!
      * \brief The literal contents of the buffer
      */

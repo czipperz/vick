@@ -33,10 +33,10 @@ class contents;
  * \see contents
  */
 class change {
-    private:
+  private:
     std::function<void(contents&)> _redo, _undo;
 
-    public:
+  public:
     /*!
      * \brief Constructs a change
      *
