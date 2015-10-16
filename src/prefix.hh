@@ -34,7 +34,7 @@ class prefix {
     prefix(std::string message);
 
     /*!
-     * \brief Associates a character with the function.
+     * \brief Associates a character with a function.
      */
     void push_back(char, std::function < void
                                   ( contents&, boost::optional<int> ) > );
