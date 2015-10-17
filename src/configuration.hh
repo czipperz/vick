@@ -23,9 +23,10 @@ void add_listeners();
 /*!
  * \brief Binds commands to be called by command_executor()
  */
-void add_commands(std::map<std::string,
-                           std::function<void(contents&,
-                                              boost::optional<int>)> >&);
+void add_commands(
+    std::map< std::string,
+              std::function< boost::optional< std::shared_ptr<change> >
+                                (contents&, boost::optional<int>)> >&);
 
 /*!
  * \brief Characters that aren't word characters or whitespace

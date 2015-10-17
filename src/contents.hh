@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "change.hh"
 #include "mode.hh"
@@ -31,7 +32,7 @@ class contents {
     /*!
      * \brief The linear list of changes to the buffer
      */
-    std::vector<change> changes;
+    std::vector < std::shared_ptr<change> > changes;
     unsigned long
         y = 0 /*!< \brief The y (vertical) position in the buffer. */,
         x = 0 /*!< \brief The x (horizontal) position in the buffer. */,

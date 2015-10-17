@@ -75,8 +75,9 @@ void add_listeners() {
 #endif
 }
 
-void add_commands(std::map<std::string,
-                           std::function<void(contents&, boost::optional<int>)> >&
+void add_commands(std::map< std::string,
+                            std::function< boost::optional< std::shared_ptr<change> >
+                                              (contents&, boost::optional<int>)> >&
                   commandMap) {
 // ensure that the plugins are properly installed, which doesn't happen in testing
 #ifndef testing

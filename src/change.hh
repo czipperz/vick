@@ -4,6 +4,7 @@
 #include <functional>
 #include <string>
 #include <vector>
+#include <memory>
 
 class contents;
 
@@ -32,51 +33,28 @@ class contents;
  *
  * \see contents
  */
-class change {
-  private:
-    std::function<void(contents&)> _redo, _undo;
-
-  public:
-    /*!
-     * \brief Constructs a change
-     *
-     * \param redo The function to be called when \c redo is called
-     * \param undo The function to be called when \c undo is called
-     *
-     * \see change::redo()
-     * \see change::undo()
-     */
-    change(std::function<void(contents&)> redo, std::function<void(contents&)> undo);
+struct change {
+    virtual ~change() {}
 
     /*!
-     * \brief Links two changes together
-     *
-     * Example:
-     *
-     * \code{.cpp}
-     * mvd >> mvsot >> mvf
-     * \endcode
-     *
-     * would move to the second non whitespace character on the next
-     * line <em>when, if ever it is called</em>.
-     *
-     * If you then call the undo function, it would retrace out in the
-     * opposite direction.
+     * \brief Return true if you edit in any way anything but the x and y coordinate
      */
-    change operator>>(const change&) const;
-
+    virtual bool is_overriding() = 0;
     /*!
-     * \brief Calls the redo variable
-     *
-     * \see change()
+     * \brief Undoes this edit
      */
-    void redo(contents&) const;
+    virtual void undo(contents&) = 0;
     /*!
-     * \brief Calls the undo variable
-     *
-     * \see change()
+     * \brief Performs this edit again (Use after an undo)
      */
-    void undo(contents&) const;
+    virtual void redo(contents&) = 0;
+    /*!
+     * \brief Generates a change that will act over the new contents
+     */
+    virtual std::shared_ptr<change> regenerate(const contents&) const = 0;
 };
+
+using change_t = int;
+change_t gen_change();
 
 #endif

@@ -9,7 +9,8 @@
 #include "file_contents.hh"
 #include "show_message.hh"
 
-void quit_command(contents&, boost::optional<int>) {
+boost::optional< std::shared_ptr<change> >
+    quit_command(contents&, boost::optional<int>) {
     endwin();
     exit(0);
 }
@@ -39,7 +40,7 @@ static bool key_test_handle(char other) {
     return true;
 }
 
-void key_test_command(contents& cont, boost::optional<int>) {
+boost::optional< std::shared_ptr<change> > key_test_command(contents& cont, boost::optional<int>) {
     key_test.delete_mode = true;
     key_test.refresh = false;
     key_test.y = 1;
@@ -47,10 +48,32 @@ void key_test_command(contents& cont, boost::optional<int>) {
     move(0,0);
     printw("[Key test: type anything]");
     cont = key_test;
+    return boost::none;
 }
 
-void replace_character(contents& contents, boost::optional<int>) {
-    char ch = getch();
-    if(ch != _escape)
-        contents.cont[contents.y][contents.x] = ch;
+struct replace_c : public change {
+    unsigned long y,x;
+    char n,o;
+    replace_c(unsigned long y, unsigned long x, char n, char o) : y(y), x(x), n(n), o(o) {}
+    virtual bool is_overriding() override { return true; }
+    virtual void undo(contents& contents) override {
+        contents.y = y;
+        contents.x = x;
+        contents.cont[contents.y][contents.x] = o;
+    }
+    virtual void redo(contents& contents) override {
+        contents.y = y;
+        contents.x = x;
+        contents.cont[contents.y][contents.x] = n;
+    }
+    virtual std::shared_ptr<change> regenerate(const contents& contents) const override {
+        return std::make_shared<replace_c>(contents.y, contents.x, n, contents.cont[contents.y][contents.x]);
+    }
+};
+
+boost::optional< std::shared_ptr<change> > replace_character(contents& contents, boost::optional<int>) {
+    std::shared_ptr<change> ret = std::make_shared<replace_c>
+        (contents.y, contents.x, getch(), contents.cont[contents.y][contents.x]);
+    ret->redo(contents);
+    return ret;
 }

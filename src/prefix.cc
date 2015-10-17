@@ -10,29 +10,33 @@
 prefix::prefix(std::string message)
     : message(message) { }
 
-void prefix::push_back(char ch, std::function<void(contents&, boost::optional<int>)> fun) {
+void prefix::push_back(char ch, std::function < boost::optional< std::shared_ptr<change> >
+                                                ( contents&, boost::optional<int> ) > fun)
+{
     this->map[ch] = fun;
 }
 
-void prefix::operator()(contents& cont, boost::optional<int> op) {
+boost::optional< std::shared_ptr<change> >
+    prefix::operator()(contents& cont, boost::optional<int> op) {
     show_message(message + "-");
     char ch = getch();
     auto it = map.find(ch);
     if(it == map.end()) {
         show_message(std::string("Didn't recognize key sequence: '")
                      + message + '-' + ch + '\'');
+        return boost::none;
     } else {
-        it->second(cont, op);
         showing_message = false;
+        return it->second(cont, op);
     }
 }
 
-prefix::operator std::function < void ( contents&,
-                                        boost::optional<int> ) > () {
-    return std::function < void ( contents&,
-                                  boost::optional<int> ) >
+prefix::operator std::function < boost::optional< std::shared_ptr<change> >
+                                 ( contents&, boost::optional<int> ) > () {
+    return std::function < boost::optional< std::shared_ptr<change> >
+                           ( contents&, boost::optional<int> ) >
         ([this] (contents& cont, boost::optional<int> op)
          {
-             (*this)(cont,op);
+             return (*this)(cont,op);
          });
 }

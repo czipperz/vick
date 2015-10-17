@@ -13,14 +13,14 @@
 /*!
  * \brief The command that signals a full editor quit.
  */
-void quit_command(contents&, boost::optional<int>);
+boost::optional< std::shared_ptr<change> > quit_command(contents&, boost::optional<int>);
 /*!
  * \brief Switches into key_test mode.  Don't use this for anything.
  */
-void key_test_command(contents&, boost::optional<int>);
+boost::optional< std::shared_ptr<change> > key_test_command(contents&, boost::optional<int>);
 /*!
  * \brief Replaces the character at point with another one prompted for.
  */
-void replace_character(contents&, boost::optional<int>);
+boost::optional< std::shared_ptr<change> > replace_character(contents&, boost::optional<int>);
 
 #endif

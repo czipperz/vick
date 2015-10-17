@@ -14,25 +14,26 @@
 #include "inter_space.hh"
 
 static std::map<std::string,
-                std::function<void(contents&, boost::optional<int>)> >
+                std::function < boost::optional< std::shared_ptr<change> >
+                                    (contents&, boost::optional<int>) > >
     commandMap;
 static bool fin = false;
 
 static std::vector<std::string> spaciate(const std::string&);
 
-void command_executor(contents& cont, boost::optional<int> times) {
+boost::optional< std::shared_ptr<change> > command_executor(contents& cont, boost::optional<int> times) {
     if(!fin) { add_commands(commandMap); fin = true; }
 
     std::string pr = prompt(":");
     if(pr == "") {
         clear_message();
-        return;
+        return boost::none;
     }
     std::vector<std::string> args = spaciate(pr);
     std::string name = args[0];
     args.erase(args.begin());
     if(commandMap.count(name)) {
-        commandMap[name](cont,times);
+        return commandMap[name](cont,times);
     } else if(args.size() != 0) {
         show_message(std::string("Unrecognized command: ") + name +
                      " with args: " + inter_space(args));
@@ -40,6 +41,7 @@ void command_executor(contents& cont, boost::optional<int> times) {
         show_message(std::string("Unrecognized command: ") + name +
                      " with null args.");
     }
+    return boost::none;
 }
 
 

@@ -6,7 +6,8 @@
 #include "mode.hh"
 #include "show_message.hh"
 
-std::map < char, std::function < void (contents&, boost::optional<int>) > >
+std::map < char, std::function < boost::optional< std::shared_ptr<change> >
+                                     (contents&, boost::optional<int>) > >
     global_normal_map,
     global_insert_map;
 
