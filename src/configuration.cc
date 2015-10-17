@@ -51,10 +51,10 @@ void add_listeners() {
         global_normal_map['b'] = mvbw;
         global_normal_map['B'] = mvbww;
 
-        global_normal_map['f'] = move_forward_find;
-        global_normal_map['F'] = move_backward_find;
-        global_normal_map['t'] = move_forward_until_match;
-        global_normal_map['T'] = move_backward_until_match;
+        global_normal_map['f'] = move_forward_find_i;
+        global_normal_map['F'] = move_backward_find_i;
+        global_normal_map['t'] = move_forward_until_match_i;
+        global_normal_map['T'] = move_backward_until_match_i;
 
         global_normal_map['r'] = replace_character;
 
