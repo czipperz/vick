@@ -56,6 +56,7 @@ clean:
         done
 	[ ! -d $O ] || rm -R $O
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
+	[ -z "`find -name '#*#'`" ] || rm `find -name '#*#'`
 	[ ! -e $B ] || rm $B
 	[ ! -d ${TO} ] || rm -R ${TO}
 
