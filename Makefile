@@ -44,9 +44,13 @@ all: ${files} $O/main.o $O/configuration.o
 
 begin:
 	@mkdir -p plugins
+	git pull
 	[ -d plugins/vick-move ] || git clone 'https://github.com/czipperz/vick-move' plugins/vick-move
+	(cd plugins/vick-move; make begin)
 	[ -d plugins/vick-insert-mode ] || git clone 'https://github.com/czipperz/vick-insert-mode' plugins/vick-insert-mode
+	(cd plugins/vick-insert-mode; make begin)
 	[ -d plugins/vick-find ] || git clone 'https://github.com/czipperz/vick-find' plugins/vick-find
+	(cd plugins/vick-find; make begin)
 
 clean:
 	@mkdir -p plugins
