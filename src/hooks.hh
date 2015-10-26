@@ -7,12 +7,14 @@
  * \brief Defines how to hook processes in with one another so that one
  *        action will always accompany another.
  *
- * proc_hook(hook) will call all the functions added in add_hook(hook, void(*)())
+ * proc_hook(hook) will call all the functions added in add_hook(hook,
+ *void(*)())
  *
  */
 
 /*!
- * \brief Distinguishes normal <code>unsigned int</code>s from being confused as hooks.
+ * \brief Distinguishes normal <code>unsigned int</code>s from being confused as
+ * hooks.
  */
 using hook = unsigned int;
 
@@ -44,6 +46,6 @@ void proc_hook(hook);
  * There can be multiple functions for a certain hook.  They will be
  * called in the order they were added with add_hook()
  */
-void add_hook (hook, void (*)());
+void add_hook(hook, void (*)());
 
 #endif

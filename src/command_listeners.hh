@@ -16,6 +16,7 @@
  *
  * \see configuration.hh
  */
-boost::optional< std::shared_ptr<change> > command_executor(contents& cont, boost::optional<int> times);
+boost::optional<std::shared_ptr<change> >
+command_executor(contents& cont, boost::optional<int> times);
 
 #endif

@@ -3,7 +3,8 @@
 // ensure that configuration variables are exported properly
 #include "configuration.hh"
 
-// ensure that the plugins are properly installed, which doesn't happen in testing
+// ensure that the plugins are properly installed, which doesn't happen in
+// testing
 #ifndef testing
 #  include <functional>
 #  include "basic_commands.hh"
@@ -26,12 +27,15 @@ bool use_colors()
     return use_colors && has_colors();
 }
 
-void init_conf() {
+void init_conf()
+{
     init_pair(1, COLOR_WHITE, COLOR_BLUE);
 }
 
-void add_listeners() {
-// ensure that the plugins are properly installed, which doesn't happen in testing
+void add_listeners()
+{
+// ensure that the plugins are properly installed, which doesn't happen in
+// testing
 #ifndef testing
     /* global_normal_map binds */ {
         global_normal_map['j'] = mvb;
@@ -89,15 +93,16 @@ void add_listeners() {
 #endif
 }
 
-void add_commands(std::map< std::string,
-                            std::function< boost::optional< std::shared_ptr<change> >
-                                              (contents&, boost::optional<int>)> >&
-                  commandMap) {
-// ensure that the plugins are properly installed, which doesn't happen in testing
+void add_commands(std::map<
+    std::string, std::function<boost::optional<std::shared_ptr<change> >(
+                     contents&, boost::optional<int>)> >& commandMap)
+{
+// ensure that the plugins are properly installed, which doesn't happen in
+// testing
 #ifndef testing
-    commandMap["q"]             = quit_command;
-    commandMap["quit"]          = quit_command;
-    commandMap["keytest"]       = key_test_command;
-    commandMap["colortest"]     = color_test_command;
+    commandMap["q"] = quit_command;
+    commandMap["quit"] = quit_command;
+    commandMap["keytest"] = key_test_command;
+    commandMap["colortest"] = color_test_command;
 #endif
 }

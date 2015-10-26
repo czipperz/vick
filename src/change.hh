@@ -34,10 +34,13 @@ class contents;
  * \see contents
  */
 struct change {
-    virtual ~change() {}
+    virtual ~change()
+    {
+    }
 
     /*!
-     * \brief Return true if you edit in any way anything but the x and y coordinate
+     * \brief Return true if you edit in any way anything but the x and y
+     * coordinate
      */
     virtual bool is_overriding() = 0;
     /*!

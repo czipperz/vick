@@ -32,19 +32,19 @@ class contents {
     /*!
      * \brief The linear list of changes to the buffer
      */
-    std::vector < std::shared_ptr<change> > changes;
+    std::vector<std::shared_ptr<change> > changes;
     unsigned long
-        y = 0 /*!< \brief The y (vertical) position in the buffer. */,
-        x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
-        desired_x = 0 /*!< \brief This will be set to the x value we
+    y = 0 /*!< \brief The y (vertical) position in the buffer. */,
+    x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
+    desired_x = 0 /*!< \brief This will be set to the x value we
                        * want when you move to a different line but
                        * the line you move to is too short
                        *
                        * \see waiting_for_desired */,
-        y_offset = 0 /*!< \brief The number of lines that are not
+    y_offset = 0 /*!< \brief The number of lines that are not
                       * displayed (off the top) */,
-        max_y /*!< \brief The vertical height the buffer has been allocated */,
-        max_x /*!< \brief The horizontal width the buffer has been allocated */;
+    max_y /*!< \brief The vertical height the buffer has been allocated */,
+    max_x /*!< \brief The horizontal width the buffer has been allocated */;
     bool waiting_for_desired = false /*!< \brief Controls if the x
                                       * value will try to adjust to
                                       * desired_x
@@ -65,8 +65,7 @@ class contents {
     /*!
      * Construcs a contents object
      */
-    contents(std::vector<std::string> cont =
-             std::vector<std::string>(),
+    contents(std::vector<std::string> cont = std::vector<std::string>(),
              mode* m = &mode::fundamental);
     /*!
      * Constructs a contents object
@@ -75,8 +74,7 @@ class contents {
     /*!
      * Constructs a contents object
      */
-    contents(unsigned long y, unsigned long x,
-             mode* m = &mode::fundamental);
+    contents(unsigned long y, unsigned long x, mode* m = &mode::fundamental);
 
     /*!
      * \brief Calls operator() on the private mode pointer member.
