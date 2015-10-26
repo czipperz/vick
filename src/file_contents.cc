@@ -29,9 +29,7 @@ void print_contents(contents& contents) {
     }
 
     clear();
-    int y = 0;
-
-    int fin_y,fin_x; // if none set then random!
+    int y = 0, fin_y, fin_x; // if none set then random!
 
     for(unsigned int i = contents.y_offset;
         i < contents.cont.size()
