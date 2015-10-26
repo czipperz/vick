@@ -4,6 +4,7 @@
 #include <ncurses.h>
 #include <iostream>
 
+#include "configuration.hh"
 #include "key_aliases.hh"
 #include "command_listeners.hh"
 #include "file_contents.hh"
@@ -76,4 +77,12 @@ boost::optional< std::shared_ptr<change> > replace_character(contents& contents,
         (contents.y, contents.x, getch(), contents.cont[contents.y][contents.x]);
     ret->redo(contents);
     return ret;
+}
+
+boost::optional< std::shared_ptr<change> > color_test_command(contents&, boost::optional<int>) {
+    show_message("has_colors(): ``" + std::to_string(has_colors()) +
+                 "``, can_change_color(): ``" +
+                 std::to_string(can_change_color()) + "``, init_color(): ``" +
+                 std::to_string(init_color(COLOR_RED, 700, 0, 0)) + "``");
+    return boost::none;
 }

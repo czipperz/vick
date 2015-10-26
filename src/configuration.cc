@@ -1,3 +1,5 @@
+#include <ncurses.h>
+
 // ensure that configuration variables are exported properly
 #include "configuration.hh"
 
@@ -17,6 +19,16 @@
 const int TAB_SIZE = 8;
 
 const std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
+
+bool use_colors()
+{
+    static const constexpr bool use_colors = true;
+    return use_colors && has_colors();
+}
+
+void init_conf() {
+    init_pair(1, COLOR_WHITE, COLOR_BLUE);
+}
 
 void add_listeners() {
 // ensure that the plugins are properly installed, which doesn't happen in testing
@@ -84,5 +96,6 @@ void add_commands(std::map< std::string,
     commandMap["q"]             = quit_command;
     commandMap["quit"]          = quit_command;
     commandMap["keytest"]       = key_test_command;
+    commandMap["colortest"]     = color_test_command;
 #endif
 }

@@ -24,7 +24,9 @@ static std::vector<std::string> spaciate(const std::string&);
 boost::optional< std::shared_ptr<change> > command_executor(contents& cont, boost::optional<int> times) {
     if(!fin) { add_commands(commandMap); fin = true; }
 
+    attron(COLOR_PAIR(1));
     std::string pr = prompt(":");
+    attroff(COLOR_PAIR(1));
     if(pr == "") {
         clear_message();
         return boost::none;

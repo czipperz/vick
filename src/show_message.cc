@@ -13,7 +13,9 @@ static void showmes() {
     move(rows-1,0);
 
     clrtoeol();
+    attron(COLOR_PAIR(1));
     printw("%s", mes.c_str());
+    attroff(COLOR_PAIR(1));
 
     move(y,x);
 }

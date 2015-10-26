@@ -14,6 +14,11 @@
 extern const int TAB_SIZE;
 
 /*!
+ * \brief Controls whether colors are used <i>at all</i>
+ */
+bool use_colors();
+
+/*!
  * \brief Assigns bindings to global mappings
  * \see global_insert_map
  * \see global_normal_map
@@ -42,5 +47,11 @@ void add_commands(
  * in your configuration.cc file.
  */
 extern const std::string DELIMINATORS;
+
+/*!
+ * \brief This method is called at the very beginning of the editor,
+ * after ncurses has started but before even buffer is loaded
+ */
+void init_conf();
 
 #endif

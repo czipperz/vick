@@ -22,5 +22,9 @@ boost::optional< std::shared_ptr<change> > key_test_command(contents&, boost::op
  * \brief Replaces the character at point with another one prompted for.
  */
 boost::optional< std::shared_ptr<change> > replace_character(contents&, boost::optional<int>);
+/*!
+ * \brief Prints the results of a number of ncurses builtin function calls.
+ */
+boost::optional< std::shared_ptr<change> > color_test_command(contents&, boost::optional<int>);
 
 #endif
