@@ -31,6 +31,7 @@ std::string prompt(const std::string& message) {
             move(b_y,b_x);
             return "";
         case _backspace:
+        case _control_h:
             if(text.size()) text.erase(text.begin() + --xtrack);
             move(y, 0);
             clrtoeol();
