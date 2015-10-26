@@ -28,7 +28,7 @@ int to_visual(const std::string& cont, int x) {
     int til = 0,
         xx = -1;
     for(std::string::const_iterator i = cont.begin();
-                i <= cont.begin() + x; i++) {
+                i <= cont.begin() + x; ++i) {
         if(*i == '\t') {
             xx += TAB_SIZE - til;
             til = 0;
