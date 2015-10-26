@@ -36,7 +36,7 @@ testfiles = ${TO}/inter_space_tests.o        \
 
 all: ${files} $O/main.o $O/configuration.o
 	@mkdir -p plugins
-	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
+	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir;                                                \
              make CXX=${CXX} -j 5 || exit $$!; cd ../..;                   \
         done
@@ -54,7 +54,7 @@ begin:
 
 clean:
 	@mkdir -p plugins
-	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
+	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} clean || exit $$!; cd ../..; \
         done
@@ -80,7 +80,7 @@ $T/blank:
 test: ${files} ${testfiles} ${TO}/test_main.o $T/blank
 	@rm $T/blank
 	@mkdir -p plugins
-	for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
+	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX=${CXX} test -j 5 || exit $$!; cd ../..; \
         done
@@ -105,12 +105,12 @@ regen:
              | xargs printf 'head -n%s Makefile\n' \
              | bash \
              | cat > newMakefile
-	for file in $$(find $S -name '*.cc'); do \
+	@for file in $$(find $S -name '*.cc'); do \
              cpp -MM $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
         done
-	for file in $$(find $T -name '*.cc'); do \
+	@for file in $$(find $T -name '*.cc'); do \
              cpp -MM $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$${TO}/$$1|' >> newMakefile; \
              echo '	@mkdir -p $${TO} plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
