@@ -46,24 +46,19 @@ boost::optional< std::shared_ptr<change> > command_executor(contents& cont, boos
     return boost::none;
 }
 
-
-#define _check \
-    if(cur.length() != 0) {     \
-        spaced.push_back(cur); \
-        cur = ""; \
-    }
-
 static std::vector<std::string> spaciate(const std::string& tospace) {
     std::vector<std::string> spaced;
     std::string cur;
     for(unsigned int i = 0; i < tospace.length(); i++) {
         if(tospace[i] == ' ' || tospace[i] == '\t') {
-            _check;
+            if(cur.length()) {
+                spaced.push_back(cur);
+                cur = "";
+            }
         } else {
             cur += tospace[i];
         }
     }
-    _check;
+    if (cur.length()) spaced.push_back(cur);
     return spaced;
 }
-#undef _check
