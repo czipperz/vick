@@ -53,9 +53,11 @@ void add_listeners() {
         global_normal_map['^'] = mvsol;
         global_normal_map['0'] = mvsot;
         global_normal_map['$'] = mveol;
+
         global_normal_map[':'] = command_executor;
 
         global_normal_map['G'] = mveop;
+
         global_normal_map['w'] = mvfw;
         global_normal_map['W'] = mvfww;
         global_normal_map['e'] = mvfeow;
@@ -79,7 +81,7 @@ void add_listeners() {
         prefix prefix_g("g");
 
         // binds inside g (``gg``)
-        prefix_g.push_back('g',mvsop);
+        prefix_g.push_back('g', mvsop);
 
         // put this last as it copies by value
         global_normal_map['g'] = prefix_g;
