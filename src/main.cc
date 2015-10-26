@@ -26,7 +26,7 @@ int main(int argc, char**argv) {
         std::string line;
         std::ifstream myfile(argv[0]);
         if(!myfile.good())
-            lines.push_back("[Invalid file]");
+            lines.push_back("");
         else while(std::getline(myfile,line))
                  lines.push_back(line);
     } else {
