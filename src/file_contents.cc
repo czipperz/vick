@@ -11,7 +11,7 @@
 
 static contents cont;
 
-void init(std::vector<std::string> vec) {
+void init(const std::vector<std::string>& vec) {
     cont = contents(vec);
     print_contents(cont);
 }
