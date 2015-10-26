@@ -46,6 +46,7 @@ boost::optional< std::shared_ptr<change> > key_test_command(contents& cont, boos
     key_test.refresh = false;
     key_test.y = 1;
     key_test.x = 1;
+    clear();
     move(0,0);
     printw("[Key test: type anything]");
     cont = key_test;
