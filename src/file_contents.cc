@@ -37,7 +37,6 @@ void print_contents(contents& contents) {
 
         unsigned int x = 0;
         const std::string& line = contents.cont[i];
-        int til = 0;
 
         if(line.begin() == line.end()) {
             if(contents.y == i && contents.x == 0) {
@@ -45,6 +44,7 @@ void print_contents(contents& contents) {
                 fin_x = x;
             }
         } else {
+            int til = 0;
             for(auto it = line.begin(); it < line.end(); it++) {
                 if(*it == '\t') {
                     x += TAB_SIZE - til - 1;
