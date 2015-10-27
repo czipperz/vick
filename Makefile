@@ -16,6 +16,8 @@ TO=testout
 CXX=clang++
 B=vick
 
+.PHONY: all begin clean doc test tags regen
+
 files=$O/basic_commands.o     \
       $O/change.o             \
       $O/contents.o           \
@@ -64,8 +66,7 @@ clean:
 	[ ! -e $B ] || rm $B
 	[ ! -d ${TO} ] || rm -R ${TO}
 
-doc: $T/blank
-	@rm $T/blank
+doc:
 	(cat Doxyfile && echo INPUT = src $$([ "$$(ls plugins)" ] && \
                                              [ "$$(find plugins -name out -type d)" ] && \
                                              find plugins -name src -type d)) \
@@ -73,12 +74,7 @@ doc: $T/blank
         doxygen Doxyfile.$$ ; \
         rm Doxyfile.$$
 
-$T/blank:
-	@mkdir -p $T
-	@touch $T/blank
-
-test: ${files} ${testfiles} ${TO}/test_main.o $T/blank
-	@rm $T/blank
+test: ${files} ${testfiles} ${TO}/test_main.o
 	@mkdir -p plugins
 	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
