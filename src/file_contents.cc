@@ -69,7 +69,7 @@ void print_contents(contents& contents)
                     move(++y, x = 0);
                     addch(*it);
                 }
-                if (contents.y == i && contents.x == it - line.begin()) {
+                if (contents.y == i && contents.x == static_cast<move_t>(it - line.begin())) {
                     fin_y = y;
                     fin_x = x;
                 }
