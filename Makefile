@@ -34,13 +34,13 @@ files=$O/basic_commands.o     \
       $O/visual.o             \
 
 testfiles = ${TO}/inter_space_tests.o        \
-            ${TO}/visual_tests.o        \
+            ${TO}/visual_tests.o             \
 
 all: ${files} $O/main.o $O/configuration.o
 	@mkdir -p plugins
-	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
-             cd $$dir;                                                \
-             make CXX=${CXX} -j 5 || exit $$!; cd ../..;                   \
+	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do          \
+             cd $$dir;                                                          \
+             make CXX="${CXX}" CFLAGS="${CFLAGS}" -j 5 || exit $$!; cd ../..;   \
         done
 	${CXX} -o $B ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
 
@@ -58,7 +58,7 @@ clean:
 	@mkdir -p plugins
 	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX} clean || exit $$!; cd ../..; \
+             make CXX="${CXX}" CFLAGS="${CFLAGS}" clean || exit $$!; cd ../..; \
         done
 	[ ! -d $O ] || rm -R $O
 	[ -z "`find -name '*~'`" ] || rm `find -name '*~'`
@@ -78,7 +78,7 @@ test: ${files} ${testfiles} ${TO}/test_main.o
 	@mkdir -p plugins
 	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
-             make CXX=${CXX} test -j 5 || exit $$!; cd ../..; \
+             make CXX="${CXX}" CFLAGS="${CFLAGS}" test -j 5 || exit $$!; cd ../..; \
         done
 	${CXX} -o ${TO}/out ${files} ${testfiles} ${TO}/test_main.o \
                ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
