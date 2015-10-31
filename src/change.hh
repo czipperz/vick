@@ -1,6 +1,7 @@
 #ifndef HEADER_GUARD_CHANGE_H
 #define HEADER_GUARD_CHANGE_H
 
+#include <boost/optional.hpp>
 #include <functional>
 #include <string>
 #include <vector>
@@ -11,7 +12,8 @@ class contents;
 /*!
  * \file change.hh
  *
- * \brief Defines the change class
+ * \brief Defines the change class and the undo_change(),
+ * redo_change(), and reapply_change() functions.
  */
 
 /*!
@@ -57,7 +59,45 @@ struct change {
     virtual std::shared_ptr<change> regenerate(const contents&) const = 0;
 };
 
-using change_t = int;
-change_t gen_change();
+/*!
+ * \brief Undoes the change on top of the stack, or pops off another
+ * if called again
+ *
+ * ----------
+ * | ------ |
+ * | before |
+ * | after  |
+ * | ------ |
+ * ----------
+ */
+boost::optional<std::shared_ptr<change> >
+undo_change(contents&, boost::optional<int> = boost::none);
+
+/*!
+ * \brief Redoes the change on top of the stack, or climbs back on it 
+ * Deletes anything after current
+ *
+ * ----------
+ * | ------ |
+ * | after  |
+ * | before |
+ * | ------ |
+ * ----------
+ */
+boost::optional<std::shared_ptr<change> >
+redo_change(contents&, boost::optional<int> = boost::none);
+
+/*!
+ * \brief Reapplies the current change on the current position
+ * Deletes anything after current
+ *
+ * -----------------------
+ * | current (reapplied) |
+ * | current             |
+ * | ------------------- |
+ * -----------------------
+ */
+boost::optional<std::shared_ptr<change> >
+reapply_change(contents&, boost::optional<int> = 0);
 
 #endif

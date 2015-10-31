@@ -30,6 +30,13 @@ class contents {
   private:
     const mode* m;
     std::vector<std::shared_ptr<change> > _changes;
+    size_t _changes_i = 0;
+    friend boost::optional<std::shared_ptr<change> >
+    undo_change(contents&, boost::optional<int>);
+    friend boost::optional<std::shared_ptr<change> >
+    redo_change(contents&, boost::optional<int>);
+    friend boost::optional<std::shared_ptr<change> >
+    reapply_change(contents&, boost::optional<int>);
 
   public:
     /*!
@@ -40,6 +47,7 @@ class contents {
      * \brief The linear list of changes to the buffer
      */
     const std::vector<std::shared_ptr<change> >& changes = _changes;
+    const size_t& changes_i = _changes_i;
     move_t
     y = 0 /*!< \brief The y (vertical) position in the buffer. */,
     x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
@@ -138,6 +146,22 @@ class contents {
      * \param str The string to be put at the end of the vector of strings, cont
      */
     void push_back(const std::string& str);
+
+    /*!
+     * \brief Adds the change given to the private vector, possibly
+     * deleting some changes
+     *
+     * ----------
+     * | change |
+     * | ------ |
+     * ----------
+     *
+     * \see changes _changes
+     *
+     * \param change The string to be put at the end of the vector of
+     * changes, ``_changes`` (public interface ``changes``)
+     */
+    void push_back(std::shared_ptr<change> change);
 };
 
 #endif

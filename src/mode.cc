@@ -40,7 +40,8 @@ static bool fundamental_handle(char ch) {
     if(it == global_normal_map.end()) return false;
 
     clear_message();
-    it->second(get_contents(),boost::none);
+    auto optional = it->second(get_contents(),boost::none);
+    if(optional) get_contents().push_back(optional.get());
     return true;
 }
 
