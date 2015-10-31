@@ -8,10 +8,13 @@
 #ifndef testing
 #  include <functional>
 #  include "basic_commands.hh"
+#  include "key_aliases.hh"
 #  include "command_listeners.hh"
 #  include "mode.hh"
 #  include "../plugins/vick-move/src/move.hh"
 #  include "../plugins/vick-insert-mode/src/insert_mode.hh"
+#  include "../plugins/vick-insert-mode/src/open_line.hh"
+#  include "../plugins/vick-insert-mode/src/join.hh"
 #  include "../plugins/vick-find/src/find.hh"
 #  include "prefix.hh"
 #  include "prefix_key.hh"
@@ -58,6 +61,9 @@ void add_listeners()
         global_normal_map['0'] = mvsot;
         global_normal_map['$'] = mveol;
 
+        global_normal_map['|'] = mvcol;
+        global_normal_map['\\'] = mvline;
+
         global_normal_map[':'] = command_executor;
 
         global_normal_map['G'] = mveop;
@@ -79,6 +85,16 @@ void add_listeners()
         global_normal_map['i'] = enter_insert_mode;
         global_normal_map['a'] = enter_append_mode;
         global_normal_map['R'] = enter_replace_mode;
+
+        global_normal_map['o'] = open_line_below;
+        global_normal_map['O'] = open_line_above;
+
+        global_normal_map['J'] = join_two_lines;
+
+        global_normal_map['u'] = undo_change;
+        global_normal_map[_control_r] = redo_change;
+
+        global_normal_map['.'] = reapply_change;
     }
 
     /* Example config for prefix key */ {
