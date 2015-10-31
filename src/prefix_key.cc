@@ -6,22 +6,21 @@
 char prefix_key_times_ten;
 
 static boost::optional< std::shared_ptr<change> > handle(contents& contents, boost::optional<int> op, int n) {
-    int orig = op ? op.get() : 0;
+    int total = n + (op ? op.get() : 0) * 10;
+    show_message(std::to_string(total) + "-");
     char c = getch();
-    if(c == prefix_key_times_ten && orig != 0) {
+    while(c == prefix_key_times_ten) {
+        total *= 10;
+        show_message(std::to_string(total) + "-");
         c = getch();
-        while(c == prefix_key_times_ten) {
-            orig *= 10;
-            c = getch();
-        }
     }
-    orig *= 10;
-    const auto& x = global_normal_map.find(c);
+    auto x = global_normal_map.find(c);
     if(x == global_normal_map.end()) {
         show_message(std::string("Unbound key: ") + std::to_string(c));
         return boost::none;
     }
-    return x->second(contents, orig + n);
+    showing_message = false;
+    return x->second(contents, total);
 }
 
 boost::optional< std::shared_ptr<change> > prefix_key_1(contents& contents, boost::optional<int> op) {
