@@ -16,13 +16,13 @@
  */
 
 /*!
- * \brief Define move_t so that code can be more descriptive and can change it
+ * \brief Define \c move_t so that code can be more descriptive and can change it
  * from one place.
  */
 using move_t = unsigned long;
 
 /*!
- * \brief Define move_ts to be a signed version of move_t
+ * \brief Define \c move_ts to be a signed version of \c move_t
  *
  * \see move_t
  */
