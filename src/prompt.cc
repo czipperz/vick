@@ -15,7 +15,8 @@ std::string prompt(const std::string& message)
     getyx(stdscr, b_y, b_x);
     getmaxyx(stdscr, y, x);
 
-    move(--y, x = 0);
+    --y; x = 0;
+    move(y, x);
     printw("%s", message.c_str());
     x += message.length();
     move(y, x);
