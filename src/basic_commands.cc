@@ -58,9 +58,9 @@ boost::optional<std::shared_ptr<change> > key_test_command(contents& cont,
 }
 
 struct replace_c : public change {
-    unsigned long y, x;
+    move_t y, x;
     char n, o;
-    replace_c(unsigned long y, unsigned long x, char n, char o)
+    replace_c(move_t y, move_t x, char n, char o)
         : y(y), x(x), n(n), o(o)
     {
     }

@@ -16,6 +16,12 @@
  */
 
 /*!
+ * \brief Define move_t so that code can be more descriptive and can change it
+ * from one place.
+ */
+using move_t = unsigned long;
+
+/*!
  * \class contents contents.hh "../../../src/contents.hh"
  *
  * \brief Defines all the information about the buffer.
@@ -33,7 +39,7 @@ class contents {
      * \brief The linear list of changes to the buffer
      */
     std::vector<std::shared_ptr<change> > changes;
-    unsigned long
+    move_t
     y = 0 /*!< \brief The y (vertical) position in the buffer. */,
     x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
     desired_x = 0 /*!< \brief This will be set to the x value we
@@ -74,7 +80,7 @@ class contents {
     /*!
      * Constructs a contents object
      */
-    contents(unsigned long y, unsigned long x, mode* m = &mode::fundamental);
+    contents(move_t y, unsigned long x, mode* m = &mode::fundamental);
 
     /*!
      * \brief Calls operator() on the private mode pointer member.

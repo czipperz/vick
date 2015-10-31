@@ -9,7 +9,7 @@ contents::contents(mode* m) : m(m), cont(std::vector<std::string>())
 {
     refreshmaxyx();
 }
-contents::contents(unsigned long y, unsigned long x, mode* m)
+contents::contents(move_t y, unsigned long x, mode* m)
     : m(m), cont(std::vector<std::string>()), y(y), x(x)
 {
     refreshmaxyx();
