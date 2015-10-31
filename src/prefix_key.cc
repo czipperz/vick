@@ -3,7 +3,7 @@
 #include "show_message.hh"
 #include "prefix_key.hh"
 
-char prefix_key_times_ten = '0';
+char prefix_key_times_ten;
 
 static boost::optional< std::shared_ptr<change> > handle(contents& contents, boost::optional<int> op, int n) {
     int orig = op ? op.get() : 0;
