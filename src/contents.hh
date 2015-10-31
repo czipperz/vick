@@ -29,6 +29,7 @@ using move_t = unsigned long;
 class contents {
   private:
     const mode* m;
+    std::vector<std::shared_ptr<change> > _changes;
 
   public:
     /*!
@@ -38,7 +39,7 @@ class contents {
     /*!
      * \brief The linear list of changes to the buffer
      */
-    std::vector<std::shared_ptr<change> > changes;
+    const std::vector<std::shared_ptr<change> >& changes = _changes;
     move_t
     y = 0 /*!< \brief The y (vertical) position in the buffer. */,
     x = 0 /*!< \brief The x (horizontal) position in the buffer. */,

@@ -55,7 +55,7 @@ contents& contents::operator=(const contents& other)
     waiting_for_desired = other.waiting_for_desired;
     refresh = other.refresh;
     delete_mode = other.delete_mode;
-    changes = other.changes;
+    _changes = other._changes;
     return *this;
 }
 contents& contents::operator=(contents&& other)
@@ -73,7 +73,7 @@ contents& contents::operator=(contents&& other)
     waiting_for_desired = other.waiting_for_desired;
     refresh = other.refresh;
     delete_mode = other.delete_mode;
-    changes = other.changes;
+    _changes = other._changes;
     return *this;
 }
 
