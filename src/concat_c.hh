@@ -1,0 +1,40 @@
+#ifndef HEADER_GUARD_CONCAT_C_H
+#define HEADER_GUARD_CONCAT_C_H
+
+#include <vector>
+#include "change.hh"
+
+struct concat_c : public change {
+    concat_c(std::vector<std::shared_ptr<change> > changes) : changes(changes)
+    {
+    }
+    virtual bool is_overriding() override
+    {
+        for (std::shared_ptr<change> pt : changes) {
+            if (pt->is_overriding()) return true;
+        }
+        return false;
+    }
+    virtual void undo(contents& contents) override
+    {
+        for (auto begin = changes.rbegin(); begin != changes.rend(); ++begin)
+            (*begin)->undo(contents);
+    }
+    virtual void redo(contents& contents) override
+    {
+        for (auto begin = changes.begin(); begin != changes.end(); ++begin)
+            (*begin)->redo(contents);
+    }
+    virtual std::shared_ptr<change> regenerate(const contents& contents) const
+        override
+    {
+        std::vector<std::shared_ptr<change> > n;
+        for (auto pt : changes) n.push_back(pt->regenerate(contents));
+        return std::make_shared<concat_c>(n);
+    }
+
+  private:
+    std::vector<std::shared_ptr<change> > changes;
+};
+
+#endif
