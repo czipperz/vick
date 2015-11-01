@@ -53,6 +53,10 @@ begin:
 	cd plugins/vick-insert-mode && make begin
 	[ -d plugins/vick-find ] || git clone 'https://github.com/czipperz/vick-find' plugins/vick-find
 	cd plugins/vick-find && make begin
+	[ -d plugins/vick-open-line ] || git clone 'https://github.com/czipperz/vick-open-line' plugins/vick-open-line
+	cd plugins/vick-open-line && make begin
+	[ -d plugins/vick-join ] || git clone 'https://github.com/czipperz/vick-join' plugins/vick-join
+	cd plugins/vick-join && make begin
 
 clean:
 	@mkdir -p plugins
