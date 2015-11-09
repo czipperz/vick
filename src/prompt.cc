@@ -17,6 +17,7 @@ boost::optional<std::string> prompt(const std::string& message)
 
     --y; x = 0;
     move(y, x);
+    clrtoeol();
     printw("%s", message.c_str());
     x += message.length();
     move(y, x);
