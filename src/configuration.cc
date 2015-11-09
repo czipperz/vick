@@ -20,9 +20,9 @@
 #  include "prefix_key.hh"
 #endif
 
-const int TAB_SIZE = 8;
+int TAB_SIZE = 8;
 
-const std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
+std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
 
 bool use_colors()
 {

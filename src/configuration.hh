@@ -11,7 +11,7 @@
 /*!
  * \brief The horizontal space a tab character should take up
  */
-extern const int TAB_SIZE;
+extern int TAB_SIZE;
 
 /*!
  * \brief Controls whether colors are used <i>at all</i>
@@ -45,7 +45,7 @@ void add_commands(std::map<
  *
  * in your configuration.cc file.
  */
-extern const std::string DELIMINATORS;
+extern std::string DELIMINATORS;
 
 /*!
  * \brief This method is called at the very beginning of the editor,
