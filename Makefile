@@ -49,7 +49,7 @@ all: ${files} $O/main.o $O/configuration.o
              cd $$dir;                                                          \
              make CXX="${CXX}" CFLAGS="${CFLAGS}" -j 5 || exit $$!; cd ../..;   \
         done
-	${CXX} -o $B ${plugins_o} $^ ${CFLAGS} ${LDFLAGS}
+	${CXX} -o $B ${plugins_o} $^ ${LDFLAGS}
 
 begin:
 	@mkdir -p plugins
