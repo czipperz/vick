@@ -11,7 +11,7 @@
 boost::optional<std::string> prompt(const std::string& message)
 {
     std::string text;
-    int b_y, b_x, x, y, xtrack = 0;
+    int b_y, b_x, x, y;
     getyx(stdscr, b_y, b_x);
     getmaxyx(stdscr, y, x);
 
@@ -34,7 +34,7 @@ boost::optional<std::string> prompt(const std::string& message)
                 return boost::none;
             case _backspace:
             case _control_h:
-                if (text.size()) text.erase(text.begin() + --xtrack);
+                if (text.size()) text.erase(text.begin() + --x);
                 move(y, 0);
                 clrtoeol();
                 for (size_t i = 0; i < message.size(); i++) {
@@ -50,7 +50,7 @@ boost::optional<std::string> prompt(const std::string& message)
                 move(b_y, b_x);
                 return text;
             default:
-                move(y, ++xtrack);
+                move(y, x++ + message.length());
                 addch(c);
                 text += c;
                 break;
