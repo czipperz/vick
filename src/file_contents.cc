@@ -86,4 +86,6 @@ void print_contents(contents& contents)
     // contents.y, to_visual(contents.cont[contents.y],contents.x)
     move(fin_y, fin_x);
     proc_hook(hook_refresh);
+
+    refresh();
 }
