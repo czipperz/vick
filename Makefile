@@ -7,7 +7,10 @@ plugins_hh = `[ "$$(ls plugins)" ] && \
               [ "$$(find plugins -name src -type d)" ] && \
                  find plugins -name src -type d \
                    | xargs -n 1 printf "-I%s\n"` -Isrc
-CFLAGS=-std=c++11
+CFLAGS=-std=c++11 \
+       -Wold-style-cast -Wnon-virtual-dtor -Wnarrowing \
+       -Wdelete-non-virtual-dtor -Wctor-dtor-privacy \
+       -Woverloaded-virtual -Wsign-promo
 LDFLAGS=-lboost_regex -lncurses
 O=out
 S=src
@@ -15,6 +18,10 @@ T=test
 TO=testout
 CXX=clang++
 B=vick
+
+ifeq (${CXX},g++)
+CFLAGS += -Wstrict-null-sentinel -Wnoexcept
+endif
 
 .PHONY: all begin clean doc test tags regen
 
