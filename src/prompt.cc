@@ -25,8 +25,8 @@ boost::optional<std::string> prompt(const std::string& message)
         char c = getch();
         switch (c) {
             case ERR:
-                std::cout << "ERROR character: " << ERR;
                 endwin();
+                std::cout << "ERROR character: " << ERR;
                 exit(2);
                 break;
             case _escape:
