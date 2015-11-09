@@ -9,6 +9,12 @@
  */
 
 /*!
+ * \brief Hitting this key should stop most commands mid process,
+ * however its up to the commands themselves to handle it!
+ */
+extern char QUIT_KEY;
+
+/*!
  * \brief The horizontal space a tab character should take up
  */
 extern int TAB_SIZE;

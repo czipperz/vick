@@ -2,13 +2,13 @@
 
 // ensure that configuration variables are exported properly
 #include "configuration.hh"
+#include "key_aliases.hh"
 
 // ensure that the plugins are properly installed, which doesn't happen in
 // testing
 #ifndef testing
 #  include <functional>
 #  include "basic_commands.hh"
-#  include "key_aliases.hh"
 #  include "command_listeners.hh"
 #  include "mode.hh"
 #  include "../plugins/vick-move/src/move.hh"
@@ -19,6 +19,8 @@
 #  include "prefix.hh"
 #  include "prefix_key.hh"
 #endif
+
+char QUIT_KEY = _control_g;
 
 int TAB_SIZE = 8;
 

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string>
 
+#include "prompt.hh"
+#include "configuration.hh"
 #include "key_aliases.hh"
 #include "contents.hh"
 #include "file_contents.hh"
@@ -23,15 +25,16 @@ boost::optional<std::string> prompt(const std::string& message)
 
     while (true) {
         char c = getch();
+        if (c == QUIT_KEY) {
+            move(b_y, b_x);
+            return boost::none;
+        }
         switch (c) {
             case ERR:
                 endwin();
                 std::cout << "ERROR character: " << ERR;
                 exit(2);
                 break;
-            case _escape:
-                move(b_y, b_x);
-                return boost::none;
             case _backspace:
             case _control_h:
                 if (text.size()) text.erase(text.begin() + --x);
