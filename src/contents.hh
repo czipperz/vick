@@ -92,12 +92,12 @@ class contents {
     /*!
      * Construcs a contents object
      */
-    contents(std::vector<std::string> cont = std::vector<std::string>(),
+    explicit contents(std::vector<std::string> cont = std::vector<std::string>(),
              mode* buffer_mode = &fundamental_mode);
     /*!
      * Constructs a contents object
      */
-    contents(mode* buffer_mode);
+    explicit contents(mode* buffer_mode);
     /*!
      * Constructs a contents object
      */
