@@ -35,7 +35,6 @@ using move_ts = long;
  */
 class contents {
   private:
-    const mode* m;
     std::vector<std::shared_ptr<change> > _changes;
     size_t _changes_i = 0;
     friend boost::optional<std::shared_ptr<change> >
@@ -46,6 +45,12 @@ class contents {
     reapply_change(contents&, boost::optional<int>);
 
   public:
+    /*!
+     * \brief The type of file the buffer is.
+     *
+     * Default mode is fundamental;
+     */
+    mode* buffer_mode;
     /*!
      * \brief The literal contents of the buffer
      */
@@ -88,15 +93,15 @@ class contents {
      * Construcs a contents object
      */
     contents(std::vector<std::string> cont = std::vector<std::string>(),
-             mode* m = &mode::fundamental);
+             mode* buffer_mode = &fundamental_mode);
     /*!
      * Constructs a contents object
      */
-    contents(mode* m);
+    contents(mode* buffer_mode);
     /*!
      * Constructs a contents object
      */
-    contents(move_t y, unsigned long x, mode* m = &mode::fundamental);
+    contents(move_t y, unsigned long x, mode* buffer_mode = &fundamental_mode);
 
     /*!
      * \brief Calls operator() on the private mode pointer member.
