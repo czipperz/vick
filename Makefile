@@ -81,9 +81,9 @@ doc:
 	(cat Doxyfile && echo INPUT = src $$([ "$$(ls plugins)" ] && \
                                              [ "$$(find plugins -name out -type d)" ] && \
                                              find plugins -name src -type d)) \
-            | cat > Doxyfile.$$ && \
-        doxygen Doxyfile.$$ ; \
-        rm Doxyfile.$$
+              > Doxyfile.$$ && ( \
+        doxygen Doxyfile.$$; \
+        rm Doxyfile.$$)
 
 test: ${files} ${testfiles} ${TO}/test_main.o
 	@mkdir -p plugins
