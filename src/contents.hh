@@ -61,17 +61,17 @@ class contents {
     const std::vector<std::shared_ptr<change> >& changes = _changes;
     const size_t& changes_i = _changes_i;
     move_t
-    y = 0 /*!< \brief The y (vertical) position in the buffer. */,
-    x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
-    desired_x = 0 /*!< \brief This will be set to the x value we
+        y = 0 /*!< \brief The y (vertical) position in the buffer. */,
+        x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
+        desired_x = 0 /*!< \brief This will be set to the x value we
                        * want when you move to a different line but
                        * the line you move to is too short
                        *
                        * \see waiting_for_desired */,
-    y_offset = 0 /*!< \brief The number of lines that are not
+        y_offset = 0 /*!< \brief The number of lines that are not
                       * displayed (off the top) */,
-    max_y /*!< \brief The vertical height the buffer has been allocated */,
-    max_x /*!< \brief The horizontal width the buffer has been allocated */;
+        max_y /*!< \brief The vertical height the buffer has been allocated */,
+        max_x /*!< \brief The horizontal width the buffer has been allocated */;
     bool waiting_for_desired = false /*!< \brief Controls if the x
                                       * value will try to adjust to
                                       * desired_x
