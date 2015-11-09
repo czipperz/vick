@@ -11,7 +11,7 @@ CFLAGS=-std=c++11 \
        -Wold-style-cast -Wnon-virtual-dtor -Wnarrowing \
        -Wdelete-non-virtual-dtor -Wctor-dtor-privacy \
        -Woverloaded-virtual -Wsign-promo
-LDFLAGS=-lboost_regex -lncurses
+LDFLAGS=-lboost_regex -lncurses -lpthread
 O=out
 S=src
 T=test
