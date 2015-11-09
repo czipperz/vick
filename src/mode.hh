@@ -73,10 +73,10 @@ class mode {
      * \brief Compares the unique identifiers
      */
     bool operator!=(const mode&) const;
-
-    /*!
-     * The basic file mode
-     */
-    static mode fundamental; // use global maps only
 };
+
+/*!
+ * The basic file mode
+ */
+extern mode fundamental_mode; // use global maps only
 #endif

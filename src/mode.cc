@@ -45,4 +45,4 @@ static bool fundamental_handle(char ch) {
     return true;
 }
 
-mode mode::fundamental("Fundamental",fundamental_handle);
+mode fundamental_mode("Fundamental", fundamental_handle);
