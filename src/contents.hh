@@ -16,8 +16,8 @@
  */
 
 /*!
- * \brief Define \c move_t so that code can be more descriptive and can change it
- * from one place.
+ * \brief Define \c move_t so that code can be more descriptive and
+ * can change it from one place.
  */
 using move_t = unsigned long;
 
