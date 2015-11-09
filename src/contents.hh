@@ -101,7 +101,7 @@ class contents {
     /*!
      * Constructs a contents object
      */
-    contents(move_t y, unsigned long x, mode* buffer_mode = &fundamental_mode);
+    contents(move_t y, move_t x, mode* buffer_mode = &fundamental_mode);
 
     /*!
      * \brief Calls operator() on the private mode pointer member.
