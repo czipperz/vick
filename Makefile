@@ -93,8 +93,7 @@ test: ${files} ${testfiles} ${TO}/test_main.o
 		  LDFLAGS='${LDFLAGS} `find ../../$O -type f -not \( -name main.o -o -name configuration.o \)` ../../${TO}/test_main.o' \
                || exit $$!; cd ../..; \
         done
-	${CXX} -o ${TO}/out ${files} ${testfiles} ${TO}/test_main.o \
-               ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
+	${CXX} -o ${TO}/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
 	./${TO}/out
 
 tags:
