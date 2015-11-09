@@ -90,7 +90,7 @@ test: ${files} ${testfiles} ${TO}/test_main.o
 	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
              make CXX='${CXX}' CFLAGS='${CFLAGS}' test -j 5 \
-		  LDFLAGS='${LDFLAGS} `find ../../$O -type f -not \( -name main.o -o -name configuration.o \)` ../../${TO}/test_main.o' \
+		  LDFLAGS='`find ../../$O -type f -not \( -name main.o -o -name configuration.o \)` ../../${TO}/test_main.o ${LDFLAGS}' \
                || exit $$!; cd ../..; \
         done
 	${CXX} -o ${TO}/out $^ ${plugins_o} ${LDFLAGS} ${CFLAGS} $S/configuration.cc -Dtesting
