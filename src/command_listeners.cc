@@ -29,13 +29,13 @@ command_executor(contents& cont, boost::optional<int> times)
     }
 
     attron(COLOR_PAIR(1));
-    std::string pr = prompt(":");
+    boost::optional<std::string> pr = prompt(":");
     attroff(COLOR_PAIR(1));
-    if (pr == "") {
+    if (!pr || *pr == "") {
         clear_message();
         return boost::none;
     }
-    std::vector<std::string> args = spaciate(pr);
+    std::vector<std::string> args = spaciate(*pr);
     std::string name = args[0];
     args.erase(args.begin());
     if (commandMap.count(name)) {
