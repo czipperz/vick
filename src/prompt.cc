@@ -8,7 +8,7 @@
 #include "file_contents.hh"
 #include "show_message.hh"
 
-std::string prompt(const std::string& message)
+boost::optional<std::string> prompt(const std::string& message)
 {
     std::string text;
     int b_y, b_x, x, y, xtrack = 0;
@@ -31,7 +31,7 @@ std::string prompt(const std::string& message)
                 break;
             case _escape:
                 move(b_y, b_x);
-                return "";
+                return boost::none;
             case _backspace:
             case _control_h:
                 if (text.size()) text.erase(text.begin() + --xtrack);
