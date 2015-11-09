@@ -7,7 +7,6 @@
 // ensure that the plugins are properly installed, which doesn't happen in
 // testing
 #ifndef testing
-#  include <functional>
 #  include "basic_commands.hh"
 #  include "command_listeners.hh"
 #  include "mode.hh"
