@@ -17,4 +17,16 @@
  */
 boost::optional<std::string> prompt(const std::string& message);
 
+/*!
+ * \brief Prompts the user for a message on the bottom of the screen.
+ * Only allows the reading of characters `y` or `n`.
+ */
+bool prompt_yn(const std::string& message);
+
+/*!
+ * \brief Prompts the user for a message on the bottom of the screen.
+ * Only allows the reading of the strings `yes` or `no`.
+ */
+bool prompt_yes_no(const std::string& message);
+
 #endif

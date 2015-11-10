@@ -59,6 +59,44 @@ boost::optional<std::string> prompt(const std::string& message)
                 break;
         }
     }
+}
 
-    return text;
+bool prompt_yn(const std::string& message)
+{
+    int b_y, b_x, x, y;
+    bool answer;
+    getyx(stdscr, b_y, b_x);
+    getmaxyx(stdscr, y, x);
+
+    --y; x = 0;
+
+print:
+    move(y, 0);
+    clrtoeol();
+    printw("%s[y,n] ", message.c_str());
+    move(y, message.length());
+
+    switch(getch()) {
+        case 'y':
+            answer = true;
+            goto cleanup;
+        case 'n':
+            answer = false;
+            goto cleanup;
+        default:
+            goto print;
+    }
+
+cleanup:
+    move(b_y, b_x);
+    return answer;
+}
+
+bool prompt_yes_no(const std::string& message)
+{
+    boost::optional<std::string> opt = boost::none;
+    while(!opt || !(*opt == "yes" || *opt == "no")) {
+        opt = prompt(message + "[yes,no] ");
+    }
+    return *opt == "yes";
 }
