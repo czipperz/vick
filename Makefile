@@ -38,10 +38,12 @@ files=$O/basic_commands.o     \
       $O/prefix_key.o         \
       $O/prompt.o             \
       $O/show_message.o       \
+      $O/split.o              \
       $O/visual.o             \
 
 testfiles = ${TO}/inter_space_tests.o        \
             ${TO}/visual_tests.o             \
+            ${TO}/split_tests.o              \
 
 all: ${files} $O/main.o $O/configuration.o
 	@mkdir -p plugins
