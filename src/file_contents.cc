@@ -13,9 +13,10 @@ namespace vick {
 
 static contents cont;
 
-void init(const std::vector<std::string>& vec)
+void init(const std::vector<std::string>& vec, bool windows)
 {
     cont = contents(vec);
+    cont.windows_file_endings = windows;
     print_contents(cont);
 }
 
