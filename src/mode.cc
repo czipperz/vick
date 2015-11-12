@@ -1,6 +1,7 @@
 #include <functional>
 #include <boost/optional.hpp>
 
+#include "configuration.hh"
 #include "key_aliases.hh"
 #include "file_contents.hh"
 #include "mode.hh"
@@ -41,7 +42,7 @@ static bool fundamental_handle(char ch) {
 
     clear_message();
     auto optional = it->second(get_contents(),boost::none);
-    if(optional) get_contents().push_back(optional.get());
+    if(optional) PUSH_BACK_CHANGE(get_contents(), *optional);
     return true;
 }
 

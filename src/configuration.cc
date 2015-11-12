@@ -15,6 +15,7 @@
 #  include "../plugins/vick-open-line/src/open_line.hh"
 #  include "../plugins/vick-join/src/join.hh"
 #  include "../plugins/vick-find/src/find.hh"
+#  include "../plugins/vick-linear-change-manager/src/linear-change-manager.hh"
 #  include "prefix.hh"
 #  include "prefix_key.hh"
 #endif
@@ -22,6 +23,17 @@
 char QUIT_KEY = _control_g;
 
 int TAB_SIZE = 8;
+
+void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
+// ensure that the plugins are properly installed, which doesn't
+// happen in testing
+#ifndef testing
+    vick::linear_change_manager::push_back_change
+#else
+// if plugins not installed than do nothing
+    [](contents&, std::shared_ptr<change>) {}
+#endif
+    ;
 
 std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
 
@@ -92,10 +104,10 @@ void add_listeners()
 
         global_normal_map['J'] = join_two_lines;
 
-        global_normal_map['u'] = undo_change;
-        global_normal_map[_control_r] = redo_change;
+        global_normal_map['u'] = linear_change_manager::undo_change;
+        global_normal_map[_control_r] = linear_change_manager::redo_change;
 
-        global_normal_map['.'] = reapply_change;
+        global_normal_map['.'] = linear_change_manager::reapply_change;
     }
 
     /* Example config for prefix key */ {

@@ -34,16 +34,6 @@ using move_ts = long;
  * \brief Defines all the information about the buffer.
  */
 class contents {
-  private:
-    std::vector<std::shared_ptr<change> > _changes;
-    size_t _changes_i = 0;
-    friend boost::optional<std::shared_ptr<change> >
-    undo_change(contents&, boost::optional<int>);
-    friend boost::optional<std::shared_ptr<change> >
-    redo_change(contents&, boost::optional<int>);
-    friend boost::optional<std::shared_ptr<change> >
-    reapply_change(contents&, boost::optional<int>);
-
   public:
     /*!
      * \brief The type of file the buffer is.
@@ -56,10 +46,15 @@ class contents {
      */
     std::vector<std::string> cont;
     /*!
-     * \brief The linear list of changes to the buffer
+     * \brief The list of changes to the buffer.  This is public so
+     * that treed-undo (a la Emacs) can be implemented the same as
+     * linear is.
      */
-    const std::vector<std::shared_ptr<change> >& changes = _changes;
-    const size_t& changes_i = _changes_i;
+    std::vector<std::shared_ptr<change> > changes;
+    /*!
+     * \brief The current change the buffer is in
+     */
+    size_t changes_i = 0;
     move_t
         y = 0 /*!< \brief The y (vertical) position in the buffer. */,
         x = 0 /*!< \brief The x (horizontal) position in the buffer. */,
@@ -158,22 +153,6 @@ class contents {
      * \param str The string to be put at the end of the vector of strings, cont
      */
     void push_back(const std::string& str);
-
-    /*!
-     * \brief Adds the change given to the private vector, possibly
-     * deleting some changes
-     *
-     * ----------
-     * | change |
-     * | ------ |
-     * ----------
-     *
-     * \see changes _changes
-     *
-     * \param change The string to be put at the end of the vector of
-     * changes, ``_changes`` (public interface ``changes``)
-     */
-    void push_back(std::shared_ptr<change> change);
 };
 
 #endif

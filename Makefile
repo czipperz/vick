@@ -26,7 +26,6 @@ endif
 .PHONY: all begin clean doc test tags regen
 
 files=$O/basic_commands.o     \
-      $O/change.o             \
       $O/contents.o           \
       $O/command_listeners.o  \
       $O/file_contents.o      \
