@@ -1,12 +1,13 @@
-#include <ncurses.h>
+#include <algorithm>
 #include <fstream>
+#include <iterator>
+#include <ncurses.h>
 #include <string>
 #include <vector>
-#include <iterator>
-#include <algorithm>
-#include "key_listeners.hh"
-#include "file_contents.hh"
+
 #include "configuration.hh"
+#include "file_contents.hh"
+#include "key_listeners.hh"
 
 int main(int argc, char**argv) {
     using namespace vick;
