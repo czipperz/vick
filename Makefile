@@ -65,6 +65,10 @@ begin:
 	cd plugins/vick-open-line && make begin
 	[ -d plugins/vick-join ] || git clone 'https://github.com/czipperz/vick-join' plugins/vick-join
 	cd plugins/vick-join && make begin
+	[ -d plugins/vick-compile ] || git clone 'https://github.com/czipperz/vick-compile' plugins/vick-compile
+	cd plugins/vick-compile && make begin
+	[ -d plugins/vick-linear-change-manager ] || git clone 'https://github.com/czipperz/vick-linear-change-manager' plugins/vick-linear-change-manager
+	cd plugins/vick-linear-change-manager && make begin
 
 clean:
 	@mkdir -p plugins
