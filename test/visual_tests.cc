@@ -3,6 +3,8 @@
 #include "visual.hh"
 #include "configuration.hh"
 
+using namespace vick;
+
 TEST_CASE("to_visual") {
     std::string
         first("assert"),

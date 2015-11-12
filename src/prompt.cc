@@ -10,6 +10,8 @@
 #include "file_contents.hh"
 #include "show_message.hh"
 
+namespace vick {
+
 boost::optional<std::string> prompt(const std::string& message)
 {
     std::string text;
@@ -99,4 +101,6 @@ bool prompt_yes_no(const std::string& message)
         opt = prompt(message + "[yes,no] ");
     }
     return *opt == "yes";
+}
+
 }

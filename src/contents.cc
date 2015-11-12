@@ -1,6 +1,8 @@
 #include <ncurses.h>
 #include "contents.hh"
 
+namespace vick {
+
 contents::contents(std::vector<std::string> cont, mode* buffer_mode) : buffer_mode(buffer_mode), cont(cont)
 {
     refreshmaxyx();
@@ -85,4 +87,6 @@ void contents::refreshmaxyx()
 void contents::push_back(const std::string& str)
 {
     this->cont.push_back(str);
+}
+
 }

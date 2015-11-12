@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace vick {
+
 /*!
  * \file show_message.hh
  *
@@ -41,5 +43,7 @@ void show_message(std::string message);
  * This sets up hook_show_message() to display nothing.
  */
 void clear_message();
+
+}
 
 #endif

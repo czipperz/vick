@@ -1,12 +1,14 @@
 #ifndef HEADER_GUARD_COMMAND_LISTENERS_H
 #define HEADER_GUARD_COMMAND_LISTENERS_H
 
+#include "contents.hh"
+
+namespace vick {
+
 /*!
  * \file command_listeners.hh
  * \brief Defines the command_executor() function.
  */
-
-#include "contents.hh"
 
 /*!
  * \brief Executes a command by name (Vim's `:`)
@@ -18,5 +20,7 @@
  */
 boost::optional<std::shared_ptr<change> >
 command_executor(contents& cont, boost::optional<int> times);
+
+}
 
 #endif

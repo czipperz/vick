@@ -5,6 +5,8 @@
 
 #include "contents.hh"
 
+namespace vick {
+
 /*!
  * \file prefix_key.hh
  *
@@ -76,5 +78,7 @@ boost::optional< std::shared_ptr<change> > prefix_key_8(contents&, boost::option
  * If no argument is provided it will default to zero.
  */
 boost::optional< std::shared_ptr<change> > prefix_key_9(contents&, boost::optional<int>);
+
+}
 
 #endif

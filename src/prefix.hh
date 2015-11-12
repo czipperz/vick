@@ -7,6 +7,8 @@
 
 #include "change.hh"
 
+namespace vick {
+
 /*!
  * \file prefix.hh
  *
@@ -58,5 +60,7 @@ class prefix {
     operator std::function < boost::optional< std::shared_ptr<change> >
                              ( contents&, boost::optional<int> ) > ();
 };
+
+}
 
 #endif

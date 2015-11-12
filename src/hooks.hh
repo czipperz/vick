@@ -1,6 +1,8 @@
 #ifndef HEADER_GUARD_HOOKS_H
 #define HEADER_GUARD_HOOKS_H
 
+namespace vick {
+
 /*!
  * \file hooks.hh
  *
@@ -47,5 +49,7 @@ void proc_hook(hook);
  * called in the order they were added with add_hook()
  */
 void add_hook(hook, void (*)());
+
+}
 
 #endif

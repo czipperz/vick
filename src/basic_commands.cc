@@ -10,6 +10,8 @@
 #include "file_contents.hh"
 #include "show_message.hh"
 
+namespace vick {
+
 boost::optional<std::shared_ptr<change> > quit_command(contents&,
                                                        boost::optional<int>)
 {
@@ -105,4 +107,6 @@ color_test_command(contents&, boost::optional<int>)
                  std::to_string(can_change_color()) + "``, init_color(): ``" +
                  std::to_string(init_color(COLOR_RED, 700, 0, 0)) + "``");
     return boost::none;
+}
+
 }

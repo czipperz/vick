@@ -3,6 +3,8 @@
 #include "show_message.hh"
 #include "prefix_key.hh"
 
+namespace vick {
+
 char prefix_key_times_ten;
 
 static boost::optional< std::shared_ptr<change> > handle(contents& contents, boost::optional<int> op, int n) {
@@ -49,4 +51,6 @@ boost::optional< std::shared_ptr<change> > prefix_key_8(contents& contents, boos
 }
 boost::optional< std::shared_ptr<change> > prefix_key_9(contents& contents, boost::optional<int> op) {
     return handle(contents,op,9);
+}
+
 }

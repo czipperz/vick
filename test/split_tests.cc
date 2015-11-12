@@ -2,6 +2,8 @@
 
 #include "../src/split.hh"
 
+using namespace vick;
+
 TEST_CASE("split") {
     auto f = split("\nhi\nbye", '\n');
     REQUIRE(f.size() == 3);

@@ -9,6 +9,8 @@
 #include "configuration.hh"
 
 int main(int argc, char**argv) {
+    using namespace vick;
+
     argc--;argv++;
 
     initscr();

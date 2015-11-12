@@ -7,6 +7,8 @@
 #include "show_message.hh"
 #include "prefix.hh"
 
+namespace vick {
+
 prefix::prefix(std::string message)
     : message(message) { }
 
@@ -39,4 +41,6 @@ prefix::operator std::function < boost::optional< std::shared_ptr<change> >
          {
              return (*this)(cont,op);
          });
+}
+
 }

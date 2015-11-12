@@ -8,6 +8,8 @@
 #include "change.hh"
 #include "mode.hh"
 
+namespace vick {
+
 /*!
  * \file contents.hh
  *
@@ -154,5 +156,7 @@ class contents {
      */
     void push_back(const std::string& str);
 };
+
+}
 
 #endif

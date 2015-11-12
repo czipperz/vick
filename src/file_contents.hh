@@ -5,6 +5,8 @@
 #include <string>
 #include "contents.hh"
 
+namespace vick {
+
 /*!
  * \file file_contents.hh
  * \brief Defines the init(), get_contents(), and print_contents() methods.
@@ -22,5 +24,7 @@ contents& get_contents();
  * \brief Clears the screen and prints out a contents
  */
 void print_contents(contents&);
+
+}
 
 #endif

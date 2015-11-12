@@ -13,6 +13,8 @@
 #include "show_message.hh"
 #include "inter_space.hh"
 
+namespace vick {
+
 static std::map<std::string,
                 std::function<boost::optional<std::shared_ptr<change> >(
                     contents&, boost::optional<int>)> > commandMap;
@@ -66,4 +68,6 @@ static std::vector<std::string> spaciate(const std::string& tospace)
     }
     if (cur.length()) spaced.push_back(cur);
     return spaced;
+}
+
 }

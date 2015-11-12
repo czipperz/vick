@@ -1,6 +1,8 @@
 #ifndef HEADER_GUARD_KEY_ALIASES_H
 #define HEADER_GUARD_KEY_ALIASES_H
 
+namespace vick {
+
 #define _control_a            1
 #define _control_b            2
 #define _control_c            3
@@ -47,5 +49,7 @@
 #define _resize              -102
 
 #define _control_forwardslash _control_underscore
+
+}
 
 #endif

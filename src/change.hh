@@ -7,6 +7,8 @@
 #include <vector>
 #include <memory>
 
+namespace vick {
+
 class contents;
 
 /*!
@@ -58,5 +60,7 @@ struct change {
      */
     virtual std::shared_ptr<change> regenerate(const contents&) const = 0;
 };
+
+}
 
 #endif

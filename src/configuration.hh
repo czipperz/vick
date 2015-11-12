@@ -3,6 +3,8 @@
 
 #include "contents.hh"
 
+namespace vick {
+
 /*!
  * \file configuration.hh
  * \brief The file that defines what user customizable features exist
@@ -64,5 +66,7 @@ extern std::string DELIMINATORS;
  * after ncurses has started but before even buffer is loaded
  */
 void init_conf();
+
+}
 
 #endif

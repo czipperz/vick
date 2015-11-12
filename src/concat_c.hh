@@ -4,6 +4,8 @@
 #include <vector>
 #include "change.hh"
 
+namespace vick {
+
 struct concat_c : public change {
     concat_c(std::vector<std::shared_ptr<change> > changes) : changes(changes)
     {
@@ -36,5 +38,7 @@ struct concat_c : public change {
   private:
     std::vector<std::shared_ptr<change> > changes;
 };
+
+}
 
 #endif

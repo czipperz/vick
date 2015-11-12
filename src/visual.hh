@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace vick {
+
 /*!
  * \file visual.hh
  * \brief Convert an index location to its graphical location.
@@ -34,5 +36,7 @@ int to_visual(const std::string& cont, int x);
  * \endcode
  */
 int from_visual(const std::string& cont, int x);
+
+}
 
 #endif

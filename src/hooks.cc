@@ -2,6 +2,8 @@
 #include <vector>
 #include "hooks.hh"
 
+namespace vick {
+
 hook hook_save = gen_hook();
 hook hook_enter_insert_mode = gen_hook();
 hook hook_exit_insert_mode = gen_hook();
@@ -25,4 +27,6 @@ void proc_hook(hook hook)
 void add_hook(hook hook, void (*val)())
 {
     hooks[hook].push_back(val);
+}
+
 }

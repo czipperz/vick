@@ -9,6 +9,8 @@
 #include "visual.hh"
 #include "show_message.hh"
 
+namespace vick {
+
 static contents cont;
 
 void init(const std::vector<std::string>& vec)
@@ -88,4 +90,6 @@ void print_contents(contents& contents)
     proc_hook(hook_refresh);
 
     refresh();
+}
+
 }

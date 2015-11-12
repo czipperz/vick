@@ -3,6 +3,8 @@
 
 #include "contents.hh"
 
+namespace vick {
+
 /*!
  * \file basic_commands.hh
  *
@@ -30,5 +32,7 @@ replace_character(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 color_test_command(contents&, boost::optional<int>);
+
+}
 
 #endif

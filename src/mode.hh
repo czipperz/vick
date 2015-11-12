@@ -9,6 +9,8 @@
 
 #include "change.hh"
 
+namespace vick {
+
 /*!
  * \file mode.hh
  * \brief Declares ``global_normal_map``, ``global_insert_map``, and the mode class
@@ -79,4 +81,7 @@ class mode {
  * The basic file mode
  */
 extern mode fundamental_mode; // use global maps only
+
+}
+
 #endif

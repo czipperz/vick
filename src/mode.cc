@@ -7,6 +7,8 @@
 #include "mode.hh"
 #include "show_message.hh"
 
+namespace vick {
+
 std::map < char, std::function < boost::optional< std::shared_ptr<change> >
                                      (contents&, boost::optional<int>) > >
     global_normal_map,
@@ -47,3 +49,5 @@ static bool fundamental_handle(char ch) {
 }
 
 mode fundamental_mode("Fundamental", fundamental_handle);
+
+}

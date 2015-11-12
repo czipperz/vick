@@ -11,6 +11,8 @@
 #include "hooks.hh"
 #include "inter_space.hh"
 
+namespace vick {
+
 void loop() {
     add_listeners();
 
@@ -40,4 +42,6 @@ void loop() {
             showing_message = false;
         }
     }
+}
+
 }

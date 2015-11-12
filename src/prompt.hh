@@ -4,6 +4,8 @@
 #include <boost/optional.hpp>
 #include <string>
 
+namespace vick {
+
 /*!
  * \file prompt.hh
  * \brief Defines the prompt function that allows you to prompt for a string using a message
@@ -28,5 +30,7 @@ bool prompt_yn(const std::string& message);
  * Only allows the reading of the strings `yes` or `no`.
  */
 bool prompt_yes_no(const std::string& message);
+
+}
 
 #endif

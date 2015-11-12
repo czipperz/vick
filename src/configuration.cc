@@ -20,6 +20,8 @@
 #  include "prefix_key.hh"
 #endif
 
+namespace vick {
+
 char QUIT_KEY = _control_g;
 
 int TAB_SIZE = 8;
@@ -54,10 +56,10 @@ void add_listeners()
 // testing
 #ifndef testing
     /* global_normal_map binds */ {
-        global_normal_map['j'] = mvb;
-        global_normal_map['k'] = mvd;
-        global_normal_map['l'] = mvu;
-        global_normal_map[';'] = mvf;
+        global_normal_map['j'] = move::mvb;
+        global_normal_map['k'] = move::mvd;
+        global_normal_map['l'] = move::mvu;
+        global_normal_map[';'] = move::mvf;
 
         global_normal_map['1'] = prefix_key_1;
         global_normal_map['2'] = prefix_key_2;
@@ -70,39 +72,39 @@ void add_listeners()
         global_normal_map['9'] = prefix_key_9;
         prefix_key_times_ten = '0';
 
-        global_normal_map['^'] = mvsol;
-        global_normal_map['0'] = mvsot;
-        global_normal_map['$'] = mveol;
+        global_normal_map['^'] = move::mvsol;
+        global_normal_map['0'] = move::mvsot;
+        global_normal_map['$'] = move::mveol;
 
-        global_normal_map['|'] = mvcol;
-        global_normal_map['\\'] = mvline;
+        global_normal_map['|'] = move::mvcol;
+        global_normal_map['\\'] = move::mvline;
 
         global_normal_map[':'] = command_executor;
 
-        global_normal_map['G'] = mveop;
+        global_normal_map['G'] = move::mveop;
 
-        global_normal_map['w'] = mvfw;
-        global_normal_map['W'] = mvfww;
-        global_normal_map['e'] = mvfeow;
-        global_normal_map['E'] = mvfeoww;
-        global_normal_map['b'] = mvbw;
-        global_normal_map['B'] = mvbww;
+        global_normal_map['w'] = move::mvfw;
+        global_normal_map['W'] = move::mvfww;
+        global_normal_map['e'] = move::mvfeow;
+        global_normal_map['E'] = move::mvfeoww;
+        global_normal_map['b'] = move::mvbw;
+        global_normal_map['B'] = move::mvbww;
 
-        global_normal_map['f'] = move_forward_find_i;
-        global_normal_map['F'] = move_backward_find_i;
-        global_normal_map['t'] = move_forward_until_match_i;
-        global_normal_map['T'] = move_backward_until_match_i;
+        global_normal_map['f'] = find::move_forward_find_i;
+        global_normal_map['F'] = find::move_backward_find_i;
+        global_normal_map['t'] = find::move_forward_until_match_i;
+        global_normal_map['T'] = find::move_backward_until_match_i;
 
         global_normal_map['r'] = replace_character;
 
-        global_normal_map['i'] = enter_insert_mode;
-        global_normal_map['a'] = enter_append_mode;
-        global_normal_map['R'] = enter_replace_mode;
+        global_normal_map['i'] = insert_mode::enter_insert_mode;
+        global_normal_map['a'] = insert_mode::enter_append_mode;
+        global_normal_map['R'] = insert_mode::enter_replace_mode;
 
-        global_normal_map['o'] = open_line_below;
-        global_normal_map['O'] = open_line_above;
+        global_normal_map['o'] = open_line::open_line_below;
+        global_normal_map['O'] = open_line::open_line_above;
 
-        global_normal_map['J'] = join_two_lines;
+        global_normal_map['J'] = join::join_two_lines;
 
         global_normal_map['u'] = linear_change_manager::undo_change;
         global_normal_map[_control_r] = linear_change_manager::redo_change;
@@ -114,7 +116,7 @@ void add_listeners()
         prefix prefix_g("g");
 
         // binds inside g (``gg``)
-        prefix_g.push_back('g', mvsop);
+        prefix_g.push_back('g', move::mvsop);
 
         // put this last as it copies by value
         global_normal_map['g'] = prefix_g;
@@ -134,4 +136,6 @@ void add_commands(std::map<
     commandMap["keytest"] = key_test_command;
     commandMap["colortest"] = color_test_command;
 #endif
+}
+
 }

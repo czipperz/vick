@@ -2,6 +2,8 @@
 #include <ncurses.h>
 #include <string>
 
+namespace vick {
+
 static std::string mes;
 extern bool showing_message;
 bool showing_message = false;
@@ -37,4 +39,6 @@ void clear_message() {
     showing_message = false;
     mes = "";
     showmes();
+}
+
 }

@@ -2,6 +2,8 @@
 
 #include "split.hh"
 
+namespace vick {
+
 std::vector<std::string> split(const std::string& str, char delim)
 {
     if(str.size() == 0) return {};
@@ -13,4 +15,6 @@ std::vector<std::string> split(const std::string& str, char delim)
     }
     res.push_back(str.substr(fir, itr - fir));
     return res;
+}
+
 }

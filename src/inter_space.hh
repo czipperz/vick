@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace vick {
+
 /*!
  * \file inter_space.hh
  * \brief Defines the inter_space() function.
@@ -14,5 +16,7 @@
  * element.
  */
 std::string inter_space(const std::vector<std::string>& vec);
+
+}
 
 #endif

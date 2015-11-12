@@ -1,6 +1,8 @@
 #include "inter_space.hh"
 #include "catch.hpp"
 
+using namespace vick;
+
 TEST_CASE("Test that inter_space works","[inter_space]") {
     std::vector<std::string> vec;
     vec.push_back("first");
