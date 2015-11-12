@@ -1,24 +1,20 @@
 #include <ncurses.h>
 
-// ensure that configuration variables are exported properly
 #include "configuration.hh"
 #include "key_aliases.hh"
 
-// ensure that the plugins are properly installed, which doesn't happen in
-// testing
-#ifndef testing
-#  include "basic_commands.hh"
-#  include "command_listeners.hh"
-#  include "mode.hh"
-#  include "../plugins/vick-move/src/move.hh"
-#  include "../plugins/vick-insert-mode/src/insert_mode.hh"
-#  include "../plugins/vick-open-line/src/open_line.hh"
-#  include "../plugins/vick-join/src/join.hh"
-#  include "../plugins/vick-find/src/find.hh"
-#  include "../plugins/vick-linear-change-manager/src/linear-change-manager.hh"
-#  include "prefix.hh"
-#  include "prefix_key.hh"
-#endif
+#include "basic_commands.hh"
+#include "command_listeners.hh"
+#include "mode.hh"
+#include "../plugins/vick-compile/src/compile.hh"
+#include "../plugins/vick-move/src/move.hh"
+#include "../plugins/vick-insert-mode/src/insert_mode.hh"
+#include "../plugins/vick-open-line/src/open_line.hh"
+#include "../plugins/vick-join/src/join.hh"
+#include "../plugins/vick-find/src/find.hh"
+#include "../plugins/vick-linear-change-manager/src/linear-change-manager.hh"
+#include "prefix.hh"
+#include "prefix_key.hh"
 
 namespace vick {
 
@@ -27,15 +23,7 @@ char QUIT_KEY = _control_g;
 int TAB_SIZE = 8;
 
 void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
-// ensure that the plugins are properly installed, which doesn't
-// happen in testing
-#ifndef testing
-    vick::linear_change_manager::push_back_change
-#else
-// if plugins not installed than do nothing
-    [](contents&, std::shared_ptr<change>) {}
-#endif
-    ;
+    vick::linear_change_manager::push_back_change;
 
 std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
 
@@ -52,9 +40,6 @@ void init_conf()
 
 void add_listeners()
 {
-// ensure that the plugins are properly installed, which doesn't happen in
-// testing
-#ifndef testing
     /* global_normal_map binds */ {
         global_normal_map['j'] = move::mvb;
         global_normal_map['k'] = move::mvd;
@@ -121,21 +106,16 @@ void add_listeners()
         // put this last as it copies by value
         global_normal_map['g'] = prefix_g;
     }
-#endif
 }
 
 void add_commands(std::map<
     std::string, std::function<boost::optional<std::shared_ptr<change> >(
                      contents&, boost::optional<int>)> >& commandMap)
 {
-// ensure that the plugins are properly installed, which doesn't happen in
-// testing
-#ifndef testing
     commandMap["q"] = quit_command;
     commandMap["quit"] = quit_command;
     commandMap["keytest"] = key_test_command;
     commandMap["colortest"] = color_test_command;
-#endif
 }
 
 }

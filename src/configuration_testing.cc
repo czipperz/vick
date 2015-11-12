@@ -1,0 +1,18 @@
+#include "configuration.hh"
+
+namespace vick {
+
+char QUIT_KEY = 0;
+int TAB_SIZE = 0;
+void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) = 0;
+std::string DELIMINATORS = "";
+
+bool use_colors() {return true;}
+void init_conf() {}
+void add_listeners() {}
+void add_commands(
+    std::map<std::string,
+             std::function<boost::optional<std::shared_ptr<change> >(
+                 contents&, boost::optional<int>)> >&) {}
+
+}

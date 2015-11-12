@@ -44,7 +44,13 @@ testfiles = ${TO}/inter_space_tests.o        \
             ${TO}/visual_tests.o             \
             ${TO}/split_tests.o              \
 
-all: ${files} $O/main.o $O/configuration.o
+ifeq (${testing},)
+config_all = $O/configuration.o
+else
+config_all = $O/configuration_testing.o
+endif
+
+all: ${files} ${config_all} $O/main.o
 	@mkdir -p plugins
 	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do          \
              cd $$dir;                                                          \
@@ -90,7 +96,7 @@ doc:
         doxygen Doxyfile.$$; \
         rm Doxyfile.$$)
 
-test: ${files} ${testfiles} ${TO}/test_main.o
+test: ${files} ${testfiles} ${TO}/test_main.o $O/configuration_testing.o
 	@mkdir -p plugins
 	@for dir in `find plugins -maxdepth 1 -mindepth 1 -type d`; do \
              cd $$dir; \
@@ -98,7 +104,7 @@ test: ${files} ${testfiles} ${TO}/test_main.o
 		  LDFLAGS='`find ../../$O -type f -not \( -name main.o -o -name configuration.o \)` ../../${TO}/test_main.o ${LDFLAGS}' \
                || exit $$!; cd ../..; \
         done
-	${CXX} -o ${TO}/out $^ ${plugins_o} ${CFLAGS} $S/configuration.cc -Dtesting ${LDFLAGS}
+	${CXX} -o ${TO}/out $^ ${plugins_o} ${CFLAGS} ${LDFLAGS}
 	./${TO}/out
 
 tags:
@@ -119,14 +125,14 @@ regen:
              | bash \
              | cat > newMakefile
 	@for file in $$(find $S -name '*.cc'); do \
-             ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
+             ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
-             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
+             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
         done
 	@for file in $$(find $T -name '*.cc'); do \
-             ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} ${Dtesting} | perl -pe 's|^([^ ].*)|\$${TO}/$$1|' >> newMakefile; \
+             ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$${TO}/$$1|' >> newMakefile; \
              echo '	@mkdir -p $${TO} plugins' >> newMakefile; \
-             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh} ${Dtesting}' >> newMakefile; \
+             echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
         done
 	mv newMakefile Makefile
 
