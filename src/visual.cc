@@ -9,8 +9,8 @@ int from_visual(const std::string& cont, int x) {
     int count = 0,
         til = 0;
     int numTab = 0;
-    for(unsigned int i = 0; i < cont.length(); i++) {
-        unsigned int len;
+    for(size_t i = 0; i < cont.length(); i++) {
+        size_t len;
         if(cont[i] == '\t') {
             len = TAB_SIZE - 1 - til;
             til = 0;
