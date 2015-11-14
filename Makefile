@@ -44,10 +44,16 @@ testfiles = ${TO}/inter_space_tests.o        \
             ${TO}/visual_tests.o             \
             ${TO}/split_tests.o              \
 
+# make all testing fix
 ifeq (${testing},)
 config_all = $O/configuration.o
 else
 config_all = $O/configuration_testing.o
+endif
+
+# make regen testing fix
+ifneq (${testing},)
+notconfiguration = -not -name configuration.cc
 endif
 
 all: ${files} ${config_all} $O/main.o
@@ -124,7 +130,7 @@ regen:
              | xargs printf 'head -n%s Makefile\n' \
              | bash \
              | cat > newMakefile
-	@for file in $$(find $S -name '*.cc'); do \
+	@for file in $$(find $S -name '*.cc' ${notconfiguration}); do \
              ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
