@@ -3,7 +3,7 @@
 namespace vick {
 
 char QUIT_KEY = 0;
-int TAB_SIZE = 0;
+int TAB_SIZE = 1;
 void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) = 0;
 std::string DELIMINATORS = "";
 
