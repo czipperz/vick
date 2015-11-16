@@ -1,20 +1,24 @@
 #include <ncurses.h>
 #include "contents.hh"
+#include "hooks.hh"
 
 namespace vick {
 
 contents::contents(std::vector<std::string> cont, mode* buffer_mode) : buffer_mode(buffer_mode), cont(cont)
 {
     refreshmaxyx();
+    hook::proc(hook::contents_created, *this);
 }
 contents::contents(mode* buffer_mode) : buffer_mode(buffer_mode), cont(std::vector<std::string>())
 {
     refreshmaxyx();
+    hook::proc(hook::contents_created, *this);
 }
 contents::contents(move_t y, unsigned long x, mode* buffer_mode)
     : buffer_mode(buffer_mode), cont(std::vector<std::string>()), y(y), x(x)
 {
     refreshmaxyx();
+    hook::proc(hook::contents_created, *this);
 }
 
 bool contents::operator()(char ch) const
@@ -24,6 +28,7 @@ bool contents::operator()(char ch) const
 
 contents::~contents()
 {
+    hook::proc(hook::contents_deleted, *this);
     if (delete_mode) delete buffer_mode;
 }
 contents::contents(const contents& other)
