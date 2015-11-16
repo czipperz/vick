@@ -7,7 +7,7 @@ plugins_hh = `[ "$$(ls plugins)" ] && \
               [ "$$(find plugins -name src -type d)" ] && \
                  find plugins -name src -type d \
                    | xargs -n 1 printf "-I%s\n"` -Isrc
-CFLAGS=-std=c++11 \
+CFLAGS=-std=c++11 -g \
        -Wold-style-cast -Wnon-virtual-dtor -Wnarrowing \
        -Wdelete-non-virtual-dtor -Wctor-dtor-privacy \
        -Woverloaded-virtual -Wsign-promo
