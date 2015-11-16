@@ -25,7 +25,9 @@ int TAB_SIZE = 8;
 void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
     vick::linear_change_manager::push_back_change;
 
-std::string DELIMINATORS = "!@#$%^&*()-_=+[]{}\\|;:'\",.<>/?`~";
+// I personally find _ an annoying deliminator as it doesn't split
+// variables / tokens in many languages.
+std::string DELIMINATORS = "!@#$%^&*()-"/*_*/"=+[]{}\\|;:'\",.<>/?`~";
 
 bool use_colors()
 {
