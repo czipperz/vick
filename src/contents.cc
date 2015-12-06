@@ -14,7 +14,7 @@ contents::contents(mode* buffer_mode) : buffer_mode(buffer_mode), cont(std::vect
     refreshmaxyx();
     hook::proc(hook::contents_created, *this);
 }
-contents::contents(move_t y, unsigned long x, mode* buffer_mode)
+contents::contents(move_t y, move_t x, mode* buffer_mode)
     : buffer_mode(buffer_mode), cont(std::vector<std::string>()), y(y), x(x)
 {
     refreshmaxyx();
