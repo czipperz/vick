@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#include "open_file.hh"
+#include "file_contents.hh"
 #include "configuration.hh"
 #include "contents.hh"
 #include "hooks.hh"
@@ -13,10 +15,13 @@ namespace vick {
 
 static contents cont;
 
-void init(const std::vector<std::string>& vec, bool windows)
+void init(int argc, char** argv)
 {
-    cont = contents(vec);
-    cont.windows_file_endings = windows;
+    if (argc) {
+        open_file(cont, *argv);
+    } else {
+        cont.push_back("");
+    }
     print_contents(cont);
 }
 

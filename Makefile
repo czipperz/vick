@@ -33,6 +33,7 @@ files=$O/basic_commands.o     \
       $O/inter_space.o        \
       $O/key_listeners.o      \
       $O/mode.o               \
+      $O/open_file.o          \
       $O/prefix.o             \
       $O/prefix_key.o         \
       $O/prompt.o             \

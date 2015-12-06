@@ -15,7 +15,7 @@ namespace vick {
 /*!
  * \brief Sets up the editor initally and calls loop().
  */
-void init(const std::vector<std::string>&, bool windows);
+void init(int argc, char** argv);
 /*!
  * \brief Returns the contents where the cursor currently is
  */
