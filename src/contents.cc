@@ -70,7 +70,7 @@ contents& contents::operator=(contents&& other)
     if (this == &other) return *this;
     if (delete_mode && buffer_mode) delete buffer_mode;
     buffer_mode = other.buffer_mode;
-    cont = other.cont;
+    cont = std::move(other.cont);
     y = other.y;
     x = other.x;
     desired_x = other.desired_x;
@@ -80,7 +80,7 @@ contents& contents::operator=(contents&& other)
     waiting_for_desired = other.waiting_for_desired;
     refresh = other.refresh;
     delete_mode = other.delete_mode;
-    changes = other.changes;
+    changes = std::move(other.changes);
     return *this;
 }
 
