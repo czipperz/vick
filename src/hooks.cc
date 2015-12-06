@@ -3,30 +3,34 @@
 #include "hooks.hh"
 
 namespace vick {
+namespace hook {
 
-hook hook_save = gen_hook();
-hook hook_enter_insert_mode = gen_hook();
-hook hook_exit_insert_mode = gen_hook();
-hook hook_refresh = gen_hook();
-hook hook_mode_enter = gen_hook();
+hook_t save = gen();
+hook_t refresh = gen();
+hook_t mode_enter = gen();
+hook_t contents_created = gen();
+hook_t contents_deleted = gen();
 
-hook gen_hook()
+hook_t gen()
 {
-    static hook n = 0;
+    static hook_t n = 0;
     return n++;
 }
 
-static std::map<hook, std::vector<void (*)()> > hooks;
+static std::map<hook_t, std::vector<void (*)(contents&)> > hooks;
 
-void proc_hook(hook hook)
+void proc(hook_t hook, contents& contents)
 {
-    auto& x = hooks[hook];
-    for (auto& i : x) i();
+    try {
+        auto& x = hooks.at(hook);
+        for (auto& i : x) i(contents);
+    } catch (const std::out_of_range&) {}
 }
 
-void add_hook(hook hook, void (*val)())
+void add(hook_t hook, void (*val)(contents&))
 {
     hooks[hook].push_back(val);
 }
 
+}
 }

@@ -1,6 +1,8 @@
 #ifndef HEADER_GUARD_HOOKS_H
 #define HEADER_GUARD_HOOKS_H
 
+#include "contents.hh"
+
 namespace vick {
 
 /*!
@@ -18,26 +20,28 @@ namespace vick {
  * \brief Distinguishes normal <code>unsigned int</code>s from being confused as
  * hooks.
  */
-using hook = unsigned int;
+using hook_t = unsigned int;
 
-extern hook hook_save;
-extern hook hook_enter_insert_mode;
-extern hook hook_exit_insert_mode;
-extern hook hook_refresh;
-extern hook hook_mode_enter;
+namespace hook {
+
+extern hook_t save;
+extern hook_t refresh;
+extern hook_t mode_enter;
+extern hook_t contents_created;
+extern hook_t contents_deleted;
 
 /*!
  * \brief Generates a unique hook id
  *
  * This id is made at runtime and is <i>not</i> thread safe.
  */
-hook gen_hook();
+hook_t gen();
 /*!
  * \brief Calls all the functions associated to the hook given
  *
  * To associate a function with a hook use add_hook()
  */
-void proc_hook(hook);
+void proc(hook_t, contents&);
 /*!
  * \brief Associates the function given with a hook
  *
@@ -48,8 +52,9 @@ void proc_hook(hook);
  * There can be multiple functions for a certain hook.  They will be
  * called in the order they were added with add_hook()
  */
-void add_hook(hook, void (*)());
+void add(hook_t, void (*)(contents&));
 
+}
 }
 
 #endif
