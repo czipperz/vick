@@ -42,13 +42,13 @@ void print_contents(contents& contents)
     }
 
     clear();
-    int y = 0, fin_y, fin_x; // if none set then random!
+    move_t y = 0, fin_y, fin_x; // if none set then random!
 
     for (auto i = contents.y_offset;
          i < contents.cont.size() && i < contents.max_y - 1 + contents.y_offset;
          i++) {
 
-        unsigned int x = 0;
+        move_t x = 0;
         const std::string& line = contents.cont[i];
 
         if (line.begin() == line.end()) {
