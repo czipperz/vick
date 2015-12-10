@@ -126,23 +126,29 @@ tags:
 
 regen:
 	@mkdir -p plugins
-	grep -n '######################################################################' Makefile \
+	@printf 'Making a copy of Makefile... '
+	@grep -n '######################################################################' Makefile \
              | tail -n 1 \
              | perl -pe 's/(\d+):.*/$$1/' \
              | xargs printf 'head -n%s Makefile\n' \
              | bash \
              | cat > newMakefile
+	@echo 'done.'
+	@printf 'Registering files in %s... ' '$S/'
 	@for file in $$(find $S -name '*.cc' ${notconfiguration}); do \
              ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$$O/$$1|' >> newMakefile; \
              echo '	@mkdir -p $$O plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
         done
+	@echo 'done.'
+	@printf 'Registering files in %s... ' '$T/'
 	@for file in $$(find $T -name '*.cc'); do \
              ${CXX} -MM -std=c++11 $$file -Isrc ${plugins_hh} | perl -pe 's|^([^ ].*)|\$${TO}/$$1|' >> newMakefile; \
              echo '	@mkdir -p $${TO} plugins' >> newMakefile; \
              echo '	$${CXX} -o $$@ -c $$< $${CFLAGS} $${plugins_hh}' >> newMakefile; \
         done
-	mv newMakefile Makefile
+	@echo 'done.'
+	@mv newMakefile Makefile
 
 ######################################################################
 # Everything past and including this will be deleted by ``make regen``
