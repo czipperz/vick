@@ -39,6 +39,7 @@ files=$O/basic_commands.o     \
       $O/prefix_key.o         \
       $O/prompt.o             \
       $O/show_message.o       \
+      $O/signals.o            \
       $O/split.o              \
       $O/visual.o             \
 
