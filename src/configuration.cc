@@ -65,6 +65,8 @@ void add_listeners()
         global_normal_map['0'] = move::mvsot;
         global_normal_map['$'] = move::mveol;
 
+        global_normal_map['%'] = move::mvmatch;
+
         global_normal_map['|'] = move::mvcol;
         global_normal_map['\\'] = move::mvline;
 
