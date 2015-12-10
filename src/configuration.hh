@@ -62,6 +62,22 @@ void add_commands(std::map<
 extern std::string DELIMINATORS;
 
 /*!
+ * \brief Characters that match with one another
+ *
+ * These are used in the `mvmatch()` function (as of now).  They
+ * distiguish what characters should match with another.  For example,
+ * to have `{` match with `}` and `(` match with `)` <i>only</i>, then
+ * use:
+ *
+ * \code{.cpp}
+ * MATCHES = "{}()";
+ * \endcode
+ *
+ * in your configuration.cc file.
+ */
+extern std::string MATCHES;
+
+/*!
  * \brief This method is called at the very beginning of the editor,
  * after ncurses has started but before even buffer is loaded
  */

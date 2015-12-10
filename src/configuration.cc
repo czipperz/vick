@@ -29,6 +29,8 @@ void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
 // variables / tokens in many languages.
 std::string DELIMINATORS = "!@#$%^&*()-"/*_*/"=+[]{}\\|;:'\",.<>/?`~";
 
+std::string MATCHES = "()[]{}";
+
 bool use_colors()
 {
     static const constexpr bool use_colors = true;
