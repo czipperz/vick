@@ -40,7 +40,7 @@ hook_t gen();
 /*!
  * \brief Calls all the functions associated to the hook given
  *
- * To associate a function with a hook use add_hook()
+ * To associate a function with a hook use add()
  */
 void proc(hook_t, contents&);
 /*!
@@ -51,7 +51,7 @@ void proc(hook_t, contents&);
  * with.
  *
  * There can be multiple functions for a certain hook.  They will be
- * called in the order they were added with add_hook()
+ * called in the order they were added with add()
  */
 void add(hook_t, void (*)(contents&));
 
