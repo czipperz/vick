@@ -27,6 +27,7 @@ namespace hook {
 extern hook_t save;
 extern hook_t refresh;
 extern hook_t mode_enter;
+extern hook_t open_file;
 extern hook_t contents_created;
 extern hook_t contents_deleted;
 

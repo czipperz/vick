@@ -8,6 +8,7 @@ namespace hook {
 hook_t save = gen();
 hook_t refresh = gen();
 hook_t mode_enter = gen();
+hook_t open_file = gen();
 hook_t contents_created = gen();
 hook_t contents_deleted = gen();
 

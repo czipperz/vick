@@ -1,5 +1,6 @@
 #include <fstream>
 
+#include "hooks.hh"
 #include "open_file.hh"
 #include "prompt.hh"
 
@@ -53,6 +54,9 @@ open_file(contents& cont, std::string file)
     }
     else
         cont.cont.push_back("");
+
+    hook::proc(hook::open_file, cont);
+
     return boost::optional<std::shared_ptr<change> >(
         std::make_shared<full_diff>(std::move(before), cont));
 }
