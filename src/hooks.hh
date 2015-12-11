@@ -37,12 +37,14 @@ extern hook_t contents_deleted;
  * This id is made at runtime and is <i>not</i> thread safe.
  */
 hook_t gen();
+
 /*!
  * \brief Calls all the functions associated to the hook given
  *
  * To associate a function with a hook use add()
  */
 void proc(hook_t, contents&);
+
 /*!
  * \brief Associates the function given with a hook
  *
