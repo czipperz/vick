@@ -49,7 +49,7 @@ void print_contents(contents& contents)
         move_t x = 0;
         const std::string& line = contents.cont[i];
 
-        if (line.begin() == line.end()) {
+        if (line.empty()) {
             if (contents.y == i && contents.x == 0) {
                 fin_y = y;
                 fin_x = x;
