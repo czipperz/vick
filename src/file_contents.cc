@@ -32,13 +32,11 @@ contents& get_contents()
 
 void print_contents(contents& contents)
 {
-    if (contents.y - contents.y_offset >= contents.max_y - 1) {
-        contents.y_offset = contents.y - contents.y_offset + 1;
-        show_message("hi");
+    if (contents.y >= contents.y_offset + contents.max_y - 2) {
+        contents.y_offset = contents.y - contents.max_y + 2;
     }
     if (contents.y < contents.y_offset) {
         contents.y_offset = contents.y;
-        show_message("bye");
     }
 
     clear();
