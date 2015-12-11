@@ -15,6 +15,7 @@
 #include "../plugins/vick-linear-change-manager/src/linear-change-manager.hh"
 #include "prefix.hh"
 #include "prefix_key.hh"
+#include "open_file.hh"
 
 namespace vick {
 
@@ -122,6 +123,8 @@ void add_commands(std::map<
     commandMap["quit"] = quit_command;
     commandMap["keytest"] = key_test_command;
     commandMap["colortest"] = color_test_command;
+    commandMap["o"] = open_file_i;
+    commandMap["open"] = open_file_i;
 }
 
 }

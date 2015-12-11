@@ -1,4 +1,5 @@
 #include <fstream>
+#include <ncurses.h>
 
 #include "hooks.hh"
 #include "open_file.hh"
@@ -22,6 +23,15 @@ struct full_diff : public change {
         return std::make_shared<full_diff>(cont, n);
     }
 };
+
+boost::optional<std::shared_ptr<change> >
+open_file_i(contents& cont, boost::optional<int>) {
+    attron(COLOR_PAIR(1));
+    auto opt = prompt("File to open: ");
+    attroff(COLOR_PAIR(1));
+    if(not opt) return boost::none;
+    return open_file(cont, *opt);
+}
 
 boost::optional<std::shared_ptr<change> >
 open_file(contents& cont, std::string file)
