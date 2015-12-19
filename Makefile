@@ -10,7 +10,7 @@ plugins_hh = `[ "$$(ls plugins)" ] && \
 CFLAGS=-std=c++11 -g \
        -Wold-style-cast -Wnon-virtual-dtor -Wnarrowing \
        -Wdelete-non-virtual-dtor -Wctor-dtor-privacy \
-       -Woverloaded-virtual -Wsign-promo
+       -Woverloaded-virtual -Wsign-promo -Wall
 LDFLAGS=-lboost_regex -lncurses -lpthread
 O=out
 S=src
