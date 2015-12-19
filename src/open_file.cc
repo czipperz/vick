@@ -33,6 +33,42 @@ open_file_i(contents& cont, boost::optional<int>) {
     return open_file(cont, *opt);
 }
 
+contents open_file(std::string file)
+{
+    contents cont;
+    bool& windows = cont.windows_file_endings;
+    bool asked = false;
+
+    std::string line;
+    std::ifstream myfile(file);
+
+    if (std::getline(myfile, line)) {
+        if (not line.empty() and line.back() == 13) {
+            line.pop_back();
+            windows = true;
+        }
+        cont.cont.push_back(line);
+        while (std::getline(myfile, line)) {
+            if (not line.empty() and line.back() == 13) {
+                if (not windows and not asked) {
+                    asked = true;
+                    windows = prompt_yes_no("Windows file endings "
+                                            "detected, use them when "
+                                            "saving? ");
+                }
+                line.pop_back();
+            }
+            cont.cont.push_back(line);
+        }
+    }
+    else
+        cont.cont.push_back("");
+
+    hook::proc(hook::open_file, cont);
+
+    return cont;
+}
+
 boost::optional<std::shared_ptr<change> >
 open_file(contents& cont, std::string file)
 {
