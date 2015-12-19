@@ -75,10 +75,12 @@ open_file(contents& cont, std::string file)
     contents before = cont;
     cont.y = 0;
     cont.x = 0;
+    cont.cont.clear();
     bool& windows = cont.windows_file_endings;
     bool asked = false;
     std::string line;
     std::ifstream myfile(file);
+
     if (std::getline(myfile, line)) {
         if (not line.empty() and line.back() == 13) {
             line.pop_back();
