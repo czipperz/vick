@@ -99,10 +99,12 @@ class contents {
      */
     explicit contents(std::vector<std::string> cont = std::vector<std::string>(),
              mode* buffer_mode = &fundamental_mode);
+
     /*!
      * Constructs a contents object
      */
     explicit contents(mode* buffer_mode);
+
     /*!
      * Constructs a contents object
      */
@@ -122,6 +124,7 @@ class contents {
      * \see delete_mode
      */
     ~contents();
+
     /*!
      * \brief Constructs this contents object as a copy of the other
      * contents object.
@@ -129,11 +132,13 @@ class contents {
      * This forces the private mode member to make a deep copy.
      */
     contents(const contents&);
+
     /*!
      * \brief Constructs this contents object as a copy of the other
      * contents object.
      */
     contents(contents&&);
+
     /*!
      * \brief Constructs this contents object as a copy of the other
      * contents object.
@@ -141,6 +146,7 @@ class contents {
      * This forces the private mode member to make a deep copy.
      */
     contents& operator=(const contents&);
+
     /*!
      * \brief Constructs this contents object as a copy of the other
      * contents object.
