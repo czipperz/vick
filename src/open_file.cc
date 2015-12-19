@@ -105,6 +105,7 @@ open_file(contents& cont, std::string file)
 
     hook::proc(hook::open_file, cont);
 
+    if(before.cont == cont.cont) return boost::none;
     return boost::optional<std::shared_ptr<change> >(
         std::make_shared<full_diff>(std::move(before), cont));
 }
