@@ -24,13 +24,13 @@ class contents;
  * A prefix key is one that presents a multitude of different options
  */
 class prefix {
-    private:
+private:
     std::map < char, std::function < boost::optional< std::shared_ptr<change> >
                                      ( contents&, boost::optional<int> ) > > map;
     /*! Used exclusively for function lookup failures (unbound keys) */
     std::string message;
 
-    public:
+public:
     /*!
      * \param message The message to display when a lookup failure
      * occures.  This will happen when the key they typed was unbound.

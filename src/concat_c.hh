@@ -35,7 +35,7 @@ struct concat_c : public change {
         return std::make_shared<concat_c>(n);
     }
 
-  private:
+private:
     std::vector<std::shared_ptr<change> > changes;
 };
 

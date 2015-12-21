@@ -41,14 +41,13 @@ extern std::map < char, std::function < boost::optional< std::shared_ptr<change>
  * interpret them as commands.
  */
 class mode {
-  private:
+private:
     std::string name;
     // true = has binding
     bool (*handle)(char);
     int unique_id;
 
-
-  public:
+public:
     /*!
      * \param name Do not put "mode" in your name, for example input
      * "Fundamental".

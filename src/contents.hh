@@ -36,7 +36,7 @@ using move_ts = long;
  * \brief Defines all the information about the buffer.
  */
 class contents {
-  public:
+public:
     /*!
      * \brief The type of file the buffer is.
      *
