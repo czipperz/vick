@@ -141,7 +141,7 @@ public:
      * \brief Constructs this contents object as a copy of the other
      * contents object.
      */
-    contents(contents&&);
+    contents(contents&&) = default;
 
     /*!
      * \brief Constructs this contents object as a copy of the other

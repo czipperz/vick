@@ -42,14 +42,7 @@ contents::contents(const contents& other)
       delete_mode(other.delete_mode)
 {
 }
-contents::contents(contents&& other)
-    : buffer_mode(other.buffer_mode), cont(other.cont), changes(other.changes), y(other.y),
-      x(other.x), desired_x(other.desired_x), y_offset(other.y_offset),
-      max_y(other.max_y), max_x(other.max_x),
-      waiting_for_desired(other.waiting_for_desired), refresh(other.refresh),
-      delete_mode(other.delete_mode)
-{
-}
+
 contents& contents::operator=(const contents& other)
 {
     if (this == &other) return *this;
