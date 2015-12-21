@@ -43,20 +43,24 @@ class contents {
      * Default mode is fundamental;
      */
     mode* buffer_mode;
+
     /*!
      * \brief The literal contents of the buffer
      */
     std::vector<std::string> cont;
+
     /*!
      * \brief The list of changes to the buffer.  This is public so
      * that treed-undo (a la Emacs) can be implemented the same as
      * linear is.
      */
     std::vector<std::shared_ptr<change> > changes;
+
     /*!
      * \brief The current change the buffer is in
      */
     size_t changes_i = 0;
+
     move_t
         y = 0 /*!< \brief The y (vertical) position in the buffer. */,
         x = 0 /*!< \brief The x (horizontal) position in the buffer. */,

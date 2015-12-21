@@ -9,11 +9,13 @@ contents::contents(std::vector<std::string> cont, mode* buffer_mode) : buffer_mo
     refreshmaxyx();
     hook::proc(hook::contents_created, *this);
 }
+
 contents::contents(mode* buffer_mode) : buffer_mode(buffer_mode), cont(std::vector<std::string>())
 {
     refreshmaxyx();
     hook::proc(hook::contents_created, *this);
 }
+
 contents::contents(move_t y, move_t x, mode* buffer_mode)
     : buffer_mode(buffer_mode), cont(std::vector<std::string>()), y(y), x(x)
 {
@@ -31,6 +33,7 @@ contents::~contents()
     hook::proc(hook::contents_deleted, *this);
     if (delete_mode) delete buffer_mode;
 }
+
 contents::contents(const contents& other)
     : buffer_mode(new mode(*other.buffer_mode)), cont(other.cont), changes(other.changes),
       y(other.y), x(other.x), desired_x(other.desired_x),
@@ -65,6 +68,7 @@ contents& contents::operator=(const contents& other)
     changes = other.changes;
     return *this;
 }
+
 contents& contents::operator=(contents&& other)
 {
     if (this == &other) return *this;

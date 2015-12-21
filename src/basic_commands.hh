@@ -15,13 +15,15 @@ namespace vick {
 /*!
  * \brief The command that signals a full editor quit.
  */
-boost::optional<std::shared_ptr<change> > quit_command(contents&,
-                                                       boost::optional<int>);
+boost::optional<std::shared_ptr<change> >
+quit_command(contents&, boost::optional<int>);
+
 /*!
  * \brief Replaces the character at point with another one prompted for.
  */
 boost::optional<std::shared_ptr<change> >
 replace_character(contents&, boost::optional<int>);
+
 /*!
  * \brief Prints the results of a number of ncurses builtin function calls.
  */
