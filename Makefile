@@ -84,6 +84,8 @@ begin:
 	cd plugins/vick-compile && make begin
 	[ -d plugins/vick-linear-change-manager ] || git clone 'https://github.com/czipperz/vick-linear-change-manager' plugins/vick-linear-change-manager
 	cd plugins/vick-linear-change-manager && make begin
+	[ -d plugins/vick-page ] || git clone 'https://github.com/czipperz/vick-page' plugins/vick-page
+	cd plugins/vick-page && make begin
 
 clean:
 	@mkdir -p plugins

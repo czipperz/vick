@@ -13,6 +13,7 @@
 #include "../plugins/vick-join/src/join.hh"
 #include "../plugins/vick-find/src/find.hh"
 #include "../plugins/vick-linear-change-manager/src/linear-change-manager.hh"
+#include "../plugins/vick-page/src/page.hh"
 #include "prefix.hh"
 #include "prefix_key.hh"
 #include "open_file.hh"
@@ -102,6 +103,11 @@ void add_listeners()
         global_normal_map[_control_r] = linear_change_manager::redo_change;
 
         global_normal_map['.'] = linear_change_manager::reapply_change;
+
+        global_normal_map[_control_b] = page::move_up_page;
+        global_normal_map[_control_f] = page::move_down_page;
+        global_normal_map[_control_u] = page::move_up_half_page;
+        global_normal_map[_control_d] = page::move_down_half_page;
     }
 
     /* Example config for prefix key */ {
@@ -112,6 +118,19 @@ void add_listeners()
 
         // put this last as it copies by value
         global_normal_map['g'] = prefix_g;
+    }
+
+    {
+        prefix prefix_z("z");
+        prefix_z.push_back('t', page::move_to_window_top);
+        prefix_z.push_back('m', page::move_to_window_middle);
+        prefix_z.push_back('b', page::move_to_window_bottom);
+
+        prefix_z.push_back('T', page::recenter_top);
+        prefix_z.push_back('M', page::recenter_middle);
+        prefix_z.push_back('B', page::recenter_bottom);
+
+        global_normal_map['z'] = prefix_z;
     }
 }
 
