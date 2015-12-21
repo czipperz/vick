@@ -140,7 +140,6 @@ void add_commands(std::map<
 {
     commandMap["q"] = quit_command;
     commandMap["quit"] = quit_command;
-    commandMap["keytest"] = key_test_command;
     commandMap["colortest"] = color_test_command;
     commandMap["o"] = open_file_i;
     commandMap["open"] = open_file_i;

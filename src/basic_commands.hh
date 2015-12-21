@@ -18,11 +18,6 @@ namespace vick {
 boost::optional<std::shared_ptr<change> > quit_command(contents&,
                                                        boost::optional<int>);
 /*!
- * \brief Switches into key_test mode.  Don't use this for anything.
- */
-boost::optional<std::shared_ptr<change> >
-key_test_command(contents&, boost::optional<int>);
-/*!
  * \brief Replaces the character at point with another one prompted for.
  */
 boost::optional<std::shared_ptr<change> >
