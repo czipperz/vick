@@ -53,7 +53,7 @@ contents::contents(contents&& other)
 contents& contents::operator=(const contents& other)
 {
     if (this == &other) return *this;
-    if (delete_mode && buffer_mode) delete buffer_mode;
+    if (delete_mode) delete buffer_mode;
     buffer_mode = new mode(*other.buffer_mode);
     cont = other.cont;
     y = other.y;
@@ -72,7 +72,7 @@ contents& contents::operator=(const contents& other)
 contents& contents::operator=(contents&& other)
 {
     if (this == &other) return *this;
-    if (delete_mode && buffer_mode) delete buffer_mode;
+    if (delete_mode) delete buffer_mode;
     buffer_mode = other.buffer_mode;
     cont = std::move(other.cont);
     y = other.y;
