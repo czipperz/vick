@@ -114,14 +114,6 @@ public:
     contents(move_t y, move_t x, mode* buffer_mode = &fundamental_mode);
 
     /*!
-     * \brief If delete_mode is true, then it will delete the private
-     * mode pointer member.
-     *
-     * \see delete_mode
-     */
-    ~contents();
-
-    /*!
      * \brief Constructs this contents object as a copy of the other
      * contents object.
      *
@@ -129,6 +121,14 @@ public:
      */
     contents(const contents&);
     contents(contents&&) = default;
+
+    /*!
+     * \brief If delete_mode is true, then it will delete the private
+     * mode pointer member.
+     *
+     * \see delete_mode
+     */
+    ~contents();
 
     /*!
      * \brief Constructs this contents object as a copy of the other
