@@ -99,14 +99,14 @@ public:
                                * print_contents method to not have
                                * undefined behavior if x is too
                                * large. */,
-        windows_file_endings = false /*!< \brief If true, then when
-                                      * saving, appends the byte 13 to
-                                      * each line.  We use this to
-                                      * maintain plugin consistency
-                                      * across platforms.  (The buffer
-                                      * is in no way affected by this
-                                      * variable)
-                                      */;
+         windows_file_endings = false /*!< \brief If true, then when
+                                       * saving, appends the byte 13 to
+                                       * each line.  We use this to
+                                       * maintain plugin consistency
+                                       * across platforms.  (The buffer
+                                       * is in no way affected by this
+                                       * variable)
+                                       */;
 
     explicit contents(std::vector<std::string> cont = std::vector<std::string>(),
                       mode* buffer_mode = &fundamental_mode);
