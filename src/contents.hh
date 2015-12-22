@@ -139,6 +139,10 @@ public:
     contents& operator=(const contents&);
     contents& operator=(contents&&);
 
+    /*!
+     * \brief Calls the private mode member's `operator()` with
+     * `*this` and the character given to this function.
+     */
     bool operator()(char);
 
     /*!
