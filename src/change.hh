@@ -59,6 +59,12 @@ struct change {
      * \brief Generates a change that will act over the new contents
      */
     virtual std::shared_ptr<change> regenerate(const contents&) const = 0;
+
+    /*!
+     * \brief Calls regenerate and then calls redo on the result and
+     * returns the regenerated change.
+     */
+    std::shared_ptr<change> regenerate_and_apply(contents& cont);
 };
 
 }
