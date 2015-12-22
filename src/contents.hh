@@ -108,28 +108,10 @@ public:
                                       * variable)
                                       */;
 
-    /*!
-     * Constructs a contents object
-     */
     explicit contents(std::vector<std::string> cont = std::vector<std::string>(),
                       mode* buffer_mode = &fundamental_mode);
-
-    /*!
-     * Constructs a contents object
-     */
     explicit contents(mode* buffer_mode);
-
-    /*!
-     * Constructs a contents object
-     */
     contents(move_t y, move_t x, mode* buffer_mode = &fundamental_mode);
-
-    /*!
-     * \brief Calls operator() on the private mode pointer member.
-     *
-     * \see mode
-     */
-    bool operator()(char) const;
 
     /*!
      * \brief If delete_mode is true, then it will delete the private
@@ -146,11 +128,6 @@ public:
      * This forces the private mode member to make a deep copy.
      */
     contents(const contents&);
-
-    /*!
-     * \brief Constructs this contents object as a copy of the other
-     * contents object.
-     */
     contents(contents&&) = default;
 
     /*!
@@ -160,12 +137,8 @@ public:
      * This forces the private mode member to make a deep copy.
      */
     contents& operator=(const contents&);
-
-    /*!
-     * \brief Constructs this contents object as a copy of the other
-     * contents object.
-     */
     contents& operator=(contents&&);
+
 
     /*!
      * \brief Updates the values of ``max_y`` and ``max_x``
