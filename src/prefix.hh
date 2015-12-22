@@ -25,8 +25,8 @@ class contents;
  */
 class prefix {
 private:
-    std::map < char, std::function < boost::optional< std::shared_ptr<change> >
-                                     ( contents&, boost::optional<int> ) > > map;
+    std::shared_ptr<std::map<char, std::function<boost::optional<std::shared_ptr<change> >
+                                                 (contents&, boost::optional<int>)> > > map;
     /*! Used exclusively for function lookup failures (unbound keys) */
     std::string message;
 
