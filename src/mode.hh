@@ -43,23 +43,27 @@ extern std::map < char, std::function < boost::optional< std::shared_ptr<change>
 class mode {
 private:
     std::string name;
-    // true = has binding
-    bool (*handle)(char);
     int unique_id;
+    std::shared_ptr<std::map<char, std::function<boost::optional<std::shared_ptr<change> >
+                                                 (contents&, boost::optional<int>)> > >
+        normal_map, insert_map;
 
 public:
     /*!
+     * \brief Constructs a managed mode object
      * \param name Do not put "mode" in your name, for example input
      * "Fundamental".
-     * \param handle The function to be called by the ``operator()(char)``
      */
-    mode(const std::string& name, bool (*handle)(char));
+    mode(const std::string& name);
+    mode(const mode&) = default;
+    mode(mode&&) = default;
 
     /*!
-     * \brief Calls the handle private member with the argument
-     * provided.
+     * \brief Checks the contents specific map, the mode specific map,
+     * then the global map for a binding that matches the character
+     * given.
      */
-    bool operator()(char) const;
+    bool operator()(contents&, char) const;
 
     /*!
      * \brief Returns the name associated with this mode object.
@@ -74,6 +78,20 @@ public:
      * \brief Compares the unique identifiers
      */
     bool operator!=(const mode&) const;
+
+    /*!
+     * \brief Binds the character given to the function in the mode
+     * specific normal map.
+     */
+    void add_to_mode_normal_map(char, std::function<boost::optional<std::shared_ptr<change> >
+                                                    (contents&, boost::optional<int>)>);
+
+    /*!
+     * \brief Binds the character given to the function in the mode
+     * specific insert map.
+     */
+    void add_to_mode_insert_map(char, std::function<boost::optional<std::shared_ptr<change> >
+                                                    (contents&, boost::optional<int>)>);
 };
 
 /*!

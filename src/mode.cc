@@ -14,15 +14,53 @@ std::map < char, std::function < boost::optional< std::shared_ptr<change> >
     global_normal_map,
     global_insert_map;
 
-mode::mode(const std::string& name, bool (*handle)(char))
+mode::mode(const std::string& name)
     : name(name)
-    , handle(handle) {
+    , normal_map(
+          std::make_shared<std::map<
+              char, std::function<boost::optional<std::shared_ptr<change> >
+                                  (contents&, boost::optional<int>)> > >())
+    , insert_map(
+          std::make_shared<std::map<
+              char, std::function<boost::optional<std::shared_ptr<change> >
+                                  (contents&, boost::optional<int>)> > >())
+{
     static int uid = 0;
     unique_id = uid++;
 }
 
-bool mode::operator()(char ch) const {
-    return handle(ch);
+bool mode::operator()(contents& cont, char ch) const
+{
+    if (ch == _resize)
+        return true;
+
+    // *b*uffer iterator
+    auto bit = cont.normal_map.find(ch);
+    if (bit == cont.normal_map.end()) {
+        // *m*ode iterator
+        auto mit = normal_map->find(ch);
+        if (mit == normal_map->end()) {
+            // *g*lobal iterator
+            auto git = global_normal_map.find(ch);
+            if (git == global_normal_map.end())
+                return false;
+
+#define mac(i)                                                                 \
+    clear_message();                                                           \
+    auto optional = i->second(cont, boost::none);                              \
+    if (optional)                                                              \
+        PUSH_BACK_CHANGE(cont, *optional)
+
+            mac(git);
+        } else {
+            mac(mit);
+        }
+    } else {
+        mac(bit);
+    }
+#undef mac
+
+    return true;
 }
 
 const std::string& mode::get_name() const {
@@ -36,18 +74,20 @@ bool mode::operator!=(const mode& other) const {
     return unique_id != other.unique_id;
 }
 
-static bool fundamental_handle(char ch) {
-    if(ch == _resize) return true;
-
-    auto it = global_normal_map.find(ch);
-    if(it == global_normal_map.end()) return false;
-
-    clear_message();
-    auto optional = it->second(get_contents(),boost::none);
-    if(optional) PUSH_BACK_CHANGE(get_contents(), *optional);
-    return true;
+void mode::add_to_mode_normal_map(
+    char ch, std::function<boost::optional<std::shared_ptr<change> >
+                           (contents&, boost::optional<int>)> fun)
+{
+    (*normal_map)[ch] = fun;
 }
 
-mode fundamental_mode("Fundamental", fundamental_handle);
+void mode::add_to_mode_insert_map(
+    char ch, std::function<boost::optional<std::shared_ptr<change> >
+                           (contents&, boost::optional<int>)> fun)
+{
+    (*insert_map)[ch] = fun;
+}
+
+mode fundamental_mode("Fundamental");
 
 }

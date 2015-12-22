@@ -23,9 +23,9 @@ contents::contents(move_t y, move_t x, mode* buffer_mode)
     hook::proc(hook::contents_created, *this);
 }
 
-bool contents::operator()(char ch) const
+bool contents::operator()(char ch)
 {
-    return (*this->buffer_mode)(ch);
+    return (*buffer_mode)(*this, ch);
 }
 
 contents::~contents()

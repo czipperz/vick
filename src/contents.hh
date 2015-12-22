@@ -37,6 +37,13 @@ using move_ts = long;
  */
 class contents {
 public:
+    std::map < char, std::function < boost::optional< std::shared_ptr<change> >
+                                     (contents&, boost::optional<int>) > >
+        normal_map /*!< \brief The contents buffer (file) specfic
+                    * normal mode character mappings. */,
+        insert_map /*!< \brief The contents buffer (file) specfic
+                    * insert mode character mappings. */;
+
     /*!
      * \brief The type of file the buffer is.
      *
