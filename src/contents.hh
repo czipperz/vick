@@ -109,10 +109,10 @@ public:
                                       */;
 
     /*!
-     * Construcs a contents object
+     * Constructs a contents object
      */
     explicit contents(std::vector<std::string> cont = std::vector<std::string>(),
-             mode* buffer_mode = &fundamental_mode);
+                      mode* buffer_mode = &fundamental_mode);
 
     /*!
      * Constructs a contents object

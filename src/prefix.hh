@@ -41,8 +41,10 @@ public:
     /*!
      * \brief Associates a character with a function.
      */
-    void push_back(char, std::function < boost::optional< std::shared_ptr<change> >
-                                         ( contents&, boost::optional<int> ) > );
+    void
+    push_back(char, std::function<boost::optional<std::shared_ptr<change> >
+                                  (contents&, boost::optional<int>)>);
+
     /*!
      * \brief Prompts for a character while displaying the message given in
      * the constructor, then calls the function associated with that
@@ -50,15 +52,17 @@ public:
      *
      * To associate a character with a function, use push_back().
      */
-    boost::optional< std::shared_ptr<change> > operator()
-        ( contents&, boost::optional<int> );
+    boost::optional<std::shared_ptr<change> >
+    operator()(contents&, boost::optional<int>);
+
     /*!
      * \brief Converts this object to a std::function.
      *
-     * operator()() will be called when operator()() is used on the created std::function object.
+     * operator()() will be called when operator()() is used on the created
+     * std::function object.
      */
-    operator std::function < boost::optional< std::shared_ptr<change> >
-                             ( contents&, boost::optional<int> ) > ();
+    operator std::function<boost::optional<std::shared_ptr<change> >
+                           (contents&, boost::optional<int>)>();
 };
 
 }

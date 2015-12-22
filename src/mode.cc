@@ -9,8 +9,8 @@
 
 namespace vick {
 
-std::map < char, std::function < boost::optional< std::shared_ptr<change> >
-                                     (contents&, boost::optional<int>) > >
+std::map<char, std::function<boost::optional<std::shared_ptr<change> >
+                             (contents&, boost::optional<int>)> >
     global_normal_map,
     global_insert_map;
 
@@ -67,10 +67,13 @@ const std::string& mode::get_name() const {
     return name;
 }
 
-bool mode::operator==(const mode& other) const {
+bool mode::operator==(const mode& other) const
+{
     return unique_id == other.unique_id;
 }
-bool mode::operator!=(const mode& other) const {
+
+bool mode::operator!=(const mode& other) const
+{
     return unique_id != other.unique_id;
 }
 

@@ -19,7 +19,7 @@ void prefix::push_back(char ch, std::function < boost::optional< std::shared_ptr
 }
 
 boost::optional< std::shared_ptr<change> >
-    prefix::operator()(contents& cont, boost::optional<int> op) {
+prefix::operator()(contents& cont, boost::optional<int> op) {
     show_message(message + "-");
     char ch = getch();
     auto it = map.find(ch);
@@ -33,14 +33,14 @@ boost::optional< std::shared_ptr<change> >
     }
 }
 
-prefix::operator std::function < boost::optional< std::shared_ptr<change> >
-                                 ( contents&, boost::optional<int> ) > () {
-    return std::function < boost::optional< std::shared_ptr<change> >
-                           ( contents&, boost::optional<int> ) >
-        ([this] (contents& cont, boost::optional<int> op)
-         {
-             return (*this)(cont,op);
-         });
+prefix::operator std::function<boost::optional<std::shared_ptr<change> >
+                               (contents&, boost::optional<int>)>()
+{
+    return std::function<boost::optional<std::shared_ptr<change> >
+                         (contents&, boost::optional<int>)>
+        ([this](contents& cont, boost::optional<int> op) {
+            return (*this)(cont, op);
+        });
 }
 
 }
