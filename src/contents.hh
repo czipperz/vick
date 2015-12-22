@@ -139,6 +139,7 @@ public:
     contents& operator=(const contents&);
     contents& operator=(contents&&);
 
+    bool operator()(char);
 
     /*!
      * \brief Updates the values of ``max_y`` and ``max_x``
