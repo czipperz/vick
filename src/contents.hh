@@ -79,9 +79,9 @@ public:
         y_offset = 0 /*!< \brief The number of lines that are not
                       * displayed (off the top) */,
         max_y /*!< \brief The vertical height the buffer has been
-               * allocated - [0, max_y) */,
+               * allocated on the screen - [0, max_y) */,
         max_x /*!< \brief The horizontal width the buffer has been
-               * allocated - [0, max_x) */;
+               * allocated on the screen - [0, max_x) */;
 
     bool waiting_for_desired = false /*!< \brief Controls if the x
                                       * value will try to adjust to
