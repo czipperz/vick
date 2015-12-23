@@ -63,10 +63,10 @@ boost::optional<std::string> prompt(const std::string& message)
     }
 }
 
-bool prompt_yn(const std::string& message)
+boost::optional<bool> prompt_yn(const std::string& message)
 {
     int b_y, b_x, x, y;
-    bool answer;
+    boost::optional<bool> answer;
     getyx(stdscr, b_y, b_x);
     getmaxyx(stdscr, y, x);
 
@@ -78,27 +78,33 @@ print:
     printw("%s[y,n] ", message.c_str());
     move(y, message.length());
 
-    switch(getch()) {
-        case 'y':
-            answer = true;
-            goto cleanup;
-        case 'n':
-            answer = false;
-            goto cleanup;
-        default:
-            goto print;
+    char ch = getch();
+    if (ch == 'y') {
+        answer = true;
+        goto cleanup;
     }
+    if (ch == 'n') {
+        answer = false;
+        goto cleanup;
+    }
+    if (ch == QUIT_KEY) {
+        answer = boost::none;
+        goto cleanup;
+    }
+    goto print;
 
 cleanup:
     move(b_y, b_x);
     return answer;
 }
 
-bool prompt_yes_no(const std::string& message)
+boost::optional<bool> prompt_yes_no(const std::string& message)
 {
-    boost::optional<std::string> opt = boost::none;
-    while(!opt || !(*opt == "yes" || *opt == "no")) {
+    boost::optional<std::string> opt;
+    while (true) {
         opt = prompt(message + "[yes,no] ");
+        if (not opt) return boost::none;
+        if (*opt == "yes" or *opt == "no") break;
     }
     return *opt == "yes";
 }

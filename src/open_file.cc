@@ -52,9 +52,10 @@ contents open_file(std::string file)
             if (not line.empty() and line.back() == 13) {
                 if (not windows and not asked) {
                     asked = true;
-                    windows = prompt_yes_no("Windows file endings "
-                                            "detected, use them when "
-                                            "saving? ");
+                    windows =
+                        repeat_remove_optional(prompt_yes_no,
+                                               "Windows file endings detected, "
+                                               "use them when saving? ");
                 }
                 line.pop_back();
             }
@@ -91,9 +92,10 @@ open_file(contents& cont, std::string file)
             if (not line.empty() and line.back() == 13) {
                 if (not windows and not asked) {
                     asked = true;
-                    windows = prompt_yes_no("Windows file endings "
-                                            "detected, use them when "
-                                            "saving? ");
+                    windows =
+                        repeat_remove_optional(prompt_yes_no,
+                                               "Windows file endings detected, "
+                                               "use them when saving? ");
                 }
                 line.pop_back();
             }

@@ -23,13 +23,26 @@ boost::optional<std::string> prompt(const std::string& message);
  * \brief Prompts the user for a message on the bottom of the screen.
  * Only allows the reading of characters `y` or `n`.
  */
-bool prompt_yn(const std::string& message);
+boost::optional<bool> prompt_yn(const std::string& message);
 
 /*!
  * \brief Prompts the user for a message on the bottom of the screen.
  * Only allows the reading of the strings `yes` or `no`.
  */
-bool prompt_yes_no(const std::string& message);
+boost::optional<bool> prompt_yes_no(const std::string& message);
+
+template<typename Fun, typename... Xs>
+auto repeat_remove_optional(Fun f, std::string prompt, Xs&&... xs)
+    -> decltype(*f(prompt, xs...))
+{
+    auto x = f(prompt, xs...);
+    if (x) return *std::move(x);
+    prompt += "(Required!) ";
+    while (true) {
+        x = f(prompt, xs...);
+        if (x) return *std::move(x);
+    }
+}
 
 }
 
