@@ -29,7 +29,7 @@ open_file_i(contents& cont, boost::optional<int>) {
     attron(COLOR_PAIR(1));
     auto opt = prompt("File to open: ");
     attroff(COLOR_PAIR(1));
-    if(not opt) return boost::none;
+    if (not opt) return boost::none;
     return open_file(cont, *opt);
 }
 
@@ -105,7 +105,7 @@ open_file(contents& cont, std::string file)
 
     hook::proc(hook::open_file, cont);
 
-    if(before.cont == cont.cont) return boost::none;
+    if (before.cont == cont.cont) return boost::none;
     return boost::optional<std::shared_ptr<change> >(
         std::make_shared<full_diff>(std::move(before), cont));
 }

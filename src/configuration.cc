@@ -36,7 +36,7 @@ std::string MATCHES = "()[]{}";
 bool use_colors()
 {
     static const constexpr bool use_colors = true;
-    return use_colors && has_colors();
+    return use_colors and has_colors();
 }
 
 void init_conf()

@@ -23,7 +23,7 @@ static void showmes() {
 }
 
 void hook_show_message() {
-    if(showing_message) {
+    if (showing_message) {
         showmes();
         showing_message = false;
     }

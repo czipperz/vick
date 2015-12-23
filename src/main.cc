@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     noecho();
     raw();
 
-    if(use_colors()) {
+    if (use_colors()) {
         start_color();
     }
 

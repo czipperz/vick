@@ -47,14 +47,17 @@ struct change {
      * coordinate
      */
     virtual bool is_overriding() = 0;
+
     /*!
      * \brief Undoes this edit
      */
     virtual void undo(contents&) = 0;
+
     /*!
      * \brief Performs this edit again (Use after an undo)
      */
     virtual void redo(contents&) = 0;
+
     /*!
      * \brief Generates a change that will act over the new contents
      */

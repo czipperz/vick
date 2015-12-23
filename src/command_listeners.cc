@@ -25,7 +25,7 @@ static std::vector<std::string> spaciate(const std::string&);
 boost::optional<std::shared_ptr<change> >
 command_executor(contents& cont, boost::optional<int> times)
 {
-    if (!fin) {
+    if (not fin) {
         add_commands(commandMap);
         fin = true;
     }
@@ -33,7 +33,7 @@ command_executor(contents& cont, boost::optional<int> times)
     attron(COLOR_PAIR(1));
     boost::optional<std::string> pr = prompt(":");
     attroff(COLOR_PAIR(1));
-    if (!pr || *pr == "") {
+    if (not pr or *pr == "") {
         clear_message();
         return boost::none;
     }
@@ -57,7 +57,7 @@ static std::vector<std::string> spaciate(const std::string& tospace)
     std::vector<std::string> spaced;
     std::string cur;
     for (unsigned int i = 0; i < tospace.length(); i++) {
-        if (tospace[i] == ' ' || tospace[i] == '\t') {
+        if (tospace[i] == ' ' or tospace[i] == '\t') {
             if (cur.length()) {
                 spaced.push_back(cur);
                 cur = "";

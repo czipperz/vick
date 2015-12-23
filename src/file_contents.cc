@@ -43,14 +43,14 @@ void print_contents(contents& contents)
     move_t y = 0, fin_y, fin_x; // if none set then random!
 
     for (auto i = contents.y_offset;
-         i < contents.cont.size() && i < contents.max_y - 1 + contents.y_offset;
+         i < contents.cont.size() and i < contents.max_y - 1 + contents.y_offset;
          i++) {
 
         move_t x = 0;
         const std::string& line = contents.cont[i];
 
         if (line.empty()) {
-            if (contents.y == i && contents.x == 0) {
+            if (contents.y == i and contents.x == 0) {
                 fin_y = y;
                 fin_x = x;
             }
@@ -75,14 +75,14 @@ void print_contents(contents& contents)
                     move(++y, x = 0);
                     addch(*it);
                 }
-                if (contents.y == i && contents.x == static_cast<move_t>(it - line.begin())) {
+                if (contents.y == i and contents.x == static_cast<move_t>(it - line.begin())) {
                     fin_y = y;
                     fin_x = x;
                 }
                 x++;
                 move(y, x);
             }
-            if (contents.y == i && contents.x >= line.size()) {
+            if (contents.y == i and contents.x >= line.size()) {
                 fin_y = y;
                 fin_x = x + (contents.is_inserting ? 0 : -1);
             }

@@ -11,13 +11,13 @@ static boost::optional< std::shared_ptr<change> > handle(contents& contents, boo
     int total = n + (op ? op.get() : 0) * 10;
     show_message(std::to_string(total) + "-");
     char c = getch();
-    while(c == prefix_key_times_ten) {
+    while (c == prefix_key_times_ten) {
         total *= 10;
         show_message(std::to_string(total) + "-");
         c = getch();
     }
     auto x = global_normal_map.find(c);
-    if(x == global_normal_map.end()) {
+    if (x == global_normal_map.end()) {
         show_message(std::string("Unbound key: ") + std::to_string(c));
         return boost::none;
     }

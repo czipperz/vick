@@ -2,8 +2,9 @@
 
 namespace vick {
 
-void bounds_check(contents& contents) {
-    if(contents.cont.size() == 0) {
+void bounds_check(contents& contents)
+{
+    if (contents.cont.size() == 0) {
         contents.cont.push_back("");
         contents.y = 0;
         contents.x = 0;

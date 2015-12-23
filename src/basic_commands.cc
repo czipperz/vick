@@ -12,8 +12,8 @@
 
 namespace vick {
 
-boost::optional<std::shared_ptr<change> > quit_command(contents&,
-                                                       boost::optional<int>)
+boost::optional<std::shared_ptr<change> >
+quit_command(contents&, boost::optional<int>)
 {
     endwin();
     exit(0);
