@@ -23,17 +23,12 @@ class contents;
  * \brief Represents a change from one \c contents to another
  *
  * The change class represents a change from one \c contents to
- * another.  It is basically a
- * \code{.cpp}
- * std::pair < std::function<void(contents&)>, std::function<void(contents&)> >
- * \endcode
- * but allows you to link two changes together using
- * \code{.cpp}
- * operator>>
- * \endcode
- *
- * You can link them together and put them in random places in the
- * undo tree/list.
+ * another.  It is an interface that allows for undoing, redoing, and
+ * regeneration of a change.  `undo` will put the contents in the
+ * state it was before the edit.  `redo` will put the contents in the
+ * state it was after the edit.  `regenerate` generates a new change
+ * at the new position in the buffer, or acting on the new buffer
+ * state that must be manually `redo`ne on the contents.
  *
  * \see contents
  */
