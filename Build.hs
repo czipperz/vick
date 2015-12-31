@@ -1,3 +1,8 @@
+{-# LANGUAGE CPP #-}
+#ifndef IS_IN_TESTING
+#define IS_IN_TESTING False
+#endif
+
 import Development.Shake
 import Development.Shake.Command
 import Development.Shake.FilePath
@@ -29,10 +34,15 @@ configFile testing = if testing then "configuration_testing" else "configuration
 main :: IO ()
 main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
   want [binary <.> exe]
+  action $ do
+    p <- doesDirectoryExist "plugins"
+    if not p then do () <- cmd $ "mkdir plugins"
+                     return ()
+      else return ()
 
   phony test $ do
-    sources <- getDir True src
-    tests <- getDir True test
+    sources <- getDir True True src
+    tests <- getDir True True test
     let srctoos dir files = [takeAllButDirectory 2 c </> dir </> dropAllButDirectory 1 c -<.> "o" | c <- files]
     let srcos = srctoos srcout sources
     let testos = srctoos testout tests
@@ -58,7 +68,7 @@ main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
     cmd "etags" files
 
   binary <.> exe %> \out -> do
-    sources <- getDir False src
+    sources <- getDir IS_IN_TESTING False src
     let srctoos dir files = [takeAllButDirectory 2 c </> dir </> dropAllButDirectory 1 c -<.> "o" | c <- files]
     let srcos = srctoos srcout sources
     need srcos
@@ -101,17 +111,17 @@ getSourceAndHeaders =
   mapM (flip getDirectoryFiles ["//*.cc","//*.hh"]) dirs >>=
   return . concat . map (\(s,l) -> map (s </>) l) . zip dirs
 
-getDir :: Bool -> FilePath -> Action [FilePath]
-getDir testing dir = do
-  dirs <- getDirectoryFiles dir ["//*.cc"]
+getDir :: Bool -> Bool -> FilePath -> Action [FilePath]
+getDir testing filterMain dir = do
+  dirs <- getDirectoryFiles dir ["//*.cc"] >>= return . map (dir </>)
   pluginDirs <- getPluginDirs dir
   plugin <- mapM (flip getDirectoryFiles ["//*.cc"]) pluginDirs
   return $ dirsFixed dirs ++ concat (map (\(s,l) -> map (s </>) l) (zip pluginDirs plugin))
-  where dirsFixed dirs = let d = map (dir </>) dirs
-                         in if dir == src then filter (src </> configFile (not testing) <.> "cc" /=)
-                                                   (if testing then filter (src  </> "main.cc" /=) d else d)
-                            else if dir == test && not testing then filter (test </> "test_main.cc" /=) d
-                                 else d
+  where dirsFixed dirs = if dir == src
+                         then filter (src </> configFile (not testing) <.> "cc" /=)
+                                     (if filterMain then filter (src </> "main.cc" /=) dirs else dirs)
+                         else if dir == test && not testing then filter (test </> "test_main.cc" /=) dirs
+                              else dirs
 
 getPluginDirs :: FilePath -> Action [FilePath]
 getPluginDirs dir =

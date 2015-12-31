@@ -19,6 +19,4 @@ before_script:
   - cabal install shake
 
 script:
-  - ./reconfigure
-  - ./make
-  - ./make test
+  - ./testing.sh
