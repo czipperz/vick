@@ -7,5 +7,12 @@ testout
 # ignore plugins
 plugins
 
+# package manager folder
+vick-package
+
 # documentation
 doc
+
+# shake
+.shake
+make

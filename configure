@@ -1,3 +1,31 @@
-#!/bin/bash
-make begin
-make regen
+#!/bin/sh
+# if this is not the first time running this script, run
+# `reconfigure` instead
+printf "Installing shake:\n\n"
+
+cabal update
+cabal install shake
+
+printf "\nBuilding:\n\n"
+./reconfigure
+
+printf "\nInstalling vick-package:\n\n"
+if [ -d vick-package ]; then
+    cd vick-package
+    git pull || exit $?
+else
+    git clone https://github.com/czipperz/vick-package \
+        || exit $?
+fi
+
+printf "\nBuilding vick-package:\n\n"
+cd vick-package
+./configure
+./make
+cd ..
+
+printf "\n\nInstalling vick suite:\n\n"
+./vick-package/vick-package vick-package/packagelist install \
+                            vick-move vick-insert-mode vick-find \
+                            vick-open-line vick-join vick-compile \
+                            vick-linear-change-manager vick-page
