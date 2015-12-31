@@ -29,6 +29,8 @@ addons:
       - ghc
 
 script:
+  - cabal update
+  - cabal install shake
   - ./reconfigure
   - ./make
   - ./make test
