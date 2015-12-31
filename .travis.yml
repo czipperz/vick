@@ -14,9 +14,11 @@ addons:
       - cabal-install
       - ghc
 
-script:
+before_script:
   - cabal update
   - cabal install shake
+
+script:
   - ./reconfigure
   - ./make
   - ./make test
