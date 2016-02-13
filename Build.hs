@@ -74,8 +74,8 @@ main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
     need srcos
     cmd cxx "-o" [out] srcos ldflags
 
-  "//" ++ testout </> "*.o" %> compile test
-  "//" ++ srcout </> "*.o" %> compile src
+  "//" ++ testout </> "[^.~]*.o" %> compile test
+  "//" ++ srcout </> "[^.~]*.o" %> compile src
 
 compile :: FilePath -> FilePath -> Action ()
 compile dir out = do
