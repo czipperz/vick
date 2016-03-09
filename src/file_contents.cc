@@ -22,6 +22,7 @@ void init(int argc, char** argv)
     } else {
         cont.push_back("");
     }
+    get_contents().refreshmaxyx();
     print_contents(cont);
 }
 
