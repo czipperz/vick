@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <string>
 #include <vector>
+#include <locale>
 
 #include "open_file.hh"
 #include "file_contents.hh"
@@ -31,20 +32,59 @@ contents& get_contents()
     return cont;
 }
 
+void get_window_dimensions(const contents& contents, move_t& firsty, move_t& lasty, move_t& lastx)
+{
+    const std::locale locale;
+    move_t x;
+    move_t y = 0;
+
+    firsty = std::min(contents.y_offset, contents.y);
+
+top:
+    auto line = std::begin(contents.cont) + firsty;
+
+    const auto endline = std::end(contents.cont);
+    for (; line != endline; ++line) {
+        lastx = 0; x = 0;
+
+        const auto end = std::end(*line);
+        for (auto ch = std::begin(*line); ch != end; ++ch) {
+
+            lastx++;
+            // moves forward based on character at point
+            x += char_size(*ch, x, locale);
+            if (x > contents.max_x) {
+                x -= contents.max_x;
+#define yOutOfBounds if (++y > contents.max_y - 2) goto end
+                yOutOfBounds;
+            }
+        }
+
+        // at end so that lastx is set correctly for the line
+        yOutOfBounds;
+#undef yOutOfBounds
+    }
+    y--;
+end:
+    // if (lastx != 0) lastx--;
+    lasty = std::distance(std::begin(contents.cont), line);
+
+    if (contents.y > lasty) {
+        firsty += contents.y - lasty;
+        // goto top;
+    }
+}
+
 void print_contents(contents& contents)
 {
-    if (contents.y >= contents.y_offset + contents.max_y - 2) {
-        contents.y_offset = contents.y - contents.max_y + 2;
-    }
-    if (contents.y < contents.y_offset) {
-        contents.y_offset = contents.y;
-    }
-
     clear();
     move_t y = 0, fin_y, fin_x; // if none set then random!
+    move_t lasty, lastx;
 
-    for (auto i = contents.y_offset;
-         i < contents.cont.size() and i < contents.max_y - 1 + contents.y_offset;
+    get_window_dimensions(contents, contents.y_offset, lasty, lastx);
+
+    for (auto i = contents.y_offset; i < contents.cont.size() and
+                          i < contents.max_y - 1 + contents.y_offset;
          i++) {
 
         move_t x = 0;
@@ -56,32 +96,19 @@ void print_contents(contents& contents)
                 fin_x = x;
             }
         } else {
-            int til = 0;
             for (auto it = line.begin(); it < line.end(); it++) {
-                if (*it == '\t') {
-                    x += TAB_SIZE - til - 1;
-                    if (x >= contents.max_x) {
-                        x = -1;
-                        y++;
-                    }
-                    move(y, x);
-                    til = 0;
-                } else {
-                    addch(*it);
-                    til++;
-                    til %= TAB_SIZE;
+                x += char_size(*it, x, std::locale());
+                addch(*it);
+                if (x >= contents.max_x) {
+                    x = 0;
+                    y++;
                 }
-                if (x == contents.max_x) {
-                    til = 0;
-                    move(++y, x = 0);
-                    addch(*it);
-                }
-                if (contents.y == i and contents.x == static_cast<move_t>(it - line.begin())) {
-                    fin_y = y;
-                    fin_x = x;
-                }
-                x++;
                 move(y, x);
+                if (contents.y == i and
+                    contents.x == static_cast<move_t>(it - line.begin())) {
+                    fin_y = y;
+                    fin_x = x - 1;
+                }
             }
             if (contents.y == i and contents.x >= line.size()) {
                 fin_y = y;
@@ -93,6 +120,12 @@ void print_contents(contents& contents)
     // contents.y, to_visual(contents.cont[contents.y],contents.x)
     move(fin_y, fin_x);
     hook::proc(hook::refresh, contents);
+    show_message(std::string("firsty: ") + std::to_string(contents.y_offset) + " lasty: " +
+                 std::to_string(lasty) + " lastx: " + std::to_string(lastx) +
+                 " (" + std::to_string(contents.y) + ", " +
+                 std::to_string(contents.x) + "), max_x: " +
+                 std::to_string(contents.max_x) + " changes_i: " +
+                 std::to_string(contents.changes_i));
 
     refresh();
 }
