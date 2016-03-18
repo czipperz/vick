@@ -133,6 +133,13 @@ void add_listeners()
 
         global_normal_map['z'] = prefix_z;
     }
+
+    {
+        prefix alt(std::string(1, ESCAPE));
+        alt.push_back('m', move::mvsot);
+
+        global_normal_map[ESCAPE] = alt;
+    }
 }
 
 void add_commands(std::map<
