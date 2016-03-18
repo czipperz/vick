@@ -25,6 +25,12 @@ boost::optional<std::shared_ptr<change> >
 replace_character(contents&, boost::optional<int> = boost::none);
 
 /*!
+ * \brief Removes the character at point.
+ */
+boost::optional<std::shared_ptr<change> >
+remove_character(contents&, boost::optional<int> = boost::none);
+
+/*!
  * \brief Prints the results of a number of ncurses builtin function calls.
  */
 boost::optional<std::shared_ptr<change> >

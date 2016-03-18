@@ -59,6 +59,45 @@ replace_character(contents& contents, boost::optional<int>)
     return ret;
 }
 
+struct remove_c : public change {
+    move_t y, x;
+    char o;
+    remove_c(move_t y, move_t x, char o)
+        : y(y), x(x), o(o)
+    {
+    }
+    virtual bool is_overriding() override
+    {
+        return true;
+    }
+    virtual void undo(contents& contents) override
+    {
+        contents.y = y;
+        contents.x = x;
+        contents.cont[contents.y].insert(contents.x, 1, o);
+    }
+    virtual void redo(contents& contents) override
+    {
+        contents.y = y;
+        contents.x = x;
+        contents.cont[contents.y].erase(contents.x, 1);
+    }
+    virtual std::shared_ptr<change> regenerate(const contents& contents) const
+        override
+    {
+        return std::make_shared<remove_c>(
+            contents.y, contents.x, contents.cont[contents.y][contents.x]);
+    }
+};
+
+boost::optional<std::shared_ptr<change> >
+remove_character(contents& contents, boost::optional<int>) {
+    std::shared_ptr<change> ret = std::make_shared<remove_c>(
+        contents.y, contents.x, contents.cont[contents.y][contents.x]);
+    ret->redo(contents);
+    return ret;
+}
+
 boost::optional<std::shared_ptr<change> >
 color_test_command(contents&, boost::optional<int>)
 {

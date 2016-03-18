@@ -89,6 +89,7 @@ void add_listeners()
         global_normal_map['T'] = find::move_backward_until_match_i;
 
         global_normal_map['r'] = replace_character;
+        global_normal_map['x'] = remove_character;
 
         global_normal_map['i'] = insert_mode::enter_insert_mode;
         global_normal_map['a'] = insert_mode::enter_append_mode;
