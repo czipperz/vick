@@ -31,6 +31,9 @@ ldflags = "-lboost_regex -lncurses -lpthread"
 configFile :: Bool -> String
 configFile testing = if testing then "configuration_testing" else "configuration"
 
+srctoos :: FilePath -> [FilePath] -> [FilePath]
+srctoos dir files = [takeAllButDirectory 2 c </> dir </> dropAllButDirectory 1 c -<.> "o" | c <- files]
+
 main :: IO ()
 main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
   want [binary <.> exe]
@@ -43,7 +46,6 @@ main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
   phony test $ do
     sources <- getDir True True src
     tests <- getDir True True test
-    let srctoos dir files = [takeAllButDirectory 2 c </> dir </> dropAllButDirectory 1 c -<.> "o" | c <- files]
     let srcos = srctoos srcout sources
     let testos = srctoos testout tests
     let os = srcos ++ testos
@@ -69,7 +71,6 @@ main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
 
   binary <.> exe %> \out -> do
     sources <- getDir IS_IN_TESTING False src
-    let srctoos dir files = [takeAllButDirectory 2 c </> dir </> dropAllButDirectory 1 c -<.> "o" | c <- files]
     let srcos = srctoos srcout sources
     need srcos
     cmd cxx "-o" [out] srcos ldflags
