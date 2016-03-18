@@ -14,21 +14,20 @@ class contents;
 /*!
  * \file change.hh
  *
- * \brief Defines the change class and the undo_change(),
- * redo_change(), and reapply_change() functions.
+ * \brief Defines the change class, representing a change from one
+ * `contents` to another.
  */
 
 /*!
  * \class change change.hh "../../../src/change.hh"
  * \brief Represents a change from one \c contents to another
  *
- * The change class represents a change from one \c contents to
- * another.  It is an interface that allows for undoing, redoing, and
- * regeneration of a change.  `undo` will put the contents in the
- * state it was before the edit.  `redo` will put the contents in the
- * state it was after the edit.  `regenerate` generates a new change
- * at the new position in the buffer, or acting on the new buffer
- * state that must be manually `redo`ne on the contents.
+ * It allows for virtual dispath on undoing, redoing, and regeneration
+ * of a textual edit to the buffer.  `undo` will put the contents in
+ * the state it was before the edit.  `redo` will put the contents in
+ * the state it was after the edit.  `regenerate` generates a new
+ * change at the new position in the buffer, or acting on the new
+ * buffer state that must be manually `redo`ne on the contents.
  *
  * \see contents
  */
