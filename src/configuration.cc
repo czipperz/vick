@@ -109,6 +109,8 @@ void add_listeners()
         global_normal_map[CONTROL_F] = page::move_down_page;
         global_normal_map[CONTROL_U] = page::move_up_half_page;
         global_normal_map[CONTROL_D] = page::move_down_half_page;
+
+        global_normal_map['q'] = quit_command;
     }
 
     /* Example config for prefix key */ {
