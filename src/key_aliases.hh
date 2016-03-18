@@ -3,52 +3,52 @@
 
 namespace vick {
 
-#define _control_a            1
-#define _control_b            2
-#define _control_c            3
-#define _control_d            4
-#define _control_e            5
-#define _control_f            6
-#define _control_g            7
-#define _control_h            8
-#define _control_i            9
-#define _control_j            10
-#define _control_k            11
-#define _control_l            12
-#define _control_m            _control_j /*wat*/
-#define _control_n            14
-#define _control_o            15
-#define _control_p            16
-#define _control_q            17
-#define _control_r            18
-#define _control_s            19
-#define _control_t            20
-#define _control_u            21
-#define _control_v            22
-#define _control_w            23
-#define _control_x            24
-#define _control_y            25
-#define _control_z            26
+#define CONTROL_A            1
+#define CONTROL_B            2
+#define CONTROL_C            3
+#define CONTROL_D            4
+#define CONTROL_E            5
+#define CONTROL_F            6
+#define CONTROL_G            7
+#define CONTROL_H            8
+#define CONTROL_I            9
+#define CONTROL_J            10
+#define CONTROL_K            11
+#define CONTROL_L            12
+#define CONTROL_M            CONTROL_J /*wat*/
+#define CONTROL_N            14
+#define CONTROL_O            15
+#define CONTROL_P            16
+#define CONTROL_Q            17
+#define CONTROL_R            18
+#define CONTROL_S            19
+#define CONTROL_T            20
+#define CONTROL_U            21
+#define CONTROL_V            22
+#define CONTROL_W            23
+#define CONTROL_X            24
+#define CONTROL_Y            25
+#define CONTROL_Z            26
 
-#define _control_3            _escape
-#define _control_4            _control_backslash
-#define _control_5            _control_close_square
-#define _control_6            _control_circonflex
-#define _control_7            _control_underscore
-#define _control_8            _backspace
+#define CONTROL_3            ESCAPE
+#define CONTROL_4            CONTROL_BACKSLASH
+#define CONTROL_5            CONTROL_CLOSE_SQUARe
+#define CONTROL_6            CONTROL_CIRCONFLEX
+#define CONTROL_7            CONTROL_UNDERSCORE
+#define CONTROL_8            BACKSPACE
 
-#define _escape               27
-#define _control_open_square  27
-#define _control_backslash    28
-#define _control_close_square 29
-#define _control_circonflex   30
-#define _control_tilde        _control_circonflex
-#define _control_shift_six    _control_circonflex
-#define _control_underscore   31
-#define _backspace            127
-#define _resize              -102
+#define ESCAPE               27
+#define CONTROL_OPEN_SQUARE  27
+#define CONTROL_BACKSLASH    28
+#define CONTROL_CLOSE_SQUARE 29
+#define CONTROL_CIRCONFLEX   30
+#define CONTROL_TILDE        CONTROL_CIRCONFLEX
+#define CONTROL_SHIFT_SIX    CONTROL_CIRCONFLEX
+#define CONTROL_UNDERSCORE   31
+#define BACKSPACE            127
+#define RESIZE              -102
 
-#define _control_forwardslash _control_underscore
+#define CONTROL_FORWARDSLASH CONTROL_UNDERSCORE
 
 }
 

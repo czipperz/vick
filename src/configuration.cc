@@ -20,7 +20,7 @@
 
 namespace vick {
 
-char QUIT_KEY = _control_g;
+char QUIT_KEY = CONTROL_G;
 
 int TAB_SIZE = 8;
 
@@ -100,14 +100,14 @@ void add_listeners()
         global_normal_map['J'] = join::join_two_lines;
 
         global_normal_map['u'] = linear_change_manager::undo_change;
-        global_normal_map[_control_r] = linear_change_manager::redo_change;
+        global_normal_map[CONTROL_R] = linear_change_manager::redo_change;
 
         global_normal_map['.'] = linear_change_manager::reapply_change;
 
-        global_normal_map[_control_b] = page::move_up_page;
-        global_normal_map[_control_f] = page::move_down_page;
-        global_normal_map[_control_u] = page::move_up_half_page;
-        global_normal_map[_control_d] = page::move_down_half_page;
+        global_normal_map[CONTROL_B] = page::move_up_page;
+        global_normal_map[CONTROL_F] = page::move_down_page;
+        global_normal_map[CONTROL_U] = page::move_up_half_page;
+        global_normal_map[CONTROL_D] = page::move_down_half_page;
     }
 
     /* Example config for prefix key */ {

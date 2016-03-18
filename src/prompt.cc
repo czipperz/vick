@@ -37,8 +37,8 @@ boost::optional<std::string> prompt(const std::string& message)
                 std::cout << "ERROR character: " << ERR;
                 exit(2);
                 break;
-            case _backspace:
-            case _control_h:
+            case BACKSPACE:
+            case CONTROL_H:
                 if (text.size()) text.erase(text.begin() + --x);
                 move(y, 0);
                 clrtoeol();

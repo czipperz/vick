@@ -31,7 +31,7 @@ mode::mode(const std::string& name)
 
 bool mode::operator()(contents& cont, char ch) const
 {
-    if (ch == _resize)
+    if (ch == RESIZE)
         return true;
 
     // *b*uffer iterator
