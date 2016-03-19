@@ -9,17 +9,18 @@ cabal install shake
 printf "\nBuilding:\n\n"
 ./reconfigure
 
-printf "\nInstalling vick-package:\n\n"
 if [ -d vick-package ]; then
+    printf "\nUpdating vick-package:\n\n"
     cd vick-package
     git pull || exit $?
 else
+    printf "\nInstalling vick-package:\n\n"
     git clone https://github.com/czipperz/vick-package \
         || exit $?
+    cd vick-package
 fi
 
 printf "\nBuilding vick-package:\n\n"
-cd vick-package
 ./configure
 ./make
 cd ..
