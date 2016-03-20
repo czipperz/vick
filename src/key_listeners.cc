@@ -18,8 +18,8 @@ void loop()
     add_listeners();
 
     while (true) {
-        char ch = getch();
-        bool b = get_contents()(ch);
+        const char ch = getch();
+        const bool b = get_contents()(ch);
         bool show = false;
         get_contents().refreshmaxyx();
         if (get_contents().refresh) {
