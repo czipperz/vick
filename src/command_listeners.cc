@@ -19,8 +19,6 @@ static std::map<std::string,
                 std::function<boost::optional<std::shared_ptr<change> >(
                     contents&, boost::optional<int>)> > commandMap;
 
-static std::vector<std::string> spaciate(const std::string&);
-
 boost::optional<std::shared_ptr<change> >
 command_executor(contents& cont, boost::optional<int> times)
 {
@@ -39,37 +37,13 @@ command_executor(contents& cont, boost::optional<int> times)
         clear_message();
         return boost::none;
     }
-    std::vector<std::string> args = spaciate(*pr);
-    std::string name = args[0];
-    args.erase(args.begin());
-    if (commandMap.count(name)) {
-        return commandMap[name](cont, times);
-    } else if (args.size() != 0) {
-        show_message(std::string("Unrecognized command: ") + name +
-                     " with args: " + inter_space(args));
+    auto command = commandMap.find(*pr);
+    if (command == commandMap.end()) {
+        show_message(std::string("Unrecognized command: ") + *pr);
+        return boost::none;
     } else {
-        show_message(std::string("Unrecognized command: ") + name +
-                     " with null args.");
+        return command->second(cont, times);
     }
-    return boost::none;
-}
-
-static std::vector<std::string> spaciate(const std::string& tospace)
-{
-    std::vector<std::string> spaced;
-    std::string cur;
-    for (unsigned int i = 0; i < tospace.length(); i++) {
-        if (tospace[i] == ' ' or tospace[i] == '\t') {
-            if (cur.length()) {
-                spaced.push_back(cur);
-                cur = "";
-            }
-        } else {
-            cur += tospace[i];
-        }
-    }
-    if (cur.length()) spaced.push_back(cur);
-    return spaced;
 }
 
 }
