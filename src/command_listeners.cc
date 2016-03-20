@@ -18,16 +18,18 @@ namespace vick {
 static std::map<std::string,
                 std::function<boost::optional<std::shared_ptr<change> >(
                     contents&, boost::optional<int>)> > commandMap;
-static bool fin = false;
 
 static std::vector<std::string> spaciate(const std::string&);
 
 boost::optional<std::shared_ptr<change> >
 command_executor(contents& cont, boost::optional<int> times)
 {
-    if (not fin) {
-        add_commands(commandMap);
-        fin = true;
+    {
+        static bool init = true;
+        if (init) {
+            add_commands(commandMap);
+            init = false;
+        }
     }
 
     attron(COLOR_PAIR(1));
