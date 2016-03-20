@@ -32,7 +32,8 @@ contents& get_contents()
     return cont;
 }
 
-void get_window_dimensions(const contents& contents, move_t& firsty, move_t& lasty, move_t& lastx)
+void get_window_dimensions(const contents& contents, move_t& firsty,
+                           move_t& lasty, move_t& lastx)
 {
     const std::locale locale;
     move_t x;
@@ -45,7 +46,8 @@ top:
 
     const auto endline = std::end(contents.cont);
     for (; line != endline; ++line) {
-        lastx = 0; x = 0;
+        lastx = 0;
+        x = 0;
 
         const auto end = std::end(*line);
         for (auto ch = std::begin(*line); ch != end; ++ch) {
@@ -55,7 +57,9 @@ top:
             x += char_size(*ch, x, locale);
             if (x > contents.max_x) {
                 x -= contents.max_x;
-#define yOutOfBounds if (++y > contents.max_y - 2) goto end
+#define yOutOfBounds                                                           \
+    if (++y > contents.max_y - 2)                                              \
+    goto end
                 yOutOfBounds;
             }
         }
@@ -84,7 +88,7 @@ void print_contents(contents& contents)
     get_window_dimensions(contents, contents.y_offset, lasty, lastx);
 
     for (auto i = contents.y_offset; i < contents.cont.size() and
-                          i < contents.max_y - 1 + contents.y_offset;
+                                     i < contents.max_y - 1 + contents.y_offset;
          i++) {
 
         move_t x = 0;
@@ -120,14 +124,13 @@ void print_contents(contents& contents)
     // contents.y, to_visual(contents.cont[contents.y],contents.x)
     move(fin_y, fin_x);
     hook::proc(hook::refresh, contents);
-    show_message(std::string("firsty: ") + std::to_string(contents.y_offset) + " lasty: " +
-                 std::to_string(lasty) + " lastx: " + std::to_string(lastx) +
-                 " (" + std::to_string(contents.y) + ", " +
-                 std::to_string(contents.x) + "), max_x: " +
+    show_message(std::string("firsty: ") + std::to_string(contents.y_offset) +
+                 " lasty: " + std::to_string(lasty) + " lastx: " +
+                 std::to_string(lastx) + " (" + std::to_string(contents.y) +
+                 ", " + std::to_string(contents.x) + "), max_x: " +
                  std::to_string(contents.max_x) + " changes_i: " +
                  std::to_string(contents.changes_i));
 
     refresh();
 }
-
 }

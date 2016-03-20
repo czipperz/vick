@@ -3,7 +3,8 @@
 
 using namespace vick;
 
-TEST_CASE("Test that inter_space works","[inter_space]") {
+TEST_CASE("Test that inter_space works", "[inter_space]")
+{
     std::vector<std::string> vec;
     vec.push_back("first");
     vec.push_back("second");

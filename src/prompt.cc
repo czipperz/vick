@@ -19,7 +19,8 @@ boost::optional<std::string> prompt(const std::string& message)
     getyx(stdscr, b_y, b_x);
     getmaxyx(stdscr, y, x);
 
-    --y; x = 0;
+    --y;
+    x = 0;
     move(y, x);
     clrtoeol();
     printw("%s", message.c_str());
@@ -39,7 +40,8 @@ boost::optional<std::string> prompt(const std::string& message)
                 break;
             case BACKSPACE:
             case CONTROL_H:
-                if (text.size()) text.erase(text.begin() + --x);
+                if (text.size())
+                    text.erase(text.begin() + --x);
                 move(y, 0);
                 clrtoeol();
                 for (size_t i = 0; i < message.size(); i++) {
@@ -70,7 +72,8 @@ boost::optional<bool> prompt_yn(const std::string& message)
     getyx(stdscr, b_y, b_x);
     getmaxyx(stdscr, y, x);
 
-    --y; x = 0;
+    --y;
+    x = 0;
 
 print:
     move(y, 0);
@@ -103,10 +106,12 @@ boost::optional<bool> prompt_yes_no(const std::string& message)
     boost::optional<std::string> opt;
     while (true) {
         opt = prompt(message + "[yes,no] ");
-        if (not opt) return boost::none;
-        if (*opt == "yes" or *opt == "no") break;
+        if (not opt)
+            return boost::none;
+        if (*opt == "yes")
+            return true;
+        if (*opt == "no")
+            return false;
     }
-    return *opt == "yes";
 }
-
 }

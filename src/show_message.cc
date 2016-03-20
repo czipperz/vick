@@ -1,4 +1,3 @@
-#include <cstdarg>
 #include <ncurses.h>
 #include <string>
 
@@ -9,17 +8,17 @@ extern bool showing_message;
 bool showing_message = false;
 
 static void showmes() {
-    int y,x,rows,_;
-    getyx(stdscr,y,x);
-    getmaxyx(stdscr,rows,_);
-    move(rows-1,0);
+    int y, x, rows, _;
+    getyx(stdscr, y, x);
+    getmaxyx(stdscr, rows, _);
+    move(rows - 1, 0);
 
     clrtoeol();
     attron(COLOR_PAIR(1));
     printw("%s", mes.c_str());
     attroff(COLOR_PAIR(1));
 
-    move(y,x);
+    move(y, x);
 }
 
 void hook_show_message() {

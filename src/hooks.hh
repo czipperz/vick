@@ -11,8 +11,8 @@ namespace vick {
  * \brief Defines how to hook processes in with one another so that one
  *        action will always accompany another.
  *
- * proc_hook(hook) will call all the functions added in add_hook(hook,
- *void(*)())
+ * `proc_hook(hook)` will call all the functions added in
+ * `add_hook(hook, void(*)())`
  *
  */
 

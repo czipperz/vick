@@ -23,13 +23,13 @@ struct replace_c : public change {
     move_t y, x;
     char n, o;
     replace_c(move_t y, move_t x, char n, char o)
-        : y(y), x(x), n(n), o(o)
+        : y(y)
+        , x(x)
+        , n(n)
+        , o(o)
     {
     }
-    virtual bool is_overriding() override
-    {
-        return true;
-    }
+    virtual bool is_overriding() override { return true; }
     virtual void undo(contents& contents) override
     {
         contents.y = y;
@@ -42,19 +42,21 @@ struct replace_c : public change {
         contents.x = x;
         contents.cont[contents.y][contents.x] = n;
     }
-    virtual std::shared_ptr<change> regenerate(const contents& contents) const
-        override
+    virtual std::shared_ptr<change>
+    regenerate(const contents& contents) const override
     {
-        return std::make_shared<replace_c>(
-            contents.y, contents.x, n, contents.cont[contents.y][contents.x]);
+        return std::make_shared<replace_c>(contents.y, contents.x, n,
+                                           contents
+                                               .cont[contents.y][contents.x]);
     }
 };
 
 boost::optional<std::shared_ptr<change> >
 replace_character(contents& contents, boost::optional<int>)
 {
-    std::shared_ptr<change> ret = std::make_shared<replace_c>(
-        contents.y, contents.x, getch(), contents.cont[contents.y][contents.x]);
+    std::shared_ptr<change> ret =
+        std::make_shared<replace_c>(contents.y, contents.x, getch(),
+                                    contents.cont[contents.y][contents.x]);
     ret->redo(contents);
     return ret;
 }
@@ -63,13 +65,12 @@ struct remove_c : public change {
     move_t y, x;
     char o;
     remove_c(move_t y, move_t x, char o)
-        : y(y), x(x), o(o)
+        : y(y)
+        , x(x)
+        , o(o)
     {
     }
-    virtual bool is_overriding() override
-    {
-        return true;
-    }
+    virtual bool is_overriding() override { return true; }
     virtual void undo(contents& contents) override
     {
         contents.y = y;
@@ -82,18 +83,21 @@ struct remove_c : public change {
         contents.x = x;
         contents.cont[contents.y].erase(contents.x, 1);
     }
-    virtual std::shared_ptr<change> regenerate(const contents& contents) const
-        override
+    virtual std::shared_ptr<change>
+    regenerate(const contents& contents) const override
     {
-        return std::make_shared<remove_c>(
-            contents.y, contents.x, contents.cont[contents.y][contents.x]);
+        return std::make_shared<remove_c>(contents.y, contents.x,
+                                          contents
+                                              .cont[contents.y][contents.x]);
     }
 };
 
 boost::optional<std::shared_ptr<change> >
-remove_character(contents& contents, boost::optional<int>) {
-    std::shared_ptr<change> ret = std::make_shared<remove_c>(
-        contents.y, contents.x, contents.cont[contents.y][contents.x]);
+remove_character(contents& contents, boost::optional<int>)
+{
+    std::shared_ptr<change> ret =
+        std::make_shared<remove_c>(contents.y, contents.x,
+                                   contents.cont[contents.y][contents.x]);
     ret->redo(contents);
     return ret;
 }
@@ -107,5 +111,4 @@ color_test_command(contents&, boost::optional<int>)
                  std::to_string(init_color(COLOR_RED, 700, 0, 0)) + "``");
     return boost::none;
 }
-
 }

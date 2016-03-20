@@ -25,7 +25,7 @@ extern int TAB_SIZE;
  * \brief The function to be called when an edit wants to be pushed to
  * the stack.
  */
-extern void (*PUSH_BACK_CHANGE)(contents&,std::shared_ptr<change>);
+extern void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>);
 
 /*!
  * \brief Controls whether colors are used <i>at all</i>

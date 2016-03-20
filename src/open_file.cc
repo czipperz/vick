@@ -25,7 +25,8 @@ struct full_diff : public change {
 };
 
 boost::optional<std::shared_ptr<change> >
-open_file_i(contents& cont, boost::optional<int>) {
+open_file_i(contents& cont, boost::optional<int>)
+{
     attron(COLOR_PAIR(1));
     auto opt = prompt("File to open: ");
     attroff(COLOR_PAIR(1));
@@ -61,9 +62,9 @@ contents open_file(std::string file)
             }
             cont.cont.push_back(line);
         }
-    }
-    else
+    } else {
         cont.cont.push_back("");
+    }
 
     hook::proc(hook::open_file, cont);
 

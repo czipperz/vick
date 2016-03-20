@@ -24,7 +24,8 @@ void proc(hook_t hook, contents& contents)
 {
     try {
         auto& x = hooks.at(hook);
-        for (auto& i : x) i(contents);
+        for (auto& i : x)
+            i(contents);
     } catch (const std::out_of_range&) {}
 }
 

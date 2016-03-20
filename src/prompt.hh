@@ -8,7 +8,8 @@ namespace vick {
 
 /*!
  * \file prompt.hh
- * \brief Defines the prompt function that allows you to prompt for a string using a message
+ * \brief Defines the prompt function that allows you to prompt for a
+ * string using a message
  */
 
 /*!

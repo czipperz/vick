@@ -29,7 +29,7 @@ void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
 
 // I personally find _ an annoying deliminator as it doesn't split
 // variables / tokens in many languages.
-std::string DELIMINATORS = "!@#$%^&*()-"/*_*/"=+[]{}\\|;:'\",.<>/?`~";
+std::string DELIMINATORS = "!@#$%^&*()-" /*_*/ "=+[]{}\\|;:'\",.<>/?`~";
 
 std::string MATCHES = "()[]{}";
 
@@ -39,10 +39,7 @@ bool use_colors()
     return use_colors and has_colors();
 }
 
-void init_conf()
-{
-    init_pair(1, COLOR_WHITE, COLOR_BLUE);
-}
+void init_conf() { init_pair(1, COLOR_WHITE, COLOR_BLUE); }
 
 void add_listeners()
 {
@@ -144,9 +141,10 @@ void add_listeners()
     }
 }
 
-void add_commands(std::map<
-    std::string, std::function<boost::optional<std::shared_ptr<change> >(
-                     contents&, boost::optional<int>)> >& commandMap)
+void add_commands(
+    std::map<std::string,
+             std::function<boost::optional<std::shared_ptr<change> >(
+                 contents&, boost::optional<int>)> >& commandMap)
 {
     commandMap["q"] = quit_command;
     commandMap["quit"] = quit_command;
@@ -154,5 +152,4 @@ void add_commands(std::map<
     commandMap["o"] = open_file_i;
     commandMap["open"] = open_file_i;
 }
-
 }

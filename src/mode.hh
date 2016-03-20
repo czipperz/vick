@@ -13,13 +13,14 @@ namespace vick {
 
 /*!
  * \file mode.hh
- * \brief Declares ``global_normal_map``, ``global_insert_map``, and the mode class
+ * \brief Declares ``global_normal_map``, ``global_insert_map``, and
+ * the `mode` class
  */
 
 class contents;
 
-extern std::map < char, std::function < boost::optional< std::shared_ptr<change> >
-                                            (contents&, boost::optional<int>) > >
+extern std::map<char, std::function<boost::optional<std::shared_ptr<
+                          change> >(contents &, boost::optional<int>)> >
     global_normal_map /*!< \brief The keybinding to be used in "normal
                        * mode"
                        *
