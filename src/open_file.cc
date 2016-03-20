@@ -44,13 +44,13 @@ contents open_file(std::string file)
     std::ifstream myfile(file);
 
     if (std::getline(myfile, line)) {
-        if (not line.empty() and line.back() == 13) {
+        if (not line.empty() and line.back() == '\r') {
             line.pop_back();
             windows = true;
         }
         cont.cont.push_back(line);
         while (std::getline(myfile, line)) {
-            if (not line.empty() and line.back() == 13) {
+            if (not line.empty() and line.back() == '\r') {
                 if (not windows and not asked) {
                     asked = true;
                     windows =
@@ -84,13 +84,13 @@ open_file(contents& cont, std::string file)
     std::ifstream myfile(file);
 
     if (std::getline(myfile, line)) {
-        if (not line.empty() and line.back() == 13) {
+        if (not line.empty() and line.back() == '\r') {
             line.pop_back();
             windows = true;
         }
         cont.cont.push_back(line);
         while (std::getline(myfile, line)) {
-            if (not line.empty() and line.back() == 13) {
+            if (not line.empty() and line.back() == '\r') {
                 if (not windows and not asked) {
                     asked = true;
                     windows =
