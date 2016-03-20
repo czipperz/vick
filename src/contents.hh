@@ -31,6 +31,13 @@ using move_t = unsigned long;
 using move_ts = long;
 
 /*!
+ * \brief Define `move_tu` to be an unsigned version of `move_t`
+ *
+ * \see move_t
+ */
+using move_tu = unsigned long;
+
+/*!
  * \class contents contents.hh "../../../src/contents.hh"
  *
  * \brief Defines all the information about the buffer.
