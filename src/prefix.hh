@@ -15,8 +15,6 @@ namespace vick {
  * \brief Defines the prefix class, the standard way to make a prefix key.
  */
 
-class contents;
-
 /*!
  * \class prefix prefix.hh "../../../src/prefix.hh"
  * \brief The standard way to make a prefix key.
