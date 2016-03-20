@@ -5,8 +5,8 @@ namespace vick {
 char QUIT_KEY = 0;
 int TAB_SIZE = 1;
 void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) = nullptr;
-std::string DELIMINATORS = "";
-std::string MATCHES = "";
+std::string DELIMINATORS = "!@#$%^&*()-=+[]{}\\|;:'\",.<>/?`~";
+std::string MATCHES = "()[]{}";
 
 bool use_colors() {return true;}
 void init_conf() {}
