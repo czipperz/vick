@@ -30,7 +30,8 @@ extern bool showing_message;
  */
 void hook_show_message();
 /*!
- * \brief Displays the message argument on the last line of the screen.
+ * \brief Displays the message argument on the last line of the
+ * screen.
  *
  * This sets up hook_show_message() to work with this message.
  *
@@ -38,12 +39,12 @@ void hook_show_message();
  */
 void show_message(std::string message);
 /*!
- * \brief Displays an empty string as a message on the last line of the screen.
+ * \brief Displays an empty string as a message on the last line of
+ * the screen.
  *
  * This sets up hook_show_message() to display nothing.
  */
 void clear_message();
-
 }
 
 #endif

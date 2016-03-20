@@ -11,8 +11,7 @@
 #include "prompt.hh"
 #include "signals.hh"
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
     using namespace vick;
 
     argc--;

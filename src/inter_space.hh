@@ -16,7 +16,6 @@ namespace vick {
  * element.
  */
 std::string inter_space(const std::vector<std::string>& vec);
-
 }
 
 #endif

@@ -11,31 +11,27 @@ struct full_diff : public change {
     contents o, n;
     full_diff(contents o, contents n)
         : o(o)
-        , n(n)
-    {
-    }
+        , n(n) {}
     virtual bool is_overriding() override { return true; }
     virtual void undo(contents& cont) override { cont = o; }
     virtual void redo(contents& cont) override { cont = n; }
     virtual std::shared_ptr<change>
-    regenerate(const contents& cont) const override
-    {
+    regenerate(const contents& cont) const override {
         return std::make_shared<full_diff>(cont, n);
     }
 };
 
 boost::optional<std::shared_ptr<change> >
-open_file_i(contents& cont, boost::optional<int>)
-{
+open_file_i(contents& cont, boost::optional<int>) {
     attron(COLOR_PAIR(1));
     auto opt = prompt("File to open: ");
     attroff(COLOR_PAIR(1));
-    if (not opt) return boost::none;
+    if (not opt)
+        return boost::none;
     return open_file(cont, *opt);
 }
 
-contents open_file(std::string file)
-{
+contents open_file(std::string file) {
     contents cont;
     bool& windows = cont.windows_file_endings;
     bool asked = false;
@@ -55,8 +51,10 @@ contents open_file(std::string file)
                     asked = true;
                     windows =
                         repeat_remove_optional(prompt_yes_no,
-                                               "Windows file endings detected, "
-                                               "use them when saving? ");
+                                               "Windows file endings "
+                                               "detected, "
+                                               "use them when "
+                                               "saving? ");
                 }
                 line.pop_back();
             }
@@ -72,8 +70,7 @@ contents open_file(std::string file)
 }
 
 boost::optional<std::shared_ptr<change> >
-open_file(contents& cont, std::string file)
-{
+open_file(contents& cont, std::string file) {
     contents before = cont;
     cont.y = 0;
     cont.x = 0;
@@ -95,22 +92,23 @@ open_file(contents& cont, std::string file)
                     asked = true;
                     windows =
                         repeat_remove_optional(prompt_yes_no,
-                                               "Windows file endings detected, "
-                                               "use them when saving? ");
+                                               "Windows file endings "
+                                               "detected, "
+                                               "use them when "
+                                               "saving? ");
                 }
                 line.pop_back();
             }
             cont.cont.push_back(line);
         }
-    }
-    else
+    } else
         cont.cont.push_back("");
 
     hook::proc(hook::open_file, cont);
 
-    if (before.cont == cont.cont) return boost::none;
+    if (before.cont == cont.cont)
+        return boost::none;
     return boost::optional<std::shared_ptr<change> >(
         std::make_shared<full_diff>(std::move(before), cont));
 }
-
 }

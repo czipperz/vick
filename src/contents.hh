@@ -44,8 +44,8 @@ using move_tu = unsigned long;
  */
 class contents {
 public:
-    std::map < char, std::function < boost::optional< std::shared_ptr<change> >
-                                     (contents&, boost::optional<int>) > >
+    std::map<char, std::function<boost::optional<std::shared_ptr<
+                       change> >(contents &, boost::optional<int>)> >
         normal_map /*!< \brief The contents buffer (file) specfic
                     * normal mode character mappings. */,
         insert_map /*!< \brief The contents buffer (file) specfic
@@ -115,10 +115,12 @@ public:
                                        * variable)
                                        */;
 
-    explicit contents(std::vector<std::string> cont = std::vector<std::string>(),
-                      mode* buffer_mode = &fundamental_mode);
+    explicit contents(
+        std::vector<std::string> cont = std::vector<std::string>(),
+        mode* buffer_mode = &fundamental_mode);
     explicit contents(mode* buffer_mode);
-    contents(move_t y, move_t x, mode* buffer_mode = &fundamental_mode);
+    contents(move_t y, move_t x,
+             mode* buffer_mode = &fundamental_mode);
 
     /*!
      * \brief Constructs this contents object as a copy of the other
@@ -165,11 +167,11 @@ public:
      *
      * \see cont
      *
-     * \param str The string to be put at the end of the vector of strings, `cont`
+     * \param str The string to be put at the end of the vector of
+     * strings, `cont`
      */
     void push_back(const std::string& str);
 };
-
 }
 
 #endif

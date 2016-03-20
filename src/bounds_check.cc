@@ -2,8 +2,7 @@
 
 namespace vick {
 
-void bounds_check(contents& contents)
-{
+void bounds_check(contents& contents) {
     if (contents.cont.empty()) {
         contents.cont.push_back("");
         contents.y = 0;
@@ -11,13 +10,12 @@ void bounds_check(contents& contents)
         return;
     }
     // if (contents.y < 0) contents.y = 0;
-    // else 
-        if (contents.y >= contents.cont.size())
-            contents.y = contents.cont.size() - 1;
+    // else
+    if (contents.y >= contents.cont.size())
+        contents.y = contents.cont.size() - 1;
     // if (contents.x < 0) contents.x = 0;
-    // else 
-        if (contents.x >= contents.cont[contents.y].length())
-            contents.x = contents.cont[contents.y].length() - 1;
+    // else
+    if (contents.x >= contents.cont[contents.y].length())
+        contents.x = contents.cont[contents.y].length() - 1;
 }
-
 }

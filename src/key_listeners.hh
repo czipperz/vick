@@ -4,7 +4,6 @@
 namespace vick {
 
 void loop();
-
 }
 
 #endif

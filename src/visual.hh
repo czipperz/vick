@@ -36,7 +36,6 @@ int to_visual(const std::string& cont, int x);
  * \endcode
  */
 int from_visual(const std::string& cont, int x);
-
 }
 
 #endif

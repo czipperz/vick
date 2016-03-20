@@ -16,8 +16,7 @@ namespace vick {
 
 static contents cont;
 
-void init(int argc, char** argv)
-{
+void init(int argc, char** argv) {
     if (argc) {
         open_file(cont, *argv);
     } else {
@@ -27,14 +26,10 @@ void init(int argc, char** argv)
     print_contents(cont);
 }
 
-contents& get_contents()
-{
-    return cont;
-}
+contents& get_contents() { return cont; }
 
 void get_window_dimensions(const contents& contents, move_t& firsty,
-                           move_t& lasty, move_t& lastx)
-{
+                           move_t& lasty, move_t& lastx) {
     const std::locale locale;
     move_t x;
     move_t y = 0;
@@ -57,8 +52,8 @@ top:
             x += char_size(*ch, x, locale);
             if (x > contents.max_x) {
                 x -= contents.max_x;
-#define yOutOfBounds                                                           \
-    if (++y > contents.max_y - 2)                                              \
+#define yOutOfBounds                                                 \
+    if (++y > contents.max_y - 2)                                    \
     goto end
                 yOutOfBounds;
             }
@@ -79,16 +74,16 @@ end:
     }
 }
 
-void print_contents(contents& contents)
-{
+void print_contents(contents& contents) {
     clear();
     move_t y = 0, fin_y, fin_x; // if none set then random!
     move_t lasty, lastx;
 
     get_window_dimensions(contents, contents.y_offset, lasty, lastx);
 
-    for (auto i = contents.y_offset; i < contents.cont.size() and
-                                     i < contents.max_y - 1 + contents.y_offset;
+    for (auto i = contents.y_offset;
+         i < contents.cont.size() and
+         i < contents.max_y - 1 + contents.y_offset;
          i++) {
 
         move_t x = 0;
@@ -109,7 +104,8 @@ void print_contents(contents& contents)
                 }
                 move(y, x);
                 if (contents.y == i and
-                    contents.x == static_cast<move_t>(it - line.begin())) {
+                    contents.x ==
+                        static_cast<move_t>(it - line.begin())) {
                     fin_y = y;
                     fin_x = x - 1;
                 }
@@ -124,12 +120,13 @@ void print_contents(contents& contents)
     // contents.y, to_visual(contents.cont[contents.y],contents.x)
     move(fin_y, fin_x);
     hook::proc(hook::refresh, contents);
-    show_message(std::string("firsty: ") + std::to_string(contents.y_offset) +
-                 " lasty: " + std::to_string(lasty) + " lastx: " +
-                 std::to_string(lastx) + " (" + std::to_string(contents.y) +
-                 ", " + std::to_string(contents.x) + "), max_x: " +
-                 std::to_string(contents.max_x) + " changes_i: " +
-                 std::to_string(contents.changes_i));
+    show_message(
+        std::string("firsty: ") + std::to_string(contents.y_offset) +
+        " lasty: " + std::to_string(lasty) + " lastx: " +
+        std::to_string(lastx) + " (" + std::to_string(contents.y) +
+        ", " + std::to_string(contents.x) + "), max_x: " +
+        std::to_string(contents.max_x) + " changes_i: " +
+        std::to_string(contents.changes_i));
 
     refresh();
 }

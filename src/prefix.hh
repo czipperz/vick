@@ -12,7 +12,8 @@ namespace vick {
 /*!
  * \file prefix.hh
  *
- * \brief Defines the prefix class, the standard way to make a prefix key.
+ * \brief Defines the prefix class, the standard way to make a prefix
+ * key.
  */
 
 /*!
@@ -44,13 +45,14 @@ public:
      * \brief Associates a character with a function.
      */
     void
-    push_back(char, std::function<boost::optional<std::shared_ptr<change> >
-                                  (contents&, boost::optional<int>)>);
+    push_back(char,
+              std::function<boost::optional<std::shared_ptr<change> >(
+                  contents&, boost::optional<int>)>);
 
     /*!
-     * \brief Prompts for a character while displaying the history given in
-     * the constructor, then calls the function associated with that
-     * character.
+     * \brief Prompts for a character while displaying the history
+     * given in the constructor, then calls the function associated
+     * with that character.
      *
      * To associate a character with a function, use push_back().
      */
@@ -60,13 +62,12 @@ public:
     /*!
      * \brief Converts this object to a std::function.
      *
-     * operator()() will be called when operator()() is used on the created
-     * std::function object.
+     * `operator()()` will be called when `operator()()` is used on
+     * the created `std::function` object.
      */
-    operator std::function<boost::optional<std::shared_ptr<change> >
-                           (contents&, boost::optional<int>)>();
+    operator std::function<boost::optional<std::shared_ptr<change> >(
+        contents&, boost::optional<int>)>();
 };
-
 }
 
 #endif

@@ -7,5 +7,4 @@ std::shared_ptr<change> change::regenerate_and_apply(contents& cont) {
     x->redo(cont);
     return x;
 }
-
 }

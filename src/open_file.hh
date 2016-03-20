@@ -7,7 +7,8 @@ namespace vick {
 
 /*!
  * \file open_file.hh
- * \brief Allows for the user to open a file, loading it into a buffer.
+ * \brief Allows for the user to open a file, loading it into a
+ * buffer.
  */
 
 /*!
@@ -38,7 +39,6 @@ open_file(contents& contents, std::string file);
  * \endcode
  */
 contents open_file(std::string file);
-
 }
 
 #endif

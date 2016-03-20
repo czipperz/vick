@@ -19,8 +19,9 @@ namespace vick {
 
 class contents;
 
-extern std::map<char, std::function<boost::optional<std::shared_ptr<
-                          change> >(contents &, boost::optional<int>)> >
+extern std::map<char,
+                std::function<boost::optional<std::shared_ptr<
+                    change> >(contents &, boost::optional<int>)> >
     global_normal_map /*!< \brief The keybinding to be used in "normal
                        * mode"
                        *
@@ -45,8 +46,9 @@ class mode {
 private:
     std::string name;
     int unique_id;
-    std::shared_ptr<std::map<char, std::function<boost::optional<std::shared_ptr<change> >
-                                                 (contents&, boost::optional<int>)> > >
+    std::shared_ptr<std::map<
+        char, std::function<boost::optional<std::shared_ptr<
+                  change> >(contents &, boost::optional<int>)> > >
         normal_map, insert_map;
 
 public:
@@ -87,22 +89,23 @@ public:
      * \brief Binds the character given to the function in the mode
      * specific normal map.
      */
-    void add_to_mode_normal_map(char, std::function<boost::optional<std::shared_ptr<change> >
-                                                    (contents&, boost::optional<int>)>);
+    void add_to_mode_normal_map(
+        char, std::function<boost::optional<std::shared_ptr<change> >(
+                  contents&, boost::optional<int>)>);
 
     /*!
      * \brief Binds the character given to the function in the mode
      * specific insert map.
      */
-    void add_to_mode_insert_map(char, std::function<boost::optional<std::shared_ptr<change> >
-                                                    (contents&, boost::optional<int>)>);
+    void add_to_mode_insert_map(
+        char, std::function<boost::optional<std::shared_ptr<change> >(
+                  contents&, boost::optional<int>)>);
 };
 
 /*!
  * The basic file mode
  */
 extern mode fundamental_mode; // use global maps only
-
 }
 
 #endif

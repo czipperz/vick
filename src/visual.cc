@@ -4,8 +4,7 @@
 
 namespace vick {
 
-int from_visual(const std::string& cont, int x)
-{
+int from_visual(const std::string& cont, int x) {
     if (cont.empty())
         return 0;
     int count = 0, til = 0;
@@ -28,8 +27,7 @@ int from_visual(const std::string& cont, int x)
     return -1;
 }
 
-int to_visual(const std::string& cont, int x)
-{
+int to_visual(const std::string& cont, int x) {
     int til = 0, xx = -1;
     for (std::string::const_iterator i = cont.begin();
          i <= cont.begin() + x; ++i) {

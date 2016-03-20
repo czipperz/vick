@@ -19,7 +19,6 @@ namespace vick {
  * \see <signal.h>
  */
 void setup_signal_handling();
-
 }
 
 #endif

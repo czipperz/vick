@@ -6,16 +6,14 @@ namespace vick {
 
 contents::contents(std::vector<std::string> cont, mode* buffer_mode)
     : buffer_mode(buffer_mode)
-    , cont(cont)
-{
+    , cont(cont) {
     refreshmaxyx();
     hook::proc(hook::contents_created, *this);
 }
 
 contents::contents(mode* buffer_mode)
     : buffer_mode(buffer_mode)
-    , cont(std::vector<std::string>())
-{
+    , cont(std::vector<std::string>()) {
     refreshmaxyx();
     hook::proc(hook::contents_created, *this);
 }
@@ -24,21 +22,19 @@ contents::contents(move_t y, move_t x, mode* buffer_mode)
     : buffer_mode(buffer_mode)
     , cont(std::vector<std::string>())
     , y(y)
-    , x(x)
-{
+    , x(x) {
     refreshmaxyx();
     hook::proc(hook::contents_created, *this);
 }
 
-bool contents::operator()(char ch)
-{
+bool contents::operator()(char ch) {
     return (*buffer_mode)(*this, ch);
 }
 
-contents::~contents()
-{
+contents::~contents() {
     hook::proc(hook::contents_deleted, *this);
-    if (delete_mode) delete buffer_mode;
+    if (delete_mode)
+        delete buffer_mode;
 }
 
 contents::contents(const contents& other)
@@ -53,14 +49,13 @@ contents::contents(const contents& other)
     , max_x(other.max_x)
     , waiting_for_desired(other.waiting_for_desired)
     , refresh(other.refresh)
-    , delete_mode(other.delete_mode)
-{
-}
+    , delete_mode(other.delete_mode) {}
 
-contents& contents::operator=(const contents& other)
-{
-    if (this == &other) return *this;
-    if (delete_mode) delete buffer_mode;
+contents& contents::operator=(const contents& other) {
+    if (this == &other)
+        return *this;
+    if (delete_mode)
+        delete buffer_mode;
     buffer_mode = new mode(*other.buffer_mode);
     cont = other.cont;
     y = other.y;
@@ -76,10 +71,11 @@ contents& contents::operator=(const contents& other)
     return *this;
 }
 
-contents& contents::operator=(contents&& other)
-{
-    if (this == &other) return *this;
-    if (delete_mode) delete buffer_mode;
+contents& contents::operator=(contents&& other) {
+    if (this == &other)
+        return *this;
+    if (delete_mode)
+        delete buffer_mode;
     buffer_mode = other.buffer_mode;
     cont = std::move(other.cont);
     y = other.y;
@@ -95,14 +91,9 @@ contents& contents::operator=(contents&& other)
     return *this;
 }
 
-void contents::refreshmaxyx()
-{
-    getmaxyx(stdscr, max_y, max_x);
-}
+void contents::refreshmaxyx() { getmaxyx(stdscr, max_y, max_x); }
 
-void contents::push_back(const std::string& str)
-{
+void contents::push_back(const std::string& str) {
     this->cont.push_back(str);
 }
-
 }

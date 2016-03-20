@@ -32,12 +32,11 @@ class contents;
  * \see contents
  */
 struct change {
-    virtual ~change()
-    {
-    }
+    virtual ~change() {}
 
     /*!
-     * \brief Return true if you edit in any way anything but the x and y
+     * \brief Return true if you edit in any way anything but the x
+     * and y
      * coordinate
      */
     virtual bool is_overriding() = 0;
@@ -55,7 +54,8 @@ struct change {
     /*!
      * \brief Generates a change that will act over the new contents
      */
-    virtual std::shared_ptr<change> regenerate(const contents&) const = 0;
+    virtual std::shared_ptr<change>
+    regenerate(const contents&) const = 0;
 
     /*!
      * \brief Calls regenerate and then calls redo on the result and
@@ -63,7 +63,6 @@ struct change {
      */
     std::shared_ptr<change> regenerate_and_apply(contents& cont);
 };
-
 }
 
 #endif

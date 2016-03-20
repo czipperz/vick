@@ -16,12 +16,12 @@
 namespace vick {
 
 static std::map<std::string,
-                std::function<boost::optional<std::shared_ptr<change> >(
-                    contents&, boost::optional<int>)> > commandMap;
+                std::function<boost::optional<std::shared_ptr<
+                    change> >(contents&, boost::optional<int>)> >
+    commandMap;
 
 boost::optional<std::shared_ptr<change> >
-command_executor(contents& cont, boost::optional<int> times)
-{
+command_executor(contents& cont, boost::optional<int> times) {
     {
         static bool init = true;
         if (init) {
@@ -45,5 +45,4 @@ command_executor(contents& cont, boost::optional<int> times)
         return command->second(cont, times);
     }
 }
-
 }

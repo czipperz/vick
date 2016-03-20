@@ -12,8 +12,7 @@
 
 namespace vick {
 
-boost::optional<std::string> prompt(const std::string& message)
-{
+boost::optional<std::string> prompt(const std::string& message) {
     std::string text;
     int b_y, b_x, x, y;
     getyx(stdscr, b_y, b_x);
@@ -65,8 +64,7 @@ boost::optional<std::string> prompt(const std::string& message)
     }
 }
 
-boost::optional<bool> prompt_yn(const std::string& message)
-{
+boost::optional<bool> prompt_yn(const std::string& message) {
     int b_y, b_x, x, y;
     boost::optional<bool> answer;
     getyx(stdscr, b_y, b_x);
@@ -101,8 +99,7 @@ cleanup:
     return answer;
 }
 
-boost::optional<bool> prompt_yes_no(const std::string& message)
-{
+boost::optional<bool> prompt_yes_no(const std::string& message) {
     boost::optional<std::string> opt;
     while (true) {
         opt = prompt(message + "[yes,no] ");

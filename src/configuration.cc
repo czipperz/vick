@@ -29,20 +29,19 @@ void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
 
 // I personally find _ an annoying deliminator as it doesn't split
 // variables / tokens in many languages.
-std::string DELIMINATORS = "!@#$%^&*()-" /*_*/ "=+[]{}\\|;:'\",.<>/?`~";
+std::string DELIMINATORS =
+    "!@#$%^&*()-" /*_*/ "=+[]{}\\|;:'\",.<>/?`~";
 
 std::string MATCHES = "()[]{}";
 
-bool use_colors()
-{
+bool use_colors() {
     static const constexpr bool use_colors = true;
     return use_colors and has_colors();
 }
 
 void init_conf() { init_pair(1, COLOR_WHITE, COLOR_BLUE); }
 
-void add_listeners()
-{
+void add_listeners() {
     /* global_normal_map binds */ {
         global_normal_map['j'] = move::mvb;
         global_normal_map['k'] = move::mvd;
@@ -98,9 +97,11 @@ void add_listeners()
         global_normal_map['J'] = join::join_two_lines;
 
         global_normal_map['u'] = linear_change_manager::undo_change;
-        global_normal_map[CONTROL_R] = linear_change_manager::redo_change;
+        global_normal_map[CONTROL_R] =
+            linear_change_manager::redo_change;
 
-        global_normal_map['.'] = linear_change_manager::reapply_change;
+        global_normal_map['.'] =
+            linear_change_manager::reapply_change;
 
         global_normal_map[CONTROL_B] = page::move_up_page;
         global_normal_map[CONTROL_F] = page::move_down_page;
@@ -144,8 +145,7 @@ void add_listeners()
 void add_commands(
     std::map<std::string,
              std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> >& commandMap)
-{
+                 contents&, boost::optional<int>)> >& commandMap) {
     commandMap["q"] = quit_command;
     commandMap["quit"] = quit_command;
     commandMap["colortest"] = color_test_command;

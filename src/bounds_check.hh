@@ -17,7 +17,6 @@ namespace vick {
  * contents are empty)
  */
 void bounds_check(contents&);
-
 }
 
 #endif

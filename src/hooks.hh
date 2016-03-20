@@ -8,7 +8,8 @@ namespace vick {
 /*!
  * \file hooks.hh
  *
- * \brief Defines how to hook processes in with one another so that one
+ * \brief Defines how to hook processes in with one another so that
+ * one
  *        action will always accompany another.
  *
  * `proc_hook(hook)` will call all the functions added in
@@ -17,7 +18,8 @@ namespace vick {
  */
 
 /*!
- * \brief Distinguishes normal <code>unsigned int</code>s from being confused as
+ * \brief Distinguishes normal <code>unsigned int</code>s from being
+ * confused as
  * hooks.
  */
 using hook_t = unsigned int;
@@ -56,7 +58,6 @@ void proc(hook_t, contents&);
  * called in the order they were added with add()
  */
 void add(hook_t, void (*)(contents&));
-
 }
 }
 

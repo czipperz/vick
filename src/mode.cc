@@ -17,19 +17,19 @@ mode::mode(const std::string& name)
     : name(name)
     , normal_map(
           std::make_shared<std::map<
-              char, std::function<boost::optional<std::shared_ptr<
-                        change> >(contents&, boost::optional<int>)> > >())
+              char,
+              std::function<boost::optional<std::shared_ptr<
+                  change> >(contents&, boost::optional<int>)> > >())
     , insert_map(
           std::make_shared<std::map<
-              char, std::function<boost::optional<std::shared_ptr<
-                        change> >(contents&, boost::optional<int>)> > >())
-{
+              char,
+              std::function<boost::optional<std::shared_ptr<
+                  change> >(contents&, boost::optional<int>)> > >()) {
     static int uid = 0;
     unique_id = uid++;
 }
 
-bool mode::operator()(contents& cont, char ch) const
-{
+bool mode::operator()(contents& cont, char ch) const {
     if (ch == RESIZE)
         return true;
 
@@ -44,10 +44,10 @@ bool mode::operator()(contents& cont, char ch) const
             if (git == global_normal_map.end()) {
                 return false;
 
-#define mac(i)                                                                 \
-    clear_message();                                                           \
-    if (auto optional = i->second(cont, boost::none)) {                        \
-        PUSH_BACK_CHANGE(cont, *optional);                                     \
+#define mac(i)                                                       \
+    clear_message();                                                 \
+    if (auto optional = i->second(cont, boost::none)) {              \
+        PUSH_BACK_CHANGE(cont, *optional);                           \
     }
 
             } else {
@@ -66,27 +66,23 @@ bool mode::operator()(contents& cont, char ch) const
 
 const std::string& mode::get_name() const { return name; }
 
-bool mode::operator==(const mode& other) const
-{
+bool mode::operator==(const mode& other) const {
     return unique_id == other.unique_id;
 }
 
-bool mode::operator!=(const mode& other) const
-{
+bool mode::operator!=(const mode& other) const {
     return unique_id != other.unique_id;
 }
 
 void mode::add_to_mode_normal_map(
     char ch, std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> fun)
-{
+                 contents&, boost::optional<int>)> fun) {
     (*normal_map)[ch] = fun;
 }
 
 void mode::add_to_mode_insert_map(
     char ch, std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> fun)
-{
+                 contents&, boost::optional<int>)> fun) {
     (*insert_map)[ch] = fun;
 }
 

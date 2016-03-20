@@ -8,7 +8,8 @@ namespace vick {
 
 /*!
  * \file split.hh
- * \brief Defines split(), which splits a string by a given char into a vector.
+ * \brief Defines split(), which splits a string by a given char into
+ * a vector.
  */
 
 /*!
@@ -20,7 +21,6 @@ namespace vick {
  * \endcode
  */
 std::vector<std::string> split(const std::string& str, char delim);
-
 }
 
 #endif

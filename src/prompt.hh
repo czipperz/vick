@@ -41,19 +41,19 @@ boost::optional<bool> prompt_yes_no(const std::string& message);
  * a `T` deterministically.  This assumes the function given is non
  * pure or side effect driven.
  */
-template<typename Fun, typename... Xs>
+template <typename Fun, typename... Xs>
 auto repeat_remove_optional(Fun f, std::string prompt, Xs&&... xs)
-    -> decltype(*f(prompt, xs...))
-{
+    -> decltype(*f(prompt, xs...)) {
     auto x = f(prompt, xs...);
-    if (x) return *std::move(x);
+    if (x)
+        return *std::move(x);
     prompt += "(Required!) ";
     while (true) {
         x = f(prompt, xs...);
-        if (x) return *std::move(x);
+        if (x)
+            return *std::move(x);
     }
 }
-
 }
 
 #endif

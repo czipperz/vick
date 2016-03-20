@@ -39,5 +39,4 @@ void clear_message() {
     mes = "";
     showmes();
 }
-
 }
