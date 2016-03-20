@@ -32,7 +32,7 @@ namespace vick {
 
 #define CONTROL_3            ESCAPE
 #define CONTROL_4            CONTROL_BACKSLASH
-#define CONTROL_5            CONTROL_CLOSE_SQUARe
+#define CONTROL_5            CONTROL_CLOSE_SQUARE
 #define CONTROL_6            CONTROL_CIRCONFLEX
 #define CONTROL_7            CONTROL_UNDERSCORE
 #define CONTROL_8            BACKSPACE
