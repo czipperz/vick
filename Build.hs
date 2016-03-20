@@ -53,9 +53,9 @@ main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=8} $ do
     () <- cmd cxx "-o" [testout </> srcout <.> exe] os ldflags
     cmd $ "./" ++ testout </> srcout <.> exe
 
-  phony "clean" $
-    getOutDirectories >>= mapM (flip removeFilesAfter ["//*"]) >>
-    removeFilesAfter "." ["//~*", "//#*#", binary]
+  phony "clean" $ do
+    getOutDirectories >>= mapM (flip removeFilesAfter ["//*"])
+    removeFilesAfter "." ["//~*", "//#*#", binary, "doc"]
 
   phony "doc" $ do
     sources <- getSourceDirectories
