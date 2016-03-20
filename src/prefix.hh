@@ -28,15 +28,15 @@ private:
     std::shared_ptr<std::map<char, std::function<boost::optional<std::shared_ptr<change> >
                                                  (contents&, boost::optional<int>)> > > map;
     /*! Used exclusively for function lookup failures (unbound keys) */
-    std::string message;
+    std::string history;
 
 public:
     /*!
-     * \param message The message to display when a lookup failure
-     * occures.  This will happen when the key they typed was unbound.
-     * Message will be displayed with a dash appended.
+     * \param history The key binding that caused this prefix to be
+     * ran.  It will be displayed with a dash and the key the user
+     * pressed that caused this error.
      */
-    prefix(std::string message);
+    prefix(std::string history);
 
     /*!
      * \brief Associates a character with a function.

@@ -9,10 +9,10 @@
 
 namespace vick {
 
-prefix::prefix(std::string message)
+prefix::prefix(std::string history)
     : map(std::make_shared<std::map<char, std::function<boost::optional<std::shared_ptr<change> >
                                                         (contents&, boost::optional<int>)> > >())
-    , message(message) { }
+    , history(history) { }
 
 void prefix::push_back(char ch, std::function < boost::optional< std::shared_ptr<change> >
                                                 ( contents&, boost::optional<int> ) > fun)
@@ -22,12 +22,12 @@ void prefix::push_back(char ch, std::function < boost::optional< std::shared_ptr
 
 boost::optional< std::shared_ptr<change> >
 prefix::operator()(contents& cont, boost::optional<int> op) {
-    show_message(message + "-");
+    show_message(history + "-");
     char ch = getch();
     auto it = map->find(ch);
     if (it == map->end()) {
         show_message(std::string("Didn't recognize key sequence: '")
-                     + message + '-' + ch + '\'');
+                     + history + '-' + ch + '\'');
         return boost::none;
     } else {
         showing_message = false;
