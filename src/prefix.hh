@@ -46,7 +46,7 @@ public:
                                   (contents&, boost::optional<int>)>);
 
     /*!
-     * \brief Prompts for a character while displaying the message given in
+     * \brief Prompts for a character while displaying the history given in
      * the constructor, then calls the function associated with that
      * character.
      *

@@ -16,7 +16,7 @@ namespace vick {
  * \brief Prompts the user for a message on the bottom of the screen.
  *
  * This method does not modify the buffer in any way.  It will start
- * to use \c show_message and \c print_contents shortly.
+ * to use `show_message` and `print_contents` shortly.
  */
 boost::optional<std::string> prompt(const std::string& message);
 
@@ -32,6 +32,15 @@ boost::optional<bool> prompt_yn(const std::string& message);
  */
 boost::optional<bool> prompt_yes_no(const std::string& message);
 
+/*!
+ * \brief Runs the function given continuously until it returns a
+ * "truthy" value, at which point it will return that value
+ * dereferenced.
+ *
+ * This acts as a way to take a `boost::optional<T>` and turn it into
+ * a `T` deterministically.  This assumes the function given is non
+ * pure or side effect driven.
+ */
 template<typename Fun, typename... Xs>
 auto repeat_remove_optional(Fun f, std::string prompt, Xs&&... xs)
     -> decltype(*f(prompt, xs...))

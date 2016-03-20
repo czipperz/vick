@@ -8,7 +8,7 @@ namespace vick {
 
 /*!
  * \file inter_space.hh
- * \brief Defines the inter_space() function.
+ * \brief Defines the `inter_space()` function.
  */
 
 /*!

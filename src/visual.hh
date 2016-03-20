@@ -15,7 +15,7 @@ namespace vick {
 /*!
  * \brief Converts an index location to its graphical location.
  *
- * This inverts \c from_visual()
+ * This inverts `from_visual()`
  *
  * This statement will always be true:
  *
@@ -27,7 +27,7 @@ int to_visual(const std::string& cont, int x);
 /*!
  * \brief Converts a graphical location to its index location.
  *
- * This inverts \c to_visual()
+ * This inverts `to_visual()`
  *
  * This statement will always be true:
  *

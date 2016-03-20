@@ -18,13 +18,13 @@ namespace vick {
  */
 
 /*!
- * \brief Define \c move_t so that code can be more descriptive and
+ * \brief Define `move_t` so that code can be more descriptive and
  * can change it from one place.
  */
 using move_t = unsigned long;
 
 /*!
- * \brief Define \c move_ts to be a signed version of \c move_t
+ * \brief Define `move_ts` to be a signed version of `move_t`
  *
  * \see move_t
  */
@@ -158,7 +158,7 @@ public:
      *
      * \see cont
      *
-     * \param str The string to be put at the end of the vector of strings, cont
+     * \param str The string to be put at the end of the vector of strings, `cont`
      */
     void push_back(const std::string& str);
 };

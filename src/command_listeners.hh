@@ -11,7 +11,7 @@ namespace vick {
  */
 
 /*!
- * \brief Executes a command by name (Vim's `:`)
+ * \brief Executes a command by name (Vim's `:`, Emacs's `M-x`)
  *
  * Executes a relevant command based on user input.  All commands are
  * bound in <i>configuration.cc</i>

@@ -20,7 +20,7 @@ class contents;
 
 /*!
  * \class change change.hh "../../../src/change.hh"
- * \brief Represents a change from one \c contents to another
+ * \brief Represents a change from one `contents` to another
  *
  * It allows for virtual dispath on undoing, redoing, and regeneration
  * of a textual edit to the buffer.  `undo` will put the contents in

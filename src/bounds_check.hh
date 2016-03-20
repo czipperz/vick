@@ -12,7 +12,9 @@ namespace vick {
  */
 
 /*!
- * \brief Makes sure that the cursor is inside the buffer.
+ * \brief Makes sure that the cursor is inside the buffer.  It will
+ * also properly initialize the buffer (by adding an empty line if the
+ * contents are empty)
  */
 void bounds_check(contents&);
 

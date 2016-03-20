@@ -60,9 +60,12 @@ public:
     mode(mode&&) = default;
 
     /*!
-     * \brief Checks the contents specific map, the mode specific map,
-     * then the global map for a binding that matches the character
-     * given.
+     * \brief Attempts to run the command bound to the key pressed.
+     * Returns whether a match was found.
+     *
+     * Checks the `contents`'s specific map, the `mode` specific
+     * map, then the global map for a binding that matches the
+     * character given.
      */
     bool operator()(contents&, char) const;
 
