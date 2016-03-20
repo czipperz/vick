@@ -33,7 +33,7 @@ command_executor(contents& cont, boost::optional<int> times)
     attron(COLOR_PAIR(1));
     boost::optional<std::string> pr = prompt(":");
     attroff(COLOR_PAIR(1));
-    if (not pr or *pr == "") {
+    if (not pr or pr->empty()) {
         clear_message();
         return boost::none;
     }

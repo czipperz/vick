@@ -6,7 +6,7 @@ namespace vick {
 
 int from_visual(const std::string& cont, int x)
 {
-    if (cont.size() == 0)
+    if (cont.empty())
         return 0;
     int count = 0, til = 0;
     int numTab = 0;
