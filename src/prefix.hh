@@ -23,9 +23,13 @@ namespace vick {
  */
 class prefix {
 private:
-    std::shared_ptr<std::map<char, std::function<boost::optional<std::shared_ptr<change> >
-                                                 (contents&, boost::optional<int>)> > > map;
-    /*! Used exclusively for function lookup failures (unbound keys) */
+    std::shared_ptr<std::map<
+        char, std::function<boost::optional<std::shared_ptr<
+                  change> >(contents&, boost::optional<int>)> > > map;
+    /*!
+     * \brief Used exclusively for function lookup failures (unbound
+     * keys)
+     */
     std::string history;
 
 public:
