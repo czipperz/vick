@@ -35,7 +35,7 @@ srctoos :: FilePath -> [FilePath] -> [FilePath]
 srctoos dir files = [takeAllButDirectory 2 c </> dir </> dropAllButDirectory 1 c -<.> "o" | c <- files]
 
 main :: IO ()
-main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=0} $ do
+main = shakeArgs shakeOptions{shakeFiles=srcout, shakeThreads=8} $ do
   want [binary <.> exe]
   action $ do
     p <- doesDirectoryExist "plugins"
