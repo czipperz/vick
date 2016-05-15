@@ -1,5 +1,6 @@
-#include "inter_space.hh"
 #include "catch.hpp"
+
+#include "inter_space.hh"
 
 using namespace vick;
 
