@@ -19,7 +19,7 @@ class contents;
  */
 
 /*!
- * \class change change.hh "../../../src/change.hh"
+ * \class change change.hh "change.hh"
  * \brief Represents a change from one `contents` to another
  *
  * It allows for virtual dispath on undoing, redoing, and regeneration

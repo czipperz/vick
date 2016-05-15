@@ -17,7 +17,7 @@ namespace vick {
  */
 
 /*!
- * \class prefix prefix.hh "../../../src/prefix.hh"
+ * \class prefix prefix.hh "prefix.hh"
  * \brief The standard way to make a prefix key.
  *
  * A prefix key is one that presents a multitude of different options

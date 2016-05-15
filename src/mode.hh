@@ -37,7 +37,7 @@ extern std::map<char,
                        * into the buffer */;
 
 /*!
- * \class mode mode.hh "../../../src/mode.hh"
+ * \class mode mode.hh "mode.hh"
  *
  * \brief Declares a method to handle key strokes and possibly
  * interpret them as commands.

@@ -1,13 +1,22 @@
 #!/bin/sh
 # if this is not the first time running this script, run
 # `reconfigure` instead
-printf "Installing shake:\n\n"
 
-cabal update
-cabal install shake
+if [ -d vick-build ]; then
+    printf "\nUpdating vick-build:\n\n"
+    cd vick-build
+    git pull || exit $?
+else
+    printf "Installing vick-build:\n\n"
+    git clone https://github.com/czipperz/vick-build
+    cd vick-build
+fi
+# now we are in vick-build
 
-printf "\nBuilding:\n\n"
-./reconfigure
+printf "\nBuilding vick-build:\n"
+./configure || exit $?
+make || exit $?
+cd ..
 
 if [ -d vick-package ]; then
     printf "\nUpdating vick-package:\n\n"
@@ -19,10 +28,11 @@ else
         || exit $?
     cd vick-package
 fi
+# now we are in vick-package
 
 printf "\nBuilding vick-package:\n\n"
 ./configure
-./make
+make
 cd ..
 
 printf "\n\nInstalling vick suite:\n\n"

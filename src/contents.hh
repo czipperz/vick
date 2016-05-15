@@ -38,7 +38,7 @@ using move_ts = long;
 using move_tu = unsigned long;
 
 /*!
- * \class contents contents.hh "../../../src/contents.hh"
+ * \class contents contents.hh "contents.hh"
  *
  * \brief Defines all the information about the buffer.
  */

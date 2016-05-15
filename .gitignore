@@ -10,6 +10,9 @@ plugins
 # package manager folder
 vick-package
 
+# compiler program folder
+vick-build
+
 # documentation
 doc
 

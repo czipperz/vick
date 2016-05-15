@@ -1,6 +1,6 @@
 #include "catch.hpp"
 
-#include "../src/split.hh"
+#include "split.hh"
 
 using namespace vick;
 
