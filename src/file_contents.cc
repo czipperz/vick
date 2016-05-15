@@ -119,7 +119,7 @@ void print_contents(contents& contents) {
     }
     // contents.y, to_visual(contents.cont[contents.y],contents.x)
     move(fin_y, fin_x);
-    hook::proc(hook::refresh, contents);
+    hooks::refresh.proc(contents);
     show_message(
         std::string("firsty: ") + std::to_string(contents.y_offset) +
         " lasty: " + std::to_string(lasty) + " lastx: " +

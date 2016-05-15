@@ -9,55 +9,50 @@ namespace vick {
  * \file hooks.hh
  *
  * \brief Defines how to hook processes in with one another so that
- * one
- *        action will always accompany another.
+ * one action will always accompany another.
  *
- * `proc_hook(hook)` will call all the functions added in
- * `add_hook(hook, void(*)())`
- *
+ * `hook.proc(contents&)` will call all the functions added in
+ * `hook.add(void (*)(contents&))`
  */
 
-/*!
- * \brief Distinguishes normal <code>unsigned int</code>s from being
- * confused as
- * hooks.
- */
-using hook_t = unsigned int;
+class hook {
+public:
+    hook() = default;
+    ~hook() = default;
+    hook(hook&&) = default;
 
-namespace hook {
+    /*!
+     * \brief Calls all the functions associated with this hook.
+     *
+     * \see add(contents&)
+     */
+    void proc(contents&);
 
-extern hook_t save;
-extern hook_t refresh;
-extern hook_t mode_enter;
-extern hook_t open_file;
-extern hook_t contents_created;
-extern hook_t contents_deleted;
+    /*!
+     * \brief Associates the function given with the hook.
+     *
+     * The function argument is guarenteed to be called whenever
+     * `proc()` is called on this hook.
+     *
+     * There can be multiple functions for a certain hook.  They will
+     * be called in the order they were added.
+     */
+    void add(void (*)(contents&));
 
-/*!
- * \brief Generates a unique hook id
- *
- * This id is made at runtime and is <i>not</i> thread safe.
- */
-hook_t gen();
+private:
+    hook(const hook&) = delete;
 
-/*!
- * \brief Calls all the functions associated to the hook given
- *
- * To associate a function with a hook use add()
- */
-void proc(hook_t, contents&);
+    std::vector<void (*)(contents&)> functions;
+};
 
-/*!
- * \brief Associates the function given with a hook
- *
- * The function argumen is guarenteed to be called whenever
- * proc_hook() is called with the same hook as this method is called
- * with.
- *
- * There can be multiple functions for a certain hook.  They will be
- * called in the order they were added with add()
- */
-void add(hook_t, void (*)(contents&));
+namespace hooks {
+
+extern hook save;
+extern hook refresh;
+extern hook mode_enter;
+extern hook open_file;
+extern hook contents_created;
+extern hook contents_deleted;
 }
 }
 

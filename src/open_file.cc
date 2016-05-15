@@ -64,7 +64,7 @@ contents open_file(std::string file) {
         cont.cont.push_back("");
     }
 
-    hook::proc(hook::open_file, cont);
+    hooks::open_file.proc(cont);
 
     return cont;
 }
@@ -104,7 +104,7 @@ open_file(contents& cont, std::string file) {
     } else
         cont.cont.push_back("");
 
-    hook::proc(hook::open_file, cont);
+    hooks::open_file.proc(cont);
 
     if (before.cont == cont.cont)
         return boost::none;
