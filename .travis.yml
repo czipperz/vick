@@ -6,13 +6,10 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - hvr-ghc
     packages:
       - g++-4.8
       - libboost-all-dev
       - software-properties-common
-      - cabal-install
-      - ghc
 
 script:
   - ./testing.sh
