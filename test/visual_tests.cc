@@ -8,9 +8,9 @@ using namespace vick;
 TEST_CASE("to_visual")
 {
     std::string first("assert"), second("\tblah");
-    for (int i = 0; i < first.size(); i++)
+    for (size_t i = 0; i < first.size(); i++)
         REQUIRE(i == to_visual(first, i));
-    for (int i = 0; i < second.size(); i++)
+    for (size_t i = 0; i < second.size(); i++)
         REQUIRE(TAB_SIZE - 1 + i == to_visual(second, i));
 }
 
