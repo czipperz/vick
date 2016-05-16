@@ -8,4 +8,4 @@ make
 cd ..
 
 ./configure
-make
+make CXX=g++-4.8
