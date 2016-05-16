@@ -4,8 +4,8 @@ git clone https://github.com/czipperz/vick-build
 
 cd vick-build
 ./configure
-make
+make CXX=g++-4.8
 cd ..
 
 ./configure
-make CXX=g++-4.8
+vick-build/vick-build NUM_THREADS=8 CXX=g++-4.8 test
