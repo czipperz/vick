@@ -47,8 +47,8 @@ void get_window_dimensions(const contents& contents, move_t& firsty,
         lastx = 0;
         x = 0;
 
-        const auto end = std::end(*line);
-        for (auto ch = std::begin(*line); ch != end; ++ch) {
+        for (auto ch = std::begin(*line), end = std::end(*line);
+             ch != end; ++ch) {
 
             lastx++;
             // moves forward based on character at point
