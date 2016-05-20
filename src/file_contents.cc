@@ -56,8 +56,11 @@ void get_window_dimensions(const contents& contents, move_t& firsty,
             if (x > contents.max_x) {
                 x -= contents.max_x;
 #define yOutOfBounds                                                 \
-    if (++y > contents.max_y - 1 - BOTTOM_HEIGHT)                    \
-    goto end
+    do {                                                             \
+        if (++y > contents.max_y - 1 - BOTTOM_HEIGHT) {              \
+            goto end;                                                \
+        }                                                            \
+    } while (0)
                 yOutOfBounds;
             }
         }
