@@ -40,7 +40,6 @@ void get_window_dimensions(const contents& contents, move_t& firsty,
 
     firsty = std::min(contents.y_offset, contents.y);
 
-top:
     auto line = std::begin(contents.cont) + firsty;
 
     const auto endline = std::end(contents.cont);
