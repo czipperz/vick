@@ -17,9 +17,9 @@ namespace vick {
 extern char QUIT_KEY;
 
 /*!
- * \brief The horizontal space a tab character should take up
+ * \brief The horizontal space a tab character should take up.
  */
-extern int TAB_SIZE;
+extern move_t TAB_SIZE;
 
 /*!
  * \brief The function to be called when an edit wants to be pushed to

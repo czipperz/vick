@@ -17,7 +17,7 @@ TEST_CASE("to_visual")
 TEST_CASE("from_visual")
 {
     std::string first("\thi"), second("\t\thi");
-    for (int i = 1; i < TAB_SIZE - 1; i++) {
+    for (move_t i = 1; i < TAB_SIZE - 1; i++) {
         REQUIRE(0 == from_visual(first, TAB_SIZE - i));
     }
     REQUIRE(0 == from_visual(first, TAB_SIZE - 1));
