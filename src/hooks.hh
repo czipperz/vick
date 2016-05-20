@@ -43,6 +43,13 @@ public:
      */
     void add(void (*)(contents&));
 
+    /*!
+     * \brief Removes the function given with the hook.
+     *
+     * \return If the function was previously assigned.
+     */
+    bool remove(void (*)(contents&));
+
 private:
     hook(const hook&) = delete;
 

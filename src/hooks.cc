@@ -16,6 +16,13 @@ void hook::proc(contents& contents) {
 
 void hook::add(void (*f)(contents&)) { functions.push_back(f); }
 
+bool hook::remove(void (*f)(contents&)) {
+    auto new_end = std::remove(functions.begin(), functions.end(), f);
+    auto b = new_end != functions.end();
+    functions.erase(new_end, functions.end());
+    return b;
+}
+
 namespace hooks {
 hook save;
 hook refresh;
