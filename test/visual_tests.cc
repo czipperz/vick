@@ -8,8 +8,7 @@
 
 using namespace vick;
 
-TEST_CASE("to_visual")
-{
+TEST_CASE("to_visual", "[to_visual]") {
     std::string first("assert"), second("\tblah");
     for (size_t i = 0; i < first.size(); i++) {
         REQUIRE(i == to_visual(first, i));
@@ -19,8 +18,7 @@ TEST_CASE("to_visual")
     }
 }
 
-TEST_CASE("from_visual")
-{
+TEST_CASE("from_visual", "[from_visual]") {
     std::string first("\thi"), second("\t\thi");
     for (move_t i = 1; i < TAB_SIZE - 1; i++) {
         REQUIRE(0 == from_visual(first, TAB_SIZE - i));
