@@ -28,6 +28,8 @@ char QUIT_KEY = CONTROL_G;
 
 move_t TAB_SIZE = 8;
 
+move_t BOTTOM_HEIGHT = 1;
+
 void (*PUSH_BACK_CHANGE)(contents&, std::shared_ptr<change>) =
     vick::linear_change_manager::push_back_change;
 

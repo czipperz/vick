@@ -8,6 +8,7 @@ namespace vick {
 
 char QUIT_KEY = 0;
 move_t TAB_SIZE = 1;
+move_t BOTTOM_HEIGHT = 1;
 void (*PUSH_BACK_CHANGE)(contents&,
                          std::shared_ptr<change>) = nullptr;
 std::string DELIMINATORS = "!@#$%^&*()-=+[]{}\\|;:'\",.<>/?`~";

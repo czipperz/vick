@@ -26,6 +26,11 @@ extern char QUIT_KEY;
 extern move_t TAB_SIZE;
 
 /*!
+ * \brief The number of lines reserved for the bottom of each window.
+ */
+extern move_t BOTTOM_HEIGHT;
+
+/*!
  * \brief The function to be called when an edit wants to be pushed to
  * the stack.
  */

@@ -57,7 +57,7 @@ top:
             if (x > contents.max_x) {
                 x -= contents.max_x;
 #define yOutOfBounds                                                 \
-    if (++y > contents.max_y - 2)                                    \
+    if (++y > contents.max_y - 1 - BOTTOM_HEIGHT)                    \
     goto end
                 yOutOfBounds;
             }
