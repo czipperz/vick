@@ -1,4 +1,5 @@
-((c++-mode . ((eval . (set (make-local-variable 'flycheck-gcc-include-path)
+((c++-mode . (;; Make includes work properly
+              (eval . (set (make-local-variable 'flycheck-gcc-include-path)
                            (set (make-local-variable 'flycheck-clang-include-path)
                                 (let ((dir-locals-dir
                                        (let ((d (directory-file-name (file-name-directory buffer-file-name))))
@@ -9,4 +10,5 @@
                                   (list (format "%s/%s" dir-locals-dir "src")
                                         (format "%s/%s" dir-locals-dir "catch-raw")
                                         (format "%s/%s" dir-locals-dir "plugins"))))))))
+ ;; apply to all source directories (including plugins)
  (subdirs . t))
