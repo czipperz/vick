@@ -33,6 +33,7 @@ extern bool showing_message;
  * \see proc_hook()
  */
 void hook_show_message();
+
 /*!
  * \brief Displays the message argument on the last line of the
  * screen.
@@ -42,6 +43,7 @@ void hook_show_message();
  * \param message The message to be displayed.
  */
 void show_message(std::string message);
+
 /*!
  * \brief Displays an empty string as a message on the last line of
  * the screen.

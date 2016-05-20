@@ -28,6 +28,7 @@ namespace vick {
  * \endcode
  */
 int to_visual(const std::string& cont, int x);
+
 /*!
  * \brief Converts a graphical location to its index location.
  *

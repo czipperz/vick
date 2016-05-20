@@ -37,6 +37,7 @@ extern char prefix_key_times_ten;
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_1(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds two and calls the
  * next function.
@@ -45,6 +46,7 @@ prefix_key_1(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_2(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds three and calls the
  * next function.
@@ -53,6 +55,7 @@ prefix_key_2(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_3(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds four and calls the
  * next function.
@@ -61,6 +64,7 @@ prefix_key_3(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_4(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds five and calls the
  * next function.
@@ -69,6 +73,7 @@ prefix_key_4(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_5(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds six and calls the
  * next function.
@@ -77,6 +82,7 @@ prefix_key_5(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_6(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds seven and calls the
  * next function.
@@ -85,6 +91,7 @@ prefix_key_6(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_7(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds eight and calls the
  * next function.
@@ -93,6 +100,7 @@ prefix_key_7(contents&, boost::optional<int>);
  */
 boost::optional<std::shared_ptr<change> >
 prefix_key_8(contents&, boost::optional<int>);
+
 /*!
  * \brief Multiplies the argument by ten and adds nine and calls the
  * next function.
