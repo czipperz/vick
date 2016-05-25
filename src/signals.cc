@@ -8,9 +8,11 @@
 
 #include "signals.hh"
 
-extern "C" void myexit(int i) {
+extern "C" {
+static void myexit(int i) {
     endwin();
     SIG_DFL(i);
+}
 }
 
 namespace vick {
