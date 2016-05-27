@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "inter_space.hh"
+
 namespace vick {
 
 std::string inter_space(const std::vector<std::string>& vec) {

@@ -2,16 +2,17 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include <vector>
-#include <string>
-#include <stdlib.h>
 #include <ncurses.h>
+#include <stdlib.h>
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "configuration.hh"
-#include "key_aliases.hh"
+#include "basic_commands.hh"
 #include "command_listeners.hh"
+#include "configuration.hh"
 #include "file_contents.hh"
+#include "key_aliases.hh"
 #include "show_message.hh"
 
 namespace vick {
@@ -43,17 +44,18 @@ struct replace_c : public change {
     }
     virtual std::shared_ptr<change>
     regenerate(const contents& contents) const override {
-        return std::make_shared<
-            replace_c>(contents.y, contents.x, n,
-                       contents.cont[contents.y][contents.x]);
+        return std::make_shared<replace_c>(contents.y, contents.x, n,
+                                           contents.cont[contents.y]
+                                                        [contents.x]);
     }
 };
 
 boost::optional<std::shared_ptr<change> >
 replace_character(contents& contents, boost::optional<int>) {
-    std::shared_ptr<change> ret = std::make_shared<
-        replace_c>(contents.y, contents.x, getch(),
-                   contents.cont[contents.y][contents.x]);
+    std::shared_ptr<change> ret =
+        std::make_shared<replace_c>(contents.y, contents.x, getch(),
+                                    contents.cont[contents.y]
+                                                 [contents.x]);
     ret->redo(contents);
     return ret;
 }
@@ -78,9 +80,9 @@ struct remove_c : public change {
     }
     virtual std::shared_ptr<change>
     regenerate(const contents& contents) const override {
-        return std::make_shared<
-            remove_c>(contents.y, contents.x,
-                      contents.cont[contents.y][contents.x]);
+        return std::make_shared<remove_c>(contents.y, contents.x,
+                                          contents.cont[contents.y]
+                                                       [contents.x]);
     }
 };
 
@@ -88,8 +90,8 @@ boost::optional<std::shared_ptr<change> >
 remove_character(contents& contents, boost::optional<int>) {
     std::shared_ptr<change> ret =
         std::make_shared<remove_c>(contents.y, contents.x,
-                                   contents
-                                       .cont[contents.y][contents.x]);
+                                   contents.cont[contents.y]
+                                                [contents.x]);
     ret->redo(contents);
     return ret;
 }

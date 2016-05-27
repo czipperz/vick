@@ -5,9 +5,9 @@
 #ifndef HEADER_GUARD_PREFIX_H
 #define HEADER_GUARD_PREFIX_H
 
-#include <map>
-#include <functional>
 #include <boost/optional.hpp>
+#include <functional>
+#include <map>
 
 #include "change.hh"
 
@@ -30,7 +30,8 @@ class prefix {
 private:
     std::shared_ptr<std::map<
         char, std::function<boost::optional<std::shared_ptr<
-                  change> >(contents&, boost::optional<int>)> > > map;
+                  change> >(contents&, boost::optional<int>)> > >
+        map;
     /*!
      * \brief Used exclusively for function lookup failures (unbound
      * keys)

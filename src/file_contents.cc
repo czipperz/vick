@@ -3,18 +3,18 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include <ncurses.h>
+#include <locale>
 #include <string>
 #include <vector>
-#include <locale>
 
-#include "open_file.hh"
-#include "file_contents.hh"
 #include "configuration.hh"
 #include "contents.hh"
-#include "hooks.hh"
 #include "file_contents.hh"
-#include "visual.hh"
+#include "file_contents.hh"
+#include "hooks.hh"
+#include "open_file.hh"
 #include "show_message.hh"
+#include "visual.hh"
 
 namespace vick {
 

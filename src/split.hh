@@ -5,8 +5,8 @@
 #ifndef HEADER_GUARD_SPLIT_H
 #define HEADER_GUARD_SPLIT_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 namespace vick {
 

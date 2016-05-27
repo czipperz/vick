@@ -2,20 +2,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include <iostream>
-#include <map>
 #include <ncurses.h>
 #include <stdlib.h>
+#include <boost/optional.hpp>
+#include <functional>
+#include <iostream>
+#include <map>
 #include <string>
 #include <vector>
-#include <functional>
-#include <boost/optional.hpp>
 
+#include "command_listeners.hh"
 #include "configuration.hh"
+#include "inter_space.hh"
 #include "key_aliases.hh"
 #include "prompt.hh"
 #include "show_message.hh"
-#include "inter_space.hh"
 
 namespace vick {
 

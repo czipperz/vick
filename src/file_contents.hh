@@ -5,11 +5,11 @@
 #ifndef HEADER_GUARD_FILE_CONTENTS_H
 #define HEADER_GUARD_FILE_CONTENTS_H
 
-#include <vector>
-#include <string>
 #include <locale>
-#include "contents.hh"
+#include <string>
+#include <vector>
 #include "configuration.hh"
+#include "contents.hh"
 
 namespace vick {
 
@@ -35,9 +35,9 @@ contents& get_contents();
  * Uses `get_window_dimensions` to determine which parts of the buffer
  * to show.
  *
- * \param [in, out] contents The buffer to be displayed.  The only
- *                           part of contents that can be changed is
- *                           the `y_offset` variable.
+ * \param [in,out] contents The buffer to be displayed.  The only
+ *                          part of contents that can be changed is
+ *                          the `y_offset` variable.
  */
 void print_contents(contents& contents);
 

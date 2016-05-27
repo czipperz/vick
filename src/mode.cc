@@ -2,12 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include <functional>
 #include <boost/optional.hpp>
+#include <functional>
 
 #include "configuration.hh"
-#include "key_aliases.hh"
 #include "file_contents.hh"
+#include "key_aliases.hh"
 #include "mode.hh"
 #include "show_message.hh"
 
@@ -80,13 +80,15 @@ bool mode::operator!=(const mode& other) const {
 
 void mode::add_to_mode_normal_map(
     char ch, std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> fun) {
+                 contents&, boost::optional<int>)>
+                 fun) {
     (*normal_map)[ch] = fun;
 }
 
 void mode::add_to_mode_insert_map(
     char ch, std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> fun) {
+                 contents&, boost::optional<int>)>
+                 fun) {
     (*insert_map)[ch] = fun;
 }
 

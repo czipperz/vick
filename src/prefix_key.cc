@@ -4,8 +4,8 @@
 
 #include <ncurses.h>
 
-#include "show_message.hh"
 #include "prefix_key.hh"
+#include "show_message.hh"
 
 namespace vick {
 

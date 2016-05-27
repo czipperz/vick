@@ -5,11 +5,11 @@
 #ifndef HEADER_GUARD_MODE_H
 #define HEADER_GUARD_MODE_H
 
+#include <boost/optional.hpp>
 #include <functional>
 #include <map>
-#include <string>
-#include <boost/optional.hpp>
 #include <memory>
+#include <string>
 
 #include "change.hh"
 

@@ -2,18 +2,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include <map>
 #include <ncurses.h>
+#include <map>
 #include <string>
 #include <typeinfo>
 #include <vector>
 
 #include "configuration.hh"
 #include "file_contents.hh"
-#include "key_listeners.hh"
-#include "show_message.hh"
 #include "hooks.hh"
 #include "inter_space.hh"
+#include "key_listeners.hh"
+#include "show_message.hh"
 
 namespace vick {
 

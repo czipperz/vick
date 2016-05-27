@@ -7,9 +7,9 @@
 
 #include <boost/optional.hpp>
 #include <functional>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 namespace vick {
 

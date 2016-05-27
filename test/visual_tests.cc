@@ -3,8 +3,8 @@
 
 #include "catch.hpp"
 
-#include "visual.hh"
 #include "configuration.hh"
+#include "visual.hh"
 
 using namespace vick;
 

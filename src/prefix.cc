@@ -2,14 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include <map>
 #include <ncurses.h>
+#include <map>
 #include <string>
 
 #include "file_contents.hh"
 #include "mode.hh"
-#include "show_message.hh"
 #include "prefix.hh"
+#include "show_message.hh"
 
 namespace vick {
 
@@ -22,7 +22,8 @@ prefix::prefix(std::string history)
 
 void prefix::push_back(
     char ch, std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> fun) {
+                 contents&, boost::optional<int>)>
+                 fun) {
     (*map)[ch] = fun;
 }
 

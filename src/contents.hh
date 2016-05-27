@@ -5,9 +5,9 @@
 #ifndef HEADER_GUARD_CLASS_CONTENTS_H
 #define HEADER_GUARD_CLASS_CONTENTS_H
 
-#include <vector>
-#include <string>
 #include <memory>
+#include <string>
+#include <vector>
 
 #include "change.hh"
 #include "mode.hh"
