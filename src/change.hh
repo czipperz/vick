@@ -36,7 +36,7 @@ class contents;
  * \see contents
  */
 struct change {
-    virtual ~change() {}
+    virtual ~change() = default;
 
     /*!
      * \brief Return true if you edit in any way anything but the x
