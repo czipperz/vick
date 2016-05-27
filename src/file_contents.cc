@@ -72,7 +72,7 @@ void get_window_dimensions(const contents& contents, move_t& firsty,
     y--;
 end:
     // if (lastx != 0) lastx--;
-    lasty = std::distance(std::begin(contents.cont), line);
+    lasty = line - std::begin(contents.cont);
 
     if (contents.y > lasty) {
         firsty += contents.y - lasty;
