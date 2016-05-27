@@ -16,7 +16,9 @@ struct full_diff : public change {
     full_diff(contents o, contents n)
         : o(o)
         , n(n) {}
-    virtual bool is_overriding() override { return true; }
+    virtual bool is_overriding() const noexcept override {
+        return true;
+    }
     virtual void undo(contents& cont) override { cont = o; }
     virtual void redo(contents& cont) override { cont = n; }
     virtual std::shared_ptr<change>

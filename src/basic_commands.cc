@@ -31,7 +31,9 @@ struct replace_c : public change {
         , x(x)
         , n(n)
         , o(o) {}
-    virtual bool is_overriding() override { return true; }
+    virtual bool is_overriding() const noexcept override {
+        return true;
+    }
     virtual void undo(contents& contents) override {
         contents.y = y;
         contents.x = x;
@@ -67,7 +69,9 @@ struct remove_c : public change {
         : y(y)
         , x(x)
         , o(o) {}
-    virtual bool is_overriding() override { return true; }
+    virtual bool is_overriding() const noexcept override {
+        return true;
+    }
     virtual void undo(contents& contents) override {
         contents.y = y;
         contents.x = x;

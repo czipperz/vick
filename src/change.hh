@@ -43,7 +43,7 @@ struct change {
      * and y
      * coordinate
      */
-    virtual bool is_overriding() = 0;
+    virtual bool is_overriding() const noexcept = 0;
 
     /*!
      * \brief Undoes this edit
