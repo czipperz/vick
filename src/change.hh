@@ -39,9 +39,9 @@ struct change {
     virtual ~change() = default;
 
     /*!
-     * \brief Return true if you edit in any way anything but the x
-     * and y
-     * coordinate
+     * \brief Return true if you edit the `contents`
+     *
+     * Basically allows controll over whether it should be "undone".
      */
     virtual bool is_overriding() const noexcept = 0;
 
