@@ -36,6 +36,8 @@ class contents;
  * \see contents
  */
 struct change {
+    change() = default;
+
     virtual ~change() = default;
 
     /*!
