@@ -68,6 +68,10 @@ struct change {
      * returns the regenerated change.
      */
     std::shared_ptr<change> regenerate_and_apply(contents& cont);
+
+private:
+    change(const change&) = delete;
+    change& operator=(const change&) = delete;
 };
 }
 
