@@ -3,39 +3,47 @@
 # `reconfigure` instead
 
 if [ -d vick-build ]; then
-    printf "\nUpdating vick-build:\n\n"
+    printf "Updating vick-build:\n"
     cd vick-build
     git pull || exit $?
 else
-    printf "Installing vick-build:\n\n"
+    printf "Installing vick-build:\n"
     git clone https://github.com/czipperz/vick-build
     cd vick-build
 fi
 # now we are in vick-build
 
-printf "\nBuilding vick-build:\n"
+printf "\n\n"
+
+printf "Building vick-build:\n"
 ./configure || exit $?
 make || exit $?
 cd ..
 
+printf "\n\n"
+
 if [ -d vick-package ]; then
-    printf "\nUpdating vick-package:\n\n"
+    printf "Updating vick-package:\n"
     cd vick-package
     git pull || exit $?
 else
-    printf "\nInstalling vick-package:\n\n"
+    printf "Installing vick-package:\n"
     git clone https://github.com/czipperz/vick-package \
         || exit $?
     cd vick-package
 fi
 # now we are in vick-package
 
-printf "\nBuilding vick-package:\n\n"
+printf "\n\n"
+
+printf "Building vick-package:\n"
 ./configure
 make
 cd ..
 
-printf "\n\nInstalling vick suite:\n\n"
+printf "\n\n"
+
+printf "Installing vick suite:\n"
 ./vick-package/vick-package vick-package/packagelist install \
                             vick-move vick-insert-mode vick-find \
                             vick-open-line vick-join vick-compile \
