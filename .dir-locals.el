@@ -9,6 +9,15 @@
                                          d)))
                                   (list (format "%s/%s" dir-locals-dir "src")
                                         (format "%s/%s" dir-locals-dir "catch-raw")
-                                        (format "%s/%s" dir-locals-dir "plugins"))))))))
+                                        (format "%s/%s" dir-locals-dir "plugins"))))))
+              (eval . (set (make-local-variable 'flycheck-gcc-warnings)
+                           (set (make-local-variable 'flycheck-clang-warnings)
+                                (list "everything"
+                                      "no-c++98-compat"
+                                      "no-exit-time-destructors"
+                                      "no-global-constructors"
+                                      "no-documentation-unknown-command"
+                                      "no-shadow"
+                                      "no-padded"))))))
  ;; apply to all source directories (including plugins)
  (subdirs . t))
