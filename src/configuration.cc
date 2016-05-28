@@ -13,14 +13,14 @@
 #include "open_file.hh"
 #include "prefix.hh"
 #include "prefix_key.hh"
-#include "vick-compile/src/compile.hh"
-#include "vick-find/src/find.hh"
-#include "vick-insert-mode/src/insert_mode.hh"
-#include "vick-join/src/join.hh"
-#include "vick-linear-change-manager/src/linear-change-manager.hh"
-#include "vick-move/src/move.hh"
-#include "vick-open-line/src/open_line.hh"
-#include "vick-page/src/page.hh"
+#include "vick-compile/lib.hh"
+#include "vick-find/lib.hh"
+#include "vick-insert-mode/lib.hh"
+#include "vick-join/lib.hh"
+#include "vick-linear-change-manager/lib.hh"
+#include "vick-move/lib.hh"
+#include "vick-open-line/lib.hh"
+#include "vick-page/lib.hh"
 
 namespace vick {
 

@@ -14,7 +14,6 @@ There are also bugs to be fixed -- [[https://github.com/czipperz/vick/issues][li
 ** Integrate hooks in to join threads
 * Standardize reading input from user
 ** Integrate `global_insert_mode`
-* Refactor plugins to use `lib.hh`                                     :easy:
 
 
 This Source Code Form is subject to the terms of the Mozilla Public
