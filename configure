@@ -17,7 +17,7 @@ printf "\n\n"
 
 printf "Building vick-build:\n"
 ./configure || exit $?
-make || exit $?
+make -j5 || exit $?
 cd ..
 
 printf "\n\n"
@@ -38,7 +38,7 @@ printf "\n\n"
 
 printf "Building vick-package:\n"
 ./configure
-make
+make -j5
 cd ..
 
 printf "\n\n"
