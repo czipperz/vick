@@ -1,0 +1,22 @@
+Vick TODO List
+
+Copyright (C) 2016 Chris Gregory
+See the end of the file for license conditions.
+
+If you are going to start working on one of these TODO items, please
+look at the [[https://github.com/czipperz/vick][Github repository]] to make sure it isn't in development or
+has already been completed.
+
+There are also bugs to be fixed -- [[https://github.com/czipperz/vick/issues][link]].
+
+* Add threading support
+** Make main loop not sleep waiting for input                          :easy:
+** Integrate hooks in to join threads
+* Standardize reading input from user
+** Integrate `global_insert_mode`
+* Refactor plugins to use `lib.hh`                                     :easy:
+
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
