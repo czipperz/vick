@@ -21,6 +21,8 @@ namespace vick {
  *
  * This inverts `from_visual()`
  *
+ * \pre x < cont.size()
+ *
  * This statement will always be true:
  *
  * \code{.cpp}
@@ -33,6 +35,8 @@ int to_visual(const std::string& cont, int x);
  * \brief Converts a graphical location to its index location.
  *
  * This inverts `to_visual()`
+ *
+ * \post result < cont.size()
  *
  * This statement will always be true:
  *
