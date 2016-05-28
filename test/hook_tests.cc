@@ -6,7 +6,7 @@
 #include "hooks.hh"
 
 static int i;
-void inc_i(vick::contents&) { ++i; }
+static void inc_i(vick::contents&) { ++i; }
 
 TEST_CASE("hook proc", "[hook]") {
     vick::hook h;
