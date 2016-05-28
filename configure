@@ -44,7 +44,7 @@ cd ..
 printf "\n\n"
 
 printf "Installing vick suite:\n"
-./vick-package/vick-package vick-package/packagelist install \
+./vick-package/vick-package install \
                             vick-move vick-insert-mode vick-find \
                             vick-open-line vick-join vick-compile \
                             vick-linear-change-manager vick-page
