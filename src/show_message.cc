@@ -5,6 +5,8 @@
 #include <ncurses.h>
 #include <string>
 
+#include "show_message.hh"
+
 namespace vick {
 
 static std::string mes;
