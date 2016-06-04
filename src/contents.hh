@@ -6,6 +6,7 @@
 #define HEADER_GUARD_CLASS_CONTENTS_H
 
 #include <memory>
+#include <mutex>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -75,6 +76,12 @@ public:
      * linear is.
      */
     std::vector<std::shared_ptr<change> > changes;
+
+    /*!
+     * \brief For use to lock access to `cont` when it is being
+     * updated in one thread and displayed in another.
+     */
+    std::mutex print_mutex;
 
     /*!
      * \brief The current change the buffer is in
