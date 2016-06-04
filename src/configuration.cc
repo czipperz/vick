@@ -21,6 +21,7 @@
 #include "vick-move/lib.hh"
 #include "vick-open-line/lib.hh"
 #include "vick-page/lib.hh"
+#include "vick-write-file/lib.hh"
 
 namespace vick {
 
@@ -157,5 +158,6 @@ void add_commands(
     commandMap["colortest"] = color_test_command;
     commandMap["o"] = open_file_i;
     commandMap["open"] = open_file_i;
+    commandMap["w"] = write_file::write;
 }
 }
