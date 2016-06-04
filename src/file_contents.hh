@@ -67,8 +67,8 @@ inline move_t char_size(char c, move_t x,
 inline move_t line_size(const std::string& line,
                         const std::locale& locale = std::locale()) {
     move_t sum = 0;
-    const auto end = std::end(line);
-    for (auto it = std::begin(line); it != end; ++it) {
+    for (auto it = std::begin(line), end = std::end(line); it != end;
+         ++it) {
         sum += char_size(*it, sum, locale);
     }
     return sum;
