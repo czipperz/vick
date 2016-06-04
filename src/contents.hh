@@ -7,7 +7,9 @@
 
 #include <memory>
 #include <string>
+#include <type_traits>
 #include <vector>
+#include <cstddef>
 
 #include "change.hh"
 #include "mode.hh"
@@ -25,21 +27,21 @@ namespace vick {
  * \brief Define `move_t` so that code can be more descriptive and
  * can change it from one place.
  */
-using move_t = unsigned long;
+using move_t = std::size_t;
 
 /*!
  * \brief Define `move_ts` to be a signed version of `move_t`
  *
  * \see move_t
  */
-using move_ts = long;
+using move_ts = typename std::make_signed<move_t>::type;
 
 /*!
  * \brief Define `move_tu` to be an unsigned version of `move_t`
  *
  * \see move_t
  */
-using move_tu = unsigned long;
+using move_tu = typename std::make_unsigned<move_t>::type;
 
 /*!
  * \class contents contents.hh "contents.hh"
