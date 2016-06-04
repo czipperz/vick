@@ -84,6 +84,11 @@ public:
     std::mutex print_mutex;
 
     /*!
+     * \brief The file that the contents was read from.
+     */
+    std::string file_name;
+
+    /*!
      * \brief The current change the buffer is in
      */
     size_t changes_i = 0;
