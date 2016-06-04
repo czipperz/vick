@@ -127,13 +127,6 @@ void print_contents(contents& contents) {
     // contents.y, to_visual(contents.cont[contents.y],contents.x)
     move(fin_y, fin_x);
     hooks::refresh.proc(contents);
-    show_message(
-        std::string("firsty: ") + std::to_string(contents.y_offset) +
-        " lasty: " + std::to_string(lasty) + " lastx: " +
-        std::to_string(lastx) + " (" + std::to_string(contents.y) +
-        ", " + std::to_string(contents.x) + "), max_x: " +
-        std::to_string(contents.max_x) + " changes_i: " +
-        std::to_string(contents.changes_i));
 
     refresh();
 }
