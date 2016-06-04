@@ -83,7 +83,7 @@ end:
 
 void print_contents(contents& contents) {
     clear();
-    move_t y = 0, fin_y, fin_x; // if none set then random!
+    move_t y = 0, fin_y = 0, fin_x = 0;
     move_t lasty, lastx;
 
     get_window_dimensions(contents, contents.y_offset, lasty, lastx);
