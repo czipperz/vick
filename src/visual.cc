@@ -3,6 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include <string>
+#include <algorithm>
 
 #include "configuration.hh"
 #include "visual.hh"
@@ -34,17 +35,17 @@ move_t from_visual(const std::string& cont, move_t x) {
 
 move_t to_visual(const std::string& cont, move_t x) {
     move_t til = 0, xx = move_t(-1);
-    for (std::string::const_iterator i = cont.begin();
-         i <= cont.begin() + x; ++i) {
-        if (*i == '\t') {
-            xx += TAB_SIZE - til;
-            til = 0;
-        } else {
-            til++;
-            til %= TAB_SIZE;
-            xx++;
-        }
-    }
+    std::for_each(cont.begin(), cont.begin() + x,
+                  [&xx, &til](const char& c) {
+                      if (c == '\t') {
+                          xx += TAB_SIZE - til;
+                          til = 0;
+                      } else {
+                          til++;
+                          til %= TAB_SIZE;
+                          xx++;
+                      }
+                  });
     return xx;
 }
 }
