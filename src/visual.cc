@@ -9,11 +9,11 @@
 
 namespace vick {
 
-int from_visual(const std::string& cont, int x) {
+move_t from_visual(const std::string& cont, move_t x) {
     if (cont.empty())
         return 0;
-    int count = 0, til = 0;
-    int numTab = 0;
+    move_t count = 0, til = 0;
+    move_t numTab = 0;
     for (size_t i = 0; i < cont.length(); i++) {
         size_t len;
         if (cont[i] == '\t') {
@@ -26,14 +26,14 @@ int from_visual(const std::string& cont, int x) {
             til %= TAB_SIZE;
         }
         count += len;
-        if (count > x - numTab)
+        if (count + numTab > x)
             return i;
     }
     return -1;
 }
 
-int to_visual(const std::string& cont, int x) {
-    int til = 0, xx = -1;
+move_t to_visual(const std::string& cont, move_t x) {
+    move_t til = 0, xx = move_t(-1);
     for (std::string::const_iterator i = cont.begin();
          i <= cont.begin() + x; ++i) {
         if (*i == '\t') {

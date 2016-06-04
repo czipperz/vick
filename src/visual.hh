@@ -6,6 +6,7 @@
 #define HEADER_GUARD_VISUAL_H
 
 #include <string>
+#include "contents.hh"
 
 namespace vick {
 
@@ -29,7 +30,7 @@ namespace vick {
  * to_visual("\thi", 1) == TAB_SIZE
  * \endcode
  */
-int to_visual(const std::string& cont, int x);
+move_t to_visual(const std::string& cont, move_t x);
 
 /*!
  * \brief Converts a graphical location to its index location.
@@ -44,7 +45,7 @@ int to_visual(const std::string& cont, int x);
  * from_visual("\thi", TAB_SIZE) == 1
  * \endcode
  */
-int from_visual(const std::string& cont, int x);
+move_t from_visual(const std::string& cont, move_t x);
 }
 
 #endif
