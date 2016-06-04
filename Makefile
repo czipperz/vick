@@ -1,5 +1,6 @@
 CXX=clang++
 NUM_THREADS=8
+PACKAGE=
 
 all:
 	(cd vick-build; make)
@@ -16,4 +17,7 @@ clean:
 install: all
 	cp vick /usr/bin
 
-.PHONY: all test clean install
+new:
+	vick-package/vick-package create ${PACKAGE}
+
+.PHONY: all test clean install new
