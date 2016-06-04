@@ -25,21 +25,9 @@ namespace vick {
 void init(int argc, char** argv);
 
 /*!
- * \brief Returns the contents where the cursor currently is
+ * \brief Returns the contents where the cursor currently is.
  */
 contents& get_contents();
-
-/*!
- * \brief Clears the screen and prints out the buffer.
- *
- * Uses `get_window_dimensions` to determine which parts of the buffer
- * to show.
- *
- * \param [in,out] contents The buffer to be displayed.  The only
- *                          part of contents that can be changed is
- *                          the `y_offset` variable.
- */
-void print_contents(contents& contents);
 
 /*!
  * \brief Analyzes the buffer, starting at `y_offset`, describing

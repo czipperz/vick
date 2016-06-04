@@ -8,6 +8,7 @@
 #include <typeinfo>
 #include <vector>
 
+#include "print_contents.hh"
 #include "configuration.hh"
 #include "file_contents.hh"
 #include "hooks.hh"

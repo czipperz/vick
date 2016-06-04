@@ -13,6 +13,7 @@
 #include "file_contents.hh"
 #include "hooks.hh"
 #include "open_file.hh"
+#include "print_contents.hh"
 #include "show_message.hh"
 #include "visual.hh"
 
