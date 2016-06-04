@@ -91,7 +91,7 @@ public:
     /*!
      * \brief The current change the buffer is in
      */
-    size_t changes_i = 0;
+    std::size_t changes_i = 0;
 
     move_t
         y = 0 /*!< \brief The y (vertical) position in the buffer. */,
