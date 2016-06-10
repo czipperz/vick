@@ -12,7 +12,6 @@
 #include "configuration.hh"
 #include "file_contents.hh"
 #include "key_listeners.hh"
-#include "prompt.hh"
 #include "signals.hh"
 
 int main(int argc, char** argv) {
