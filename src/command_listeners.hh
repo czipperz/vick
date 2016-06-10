@@ -15,6 +15,14 @@ namespace vick {
  */
 
 /*!
+ * \brief The global binding of commands to functions.
+ */
+extern std::map<std::string,
+                std::function<boost::optional<std::shared_ptr<
+                    change> >(contents&, boost::optional<int>)> >
+    global_command_map;
+
+/*!
  * \brief Executes a command by name (Vim's `:`, Emacs's `M-x`)
  *
  * Executes a relevant command based on user input.  All commands are

@@ -149,15 +149,12 @@ void add_listeners() {
     }
 }
 
-void add_commands(
-    std::map<std::string,
-             std::function<boost::optional<std::shared_ptr<change> >(
-                 contents&, boost::optional<int>)> >& commandMap) {
-    commandMap["q"] = quit_command;
-    commandMap["quit"] = quit_command;
-    commandMap["colortest"] = color_test_command;
-    commandMap["o"] = open_file_i;
-    commandMap["open"] = open_file_i;
-    commandMap["w"] = write_file::write;
+void add_commands() {
+    global_command_map["q"] = quit_command;
+    global_command_map["quit"] = quit_command;
+    global_command_map["colortest"] = color_test_command;
+    global_command_map["o"] = open_file_i;
+    global_command_map["open"] = open_file_i;
+    global_command_map["w"] = write_file::write;
 }
 }
