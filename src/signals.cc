@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #include <ncurses.h>
-#include <csignal>
-#include <cstdlib>
+#include <signal.h>
+#include <stdlib.h>
 
 #include "signals.hh"
 
