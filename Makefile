@@ -20,4 +20,8 @@ install: all
 new:
 	vick-package/vick-package create ${PACKAGE}
 
-.PHONY: all test clean install new
+TAGS:
+	@echo "Using etags to generate tags"
+	@etags $(shell find -name '*.cc' -o -name '*.hh')
+
+.PHONY: all test clean install new TAGS
