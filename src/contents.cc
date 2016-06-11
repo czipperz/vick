@@ -85,7 +85,7 @@ contents& contents::operator=(contents&& other) {
 
 void contents::refreshmaxyx() { getmaxyx(stdscr, max_y, max_x); }
 
-void contents::push_back(const std::string& str) {
-    this->cont.push_back(str);
+void contents::push_back(std::string str) {
+    this->cont.push_back(std::move(str));
 }
 }

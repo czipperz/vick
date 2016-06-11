@@ -158,13 +158,13 @@ public:
     void refreshmaxyx();
 
     /*!
-     * \brief Calls ``cont.push_back(str)``
+     * \brief Calls ``cont.push_back(std::move(str))``
      *
      * \see cont
      *
      * \param str The string to be put at the end of the buffer.
      */
-    void push_back(const std::string& str);
+    void push_back(std::string str);
 };
 }
 
