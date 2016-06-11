@@ -41,7 +41,7 @@ public:
     /*!
      * \brief The type of file the buffer is.
      *
-     * Default mode is fundamental;
+     * Default mode is fundamental
      */
     mode* buffer_mode;
 
@@ -153,7 +153,8 @@ public:
     bool operator()(char);
 
     /*!
-     * \brief Updates the values of ``max_y`` and ``max_x``
+     * \brief Updates the values of ``max_y`` and ``max_x`` based on
+     * the physical window characteristics.
      *
      * \see max_y
      * \see max_x
@@ -165,8 +166,7 @@ public:
      *
      * \see cont
      *
-     * \param str The string to be put at the end of the vector of
-     * strings, `cont`
+     * \param str The string to be put at the end of the buffer.
      */
     void push_back(const std::string& str);
 };
