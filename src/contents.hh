@@ -43,7 +43,7 @@ public:
      *
      * Default mode is fundamental
      */
-    mode* buffer_mode;
+    mode* buffer_mode = &fundamental_mode;
 
     /*!
      * \brief The literal contents of the buffer
@@ -113,12 +113,8 @@ public:
                                        * variable)
                                        */;
 
-    explicit contents(
-        std::vector<std::string> cont = std::vector<std::string>(),
-        mode* buffer_mode = &fundamental_mode);
-    explicit contents(mode* buffer_mode);
-    contents(move_t y, move_t x,
-             mode* buffer_mode = &fundamental_mode);
+    explicit contents();
+    explicit contents(std::vector<std::string> cont);
 
     /*!
      * \brief Constructs this contents object as a copy of the other

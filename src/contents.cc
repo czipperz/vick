@@ -8,25 +8,13 @@
 
 namespace vick {
 
-contents::contents(std::vector<std::string> cont, mode* buffer_mode)
-    : buffer_mode(buffer_mode)
-    , cont(cont) {
+contents::contents() {
     refreshmaxyx();
     hooks::contents_created.proc(*this);
 }
 
-contents::contents(mode* buffer_mode)
-    : buffer_mode(buffer_mode)
-    , cont(std::vector<std::string>()) {
-    refreshmaxyx();
-    hooks::contents_created.proc(*this);
-}
-
-contents::contents(move_t y, move_t x, mode* buffer_mode)
-    : buffer_mode(buffer_mode)
-    , cont(std::vector<std::string>())
-    , y(y)
-    , x(x) {
+contents::contents(std::vector<std::string> contents)
+    : cont(std::move(contents)) {
     refreshmaxyx();
     hooks::contents_created.proc(*this);
 }
