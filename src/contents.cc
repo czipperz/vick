@@ -88,4 +88,9 @@ void contents::refreshmaxyx() { getmaxyx(stdscr, max_y, max_x); }
 void contents::push_back(std::string str) {
     this->cont.push_back(std::move(str));
 }
+
+void contents::yx(move_t _y, move_t _x) {
+    y = _y;
+    x = _x;
+}
 }

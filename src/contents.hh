@@ -165,6 +165,11 @@ public:
      * \param str The string to be put at the end of the buffer.
      */
     void push_back(std::string str);
+
+    /*!
+     * \brief Facilitates easier moving to a point.
+     */
+    void yx(move_t y, move_t x);
 };
 }
 
