@@ -1,27 +1,47 @@
-CXX=clang++
-NUM_THREADS=8
-PACKAGE=
+# begin vick-build commands
+all: build
+	vick-build/vick-build NUM_THREADS=8
 
-all:
-	(cd vick-build; make)
-	vick-build/vick-build NUM_THREADS=${NUM_THREADS} CXX=${CXX}
+test: build
+	vick-build/vick-build test NUM_THREADS=8
 
-test:
-	(cd vick-build; make)
-	vick-build/vick-build NUM_THREADS=${NUM_THREADS} CXX=${CXX} \
-test
-
-clean:
+clean: build
 	vick-build/vick-build clean
+
+build:
+	(cd vick-build; make)
+# end vick-build commands
+
 
 install: all
 	cp vick /usr/bin
 
-new:
+
+# begin vick-package commands
+new: package
 	vick-package/vick-package create ${PACKAGE}
 
-TAGS:
-	@echo "Using etags to generate tags"
-	@etags $(shell find -name '*.cc' -o -name '*.hh')
+clone: package
+	vick-package/vick-package install ${PACKAGE}
 
-.PHONY: all test clean install new TAGS
+remove: package
+	vick-package/vick-package remove ${PACKAGE}
+
+search: package
+	vick-package/vick-package search ${QUERY}
+
+package: package
+	(cd vick-package; make)
+# end vick-package commands
+
+
+TAGS:
+	@echo 'etags $$(find -name "*.cc" -o -name "*.hh")'
+	@etags $(shell find -name "*.cc" -o -name "*.hh")
+
+
+.PHONY: \
+all test clean build \
+install \
+new clone remove search \
+TAGS
