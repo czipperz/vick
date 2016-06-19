@@ -22,10 +22,28 @@ namespace vick {
  * For example,
  * \code
  * split("\nhi\nbye", '\n') == {"", "hi", "bye"};
+ * split("\r\nhi\r\nbye", '\n') == {"\r", "hi\r", "bye"};
+ * split("\nhi\nbye\n", '\n') == {"", "hi", "bye", ""};
+ * split("\r\nhi\r\nbye\r\n", '\n') == {"\r", "hi\r", "bye\r", ""};
  * \endcode
  */
 std::vector<std::string>
 split(const std::string& str, char delim);
+
+/*!
+ * \brief Splits the given string by line into a vector.  Accounts for
+ * windows carriage return encodings.
+ *
+ * For example,
+ * \code
+ * split_by_line("\nhi\nbye") == {"", "hi", "bye"};
+ * split_by_line("\r\nhi\r\nbye") == {"", "hi", "bye"};
+ * split_by_line("\nhi\nbye\n") == {"", "hi", "bye", ""};
+ * split_by_line("\r\nhi\r\nbye\r\n") == {"", "hi", "bye", ""};
+ * \endcode
+ */
+std::vector<std::string>
+split_by_line(const std::string& str);
 }
 
 #endif
