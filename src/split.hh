@@ -24,7 +24,8 @@ namespace vick {
  * split("\nhi\nbye", '\n') == {"", "hi", "bye"};
  * \endcode
  */
-std::vector<std::string> split(const std::string& str, char delim);
+std::vector<std::string>
+split(const std::string& str, char delim);
 }
 
 #endif
