@@ -8,24 +8,9 @@
 #include "hooks.hh"
 #include "open_file.hh"
 #include "prompt.hh"
+#include "full_c.hh"
 
 namespace vick {
-
-struct full_diff : public change {
-    contents o, n;
-    full_diff(contents o, contents n)
-        : o(o)
-        , n(n) {}
-    virtual bool is_overriding() const noexcept override {
-        return true;
-    }
-    virtual void undo(contents& cont) override { cont = o; }
-    virtual void redo(contents& cont) override { cont = n; }
-    virtual std::shared_ptr<change>
-    regenerate(const contents& cont) const override {
-        return std::make_shared<full_diff>(cont, n);
-    }
-};
 
 boost::optional<std::shared_ptr<change> >
 open_file_i(contents& cont, boost::optional<int>) {
@@ -115,6 +100,6 @@ open_file(contents& cont, std::string file) {
     if (before.cont == cont.cont)
         return boost::none;
     return boost::optional<std::shared_ptr<change> >(
-        std::make_shared<full_diff>(std::move(before), cont));
+        std::make_shared<full_c>(std::move(before), cont));
 }
 }
