@@ -1,3 +1,6 @@
+// include it by default
+#include "visual_setup.hh"
+
 /*
  *  Catch v1.2.1-develop.13
  *  Generated: 2015-08-24 06:27:37.882342
