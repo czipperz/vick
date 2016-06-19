@@ -30,11 +30,11 @@ move_t from_visual(const std::string& cont, move_t x) {
         if (count + numTab > x)
             return i;
     }
-    return -1;
+    return static_cast<move_t>(-1);
 }
 
 move_t to_visual(const std::string& cont, move_t x) {
-    move_t til = 0, xx = move_t(-1);
+    move_t til = 0, xx = static_cast<move_t>(-1);
     std::for_each(cont.begin(), cont.begin() + x + 1,
                   [&xx, &til](const char& c) {
                       if (c == '\t') {
