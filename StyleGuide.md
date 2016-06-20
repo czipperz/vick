@@ -4,8 +4,9 @@ To accomplish the majority of stylistic choices, use `clang-format`
 with the format specified in `.clang-format`.
 
 1.  Keep lines to 70 characters, with 80 as absolute maximum.  This
-    rule is important in my opinion as it encourages readability of
-    code.
+    rule is important as it encourages readability of code.  I
+    commonly read code with many columns open, and small column limits
+    facilitate this.
 2.  Never use C style casts, always use a `static_cast` when
     appropriate.  C style casts will *never* perform a `dynamic_cast`
     and they can lead to `reinterpret_cast`, which can have extremely
@@ -19,15 +20,17 @@ with the format specified in `.clang-format`.
 5.  `typedef`s should be used extensively to provide meaning to types.
     Use `size_t` over `unsigned int` as `size_t` is cross platform and
     more readable!
-6.  Prefer templates over preprocessor macros, as they reduce
-    compilation time and are more readable and less error prone.
+6.  Prefer templates over preprocessor macros for generic functions,
+    but use macros for code duplication.
 7.  Put parenthesis around the ternary operator to prevent ambiguity.
-    `1 + false ? 3 : 1000 == 1000`, while `1 + (false ? 3 : 1000) == 1001`.
-8.  Put parenthesis around assignment to prevent ambiguity and show
-    you aren't mistaking equality for assignment.
-9.  Follow the Stroustrup style guidelines, majorly putting a newline
-    before the opening bracket at the definition of a function only.
-    In addition, do not indent code inside a namespace declaration.
+    `1 + false ? 3 : 1000` is `3`, while `1 + (false ? 3 : 1000)` is
+    `1001`.
+8.  Put parenthesis around assignment in expressions to prevent
+    ambiguity and show you aren't mistaking equality for assignment:
+    `if ((x = fun()) != 3) {}`
+9.  Follow the Java style guidelines of always having brackets
+    touching their respective declaration.  In addition, do not indent
+    code inside a namespace declaration.
 
 Example:
 
@@ -35,8 +38,7 @@ Example:
     namespace plugin_name {
 
     class ex {
-        void say_hi()
-        {
+        void say_hi() {
             if (true) {
                 std::cout << "hi\n";
             }
@@ -53,16 +55,15 @@ Example:
     edit it, calling `print_contents` periodically.
 12. Put a space after control keywords such as `if`, `while`, and
     `for`.
-13. Put brackets around single statement `if`, `while`, `do`, and
-    `for` loops when the body extends past the line that the keyword
-    lies on.
+13. Always put brackets around control statements.  It is more
+    consistent and helps catch errors.
 
 Example:
 
     for (auto x : xs) {
         std::cout << x;
     }
-    for (auto x : xs) std::cout << x;
+    for (auto x : xs) { std::cout << x; }
 
 13. Put the star or ampersand for a pointer or reference,
     respectively, with the type, unless it is in a list of variables,
@@ -76,3 +77,5 @@ Example:
     shared pointer is required because `change`, as an abstract class,
     cannot be used as a value type, and because discarding the return
     value of the function should *not* cause a memory leak!
+15. Wrap macros in `do { ... } while (0)` to prevent dangling `else`s.
+16. Write tests for your code.
