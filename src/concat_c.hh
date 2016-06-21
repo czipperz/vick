@@ -12,7 +12,8 @@ namespace vick {
 
 struct concat_c : public change {
     concat_c(std::vector<std::shared_ptr<change> > changes)
-        : changes(changes) {}
+        : changes(std::move(changes)) {}
+
     virtual bool is_overriding() const noexcept override {
         for (std::shared_ptr<change> pt : changes) {
             if (pt->is_overriding())
