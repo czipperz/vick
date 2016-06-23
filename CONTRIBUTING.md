@@ -11,9 +11,18 @@ Otherwise submit a pull request to a plugins' repository.
 Example for bash shells:
 
 1.  Clone the main vick repo and `cd` into it
-2.  Run `./configure` (installing the packages isn't required).
-3.  Run `./vick-package/vick-package create <package_name>` where
-    `<package_name>` is the name of the package you wish to create.
+    `git clone https://github.com/czipperz/vick; cd vick`
+2.  Generate documentation with `make doc`
+3.  Configure vick with `./configure` (installing the packages isn't
+    required).
+4.  Create your package with `make new PACKAGE=<package_name>`
+    where `<package_name>` is the name of the package
+5.  Work on the package (it's in `plugins/<package_name>`).
+    Declare interface and documentation in `lib.hh`, put source code in
+    `src/<package_name>.cc`
+6.  Compile the project with `make`
+7.  Write tests in `test/<package_name>_tests.cc`
+8.  Run tests with `make test`
 
 If you want to read the vick documentation, you need to install
 `doxygen` and `graphviz`.  Then go to the main vick repo location and
@@ -26,5 +35,5 @@ Code:
     $ cd vick
     $ make doc     # generate documentation
     $ ./configure
-    $ ./vick-package/vick-package create <package_name>
+    $ make new PACKAGE=<package_name>
     $ cd plugins/<package_name>
