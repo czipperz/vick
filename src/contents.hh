@@ -98,12 +98,6 @@ public:
          delete_mode = false /*!< \brief Controls if the private mode
                               * pointer variable will be deleted in the
                               * destructor */,
-         is_inserting = false /*!< \brief Will be true if the user is
-                               * currently inserting text into the
-                               * buffer.  This will cause the
-                               * print_contents method to not have
-                               * undefined behavior if x is too
-                               * large. */,
          windows_file_endings = false /*!< \brief If true, then when
                                        * saving, appends the byte 13 to
                                        * each line.  We use this to

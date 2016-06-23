@@ -119,7 +119,7 @@ void print_contents(contents& contents) {
             }
             if (contents.y == i and contents.x >= line.size()) {
                 fin_y = y;
-                fin_x = x - (contents.is_inserting ? 0 : 1);
+                fin_x = x;
             }
         }
         move(++y, 0);
