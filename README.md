@@ -1,4 +1,4 @@
-# Vick [![Build Status](https://travis-ci.org/czipperz/vick.svg)](https://travis-ci.org/czipperz/vick)
+# Vick: The Modular Text Editor
 
 #### VICK IS NOWHERE NEAR READY FOR USAGE.
 
