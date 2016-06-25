@@ -51,6 +51,14 @@ package: package
 	(cd vick-package; make)
 # end vick-package commands
 
+tmp := $(shell mktemp)
+
+doc:
+	cp Doxyfile "${tmp}"
+	echo "INPUT = src $(shell ls plugins | \
+            perl -pe 's|(.*)|plugins/$$1/lib.hh|')" >> "${tmp}"
+	doxygen "${tmp}"
+	rm "${tmp}"
 
 TAGS:
 	@echo 'etags $$(find -name "*.cc" -o -name "*.hh")'
@@ -61,4 +69,4 @@ TAGS:
 all test clean build \
 install \
 new clone remove search \
-TAGS
+doc TAGS
