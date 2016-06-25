@@ -1,9 +1,26 @@
+# CXX is builtin, if not provided, don't set for BUILD_FLAGS
+ifeq (${origin CXX}, default)
+CXX_Command :=
+else
+CXX_Command := CXX="${CXX}"
+endif
+
+ifeq (${origin CXXFLAGS}, undefined)
+CXXFLAGS_Command :=
+else
+CXXFLAGS_Command := CXXFLAGS+="${CXXFLAGS}"
+endif
+
+NUM_THREADS ?= 8
+
+BUILD_FLAGS := NUM_THREADS="${NUM_THREADS}" ${CXX_Command} ${CXXFLAGS_Command}
+
 # begin vick-build commands
 all: build
-	vick-build/vick-build NUM_THREADS=8
+	vick-build/vick-build ${BUILD_FLAGS}
 
 test: build
-	vick-build/vick-build test NUM_THREADS=8
+	vick-build/vick-build test ${BUILD_FLAGS}
 
 clean: build
 	vick-build/vick-build clean
