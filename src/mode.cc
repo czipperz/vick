@@ -13,8 +13,8 @@
 
 namespace vick {
 
-std::map<char, std::function<boost::optional<std::shared_ptr<
-                   change> >(contents &, boost::optional<int>)> >
+std::map<char, std::function<std::shared_ptr<
+                   change>(contents &, boost::optional<int>)> >
     global_normal_map, global_insert_map;
 
 mode::mode(const std::string& name)
@@ -22,13 +22,13 @@ mode::mode(const std::string& name)
     , normal_map(
           std::make_shared<std::map<
               char,
-              std::function<boost::optional<std::shared_ptr<
-                  change> >(contents&, boost::optional<int>)> > >())
+              std::function<std::shared_ptr<
+                  change>(contents&, boost::optional<int>)> > >())
     , insert_map(
           std::make_shared<std::map<
               char,
-              std::function<boost::optional<std::shared_ptr<
-                  change> >(contents&, boost::optional<int>)> > >()) {
+              std::function<std::shared_ptr<
+                  change>(contents&, boost::optional<int>)> > >()) {
     static int uid = 0;
     unique_id = uid++;
 }
@@ -51,7 +51,7 @@ bool mode::operator()(contents& cont, char ch) const {
 #define mac(i)                                                       \
     clear_message();                                                 \
     if (auto optional = i->second(cont, boost::none)) {              \
-        PUSH_BACK_CHANGE(cont, *optional);                           \
+        PUSH_BACK_CHANGE(cont, optional);                            \
     }
 
             } else {
@@ -79,14 +79,14 @@ bool mode::operator!=(const mode& other) const {
 }
 
 void mode::add_to_mode_normal_map(
-    char ch, std::function<boost::optional<std::shared_ptr<change> >(
+    char ch, std::function<std::shared_ptr<change>(
                  contents&, boost::optional<int>)>
                  fun) {
     (*normal_map)[ch] = fun;
 }
 
 void mode::add_to_mode_insert_map(
-    char ch, std::function<boost::optional<std::shared_ptr<change> >(
+    char ch, std::function<std::shared_ptr<change>(
                  contents&, boost::optional<int>)>
                  fun) {
     (*insert_map)[ch] = fun;

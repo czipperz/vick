@@ -18,8 +18,8 @@ namespace vick {
  * \brief The global binding of commands to functions.
  */
 extern std::map<std::string,
-                std::function<boost::optional<std::shared_ptr<
-                    change> >(contents&, boost::optional<int>)> >
+                std::function<std::shared_ptr<
+                    change>(contents&, boost::optional<int>)> >
     global_command_map;
 
 /*!
@@ -30,7 +30,7 @@ extern std::map<std::string,
  *
  * \see configuration.hh
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 command_executor(contents& cont, boost::optional<int> times);
 }
 

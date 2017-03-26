@@ -16,18 +16,18 @@ namespace vick {
 prefix::prefix(std::string history)
     : map(std::make_shared<std::map<
               char,
-              std::function<boost::optional<std::shared_ptr<
-                  change> >(contents&, boost::optional<int>)> > >())
+              std::function<std::shared_ptr<
+                  change>(contents&, boost::optional<int>)> > >())
     , history(history) {}
 
 void prefix::push_back(
-    char ch, std::function<boost::optional<std::shared_ptr<change> >(
+    char ch, std::function<std::shared_ptr<change>(
                  contents&, boost::optional<int>)>
                  fun) {
     (*map)[ch] = fun;
 }
 
-boost::optional<std::shared_ptr<change> > prefix::
+std::shared_ptr<change> prefix::
 operator()(contents& cont, boost::optional<int> op) {
     show_message(history + "-");
     char ch = getch();
@@ -35,7 +35,7 @@ operator()(contents& cont, boost::optional<int> op) {
     if (it == map->end()) {
         show_message(std::string("Didn't recognize key sequence: '") +
                      history + '-' + ch + '\'');
-        return boost::none;
+        return nullptr;
     } else {
         showing_message = false;
         return it->second(cont, op);
@@ -43,10 +43,10 @@ operator()(contents& cont, boost::optional<int> op) {
 }
 
 prefix::
-operator std::function<boost::optional<std::shared_ptr<change> >(
+operator std::function<std::shared_ptr<change>(
     contents&, boost::optional<int>)>() {
-    return std::function<boost::optional<
-        std::shared_ptr<change> >(contents&, boost::optional<int>)>(
+    return std::function<
+        std::shared_ptr<change>(contents&, boost::optional<int>)>(
         [this](contents& cont, boost::optional<int> op) {
             return (*this)(cont, op);
         });

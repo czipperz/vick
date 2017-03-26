@@ -21,11 +21,11 @@
 namespace vick {
 
 std::map<std::string,
-         std::function<boost::optional<std::shared_ptr<
-             change> >(contents&, boost::optional<int>)> >
+         std::function<std::shared_ptr<
+             change>(contents&, boost::optional<int>)> >
     global_command_map;
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 command_executor(contents& cont, boost::optional<int> times) {
     {
         static bool init = true;
@@ -40,12 +40,12 @@ command_executor(contents& cont, boost::optional<int> times) {
     attroff(COLOR_PAIR(1));
     if (not pr or pr->empty()) {
         clear_message();
-        return boost::none;
+        return nullptr;
     }
     auto command = global_command_map.find(*pr);
     if (command == global_command_map.end()) {
         show_message(std::string("Unrecognized command: ") + *pr);
-        return boost::none;
+        return nullptr;
     } else {
         return command->second(cont, times);
     }

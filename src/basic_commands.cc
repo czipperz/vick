@@ -17,7 +17,7 @@
 
 namespace vick {
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 quit_command(contents&, boost::optional<int>) {
     endwin();
     exit(0);
@@ -52,7 +52,7 @@ struct replace_c : public change {
     }
 };
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 replace_character(contents& contents, boost::optional<int>) {
     std::shared_ptr<change> ret =
         std::make_shared<replace_c>(contents.y, contents.x, getch(),
@@ -90,7 +90,7 @@ struct remove_c : public change {
     }
 };
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 remove_character(contents& contents, boost::optional<int>) {
     std::shared_ptr<change> ret =
         std::make_shared<remove_c>(contents.y, contents.x,
@@ -100,13 +100,13 @@ remove_character(contents& contents, boost::optional<int>) {
     return ret;
 }
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 color_test_command(contents&, boost::optional<int>) {
     show_message(
         "has_colors(): ``" + std::to_string(has_colors()) +
         "``, can_change_color(): ``" +
         std::to_string(can_change_color()) + "``, init_color(): ``" +
         std::to_string(init_color(COLOR_RED, 700, 0, 0)) + "``");
-    return boost::none;
+    return nullptr;
 }
 }

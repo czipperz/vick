@@ -73,7 +73,7 @@ Example:
     sense to use them.  This forces you to recognize who owns a
     resource and have them manage it instead of having a resource
     magically managed.  Note that functions that interact with the
-    user return a `boost::optional<std::shared_ptr<change> >`.  This
+    user return a `std::shared_ptr<change>`.  This
     shared pointer is required because `change`, as an abstract class,
     cannot be used as a value type, and because discarding the return
     value of the function should *not* cause a memory leak!

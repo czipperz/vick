@@ -12,13 +12,13 @@
 
 namespace vick {
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 open_file_i(contents& cont, boost::optional<int>) {
     attron(COLOR_PAIR(1));
     auto opt = prompt("File to open: ");
     attroff(COLOR_PAIR(1));
     if (not opt)
-        return boost::none;
+        return nullptr;
     return open_file(cont, *opt);
 }
 
@@ -60,7 +60,7 @@ contents open_file(std::string file) {
     return cont;
 }
 
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 open_file(contents& cont, std::string file) {
     contents before = cont;
     cont.y = 0;
@@ -98,8 +98,7 @@ open_file(contents& cont, std::string file) {
     hooks::open_file.proc(cont);
 
     if (before.cont == cont.cont)
-        return boost::none;
-    return boost::optional<std::shared_ptr<change> >(
-        std::make_shared<full_c>(std::move(before), cont));
+        return nullptr;
+    return std::make_shared<full_c>(std::move(before), cont);
 }
 }

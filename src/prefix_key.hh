@@ -35,7 +35,7 @@ extern char prefix_key_times_ten;
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_1(contents&, boost::optional<int>);
 
 /*!
@@ -44,7 +44,7 @@ prefix_key_1(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_2(contents&, boost::optional<int>);
 
 /*!
@@ -53,7 +53,7 @@ prefix_key_2(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_3(contents&, boost::optional<int>);
 
 /*!
@@ -62,7 +62,7 @@ prefix_key_3(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_4(contents&, boost::optional<int>);
 
 /*!
@@ -71,7 +71,7 @@ prefix_key_4(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_5(contents&, boost::optional<int>);
 
 /*!
@@ -80,7 +80,7 @@ prefix_key_5(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_6(contents&, boost::optional<int>);
 
 /*!
@@ -89,7 +89,7 @@ prefix_key_6(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_7(contents&, boost::optional<int>);
 
 /*!
@@ -98,7 +98,7 @@ prefix_key_7(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_8(contents&, boost::optional<int>);
 
 /*!
@@ -107,7 +107,7 @@ prefix_key_8(contents&, boost::optional<int>);
  *
  * If no argument is provided it will default to zero.
  */
-boost::optional<std::shared_ptr<change> >
+std::shared_ptr<change>
 prefix_key_9(contents&, boost::optional<int>);
 }
 

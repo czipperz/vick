@@ -29,8 +29,8 @@ namespace vick {
 class prefix {
 private:
     std::shared_ptr<std::map<
-        char, std::function<boost::optional<std::shared_ptr<
-                  change> >(contents&, boost::optional<int>)> > >
+        char, std::function<std::shared_ptr<
+                  change>(contents&, boost::optional<int>)> > >
         map;
     /*!
      * \brief Used exclusively for function lookup failures (unbound
@@ -51,7 +51,7 @@ public:
      */
     void
     push_back(char,
-              std::function<boost::optional<std::shared_ptr<change> >(
+              std::function<std::shared_ptr<change>(
                   contents&, boost::optional<int>)>);
 
     /*!
@@ -61,7 +61,7 @@ public:
      *
      * To associate a character with a function, use push_back().
      */
-    boost::optional<std::shared_ptr<change> >
+    std::shared_ptr<change>
     operator()(contents&, boost::optional<int>);
 
     /*!
@@ -70,7 +70,7 @@ public:
      * `operator()()` will be called when `operator()()` is used on
      * the created `std::function` object.
      */
-    operator std::function<boost::optional<std::shared_ptr<change> >(
+    operator std::function<std::shared_ptr<change>(
         contents&, boost::optional<int>)>();
 };
 }
