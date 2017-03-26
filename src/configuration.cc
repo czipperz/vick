@@ -50,10 +50,10 @@ void init_conf() { init_pair(1, COLOR_WHITE, COLOR_BLUE); }
 
 void add_listeners() {
     /* global_normal_map binds */ {
-        global_normal_map['j'] = move::mvb;
-        global_normal_map['k'] = move::mvd;
-        global_normal_map['l'] = move::mvu;
-        global_normal_map[';'] = move::mvf;
+        global_normal_map['j'] = move::left_char;
+        global_normal_map['k'] = move::forward_line;
+        global_normal_map['l'] = move::backward_line;
+        global_normal_map[';'] = move::right_char;
 
         global_normal_map['1'] = prefix_key_1;
         global_normal_map['2'] = prefix_key_2;
@@ -66,25 +66,25 @@ void add_listeners() {
         global_normal_map['9'] = prefix_key_9;
         prefix_key_times_ten = '0';
 
-        global_normal_map['^'] = move::mvsol;
-        global_normal_map['0'] = move::mvsot;
-        global_normal_map['$'] = move::mveol;
+        global_normal_map['^'] = move::start_text;
+        global_normal_map['0'] = move::start_line;
+        global_normal_map['$'] = move::end_line;
 
-        global_normal_map['%'] = move::mvmatch;
+        global_normal_map['%'] = move::match;
 
-        global_normal_map['|'] = move::mvcol;
-        global_normal_map['\\'] = move::mvline;
+        global_normal_map['|'] = move::column;
+        global_normal_map['\\'] = move::line;
 
         global_normal_map[':'] = command_executor;
 
-        global_normal_map['G'] = move::mveop;
+        global_normal_map['G'] = move::end_buffer;
 
-        global_normal_map['w'] = move::mvfw;
-        global_normal_map['W'] = move::mvfww;
-        global_normal_map['e'] = move::mvfeow;
-        global_normal_map['E'] = move::mvfeoww;
-        global_normal_map['b'] = move::mvbw;
-        global_normal_map['B'] = move::mvbww;
+        global_normal_map['w'] = move::forward_begin_word;
+        global_normal_map['W'] = move::forward_begin_wword;
+        global_normal_map['e'] = move::forward_end_word;
+        global_normal_map['E'] = move::forward_end_wword;
+        global_normal_map['b'] = move::backward_begin_word;
+        global_normal_map['B'] = move::backward_begin_wword;
 
         global_normal_map['f'] = find::move_forward_find_i;
         global_normal_map['F'] = find::move_backward_find_i;
@@ -122,7 +122,7 @@ void add_listeners() {
         prefix prefix_g("g");
 
         // binds inside g (``gg``)
-        prefix_g.push_back('g', move::mvsop);
+        prefix_g.push_back('g', move::start_buffer);
 
         // put this last as it copies by value
         global_normal_map['g'] = prefix_g;
@@ -143,7 +143,7 @@ void add_listeners() {
 
     {
         prefix alt(std::string(1, ESCAPE));
-        alt.push_back('m', move::mvsot);
+        alt.push_back('m', move::start_text);
 
         global_normal_map[ESCAPE] = alt;
     }
