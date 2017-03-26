@@ -17,6 +17,8 @@ namespace vick {
  * \see TAB_SIZE
  */
 
+using visual_t = size_t;
+
 /*!
  * \brief Converts an index location to its graphical location.
  *
