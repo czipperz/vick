@@ -11,8 +11,6 @@
 #include <memory>
 #include <string>
 
-#include "change.hh"
-
 namespace vick {
 
 /*!
@@ -22,6 +20,7 @@ namespace vick {
  */
 
 class contents;
+struct change;
 
 extern std::map<char,
                 std::function<std::shared_ptr<

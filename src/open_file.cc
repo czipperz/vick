@@ -8,7 +8,7 @@
 #include "hooks.hh"
 #include "open_file.hh"
 #include "prompt.hh"
-#include "full_c.hh"
+#include "change.hh"
 
 namespace vick {
 
@@ -99,6 +99,6 @@ open_file(contents& cont, std::string file) {
 
     if (before.cont == cont.cont)
         return nullptr;
-    return std::make_shared<full_c>(std::move(before), cont);
+    return std::make_shared<full_change>(std::move(before), cont);
 }
 }

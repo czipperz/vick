@@ -11,11 +11,11 @@
 #include <type_traits>
 #include <vector>
 
-#include "change.hh"
 #include "mode.hh"
 #include "types.hh"
 
 namespace vick {
+struct change;
 
 /*!
  * \file contents.hh
@@ -166,5 +166,7 @@ public:
     void yx(move_t y, move_t x);
 };
 }
+
+#include "change.hh"
 
 #endif

@@ -41,9 +41,7 @@ struct change {
     virtual ~change() = default;
 
     /*!
-     * \brief Return true if you edit the `contents`
-     *
-     * Basically allows controll over whether it should be "undone".
+     * \brief Return true if the edit changes `contents::cont`.
      */
     virtual bool is_overriding() const noexcept = 0;
 
@@ -72,6 +70,111 @@ struct change {
 private:
     change(const change&) = delete;
     change& operator=(const change&) = delete;
+};
+
+struct combination_change : change {
+    combination_change() = default;
+    combination_change(std::initializer_list<std::shared_ptr<change> >);
+    void add_change(std::shared_ptr<change>);
+
+    ~combination_change() override = default;
+
+    /*!
+     * \brief Return true if the edit changes `contents::cont`.
+     */
+    bool is_overriding() const noexcept override;
+
+    /*!
+     * \brief Undoes this edit
+     */
+    void undo(contents&) override;
+
+    /*!
+     * \brief Performs this edit again (Use after an undo)
+     */
+    void redo(contents&) override;
+
+    /*!
+     * \brief Generates a change that will act over the new contents
+     */
+    std::shared_ptr<change>
+    regenerate(const contents&) const override;
+
+    combination_change(const combination_change& other);
+    combination_change(combination_change&& other);
+    combination_change& operator=(const combination_change& other);
+    combination_change& operator=(combination_change&& other);
+
+private:
+    std::vector<std::shared_ptr<change> > changes;
+};
+
+struct insertion_change : change {
+    insertion_change(std::size_t y, std::size_t x, const std::string& str);
+    insertion_change(std::size_t y, std::size_t x, std::string&& str);
+
+    ~insertion_change() override = default;
+
+    bool is_overriding() const noexcept override;
+    virtual void undo(contents&) override;
+    virtual void redo(contents&) override;
+    virtual std::shared_ptr<change>
+    regenerate(const contents&) const override;
+
+    insertion_change(const insertion_change& other);
+    insertion_change(insertion_change&& other);
+    insertion_change& operator=(const insertion_change& other);
+    insertion_change& operator=(insertion_change&& other);
+
+private:
+    std::size_t y, x;
+    std::string str;
+
+    friend struct removal_change;
+};
+
+struct removal_change : insertion_change {
+    removal_change(std::size_t y, std::size_t x, const std::string& str);
+    removal_change(std::size_t y, std::size_t x, std::string&& str);
+
+    bool is_overriding() const noexcept override;
+    void undo(contents&) override;
+    void redo(contents&) override;
+    std::shared_ptr<change>
+    regenerate(const contents&) const override;
+};
+
+}
+
+#include "contents.hh"
+
+namespace vick {
+struct full_change : change {
+    full_change(const contents& o, const contents& n)
+        : o(o)
+        , n(n) {}
+    full_change(contents&& o, const contents& n)
+        : o(std::move(o))
+        , n(n) {}
+    full_change(const contents& o, contents&& n)
+        : o(o)
+        , n(std::move(n)) {}
+    full_change(contents&& o, contents&& n)
+        : o(std::move(o))
+        , n(std::move(n)) {}
+
+    ~full_change() = default;
+
+    bool is_overriding() const noexcept override { return true; }
+    void undo(contents& cont) override { cont = o; }
+    void redo(contents& cont) override { cont = n; }
+    std::shared_ptr<change>
+    regenerate(const contents& cont) const override {
+        return std::make_shared<full_change>(cont, n);
+    }
+
+private:
+    contents o, n;
 };
 }
 
