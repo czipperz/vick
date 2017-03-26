@@ -26,7 +26,7 @@ clean: build
 	vick-build/vick-build clean
 
 build:
-	(cd vick-build; make)
+	(cd vick-build && make)
 # end vick-build commands
 
 
@@ -47,8 +47,8 @@ remove: package
 search: package
 	vick-package/vick-package search ${QUERY}
 
-package: package
-	(cd vick-package; make)
+package:
+	(cd vick-package && make)
 # end vick-package commands
 
 tmp := $(shell mktemp)
